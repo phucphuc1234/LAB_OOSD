@@ -1,31 +1,4 @@
 
-# HỆ THỐNG QUẢN LÝ CÔNG TY DU LỊCH
-
-## 1. Giới thiệu đề tài
-
-**Tên đề tài:** Xây dựng hệ thống quản lý công ty du lịch
-
-**Học phần:** Phân tích thiết kế hướng đối tượng  
-**Trường:** Đại học Công nghệ TP.HCM (HUTECH)  
-**Ngôn ngữ:** C#  
-**Framework:** .NET Framework 4.7.2  
-**Cơ sở dữ liệu:** Microsoft SQL Server  
-**Mô hình kiến trúc:** UI → Service → Data
-
-### Mục tiêu
-
-Xây dựng ứng dụng quản lý công ty du lịch nhằm hỗ trợ quản lý các hoạt động kinh doanh tour, bao gồm:
-
-- Quản lý thông tin tour du lịch.
-- Quản lý chuyến đi và lịch khởi hành.
-- Quản lý khách hàng cá nhân và khách đoàn.
-- Đăng ký tour du lịch.
-- Quản lý thanh toán và đặt cọc.
-- Phân công hướng dẫn viên.
-- Tính lương hướng dẫn viên.
-- Quản lý thông tin khảo sát sau chuyến đi.
-
-Hệ thống được phát triển bằng C# Windows Forms và SQL Server, tổ chức theo kiến trúc 3 tầng giúp phân tách giao diện, xử lý nghiệp vụ và truy cập cơ sở dữ liệu.
 
 ---
 
