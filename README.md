@@ -424,23 +424,7 @@ Tài liệu:
 
 **Trạng thái kiểm thử:** Chưa xác nhận build và chạy thành công trên Visual Studio/SQL Server. Cần chạy thử và bổ sung kết quả thực tế trước khi nghiệm thu.
 
----
 
-## 13. Thông tin thực hiện
-
-**Đề tài:** Quản lý công ty du lịch
-
-**Môn học:** Phân tích thiết kế hướng đối tượng
-
-**Trường:** Đại học Công nghệ TP.HCM – HUTECH
-
-**Sinh viên thực hiện:** [Điền họ tên]
-
-**MSSV:** [Điền mã số sinh viên]
-
-**Lớp:** [Điền lớp]
-
----
 
 ## 14. Kết luận
 
