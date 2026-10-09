@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+hide circle
+class Tour { +MaTour : int <<PK>>
+ +TenTour : string
+ +SoNgay : int
+ +SoDem : int
+ +DonGia : decimal }
+class ChuyenDi { +MaChuyen : int <<PK>>
+ +NgayDi : Date
+ +NgayVe : Date
+ +SoCho : int }
+class KhachHang { +MaKH : int <<PK>>
+ +TenKH : string
+ +DiaChi : string
+ +DienThoai : string }
+class KhachDoan { +MaPhieu : int <<PK,FK>>
+ +TenCoQuan : string
+ +NguoiDaiDien : string
+ +DiaDiemDon : string }
+class PhieuDangKy { +MaPhieu : int <<PK>>
+ +LoaiDangKy : LE/DOAN
+ +SoNguoi : int
+ +TongTien : decimal
+ +TrangThai : string }
+class ThanhToan { +MaThanhToan : int <<PK>>
+ +LoaiThanhToan : string
+ +SoTien : decimal }
+class NhanVienHDDL { +MaNV : int <<PK>>
+ +TenNV : string
+ +LuongCB : decimal }
+class PhanCong { +MaPhanCong : int <<PK>>
+ +LuongTour : decimal }
+class NoiDungChan { +MaNoiDC : int <<PK>>
+ +TenNoi : string
+ +LoaiKhachSan : int }
+class DiemThamQuan { +MaDiem : int <<PK>>
+ +TenDiem : string }
+class TourDiemThamQuan { +MaTourDiem : int <<PK>>
+ +ThuTu : int }
+class TourChang { +MaChang : int <<PK>>
+ +NoiDi : string
+ +NoiDen : string
+ +PhuongTien : string }
+class NguoiDuLich { +MaNguoi : int <<PK>>
+ +HoTen : string }
+class PhieuKhaoSat { +MaPhieuKS : int <<PK>>
+ +NoiDungGopY : string }
+Tour "1" -- "0..*" ChuyenDi
+Tour "1" -- "0..*" PhieuDangKy
+KhachHang "1" -- "0..*" PhieuDangKy
+ChuyenDi "0..1" -- "0..*" PhieuDangKy
+PhieuDangKy "1" -- "0..1" KhachDoan
+PhieuDangKy "1" -- "1..*" ThanhToan
+PhieuDangKy "1" -- "0..*" NguoiDuLich
+PhieuDangKy "1" -- "0..*" PhanCong
+NhanVienHDDL "1" -- "0..*" PhanCong
+PhieuDangKy "1" -- "0..1" PhieuKhaoSat
+Tour "1" -- "0..*" NoiDungChan
+Tour "1" -- "0..*" TourChang
+Tour "1" -- "0..*" TourDiemThamQuan
+DiemThamQuan "1" -- "0..*" TourDiemThamQuan
+@enduml

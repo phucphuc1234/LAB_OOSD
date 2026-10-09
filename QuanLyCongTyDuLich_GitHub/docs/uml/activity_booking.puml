@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+start
+:Chọn tour và nhập thông tin khách;
+if (Số người >=12?) then (Có)
+ :Chọn ngày đi, điểm đón;
+ :Nhập đơn vị/người đại diện;
+ :Kiểm tra tiền đặt cọc;
+ :Thu tiền cọc;
+else (Không)
+ :Chọn chuyến theo lịch;
+ :Kiểm tra số chỗ còn trống;
+ :Thu đủ tiền vé;
+endif
+:Lưu phiếu đăng ký và giao dịch trong 1 transaction;
+:Phân công hướng dẫn viên;
+:Thực hiện tour;
+:Đánh dấu hoàn thành (khi hết lịch trình);
+:Đoàn quyết toán phần còn lại;
+:Tiếp nhận khảo sát khách;
+stop
+@enduml
