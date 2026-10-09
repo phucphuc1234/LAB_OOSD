@@ -171,20 +171,11 @@ QuanLyCongTyDuLich_GitHub/
 │
 ├── docs/
 │   ├── TRACEABILITY.md
-│   │
-│   └── uml/
-│       ├── class_diagram.puml
-│       ├── use_case.puml
-│       ├── activity_booking.puml
-│       └── sequence_group_booking.puml
 │
 ├── tests/
 │   ├── TEST_CASES.md
-│   └── Test_Case_Quan_Ly_Cong_Ty_Du_Lich.docx
 │
-└── .github/
-    └── workflows/
-        └── README.md
+
 ```
 
 ### Giải thích các thư mục
