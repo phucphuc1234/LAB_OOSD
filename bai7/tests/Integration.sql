@@ -1,0 +1,96 @@
+USE QuanLyNhanSuDongA;
+GO
+SET NOCOUNT ON;
+IF NOT EXISTS(SELECT 1 FROM BangLuong WHERE maBangLuong=N'BL012026' AND trangThai=N'Nhap') THROW 51000,N'Cần seed sạch trước khi chạy test.',1;
+BEGIN TRY
+ BEGIN TRAN;
+ EXEC sp_TinhLuong N'BL012026';
+ IF (SELECT thucLinh FROM ChiTietBangLuong WHERE maBangLuong=N'BL012026' AND maNhanVien=N'NV01')<>10632000 THROW 51001,N'Sai thực lĩnh.',1;
+ IF (SELECT COUNT(*) FROM ChiTietChamCong WHERE maChiTietLuong IS NOT NULL)<>26 THROW 51001,N'Thiếu liên kết chấm công.',1;
+ IF (SELECT COUNT(*) FROM CanCuBaoHiem)<>2 THROW 51001,N'Thiếu căn cứ bảo hiểm.',1;
+ IF (SELECT COUNT(*) FROM PhanBoThuong WHERE maChiTietLuong IS NOT NULL)<>1 THROW 51001,N'Thiếu phân bổ thưởng.',1;
+ ROLLBACK;
+ PRINT N'PASS TC15: 10.632.000 và liên kết nguồn';
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ THROW;
+END CATCH;
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ UPDATE QuyetDinhKhenThuong SET maPhongBan=N'PB01' WHERE soQuyetDinh=N'KT01';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC07 XOR',1;
+PRINT N'PASS TC07 XOR';
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ UPDATE PhieuPhuTroi SET heSoTinhLuong=2 WHERE soPhieuPhuTroi=N'PT01';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC14 hệ số',1;
+PRINT N'PASS TC14 hệ số';
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ UPDATE ChiTietChamCong SET ngayChamCong='20260201' WHERE maChiTietChamCong=N'CC001';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC13 sai kỳ',1;
+PRINT N'PASS TC13 sai kỳ';
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ UPDATE HopDongLaoDong SET ngayKy='20251115',ngayBatDau='20251115' WHERE soHopDong=N'HD01';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC03 hợp đồng sớm',1;
+PRINT N'PASS TC03 hợp đồng sớm';
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ INSERT HoSoBaoHiem SELECT N'BH_DUP',soBaoHiem,loaiBaoHiem,ngayBatDau,ngayKetThuc,mucLuongLamCanCu,tyLeDongNhanVien,trangThai,maNhanVien,soHopDong FROM HoSoBaoHiem WHERE maHoSoBaoHiem=N'BH01';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC05 bảo hiểm trùng',1;
+PRINT N'PASS TC05 bảo hiểm trùng';
+GO
+DECLARE @rejected bit=0;
+BEGIN TRY
+ BEGIN TRAN;
+ EXEC sp_TinhLuong N'BL012026'; EXEC sp_TinhLuong N'BL012026';
+ ROLLBACK;
+END TRY BEGIN CATCH
+ IF @@TRANCOUNT>0 ROLLBACK;
+ IF ERROR_NUMBER() NOT IN(51000,547,2601,2627) THROW;
+ SET @rejected=1;
+END CATCH;
+IF @rejected=0 THROW 51002,N'Expected rejection: TC16 tính lại',1;
+PRINT N'PASS TC16 tính lại';
+GO

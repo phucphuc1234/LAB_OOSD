@@ -1,0 +1,21 @@
+﻿TestCase,UseCase,Tên,Dữ liệu / thao tác,Kết quả mong đợi,Kết quả thực tế,Trạng thái
+TC01,UC01–03,Danh mục,"Thêm PB02, NV02 thuộc PB02, chức vụ CV02.",Lưu và tra cứu được; mã trùng bị từ chối.,,Chưa chạy SQL Server/Windows
+TC02,UC04,Thử việc,"Tạo nhân viên và QD tuyển dụng ngày 01/10–30/11/2025, ký; ghi nhận Dat.","Lưu đúng thời hạn, phòng ban và lương thử việc.",,Chưa chạy SQL Server/Windows
+TC03,UC05,Hợp đồng sớm,NV01: thử thêm HD_BAD ngày ký 2025-11-15.,Bị từ chối vì chưa hết thử việc.,,Chưa chạy SQL Server/Windows
+TC04,UC05–06,Hoàn tất dài hạn,Hợp đồng dài hạn mới thiếu BHYT hoặc BHXH; chọn Hoàn tất.,Từ chối; thêm đủ hai hồ sơ và quyết định lương ký thì hoàn tất.,,Chưa chạy SQL Server/Windows
+TC05,UC06,Bảo hiểm,Thêm hồ sơ BHYT cho NV01 chồng hiệu lực BH01; thử tỷ lệ 1.1.,Đều bị từ chối.,,Chưa chạy SQL Server/Windows
+TC06,"UC07–08,19",Quyết định,"Tạo QD lương/chức vụ nháp, ký; thử sửa nội dung từ form.",Lưu lịch sử; bản đã ký bị khóa sửa.,,Chưa chạy SQL Server/Windows
+TC07,UC09,Thưởng cá nhân,KT01 cho NV01; thử nhập đồng thời maPhongBan=PB01.,XOR từ chối; chỉ NV01 thì hợp lệ.,,Chưa chạy SQL Server/Windows
+TC08,UC09,Thưởng tập thể,"Tạo KT02 cho PB01, số tiền 1.000.000; chọn TapThe, bỏ maNhanVien.",Lưu đúng đơn vị; chia phân bổ cho các NV thuộc PB01.,,Chưa chạy SQL Server/Windows
+TC09,UC10,Kỷ luật,"Tạo quyết định cá nhân/tập thể, số tiền phạt âm.",XOR hoạt động tương tự thưởng; số tiền âm bị từ chối.,,Chưa chạy SQL Server/Windows
+TC10,UC12–13,Phiếu chưa ký,Lập phiếu theo quyết định nháp rồi xác nhận.,Từ chối đến khi quyết định được ký.,,Chưa chạy SQL Server/Windows
+TC11,UC12–13,Phân bổ tập thể,"Phiếu 1.000.000, tổng phân bổ 900.000 hoặc NV ngoài PB01.",Xác nhận bị từ chối; đúng tổng và đối tượng thì được xác nhận.,,Chưa chạy SQL Server/Windows
+TC12,UC15–16,Phân công,KH01 tuần 05–11/01/2026; thêm PC ngày 20/01 hoặc trùng NV/ca/ngày.,Bị từ chối.,,Chưa chạy SQL Server/Windows
+TC13,UC17,Chấm công,CC01 tháng 1/2026; thử ngày 01/02/2026 hoặc trùng NV/ca/ngày.,Bị từ chối.,,Chưa chạy SQL Server/Windows
+TC14,UC18,Phụ trội,PT01 4 giờ; hệ số 1.5; thử hệ số 2 hoặc chi tiết 5 giờ.,Giá trị sai bị từ chối; 4h × 50.000 × 1.5 = 300.000.,,Chưa chạy SQL Server/Windows
+TC15,UC11,Tính lương mẫu,"Seed: 208 giờ, lương 10.400.000, PC 520.000, OT 300.000, thưởng 500.000, phạt 100.000, BHYT 156.000, BHXH 832.000.",Thực lĩnh 10.632.000; nguồn và căn cứ được liên kết.,,Chưa chạy SQL Server/Windows
+TC16,UC11,Không tính trùng,Tính BL012026 lần hai; thử sửa nguồn đã gắn bảng lương.,Từ chối; giữ nguyên tổng lương và nguồn.,,Chưa chạy SQL Server/Windows
+TC17,UC11–13,Chi trực tiếp,"Phiếu thưởng TrucTiep đã xác nhận, sau đó tính lương.",Không cộng phiếu trực tiếp vào lương.,,Chưa chạy SQL Server/Windows
+TC18,UC11,Đổi lương giữa tháng,"Đóng L01 ngày 15/01, tạo L02 hiệu lực 16/01; phân công/chấm công hai khoảng.",Tính theo mức từng ngày; CanCuLuong có cả hai QD. Chồng/mất hiệu lực bị từ chối.,,Chưa chạy SQL Server/Windows
+TC19,UC14,Tra cứu/xuất,Chọn NV01 → Lịch sử NV; xem ChiTietBangLuong và Xuất CSV.,"Lịch sử theo ngày; CSV có tiêu đề, Unicode, đúng tổng.",,Chưa chạy SQL Server/Windows
+TC20,UC19,Ký quyết định sai,"Thử ký QD không có bảng con, hoặc ký lần hai.",Đều bị từ chối; QD nháp đúng một bảng con ký được.,,Chưa chạy SQL Server/Windows

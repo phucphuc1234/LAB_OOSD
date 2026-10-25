@@ -1,0 +1,29 @@
+﻿using System;using System.Data;using System.Data.SqlClient;using System.Collections.Generic;using System.Linq;using DongA.Data;
+namespace DongA.Service {
+ public class HrService {
+ readonly Database db=new Database();
+ public readonly string[] Tables=new string[]{"PhongBan","ChucVu","NhanVien","QuyetDinh","QuyetDinhTuyenDung","QuyetDinhChucVu","QuyetDinhLuong","QuyetDinhKhenThuong","QuyetDinhKyLuat","HopDongLaoDong","HoSoBaoHiem","CaLamViec","KeHoachPhanCong","ChiTietPhanCong","BangChamCong","ChiTietChamCong","PhieuPhuTroi","ChiTietPhuTroi","BangLuong","ChiTietBangLuong","PhieuChiKhenThuong","PhieuThuNopPhat","PhanBoThuong","PhanBoPhat","CanCuLuong","CanCuBaoHiem"};
+ public bool ReadOnly(string t){return t=="ChiTietBangLuong"||t=="CanCuLuong"||t=="CanCuBaoHiem";}
+ void Check(string t){if(!Tables.Contains(t))throw new Exception("Bảng không được hỗ trợ.");}
+ public DataTable List(string t){Check(t);return db.Query("SELECT * FROM ["+t+"]");}
+ public DataTable Columns(string t){Check(t);return db.Query(@"SELECT c.name,c.is_nullable,c.max_length,ty.name AS type,CAST(CASE WHEN EXISTS(SELECT 1 FROM sys.index_columns ic JOIN sys.indexes i ON i.object_id=ic.object_id AND i.index_id=ic.index_id WHERE i.is_primary_key=1 AND ic.object_id=c.object_id AND ic.column_id=c.column_id) THEN 1 ELSE 0 END AS bit) AS pk FROM sys.columns c JOIN sys.types ty ON ty.user_type_id=c.user_type_id WHERE c.object_id=OBJECT_ID(@t) ORDER BY c.column_id",new SqlParameter("@t",t));}
+ public void Save(string t,Dictionary<string,object> values,bool edit){Check(t);if(ReadOnly(t))throw new Exception("Dữ liệu được sinh bởi tính lương.");if(t=="PhanBoThuong"||t=="PhanBoPhat"){string parent=t=="PhanBoThuong"?"PhieuChiKhenThuong":"PhieuThuNopPhat",key=t=="PhanBoThuong"?"soPhieuChi":"soPhieuThu";var state=db.Query("SELECT trangThai FROM ["+parent+"] WHERE ["+key+"]=@id",new SqlParameter("@id",values[key]));if(state.Rows.Count==0||Convert.ToString(state.Rows[0][0])!="Nhap")throw new Exception("Phiếu không tồn tại hoặc đã xác nhận; không được đổi phân bổ.");}
+ var schema=Columns(t);var names=schema.Rows.Cast<DataRow>().Select(r=>(string)r["name"]).ToArray();foreach(var k in values.Keys)if(!names.Contains(k))throw new Exception("Cột không hợp lệ.");
+ var pk=schema.Rows.Cast<DataRow>().Where(r=>(bool)r["pk"]).Select(r=>(string)r["name"]).ToArray();
+ if(edit){var old=List(t);foreach(DataRow row in old.Rows){if(pk.All(k=>Equals(Convert.ToString(row[k]),Convert.ToString(values[k])))){if(old.Columns.Contains("trangThai") && !new[]{"Nhap","Cho","ThuViec"}.Contains(Convert.ToString(row["trangThai"])))throw new Exception("Bản ghi đã xác nhận, chỉ được xem.");if(old.Columns.Contains("maChiTietLuong")&&row["maChiTietLuong"]!=DBNull.Value)throw new Exception("Nguồn đã tính lương bị khóa.");}}}
+ if(values.ContainsKey("trangThai")&&!new[]{"Nhap","Cho","ThuViec"}.Contains(Convert.ToString(values["trangThai"])))throw new Exception("Trạng thái xác nhận phải thực hiện qua nút nghiệp vụ.");
+ if(t.StartsWith("QuyetDinh")&&t!="QuyetDinh"){var q=db.Query("SELECT trangThai FROM QuyetDinh WHERE soQuyetDinh=@id",new SqlParameter("@id",values["soQuyetDinh"]));if(q.Rows.Count==0||Convert.ToString(q.Rows[0][0])!="Nhap")throw new Exception("Quyết định gốc chưa có hoặc đã ký.");}
+ if(values.ContainsKey("maChiTietLuong") && t!="ChiTietBangLuong" && values["maChiTietLuong"]!=DBNull.Value)throw new Exception("Mã chi tiết lương được tự liên kết khi tính lương; để trống.");
+ var args=values.Select((v,i)=>new SqlParameter("@p"+i,v.Value??DBNull.Value)).ToArray();var map=values.Keys.Select((k,i)=>new{k,i}).ToDictionary(v=>v.k,v=>"@p"+v.i);
+ string sql=edit?"UPDATE ["+t+"] SET "+string.Join(",",map.Where(v=>!pk.Contains(v.Key)).Select(v=>"["+v.Key+"]="+v.Value))+" WHERE "+string.Join(" AND ",pk.Select(k=>"["+k+"]="+map[k])):"INSERT ["+t+"] ("+string.Join(",",map.Keys.Select(k=>"["+k+"]"))+") VALUES ("+string.Join(",",map.Values)+")";db.Execute(sql,args);}
+ public void Run(string action,string id,string signer,DateTime date){
+ if(action=="Ký quyết định")db.Procedure("sp_KyQuyetDinh",new SqlParameter("@id",id),new SqlParameter("@nguoiKy",signer),new SqlParameter("@ngay",date.Date));
+ else if(action=="Thử việc đạt"||action=="Thử việc không đạt")db.Execute("UPDATE QuyetDinhTuyenDung SET ketQuaThuViec=@k WHERE soQuyetDinh=@id AND ngayKetThucThuViec<CONVERT(date,GETDATE())",new SqlParameter("@k",action=="Thử việc đạt"?"Dat":"KhongDat"),new SqlParameter("@id",id));
+ else if(action=="Hoàn tất hợp đồng")db.Procedure("sp_HoanTatHopDong",new SqlParameter("@id",id));
+ else if(action=="Tính lương")db.Procedure("sp_TinhLuong",new SqlParameter("@id",id));
+ else if(action=="Xác nhận chi thưởng"||action=="Xác nhận thu phạt")db.Procedure("sp_XacNhanPhieu",new SqlParameter("@loai",action=="Xác nhận chi thưởng"?"Thuong":"Phat"),new SqlParameter("@id",id));
+ else if(action=="Xác nhận phụ trội")db.Execute("UPDATE PhieuPhuTroi SET trangThai=N'XacNhan' WHERE soPhieuPhuTroi=@id AND trangThai=N'Nhap' AND EXISTS(SELECT 1 FROM ChiTietPhuTroi WHERE soPhieuPhuTroi=@id)",new SqlParameter("@id",id));
+ else throw new Exception("Chọn thao tác hợp lệ.");}
+ public DataTable History(string id){return db.Query(@"SELECT q.soQuyetDinh,q.ngayHieuLuc,q.trangThai,q.noiDung FROM QuyetDinh q WHERE q.soQuyetDinh IN(SELECT soQuyetDinh FROM QuyetDinhTuyenDung WHERE maNhanVien=@id UNION SELECT soQuyetDinh FROM QuyetDinhLuong WHERE maNhanVien=@id UNION SELECT soQuyetDinh FROM QuyetDinhChucVu WHERE maNhanVien=@id UNION SELECT soQuyetDinh FROM QuyetDinhKhenThuong WHERE maNhanVien=@id UNION SELECT soQuyetDinh FROM QuyetDinhKyLuat WHERE maNhanVien=@id) ORDER BY q.ngayHieuLuc",new SqlParameter("@id",id));}
+ }
+}

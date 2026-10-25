@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="activity-hr" name="Thử việc đến hợp đồng chính thức">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1600" pageHeight="2850">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="BÀI 7 — CÂU 5: ACTIVITY DIAGRAM&#10;TỪ TIẾP NHẬN THỬ VIỆC ĐẾN KÝ HỢP ĐỒNG CHÍNH THỨC" style="text;align=center;fontStyle=1;fontSize=23;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="15" width="1440" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lane0" value="Nhân viên nhân sự" style="swimlane;horizontal=1;startSize=55;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;fontStyle=1;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="110" width="360" height="2550" as="geometry" />
+        </mxCell>
+        <mxCell id="lane1" value="Trưởng đơn vị" style="swimlane;horizontal=1;startSize=55;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;fontStyle=1;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="410" y="110" width="360" height="2550" as="geometry" />
+        </mxCell>
+        <mxCell id="lane2" value="Giám đốc / Đại diện công ty" style="swimlane;horizontal=1;startSize=55;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;fontStyle=1;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="770" y="110" width="360" height="2550" as="geometry" />
+        </mxCell>
+        <mxCell id="lane3" value="Nhân viên thử việc" style="swimlane;horizontal=1;startSize=55;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;fontStyle=1;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="110" width="360" height="2550" as="geometry" />
+        </mxCell>
+        <mxCell id="start" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="215" y="190" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="record" value="Tiếp nhận và lập / cập nhật&#10;hồ sơ nhân viên" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="250" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="draft" value="Lập quyết định tuyển dụng:&#10;đơn vị, thời hạn, lương thử việc, điều khoản" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="355" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="signqd" value="Ký, ban hành&#10;quyết định tuyển dụng" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="820" y="460" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="assign" value="Tiếp nhận nhân viên&#10;và giao công việc thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="565" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="work" value="Thực hiện công việc&#10;trong thời gian thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="670" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="monitor" value="Theo dõi và đánh giá&#10;khi hết thời hạn thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="775" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="result" value="Ghi nhận kết quả thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="875" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="check" value="Kiểm tra thời hạn&#10;và kết quả thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="980" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="pass" value="Đạt yêu cầu?" style="rhombus;fillColor=#fff2cc;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="150" y="1085" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fail" value="Thông báo không đạt;&#10;cập nhật hồ sơ, kết thúc thử việc" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1095" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="endfail" value="" style="shape=doubleEllipse;fillColor=#000000;strokeColor=#000000;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="575" y="1210" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="contract" value="Soạn hợp đồng lao động&#10;Chọn loại: dài hạn / ngắn hạn" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1260" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="review" value="Xem và thống nhất&#10;nội dung hợp đồng" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="1365" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="signcompany" value="Ký hợp đồng&#10;phía công ty" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="820" y="1470" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="signemployee" value="Ký hợp đồng&#10;phía nhân viên" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="1575" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="save" value="Lưu hợp đồng đã ký;&#10;chuyển trạng thái chính thức" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1680" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="salary" value="Lập quyết định lương:&#10;lương cơ bản và phụ cấp áp dụng" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1785" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="appointed" value="Có bổ nhiệm&#10;chức vụ?" style="rhombus;fillColor=#fff2cc;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="150" y="1890" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="position" value="Lập quyết định chức vụ&#10;và phụ cấp chức vụ" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1900" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="merge1" value="" style="rhombus;fillColor=#ffffff;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="205" y="2025" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="signall" value="Ký, ban hành quyết định lương&#10;và quyết định chức vụ (nếu có)" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="820" y="2110" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="long" value="Hợp đồng&#10;dài hạn?" style="rhombus;fillColor=#fff2cc;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="150" y="2220" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="insurance" value="Lập hồ sơ BHYT và BHXH;&#10;ghi nhận căn cứ, tỷ lệ đóng" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="2230" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="merge2" value="" style="rhombus;fillColor=#ffffff;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="205" y="2355" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="complete" value="Lưu và hoàn tất&#10;hồ sơ nhân viên chính thức" style="rounded=1;arcSize=20;fillColor=#ffffff;strokeColor=#333333;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="2450" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="end" value="" style="shape=doubleEllipse;fillColor=#000000;strokeColor=#000000;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="215" y="2565" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e34" value="" source="start" target="record" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e35" value="" source="record" target="draft" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e36" value="" source="draft" target="signqd" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e37" value="" source="signqd" target="assign" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e38" value="" source="assign" target="work" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e39" value="" source="work" target="monitor" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e40" value="" source="monitor" target="result" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e41" value="" source="result" target="check" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e42" value="" source="check" target="pass" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e43" value="[Không đạt]" source="pass" target="fail" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e44" value="" source="fail" target="endfail" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e45" value="[Đạt]" source="pass" target="contract" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e46" value="" source="contract" target="review" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e47" value="" source="review" target="signcompany" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e48" value="" source="signcompany" target="signemployee" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e49" value="" source="signemployee" target="save" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e50" value="" source="save" target="salary" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e51" value="" source="salary" target="appointed" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e52" value="[Có]" source="appointed" target="position" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e53" value="[Không]" source="appointed" target="merge1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e54" value="" source="position" target="merge1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="2050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e55" value="" source="merge1" target="signall" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e56" value="" source="signall" target="long" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="2190" />
+              <mxPoint x="230" y="2190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e57" value="[Dài hạn]" source="long" target="insurance" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e58" value="[Ngắn hạn]" source="long" target="merge2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e59" value="" source="insurance" target="merge2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="2380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e60" value="" source="merge2" target="complete" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e61" value="" source="complete" target="end" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;html=0;fontSize=14;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="notes" value="Phạm vi: nhân viên đã được chấp nhận thử việc. Phân quyền đánh giá và người đại diện ký là giả định của mô hình.&#10;Việc ký hợp đồng diễn ra ngoài hệ thống; nhân sự lưu kết quả. Làn Nhân viên thử việc thể hiện người tham gia nghiệp vụ, không mặc định là actor phần mềm.&#10;Theo đề bài: hồ sơ BHYT/BHXH được lập cho hợp đồng dài hạn. Hình thoi không có chữ dùng để nhập các nhánh thay thế." style="text;align=left;verticalAlign=top;html=0;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="2680" width="1430" height="125" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

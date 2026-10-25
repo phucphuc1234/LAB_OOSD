@@ -1,0 +1,3 @@
+C# source compile: PASS
+Compiler: Mono mcs (compatibility check)
+Target in project: .NET Framework 4.7.2

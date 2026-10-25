@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="0" name="1. Tiếp nhận và theo dõi thử việc">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="HỆ THỐNG QUẢN LÝ NHÂN SỰ — TIẾP NHẬN THỬ VIỆC (UC04)" style="rounded=0;whiteSpace=wrap;verticalAlign=top;spacingTop=15;fontSize=21;fontStyle=1;fillColor=none;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="230" y="50" width="1130" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="hr" value="Nhân viên&#10;nhân sự" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="65" y="240" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="head" value="Trưởng đơn vị" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="630" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dir" value="Giám đốc" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="65" y="640" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="main" value="UC04.1&#10;Tiếp nhận nhân viên thử việc" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="210" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="record" value="UC01.1 · Lập / cập nhật&#10;hồ sơ nhân viên" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="140" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="«include»" edge="1" parent="1" source="main" target="record" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="draft" value="UC04.2 · Lập quyết định tuyển dụng&#10;(thời hạn, lương, điều khoản)" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="300" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="«include»" edge="1" parent="1" source="main" target="draft" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dept" value="UC04.3 · Ghi nhận đơn vị&#10;tiếp nhận thử việc" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="460" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="«include»" edge="1" parent="1" source="main" target="dept" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sign" value="UC19.1 · Ký, ban hành&#10;quyết định tuyển dụng" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="630" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="result" value="UC04.4 · Ghi nhận&#10;kết quả thử việc" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="670" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" value="" edge="1" parent="1" source="hr" target="main" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" value="" edge="1" parent="1" source="dir" target="sign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" value="" edge="1" parent="1" source="head" target="result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Điều kiện: nhân viên đã được chấp nhận thử việc.&#10;Quyết định tuyển dụng được ban hành trước khi áp dụng.&#10;Kết quả thử việc là dữ liệu đầu vào để xét ký hợp đồng (trang 2).&#10;Giả định phân quyền: trưởng đơn vị ghi nhận kết quả thử việc." style="text;whiteSpace=wrap;fontSize=16;align=left;" vertex="1" parent="1">
+          <mxGeometry x="300" y="930" width="1050" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="1" name="2. Ký hợp đồng chính thức">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="HỆ THỐNG QUẢN LÝ NHÂN SỰ — HỢP ĐỒNG LAO ĐỘNG (UC05)" style="rounded=0;whiteSpace=wrap;verticalAlign=top;spacingTop=15;fontSize=21;fontStyle=1;fillColor=none;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="230" y="50" width="1130" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="hr" value="Nhân viên&#10;nhân sự" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="65" y="340" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dir" value="Giám đốc" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="670" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="main" value="UC05.1 · Lập và ghi nhận&#10;ký hợp đồng chính thức" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="check" value="UC05.2 · Kiểm tra hết thử việc&#10;và kết quả đạt yêu cầu" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="130" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="«include»" edge="1" parent="1" source="main" target="check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="prepare" value="UC05.3 · Soạn hợp đồng&#10;(chọn dài hạn / ngắn hạn)" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="340" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="«include»" edge="1" parent="1" source="main" target="prepare" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="save" value="UC05.4 · Lưu hợp đồng đã ký&#10;và cập nhật trạng thái nhân viên" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="550" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="«include»" edge="1" parent="1" source="main" target="save" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="approve" value="UC05.5 · Xác nhận ký&#10;hợp đồng chính thức" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="730" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="" edge="1" parent="1" source="dir" target="approve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="" edge="1" parent="1" source="hr" target="main" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Chỉ ghi nhận hợp đồng chính thức khi đã hết thử việc và đạt yêu cầu.&#10;Không đạt: dừng xử lý ký hợp đồng; không tự tạo hợp đồng chính thức.&#10;Việc ký diễn ra giữa công ty và nhân viên; hệ thống lưu kết quả và văn bản đã ký.&#10;Giám đốc là người đại diện ký theo giả định phân quyền của mô hình. Nhân viên không phải actor nếu không trực tiếp dùng hệ thống." style="text;whiteSpace=wrap;fontSize=16;align=left;" vertex="1" parent="1">
+          <mxGeometry x="280" y="920" width="1090" height="145" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="2" name="3. Hoàn thiện hồ sơ chính thức">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="HỆ THỐNG QUẢN LÝ NHÂN SỰ — HỒ SƠ NHÂN VIÊN CHÍNH THỨC" style="rounded=0;whiteSpace=wrap;verticalAlign=top;spacingTop=15;fontSize=21;fontStyle=1;fillColor=none;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="230" y="50" width="1130" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="hr" value="Nhân viên&#10;nhân sự" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="65" y="340" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dir" value="Giám đốc" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="690" width="70" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="main" value="Hoàn thiện hồ sơ&#10;nhân viên chính thức" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="salary" value="UC08.1 · Lập quyết định lương&#10;(lương cơ bản, các phụ cấp)" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="130" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="«include»" edge="1" parent="1" source="main" target="salary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="position" value="UC07.1 · Lập quyết định chức vụ&#10;và phụ cấp chức vụ" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="350" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="«extend»&#10;[có bổ nhiệm chức vụ]" edge="1" parent="1" source="position" target="main" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="insurance" value="UC06.1 · Lập hồ sơ&#10;BHYT và BHXH" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="570" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="«extend»&#10;[hợp đồng dài hạn]" edge="1" parent="1" source="insurance" target="main" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sign" value="UC19.2 · Ký, ban hành&#10;quyết định lương / chức vụ" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="750" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="" edge="1" parent="1" source="dir" target="sign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="" edge="1" parent="1" source="hr" target="main" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;fontSize=14;labelBackgroundColor=#ffffff;endArrow=none;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Tiền điều kiện: đã ghi nhận hợp đồng chính thức.&#10;Điểm mở rộng: bổ sung quyết định chức vụ; bổ sung hồ sơ bảo hiểm.&#10;Phụ cấp độc hại và phụ cấp khác chỉ ghi nhận khi có áp dụng.&#10;«include»: xử lý bắt buộc; «extend»: xử lý thêm khi thỏa điều kiện. Các trang phân nhóm nghiệp vụ, không dùng mũi tên use case để biểu diễn thứ tự thời gian." style="text;whiteSpace=wrap;fontSize=16;align=left;" vertex="1" parent="1">
+          <mxGeometry x="280" y="920" width="1100" height="145" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
