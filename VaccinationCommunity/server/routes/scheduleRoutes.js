@@ -1,0 +1,15 @@
+const router = require("express").Router();
+const controller = require("../controllers/scheduleController");
+const authenticate = require("../middlewares/authMiddleware");
+const authorize = require("../middlewares/roleMiddleware");
+router.use(authenticate);
+router.get("/me", authorize("Người dân"), controller.getMySchedules);
+router.post("/me", authorize("Người dân"), controller.createMySchedule);
+router.patch("/me/:id/cancel", authorize("Người dân"), controller.cancelMySchedule);
+router.use(authorize("Nhân viên", "Quản trị viên"));
+router.get("/", controller.getAllSchedules);
+router.get("/:id", controller.getScheduleById);
+router.post("/", controller.createSchedule);
+router.put("/:id", controller.updateSchedule);
+router.patch("/:id/status", controller.changeStatus);
+module.exports = router;

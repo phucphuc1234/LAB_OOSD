@@ -1,0 +1,262 @@
+/* SQL Server 2017+. Run with SSMS/sqlcmd. Creates a NEW demo database only.
+   Re-running adds missing objects; never drops a database or deletes records.
+   All datetime2 values are UTC. Demo data is an explicit separate step. */
+USE [master];
+GO
+IF DB_ID(N'VaccinationCommunity_Demo') IS NULL
+    EXEC(N'CREATE DATABASE [VaccinationCommunity_Demo]');
+GO
+USE [VaccinationCommunity_Demo];
+GO
+SET ANSI_NULLS ON;
+SET QUOTED_IDENTIFIER ON;
+SET XACT_ABORT ON;
+GO
+IF OBJECT_ID(N'dbo.SCHEMAVERSION', N'U') IS NULL
+CREATE TABLE dbo.SCHEMAVERSION (
+    VersionNo int NOT NULL CONSTRAINT PK_SCHEMAVERSION PRIMARY KEY,
+    AppliedAt datetime2(0) NOT NULL CONSTRAINT DF_SCHEMA_Applied DEFAULT SYSUTCDATETIME(),
+    Description nvarchar(255) NOT NULL
+);
+IF OBJECT_ID(N'dbo.VAITRO', N'U') IS NULL
+CREATE TABLE dbo.VAITRO (
+    MaVaiTro int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VAITRO PRIMARY KEY,
+    TenVaiTro nvarchar(50) NOT NULL CONSTRAINT UQ_VAITRO_Ten UNIQUE,
+    TrangThai bit NOT NULL CONSTRAINT DF_VAITRO_TrangThai DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.TAIKHOAN', N'U') IS NULL
+CREATE TABLE dbo.TAIKHOAN (
+    MaTaiKhoan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_TAIKHOAN PRIMARY KEY,
+    TenDangNhap varchar(100) NOT NULL CONSTRAINT UQ_TAIKHOAN_Ten UNIQUE,
+    MatKhau varchar(255) NOT NULL,
+    Email varchar(150) NOT NULL CONSTRAINT UQ_TAIKHOAN_Email UNIQUE,
+    SoDienThoai varchar(20) NULL,
+    MaVaiTro int NOT NULL CONSTRAINT FK_TAIKHOAN_VAITRO REFERENCES dbo.VAITRO(MaVaiTro),
+    TrangThai bit NOT NULL CONSTRAINT DF_TAIKHOAN_TrangThai DEFAULT 1,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_TAIKHOAN_NgayTao DEFAULT SYSUTCDATETIME(),
+    LanDangNhapCuoi datetime2(0) NULL
+);
+IF OBJECT_ID(N'dbo.NGUOIDAN', N'U') IS NULL
+CREATE TABLE dbo.NGUOIDAN (
+    MaNguoiDan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_NGUOIDAN PRIMARY KEY,
+    MaTaiKhoan int NULL CONSTRAINT FK_NGUOIDAN_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    HoTen nvarchar(150) NOT NULL,
+    NgaySinh date NULL,
+    GioiTinh nvarchar(20) NULL CONSTRAINT CK_NGUOIDAN_GioiTinh CHECK (GioiTinh IN (N'Nam',N'Nữ',N'Khác')),
+    CCCD varchar(20) NULL,
+    SoBHYT varchar(30) NULL,
+    SoDienThoai varchar(20) NULL,
+    Email varchar(150) NULL,
+    DiaChi nvarchar(255) NULL,
+    PhuongXa nvarchar(100) NULL,
+    QuanHuyen nvarchar(100) NULL,
+    TinhThanh nvarchar(100) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayCapNhat DEFAULT SYSUTCDATETIME(),
+    TrangThai bit NOT NULL CONSTRAINT DF_NGUOIDAN_TrangThai DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.VACCINE', N'U') IS NULL
+CREATE TABLE dbo.VACCINE (
+    MaVaccine int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VACCINE PRIMARY KEY,
+    TenVaccine nvarchar(150) NOT NULL CONSTRAINT UQ_VACCINE_Ten UNIQUE,
+    LoaiVaccine nvarchar(100) NULL,
+    NhaSanXuat nvarchar(150) NULL,
+    MoTa nvarchar(2000) NULL,
+    SoMuiKhuyenNghi int NOT NULL CONSTRAINT DF_VACCINE_SoMui DEFAULT 1 CONSTRAINT CK_VACCINE_SoMui CHECK (SoMuiKhuyenNghi BETWEEN 1 AND 20),
+    KhoangCachMui int NOT NULL CONSTRAINT DF_VACCINE_KhoangCach DEFAULT 0 CONSTRAINT CK_VACCINE_KhoangCach CHECK (KhoangCachMui BETWEEN 0 AND 3650),
+    TrangThai bit NOT NULL CONSTRAINT DF_VACCINE_TrangThai DEFAULT 1,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_VACCINE_NgayTao DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.LOVACCINE', N'U') IS NULL
+CREATE TABLE dbo.LOVACCINE (
+    MaLo int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LOVACCINE PRIMARY KEY,
+    MaLoVaccine varchar(50) NOT NULL CONSTRAINT UQ_LOVACCINE_MaLo UNIQUE,
+    MaVaccine int NOT NULL CONSTRAINT FK_LOVACCINE_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    NgaySanXuat date NULL,
+    HanSuDung date NOT NULL,
+    SoLuongNhap int NOT NULL,
+    SoLuongCon int NOT NULL,
+    SoLuongDatTruoc int NOT NULL CONSTRAINT DF_LOVACCINE_DatTruoc DEFAULT 0,
+    NgayNhap datetime2(0) NOT NULL CONSTRAINT DF_LOVACCINE_NgayNhap DEFAULT SYSUTCDATETIME(),
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LOVACCINE_TrangThai DEFAULT N'Đang sử dụng',
+    GhiChu nvarchar(1000) NULL,
+    CONSTRAINT CK_LOVACCINE_SoLuong CHECK (SoLuongNhap>0 AND SoLuongCon BETWEEN 0 AND SoLuongNhap AND SoLuongDatTruoc BETWEEN 0 AND SoLuongCon),
+    CONSTRAINT CK_LOVACCINE_Ngay CHECK (NgaySanXuat IS NULL OR HanSuDung>NgaySanXuat),
+    CONSTRAINT CK_LOVACCINE_TrangThai CHECK (TrangThai IN (N'Đang sử dụng',N'Tạm ngừng',N'Hết hàng',N'Hết hạn'))
+);
+IF OBJECT_ID(N'dbo.LICHTIEM', N'U') IS NULL
+CREATE TABLE dbo.LICHTIEM (
+    MaLichTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHTIEM PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_LICHTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaVaccine int NOT NULL CONSTRAINT FK_LICHTIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    MaLoDuKien int NULL CONSTRAINT FK_LICHTIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo),
+    MuiSo int NOT NULL CONSTRAINT CK_LICHTIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20),
+    NgayDuKien datetime2(0) NOT NULL,
+    CoSoTiem nvarchar(255) NULL,
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LICHTIEM_TrangThai DEFAULT N'Đã lên lịch',
+    GhiChu nvarchar(1000) NULL,
+    MaNhanVienTao int NULL CONSTRAINT FK_LICHTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_LICHTIEM_TrangThai CHECK (TrangThai IN (N'Đã lên lịch',N'Đã xác nhận',N'Đã tiêm',N'Hoàn thành',N'Đã hủy',N'Vắng mặt'))
+);
+IF OBJECT_ID(N'dbo.MUITIEM', N'U') IS NULL
+CREATE TABLE dbo.MUITIEM (
+    MaMuiTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_MUITIEM PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_MUITIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaVaccine int NOT NULL CONSTRAINT FK_MUITIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    MaLo int NOT NULL CONSTRAINT FK_MUITIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo),
+    MaLichTiem int NULL CONSTRAINT FK_MUITIEM_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem),
+    MuiSo int NOT NULL CONSTRAINT CK_MUITIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20),
+    NgayTiem datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTiem DEFAULT (CONVERT(datetime2(0),CONVERT(varchar(19),SYSUTCDATETIME(),126))),
+    CoSoTiem nvarchar(255) NULL,
+    MaNhanVien int NOT NULL CONSTRAINT FK_MUITIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    KetQua nvarchar(255) NOT NULL CONSTRAINT DF_MUITIEM_KetQua DEFAULT N'Đã tiêm',
+    PhanUngSauTiem nvarchar(2000) NULL,
+    GhiChu nvarchar(1000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT UQ_MUITIEM_Dose UNIQUE (MaNguoiDan,MaVaccine,MuiSo)
+);
+IF OBJECT_ID(N'dbo.CHONGCHIDINH', N'U') IS NULL
+CREATE TABLE dbo.CHONGCHIDINH (
+    MaChongChiDinh int IDENTITY(1,1) NOT NULL CONSTRAINT PK_CHONGCHIDINH PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_CHONGCHIDINH_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    NoiDung nvarchar(2000) NOT NULL,
+    NgayXacNhan datetime2(0) NULL,
+    MaNguoiXacNhan int NULL CONSTRAINT FK_CHONGCHIDINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_CHONGCHIDINH_TrangThai DEFAULT N'Đã xác nhận',
+    GhiChu nvarchar(1000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_CHONGCHIDINH_NgayTao DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_CHONGCHIDINH_TrangThai CHECK (TrangThai IN (N'Đã xác nhận',N'Đã hủy'))
+);
+IF OBJECT_ID(N'dbo.THONGBAO', N'U') IS NULL
+CREATE TABLE dbo.THONGBAO (
+    MaThongBao int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THONGBAO PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_THONGBAO_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaLichTiem int NULL CONSTRAINT FK_THONGBAO_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem),
+    TieuDe nvarchar(200) NOT NULL,
+    NoiDung nvarchar(2000) NOT NULL,
+    ThoiGianGui datetime2(0) NULL,
+    KenhGui nvarchar(30) NOT NULL CONSTRAINT DF_THONGBAO_Kenh DEFAULT N'Website',
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_THONGBAO_TrangThai DEFAULT N'Đã gửi',
+    DaDoc bit NOT NULL CONSTRAINT DF_THONGBAO_DaDoc DEFAULT 0,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THONGBAO_NgayTao DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.LICHSUHIEUCHINH', N'U') IS NULL
+CREATE TABLE dbo.LICHSUHIEUCHINH (
+    MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHSUHIEUCHINH PRIMARY KEY,
+    TenBang varchar(100) NOT NULL,
+    MaBanGhi int NOT NULL,
+    HanhDong nvarchar(100) NOT NULL,
+    DuLieuCu nvarchar(max) NULL,
+    DuLieuMoi nvarchar(max) NULL,
+    MaTaiKhoan int NULL CONSTRAINT FK_LICHSUHIEUCHINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    NgayThucHien datetime2(0) NOT NULL CONSTRAINT DF_LICHSUHIEUCHINH_Ngay DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.DANHMUCTRIEUCHUNG', N'U') IS NULL
+CREATE TABLE dbo.DANHMUCTRIEUCHUNG (
+    MaTrieuChung varchar(40) NOT NULL CONSTRAINT PK_DANHMUCTRIEUCHUNG PRIMARY KEY,
+    TenTrieuChung nvarchar(150) NOT NULL,
+    LaDauHieuCanhBao bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_CanhBao DEFAULT 0,
+    DangHoatDong bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_HoatDong DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.THEODOISAUTIEM', N'U') IS NULL
+CREATE TABLE dbo.THEODOISAUTIEM (
+    MaTheoDoi int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOISAUTIEM PRIMARY KEY,
+    MaMuiTiem int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_MUITIEM REFERENCES dbo.MUITIEM(MaMuiTiem),
+    MaNguoiDan int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    ThoiDiemBaoCao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_BaoCao DEFAULT SYSUTCDATETIME(),
+    KhoiPhatLuc datetime2(0) NULL,
+    ThoiLuongGio decimal(6,2) NULL CONSTRAINT CK_THEODOISAUTIEM_ThoiLuong CHECK (ThoiLuongGio BETWEEN 0 AND 8760),
+    NhietDo decimal(4,1) NULL CONSTRAINT CK_THEODOISAUTIEM_NhietDo CHECK (NhietDo BETWEEN 30 AND 45),
+    TrieuChung nvarchar(2000) NOT NULL,
+    MucDo varchar(16) NOT NULL CONSTRAINT CK_THEODOISAUTIEM_MucDo CHECK (MucDo IN ('none','mild','moderate','severe','emergency')),
+    CoDauHieuCanhBao bit NOT NULL CONSTRAINT DF_THEODOISAUTIEM_CanhBao DEFAULT 0,
+    TrangThai varchar(16) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_TrangThai DEFAULT 'new' CONSTRAINT CK_THEODOISAUTIEM_TrangThai CHECK (TrangThai IN ('new','reviewing','monitoring','escalated','resolved')),
+    HuongXuLy nvarchar(2000) NULL,
+    MaNhanVienXuLy int NULL CONSTRAINT FK_THEODOISAUTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    ThoiDiemXuLy datetime2(0) NULL,
+    HenTheoDoiLuc datetime2(0) NULL,
+    LanCapNhat int NOT NULL CONSTRAINT DF_THEODOISAUTIEM_Lan DEFAULT 1 CONSTRAINT CK_THEODOISAUTIEM_Lan CHECK (LanCapNhat>0),
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.THEODOI_TRIEUCHUNG', N'U') IS NULL
+CREATE TABLE dbo.THEODOI_TRIEUCHUNG (
+    MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi),
+    MaTrieuChung varchar(40) NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_Catalog REFERENCES dbo.DANHMUCTRIEUCHUNG(MaTrieuChung),
+    CONSTRAINT PK_THEODOI_TRIEUCHUNG PRIMARY KEY (MaTheoDoi,MaTrieuChung)
+);
+IF OBJECT_ID(N'dbo.THEODOI_LICHSU', N'U') IS NULL
+CREATE TABLE dbo.THEODOI_LICHSU (
+    MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOI_LICHSU PRIMARY KEY,
+    MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_LICHSU_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi),
+    MaTaiKhoan int NULL CONSTRAINT FK_THEODOI_LICHSU_TaiKhoan REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    TrangThaiCu varchar(16) NULL,
+    TrangThaiMoi varchar(16) NOT NULL,
+    LanCapNhat int NOT NULL,
+    HanhDong nvarchar(100) NOT NULL,
+    NoiDung nvarchar(2000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOI_LICHSU_Ngay DEFAULT SYSUTCDATETIME()
+);
+GO
+/* Additive upgrade of the original application's existing database tables. */
+IF COL_LENGTH(N'dbo.LOVACCINE',N'SoLuongDatTruoc') IS NULL
+    ALTER TABLE dbo.LOVACCINE ADD SoLuongDatTruoc int NOT NULL CONSTRAINT DF_LOVACCINE_DatTruoc_Upgrade DEFAULT 0;
+IF COL_LENGTH(N'dbo.LICHTIEM',N'MaLoDuKien') IS NULL
+    ALTER TABLE dbo.LICHTIEM ADD MaLoDuKien int NULL CONSTRAINT FK_LICHTIEM_LOVACCINE_Upgrade REFERENCES dbo.LOVACCINE(MaLo);
+IF COL_LENGTH(N'dbo.LICHTIEM',N'NgayCapNhat') IS NULL
+    ALTER TABLE dbo.LICHTIEM ADD NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayCapNhat_Upgrade DEFAULT SYSUTCDATETIME();
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_TaiKhoan')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_TaiKhoan ON dbo.NGUOIDAN(MaTaiKhoan) WHERE MaTaiKhoan IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_CCCD')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_CCCD ON dbo.NGUOIDAN(CCCD) WHERE CCCD IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_Email')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_Email ON dbo.NGUOIDAN(Email) WHERE Email IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'UX_MUITIEM_Lich')
+    CREATE UNIQUE INDEX UX_MUITIEM_Lich ON dbo.MUITIEM(MaLichTiem) WHERE MaLichTiem IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHTIEM') AND name=N'IX_LICHTIEM_CitizenStatus')
+    CREATE INDEX IX_LICHTIEM_CitizenStatus ON dbo.LICHTIEM(MaNguoiDan,MaVaccine,TrangThai) INCLUDE (MaLoDuKien,MuiSo,NgayDuKien);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHTIEM') AND name=N'IX_LICHTIEM_NgayStatus')
+    CREATE INDEX IX_LICHTIEM_NgayStatus ON dbo.LICHTIEM(TrangThai,NgayDuKien) INCLUDE (MaNguoiDan,MaVaccine,MaLoDuKien);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LOVACCINE') AND name=N'IX_LOVACCINE_FEFO')
+    CREATE INDEX IX_LOVACCINE_FEFO ON dbo.LOVACCINE(MaVaccine,TrangThai,HanSuDung,MaLo) INCLUDE (SoLuongCon,SoLuongDatTruoc);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'IX_MUITIEM_Ngay')
+    CREATE INDEX IX_MUITIEM_Ngay ON dbo.MUITIEM(NgayTiem DESC) INCLUDE (MaNguoiDan,MaVaccine,MaLo);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'IX_MUITIEM_Lo')
+    CREATE INDEX IX_MUITIEM_Lo ON dbo.MUITIEM(MaLo,NgayTiem) INCLUDE (MaNguoiDan,MaVaccine);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.CHONGCHIDINH') AND name=N'IX_CHONGCHIDINH_Citizen')
+    CREATE INDEX IX_CHONGCHIDINH_Citizen ON dbo.CHONGCHIDINH(MaNguoiDan,TrangThai);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THONGBAO') AND name=N'IX_THONGBAO_Citizen')
+    CREATE INDEX IX_THONGBAO_Citizen ON dbo.THONGBAO(MaNguoiDan,DaDoc,NgayTao DESC);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THONGBAO') AND name=N'UX_THONGBAO_Reminder')
+    CREATE UNIQUE INDEX UX_THONGBAO_Reminder ON dbo.THONGBAO(MaLichTiem) WHERE MaLichTiem IS NOT NULL AND TieuDe=N'Nhắc lịch tiêm';
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOISAUTIEM') AND name=N'IX_THEODOISAUTIEM_Queue')
+    CREATE INDEX IX_THEODOISAUTIEM_Queue ON dbo.THEODOISAUTIEM(TrangThai,CoDauHieuCanhBao,NgayTao DESC) INCLUDE (MaMuiTiem,MaNguoiDan,MucDo,HenTheoDoiLuc);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOISAUTIEM') AND name=N'IX_THEODOISAUTIEM_Citizen')
+    CREATE INDEX IX_THEODOISAUTIEM_Citizen ON dbo.THEODOISAUTIEM(MaNguoiDan,MaMuiTiem,NgayTao DESC);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOI_LICHSU') AND name=N'IX_THEODOI_LICHSU_Case')
+    CREATE INDEX IX_THEODOI_LICHSU_Case ON dbo.THEODOI_LICHSU(MaTheoDoi,NgayTao,MaLichSu);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHSUHIEUCHINH') AND name=N'IX_LICHSU_Record')
+    CREATE INDEX IX_LICHSU_Record ON dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,NgayThucHien DESC);
+GO
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Người dân') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Người dân');
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Nhân viên') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Nhân viên');
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Quản trị viên') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Quản trị viên');
+MERGE dbo.DANHMUCTRIEUCHUNG AS target
+USING (VALUES
+ ('injection_pain',N'Đau tại chỗ tiêm',0),('redness',N'Đỏ hoặc sưng tại chỗ tiêm',0),
+ ('fatigue',N'Mệt mỏi',0),('headache',N'Đau đầu',0),('muscle_pain',N'Đau cơ',0),
+ ('fever',N'Sốt',0),('nausea',N'Buồn nôn',0),('rash',N'Phát ban',0),
+ ('breathing_difficulty',N'Khó thở',1),('facial_swelling',N'Sưng mặt hoặc cổ họng',1),
+ ('fainting',N'Ngất hoặc mất ý thức',1),('seizure',N'Co giật',1),
+ ('chest_pain',N'Đau ngực dữ dội',1),('persistent_high_fever',N'Sốt cao kéo dài',1),
+ ('other',N'Triệu chứng khác',0)
+) AS source(MaTrieuChung,TenTrieuChung,LaDauHieuCanhBao)
+ON target.MaTrieuChung=source.MaTrieuChung
+WHEN NOT MATCHED THEN INSERT(MaTrieuChung,TenTrieuChung,LaDauHieuCanhBao)
+ VALUES(source.MaTrieuChung,source.TenTrieuChung,source.LaDauHieuCanhBao);
+IF NOT EXISTS (SELECT 1 FROM dbo.SCHEMAVERSION WHERE VersionNo=1)
+ INSERT dbo.SCHEMAVERSION(VersionNo,Description) VALUES(1,N'Core vaccination, inventory reservations and post-vaccination monitoring');
+GO

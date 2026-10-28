@@ -1,0 +1,27 @@
+:root {
+    font-family: "Be Vietnam Pro", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #23394d;
+    background: #f4f7fa;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    --brand: #0d827b;
+    --brand-dark: #096861;
+    --navy: #17324d;
+    --text-main: #23394d;
+    --text-muted: #708194;
+    --border: #e3eaf0;
+    --surface-page: #f4f7fa;
+    --surface-soft: #f6f9fb;
+    --surface-strong: #ffffff;
+}
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; margin: 0; }
+body { min-width: 320px; background: var(--surface-page); color: var(--text-main); }
+button, input, select, textarea { font: inherit; }
+a { text-underline-offset: 3px; }
+::selection { background: #c8eeea; color: var(--navy); }
+:focus-visible { outline: 3px solid #61bcb5; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

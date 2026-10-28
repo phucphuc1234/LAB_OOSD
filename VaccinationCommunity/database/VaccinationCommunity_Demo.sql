@@ -1,0 +1,894 @@
+/* SQL Server 2017+. Run with SSMS/sqlcmd. Creates a NEW demo database only.
+   Re-running adds missing objects; never drops a database or deletes records.
+   All datetime2 values are UTC. Demo data is an explicit separate step. */
+USE [master];
+GO
+IF DB_ID(N'VaccinationCommunity_Demo') IS NULL
+    EXEC(N'CREATE DATABASE [VaccinationCommunity_Demo]');
+GO
+USE [VaccinationCommunity_Demo];
+GO
+SET ANSI_NULLS ON;
+SET QUOTED_IDENTIFIER ON;
+SET XACT_ABORT ON;
+GO
+IF OBJECT_ID(N'dbo.SCHEMAVERSION', N'U') IS NULL
+CREATE TABLE dbo.SCHEMAVERSION (
+    VersionNo int NOT NULL CONSTRAINT PK_SCHEMAVERSION PRIMARY KEY,
+    AppliedAt datetime2(0) NOT NULL CONSTRAINT DF_SCHEMA_Applied DEFAULT SYSUTCDATETIME(),
+    Description nvarchar(255) NOT NULL
+);
+IF OBJECT_ID(N'dbo.VAITRO', N'U') IS NULL
+CREATE TABLE dbo.VAITRO (
+    MaVaiTro int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VAITRO PRIMARY KEY,
+    TenVaiTro nvarchar(50) NOT NULL CONSTRAINT UQ_VAITRO_Ten UNIQUE,
+    TrangThai bit NOT NULL CONSTRAINT DF_VAITRO_TrangThai DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.TAIKHOAN', N'U') IS NULL
+CREATE TABLE dbo.TAIKHOAN (
+    MaTaiKhoan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_TAIKHOAN PRIMARY KEY,
+    TenDangNhap varchar(100) NOT NULL CONSTRAINT UQ_TAIKHOAN_Ten UNIQUE,
+    MatKhau varchar(255) NOT NULL,
+    Email varchar(150) NOT NULL CONSTRAINT UQ_TAIKHOAN_Email UNIQUE,
+    SoDienThoai varchar(20) NULL,
+    MaVaiTro int NOT NULL CONSTRAINT FK_TAIKHOAN_VAITRO REFERENCES dbo.VAITRO(MaVaiTro),
+    TrangThai bit NOT NULL CONSTRAINT DF_TAIKHOAN_TrangThai DEFAULT 1,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_TAIKHOAN_NgayTao DEFAULT SYSUTCDATETIME(),
+    LanDangNhapCuoi datetime2(0) NULL
+);
+IF OBJECT_ID(N'dbo.NGUOIDAN', N'U') IS NULL
+CREATE TABLE dbo.NGUOIDAN (
+    MaNguoiDan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_NGUOIDAN PRIMARY KEY,
+    MaTaiKhoan int NULL CONSTRAINT FK_NGUOIDAN_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    HoTen nvarchar(150) NOT NULL,
+    NgaySinh date NULL,
+    GioiTinh nvarchar(20) NULL CONSTRAINT CK_NGUOIDAN_GioiTinh CHECK (GioiTinh IN (N'Nam',N'Nữ',N'Khác')),
+    CCCD varchar(20) NULL,
+    SoBHYT varchar(30) NULL,
+    SoDienThoai varchar(20) NULL,
+    Email varchar(150) NULL,
+    DiaChi nvarchar(255) NULL,
+    PhuongXa nvarchar(100) NULL,
+    QuanHuyen nvarchar(100) NULL,
+    TinhThanh nvarchar(100) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayCapNhat DEFAULT SYSUTCDATETIME(),
+    TrangThai bit NOT NULL CONSTRAINT DF_NGUOIDAN_TrangThai DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.VACCINE', N'U') IS NULL
+CREATE TABLE dbo.VACCINE (
+    MaVaccine int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VACCINE PRIMARY KEY,
+    TenVaccine nvarchar(150) NOT NULL CONSTRAINT UQ_VACCINE_Ten UNIQUE,
+    LoaiVaccine nvarchar(100) NULL,
+    NhaSanXuat nvarchar(150) NULL,
+    MoTa nvarchar(2000) NULL,
+    SoMuiKhuyenNghi int NOT NULL CONSTRAINT DF_VACCINE_SoMui DEFAULT 1 CONSTRAINT CK_VACCINE_SoMui CHECK (SoMuiKhuyenNghi BETWEEN 1 AND 20),
+    KhoangCachMui int NOT NULL CONSTRAINT DF_VACCINE_KhoangCach DEFAULT 0 CONSTRAINT CK_VACCINE_KhoangCach CHECK (KhoangCachMui BETWEEN 0 AND 3650),
+    TrangThai bit NOT NULL CONSTRAINT DF_VACCINE_TrangThai DEFAULT 1,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_VACCINE_NgayTao DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.LOVACCINE', N'U') IS NULL
+CREATE TABLE dbo.LOVACCINE (
+    MaLo int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LOVACCINE PRIMARY KEY,
+    MaLoVaccine varchar(50) NOT NULL CONSTRAINT UQ_LOVACCINE_MaLo UNIQUE,
+    MaVaccine int NOT NULL CONSTRAINT FK_LOVACCINE_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    NgaySanXuat date NULL,
+    HanSuDung date NOT NULL,
+    SoLuongNhap int NOT NULL,
+    SoLuongCon int NOT NULL,
+    SoLuongDatTruoc int NOT NULL CONSTRAINT DF_LOVACCINE_DatTruoc DEFAULT 0,
+    NgayNhap datetime2(0) NOT NULL CONSTRAINT DF_LOVACCINE_NgayNhap DEFAULT SYSUTCDATETIME(),
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LOVACCINE_TrangThai DEFAULT N'Đang sử dụng',
+    GhiChu nvarchar(1000) NULL,
+    CONSTRAINT CK_LOVACCINE_SoLuong CHECK (SoLuongNhap>0 AND SoLuongCon BETWEEN 0 AND SoLuongNhap AND SoLuongDatTruoc BETWEEN 0 AND SoLuongCon),
+    CONSTRAINT CK_LOVACCINE_Ngay CHECK (NgaySanXuat IS NULL OR HanSuDung>NgaySanXuat),
+    CONSTRAINT CK_LOVACCINE_TrangThai CHECK (TrangThai IN (N'Đang sử dụng',N'Tạm ngừng',N'Hết hàng',N'Hết hạn'))
+);
+IF OBJECT_ID(N'dbo.LICHTIEM', N'U') IS NULL
+CREATE TABLE dbo.LICHTIEM (
+    MaLichTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHTIEM PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_LICHTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaVaccine int NOT NULL CONSTRAINT FK_LICHTIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    MaLoDuKien int NULL CONSTRAINT FK_LICHTIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo),
+    MuiSo int NOT NULL CONSTRAINT CK_LICHTIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20),
+    NgayDuKien datetime2(0) NOT NULL,
+    CoSoTiem nvarchar(255) NULL,
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LICHTIEM_TrangThai DEFAULT N'Đã lên lịch',
+    GhiChu nvarchar(1000) NULL,
+    MaNhanVienTao int NULL CONSTRAINT FK_LICHTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_LICHTIEM_TrangThai CHECK (TrangThai IN (N'Đã lên lịch',N'Đã xác nhận',N'Đã tiêm',N'Hoàn thành',N'Đã hủy',N'Vắng mặt'))
+);
+IF OBJECT_ID(N'dbo.MUITIEM', N'U') IS NULL
+CREATE TABLE dbo.MUITIEM (
+    MaMuiTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_MUITIEM PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_MUITIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaVaccine int NOT NULL CONSTRAINT FK_MUITIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine),
+    MaLo int NOT NULL CONSTRAINT FK_MUITIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo),
+    MaLichTiem int NULL CONSTRAINT FK_MUITIEM_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem),
+    MuiSo int NOT NULL CONSTRAINT CK_MUITIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20),
+    NgayTiem datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTiem DEFAULT (CONVERT(datetime2(0),CONVERT(varchar(19),SYSUTCDATETIME(),126))),
+    CoSoTiem nvarchar(255) NULL,
+    MaNhanVien int NOT NULL CONSTRAINT FK_MUITIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    KetQua nvarchar(255) NOT NULL CONSTRAINT DF_MUITIEM_KetQua DEFAULT N'Đã tiêm',
+    PhanUngSauTiem nvarchar(2000) NULL,
+    GhiChu nvarchar(1000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT UQ_MUITIEM_Dose UNIQUE (MaNguoiDan,MaVaccine,MuiSo)
+);
+IF OBJECT_ID(N'dbo.CHONGCHIDINH', N'U') IS NULL
+CREATE TABLE dbo.CHONGCHIDINH (
+    MaChongChiDinh int IDENTITY(1,1) NOT NULL CONSTRAINT PK_CHONGCHIDINH PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_CHONGCHIDINH_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    NoiDung nvarchar(2000) NOT NULL,
+    NgayXacNhan datetime2(0) NULL,
+    MaNguoiXacNhan int NULL CONSTRAINT FK_CHONGCHIDINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_CHONGCHIDINH_TrangThai DEFAULT N'Đã xác nhận',
+    GhiChu nvarchar(1000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_CHONGCHIDINH_NgayTao DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_CHONGCHIDINH_TrangThai CHECK (TrangThai IN (N'Đã xác nhận',N'Đã hủy'))
+);
+IF OBJECT_ID(N'dbo.THONGBAO', N'U') IS NULL
+CREATE TABLE dbo.THONGBAO (
+    MaThongBao int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THONGBAO PRIMARY KEY,
+    MaNguoiDan int NOT NULL CONSTRAINT FK_THONGBAO_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    MaLichTiem int NULL CONSTRAINT FK_THONGBAO_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem),
+    TieuDe nvarchar(200) NOT NULL,
+    NoiDung nvarchar(2000) NOT NULL,
+    ThoiGianGui datetime2(0) NULL,
+    KenhGui nvarchar(30) NOT NULL CONSTRAINT DF_THONGBAO_Kenh DEFAULT N'Website',
+    TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_THONGBAO_TrangThai DEFAULT N'Đã gửi',
+    DaDoc bit NOT NULL CONSTRAINT DF_THONGBAO_DaDoc DEFAULT 0,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THONGBAO_NgayTao DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.LICHSUHIEUCHINH', N'U') IS NULL
+CREATE TABLE dbo.LICHSUHIEUCHINH (
+    MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHSUHIEUCHINH PRIMARY KEY,
+    TenBang varchar(100) NOT NULL,
+    MaBanGhi int NOT NULL,
+    HanhDong nvarchar(100) NOT NULL,
+    DuLieuCu nvarchar(max) NULL,
+    DuLieuMoi nvarchar(max) NULL,
+    MaTaiKhoan int NULL CONSTRAINT FK_LICHSUHIEUCHINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    NgayThucHien datetime2(0) NOT NULL CONSTRAINT DF_LICHSUHIEUCHINH_Ngay DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.DANHMUCTRIEUCHUNG', N'U') IS NULL
+CREATE TABLE dbo.DANHMUCTRIEUCHUNG (
+    MaTrieuChung varchar(40) NOT NULL CONSTRAINT PK_DANHMUCTRIEUCHUNG PRIMARY KEY,
+    TenTrieuChung nvarchar(150) NOT NULL,
+    LaDauHieuCanhBao bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_CanhBao DEFAULT 0,
+    DangHoatDong bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_HoatDong DEFAULT 1
+);
+IF OBJECT_ID(N'dbo.THEODOISAUTIEM', N'U') IS NULL
+CREATE TABLE dbo.THEODOISAUTIEM (
+    MaTheoDoi int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOISAUTIEM PRIMARY KEY,
+    MaMuiTiem int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_MUITIEM REFERENCES dbo.MUITIEM(MaMuiTiem),
+    MaNguoiDan int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan),
+    ThoiDiemBaoCao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_BaoCao DEFAULT SYSUTCDATETIME(),
+    KhoiPhatLuc datetime2(0) NULL,
+    ThoiLuongGio decimal(6,2) NULL CONSTRAINT CK_THEODOISAUTIEM_ThoiLuong CHECK (ThoiLuongGio BETWEEN 0 AND 8760),
+    NhietDo decimal(4,1) NULL CONSTRAINT CK_THEODOISAUTIEM_NhietDo CHECK (NhietDo BETWEEN 30 AND 45),
+    TrieuChung nvarchar(2000) NOT NULL,
+    MucDo varchar(16) NOT NULL CONSTRAINT CK_THEODOISAUTIEM_MucDo CHECK (MucDo IN ('none','mild','moderate','severe','emergency')),
+    CoDauHieuCanhBao bit NOT NULL CONSTRAINT DF_THEODOISAUTIEM_CanhBao DEFAULT 0,
+    TrangThai varchar(16) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_TrangThai DEFAULT 'new' CONSTRAINT CK_THEODOISAUTIEM_TrangThai CHECK (TrangThai IN ('new','reviewing','monitoring','escalated','resolved')),
+    HuongXuLy nvarchar(2000) NULL,
+    MaNhanVienXuLy int NULL CONSTRAINT FK_THEODOISAUTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    ThoiDiemXuLy datetime2(0) NULL,
+    HenTheoDoiLuc datetime2(0) NULL,
+    LanCapNhat int NOT NULL CONSTRAINT DF_THEODOISAUTIEM_Lan DEFAULT 1 CONSTRAINT CK_THEODOISAUTIEM_Lan CHECK (LanCapNhat>0),
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayTao DEFAULT SYSUTCDATETIME(),
+    NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME()
+);
+IF OBJECT_ID(N'dbo.THEODOI_TRIEUCHUNG', N'U') IS NULL
+CREATE TABLE dbo.THEODOI_TRIEUCHUNG (
+    MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi),
+    MaTrieuChung varchar(40) NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_Catalog REFERENCES dbo.DANHMUCTRIEUCHUNG(MaTrieuChung),
+    CONSTRAINT PK_THEODOI_TRIEUCHUNG PRIMARY KEY (MaTheoDoi,MaTrieuChung)
+);
+IF OBJECT_ID(N'dbo.THEODOI_LICHSU', N'U') IS NULL
+CREATE TABLE dbo.THEODOI_LICHSU (
+    MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOI_LICHSU PRIMARY KEY,
+    MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_LICHSU_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi),
+    MaTaiKhoan int NULL CONSTRAINT FK_THEODOI_LICHSU_TaiKhoan REFERENCES dbo.TAIKHOAN(MaTaiKhoan),
+    TrangThaiCu varchar(16) NULL,
+    TrangThaiMoi varchar(16) NOT NULL,
+    LanCapNhat int NOT NULL,
+    HanhDong nvarchar(100) NOT NULL,
+    NoiDung nvarchar(2000) NULL,
+    NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOI_LICHSU_Ngay DEFAULT SYSUTCDATETIME()
+);
+GO
+/* Additive upgrade of the original application's existing database tables. */
+IF COL_LENGTH(N'dbo.LOVACCINE',N'SoLuongDatTruoc') IS NULL
+    ALTER TABLE dbo.LOVACCINE ADD SoLuongDatTruoc int NOT NULL CONSTRAINT DF_LOVACCINE_DatTruoc_Upgrade DEFAULT 0;
+IF COL_LENGTH(N'dbo.LICHTIEM',N'MaLoDuKien') IS NULL
+    ALTER TABLE dbo.LICHTIEM ADD MaLoDuKien int NULL CONSTRAINT FK_LICHTIEM_LOVACCINE_Upgrade REFERENCES dbo.LOVACCINE(MaLo);
+IF COL_LENGTH(N'dbo.LICHTIEM',N'NgayCapNhat') IS NULL
+    ALTER TABLE dbo.LICHTIEM ADD NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayCapNhat_Upgrade DEFAULT SYSUTCDATETIME();
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_TaiKhoan')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_TaiKhoan ON dbo.NGUOIDAN(MaTaiKhoan) WHERE MaTaiKhoan IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_CCCD')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_CCCD ON dbo.NGUOIDAN(CCCD) WHERE CCCD IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.NGUOIDAN') AND name=N'UX_NGUOIDAN_Email')
+    CREATE UNIQUE INDEX UX_NGUOIDAN_Email ON dbo.NGUOIDAN(Email) WHERE Email IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'UX_MUITIEM_Lich')
+    CREATE UNIQUE INDEX UX_MUITIEM_Lich ON dbo.MUITIEM(MaLichTiem) WHERE MaLichTiem IS NOT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHTIEM') AND name=N'IX_LICHTIEM_CitizenStatus')
+    CREATE INDEX IX_LICHTIEM_CitizenStatus ON dbo.LICHTIEM(MaNguoiDan,MaVaccine,TrangThai) INCLUDE (MaLoDuKien,MuiSo,NgayDuKien);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHTIEM') AND name=N'IX_LICHTIEM_NgayStatus')
+    CREATE INDEX IX_LICHTIEM_NgayStatus ON dbo.LICHTIEM(TrangThai,NgayDuKien) INCLUDE (MaNguoiDan,MaVaccine,MaLoDuKien);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LOVACCINE') AND name=N'IX_LOVACCINE_FEFO')
+    CREATE INDEX IX_LOVACCINE_FEFO ON dbo.LOVACCINE(MaVaccine,TrangThai,HanSuDung,MaLo) INCLUDE (SoLuongCon,SoLuongDatTruoc);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'IX_MUITIEM_Ngay')
+    CREATE INDEX IX_MUITIEM_Ngay ON dbo.MUITIEM(NgayTiem DESC) INCLUDE (MaNguoiDan,MaVaccine,MaLo);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.MUITIEM') AND name=N'IX_MUITIEM_Lo')
+    CREATE INDEX IX_MUITIEM_Lo ON dbo.MUITIEM(MaLo,NgayTiem) INCLUDE (MaNguoiDan,MaVaccine);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.CHONGCHIDINH') AND name=N'IX_CHONGCHIDINH_Citizen')
+    CREATE INDEX IX_CHONGCHIDINH_Citizen ON dbo.CHONGCHIDINH(MaNguoiDan,TrangThai);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THONGBAO') AND name=N'IX_THONGBAO_Citizen')
+    CREATE INDEX IX_THONGBAO_Citizen ON dbo.THONGBAO(MaNguoiDan,DaDoc,NgayTao DESC);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THONGBAO') AND name=N'UX_THONGBAO_Reminder')
+    CREATE UNIQUE INDEX UX_THONGBAO_Reminder ON dbo.THONGBAO(MaLichTiem) WHERE MaLichTiem IS NOT NULL AND TieuDe=N'Nhắc lịch tiêm';
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOISAUTIEM') AND name=N'IX_THEODOISAUTIEM_Queue')
+    CREATE INDEX IX_THEODOISAUTIEM_Queue ON dbo.THEODOISAUTIEM(TrangThai,CoDauHieuCanhBao,NgayTao DESC) INCLUDE (MaMuiTiem,MaNguoiDan,MucDo,HenTheoDoiLuc);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOISAUTIEM') AND name=N'IX_THEODOISAUTIEM_Citizen')
+    CREATE INDEX IX_THEODOISAUTIEM_Citizen ON dbo.THEODOISAUTIEM(MaNguoiDan,MaMuiTiem,NgayTao DESC);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.THEODOI_LICHSU') AND name=N'IX_THEODOI_LICHSU_Case')
+    CREATE INDEX IX_THEODOI_LICHSU_Case ON dbo.THEODOI_LICHSU(MaTheoDoi,NgayTao,MaLichSu);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N'dbo.LICHSUHIEUCHINH') AND name=N'IX_LICHSU_Record')
+    CREATE INDEX IX_LICHSU_Record ON dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,NgayThucHien DESC);
+GO
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Người dân') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Người dân');
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Nhân viên') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Nhân viên');
+IF NOT EXISTS (SELECT 1 FROM dbo.VAITRO WHERE TenVaiTro=N'Quản trị viên') INSERT dbo.VAITRO(TenVaiTro) VALUES(N'Quản trị viên');
+MERGE dbo.DANHMUCTRIEUCHUNG AS target
+USING (VALUES
+ ('injection_pain',N'Đau tại chỗ tiêm',0),('redness',N'Đỏ hoặc sưng tại chỗ tiêm',0),
+ ('fatigue',N'Mệt mỏi',0),('headache',N'Đau đầu',0),('muscle_pain',N'Đau cơ',0),
+ ('fever',N'Sốt',0),('nausea',N'Buồn nôn',0),('rash',N'Phát ban',0),
+ ('breathing_difficulty',N'Khó thở',1),('facial_swelling',N'Sưng mặt hoặc cổ họng',1),
+ ('fainting',N'Ngất hoặc mất ý thức',1),('seizure',N'Co giật',1),
+ ('chest_pain',N'Đau ngực dữ dội',1),('persistent_high_fever',N'Sốt cao kéo dài',1),
+ ('other',N'Triệu chứng khác',0)
+) AS source(MaTrieuChung,TenTrieuChung,LaDauHieuCanhBao)
+ON target.MaTrieuChung=source.MaTrieuChung
+WHEN NOT MATCHED THEN INSERT(MaTrieuChung,TenTrieuChung,LaDauHieuCanhBao)
+ VALUES(source.MaTrieuChung,source.TenTrieuChung,source.LaDauHieuCanhBao);
+IF NOT EXISTS (SELECT 1 FROM dbo.SCHEMAVERSION WHERE VersionNo=1)
+ INSERT dbo.SCHEMAVERSION(VersionNo,Description) VALUES(1,N'Core vaccination, inventory reservations and post-vaccination monitoring');
+GO
+USE [VaccinationCommunity_Demo];
+GO
+SET ANSI_NULLS ON;
+SET QUOTED_IDENTIFIER ON;
+GO
+/* Errors: 51000 invalid input; 51001 not found; 51002 forbidden;
+   51003 conflict/stale version; 51004 insufficient usable inventory.
+   Stock is changed ONLY by usp_GhiNhanMuiTiem, never by a trigger. */
+CREATE OR ALTER PROCEDURE dbo.usp_LuuLichTiem
+ @MaLichTiem int=NULL, @MaNguoiDan int, @MaVaccine int, @MuiSo int,
+ @NgayDuKien datetime2(0), @CoSoTiem nvarchar(255)=NULL,
+ @TrangThai nvarchar(50)=N'Đã lên lịch', @GhiChu nvarchar(1000)=NULL,
+ @MaNhanVienTao int=NULL, @MaLoDuKien int=NULL, @ReturnRow bit=1
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+ IF @MaNguoiDan IS NULL OR @MaNguoiDan<=0 OR @MaVaccine IS NULL OR @MaVaccine<=0 OR @MuiSo IS NULL OR @MuiSo NOT BETWEEN 1 AND 20 OR @NgayDuKien IS NULL OR @NgayDuKien<=SYSUTCDATETIME()
+  THROW 51000,N'Ngày hẹn phải ở tương lai và mũi số hợp lệ.',1;
+ IF @TrangThai IS NULL OR @TrangThai NOT IN (N'Đã lên lịch',N'Đã xác nhận')
+  THROW 51000,N'Chỉ tạo hoặc sửa lịch đang hoạt động.',1;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  DECLARE @LockResult int;
+  EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
+  IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.NGUOIDAN WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=1)
+   THROW 51001,N'Không tìm thấy hồ sơ người dân đang hoạt động.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.VACCINE WITH(HOLDLOCK) WHERE MaVaccine=@MaVaccine AND TrangThai=1)
+   THROW 51000,N'Vaccine không tồn tại hoặc đang ngừng sử dụng.',1;
+  IF @MaNhanVienTao IS NOT NULL AND NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaNhanVienTao AND t.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro IN (N'Nhân viên',N'Quản trị viên'))
+   THROW 51002,N'Tài khoản lập lịch không có quyền.',1;
+  IF EXISTS(SELECT 1 FROM dbo.CHONGCHIDINH WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=N'Đã xác nhận')
+   THROW 51003,N'Hồ sơ có chống chỉ định đang hiệu lực; cần nhân viên y tế đánh giá.',1;
+  DECLARE @OldBatch int, @OldStatus nvarchar(50), @ExistingCitizen int;
+  IF @MaLichTiem IS NOT NULL
+  BEGIN
+   SELECT @OldBatch=MaLoDuKien,@OldStatus=TrangThai,@ExistingCitizen=MaNguoiDan FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+   IF @ExistingCitizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
+   IF @ExistingCitizen<>@MaNguoiDan THROW 51003,N'Không được chuyển lịch sang người dân khác.',1;
+   IF @OldStatus NOT IN (N'Đã lên lịch',N'Đã xác nhận') THROW 51003,N'Lịch đã đóng; không thể sửa.',1;
+  END;
+  IF EXISTS(SELECT 1 FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND TrangThai IN(N'Đã lên lịch',N'Đã xác nhận') AND (@MaLichTiem IS NULL OR MaLichTiem<>@MaLichTiem))
+   THROW 51003,N'Đã có lịch tiêm vaccine này đang chờ xử lý.',1;
+  IF EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo)
+   THROW 51003,N'Mũi vaccine này đã được ghi nhận.',1;
+  IF @OldBatch IS NOT NULL
+  BEGIN
+   UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc-1 WHERE MaLo=@OldBatch AND SoLuongDatTruoc>0;
+   IF @@ROWCOUNT=0 THROW 51003,N'Số lượng giữ chỗ không nhất quán; cần kiểm tra dữ liệu.',1;
+  END;
+  IF @MaLoDuKien IS NULL
+   SELECT TOP(1) @MaLoDuKien=MaLo FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK)
+   WHERE MaVaccine=@MaVaccine AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(@NgayDuKien AS date) AND SoLuongCon>SoLuongDatTruoc
+   ORDER BY HanSuDung,MaLo;
+  IF NOT EXISTS(SELECT 1 FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLoDuKien AND MaVaccine=@MaVaccine AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(@NgayDuKien AS date) AND SoLuongCon>SoLuongDatTruoc)
+   THROW 51004,N'Không còn lô vaccine đủ hạn và đủ lượng để giữ chỗ ngày đã chọn.',1;
+  UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc+1 WHERE MaLo=@MaLoDuKien;
+  IF @MaLichTiem IS NULL
+  BEGIN
+   INSERT dbo.LICHTIEM(MaNguoiDan,MaVaccine,MaLoDuKien,MuiSo,NgayDuKien,CoSoTiem,TrangThai,GhiChu,MaNhanVienTao)
+   VALUES(@MaNguoiDan,@MaVaccine,@MaLoDuKien,@MuiSo,@NgayDuKien,@CoSoTiem,@TrangThai,@GhiChu,@MaNhanVienTao);
+   SET @MaLichTiem=CONVERT(int,SCOPE_IDENTITY());
+  END
+  ELSE UPDATE dbo.LICHTIEM SET MaVaccine=@MaVaccine,MaLoDuKien=@MaLoDuKien,MuiSo=@MuiSo,NgayDuKien=@NgayDuKien,CoSoTiem=@CoSoTiem,TrangThai=@TrangThai,GhiChu=@GhiChu,NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
+  COMMIT TRANSACTION;
+  IF @ReturnRow=1 SELECT * FROM dbo.LICHTIEM WHERE MaLichTiem=@MaLichTiem;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK TRANSACTION;
+  THROW;
+ END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.usp_DoiTrangThaiLichTiem
+ @MaLichTiem int, @TrangThai nvarchar(50), @MaTaiKhoan int=NULL
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+ IF @MaTaiKhoan IS NULL THROW 51002,N'Cần tài khoản thực hiện để đổi trạng thái lịch.',1;
+ IF @TrangThai IS NULL OR @TrangThai NOT IN(N'Đã lên lịch',N'Đã xác nhận',N'Đã tiêm',N'Hoàn thành',N'Đã hủy',N'Vắng mặt')
+  THROW 51000,N'Trạng thái lịch không hợp lệ.',1;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  DECLARE @LockResult int;
+  EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
+  IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
+  DECLARE @OldStatus nvarchar(50),@Batch int,@Citizen int,@Date datetime2(0);
+  SELECT @OldStatus=TrangThai,@Batch=MaLoDuKien,@Citizen=MaNguoiDan,@Date=NgayDuKien FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+  IF @Citizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
+  IF @MaTaiKhoan IS NOT NULL AND NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaTaiKhoan AND t.TrangThai=1 AND r.TrangThai=1 AND (r.TenVaiTro IN(N'Nhân viên',N'Quản trị viên') OR (@TrangThai=N'Đã hủy' AND EXISTS(SELECT 1 FROM dbo.NGUOIDAN n WHERE n.MaNguoiDan=@Citizen AND n.MaTaiKhoan=t.MaTaiKhoan))))
+   THROW 51002,N'Không có quyền đổi trạng thái lịch này.',1;
+  IF @OldStatus=@TrangThai
+  BEGIN
+   COMMIT; SELECT * FROM dbo.LICHTIEM WHERE MaLichTiem=@MaLichTiem; RETURN;
+  END;
+  IF @TrangThai IN(N'Đã tiêm',N'Hoàn thành') AND NOT EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaLichTiem=@MaLichTiem)
+   THROW 51003,N'Phải ghi nhận mũi tiêm trước khi hoàn thành lịch.',1;
+  IF @OldStatus IN(N'Đã hủy',N'Vắng mặt',N'Hoàn thành') OR (@OldStatus=N'Đã tiêm' AND @TrangThai<>N'Hoàn thành')
+   THROW 51003,N'Lịch đã đóng; hãy lập lịch mới khi cần.',1;
+  IF @TrangThai IN(N'Đã lên lịch',N'Đã xác nhận') AND @OldStatus NOT IN(N'Đã lên lịch',N'Đã xác nhận')
+   THROW 51003,N'Không thể mở lại lịch đã đóng.',1;
+  IF @TrangThai=N'Vắng mặt' AND @Date>SYSUTCDATETIME()
+   THROW 51000,N'Chưa đến ngày hẹn; không thể đánh dấu vắng mặt.',1;
+  IF @OldStatus IN(N'Đã lên lịch',N'Đã xác nhận') AND @TrangThai NOT IN(N'Đã lên lịch',N'Đã xác nhận') AND @Batch IS NOT NULL
+  BEGIN
+   UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc-1 WHERE MaLo=@Batch AND SoLuongDatTruoc>0;
+   IF @@ROWCOUNT=0 THROW 51003,N'Số lượng giữ chỗ không nhất quán.',1;
+  END;
+  UPDATE dbo.LICHTIEM SET TrangThai=@TrangThai,NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
+  COMMIT;
+  SELECT * FROM dbo.LICHTIEM WHERE MaLichTiem=@MaLichTiem;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.usp_GhiNhanMuiTiem
+ @MaNguoiDan int,@MaVaccine int,@MaLo int,@MaLichTiem int=NULL,@MuiSo int,
+ @NgayTiem datetime2(0)=NULL,@CoSoTiem nvarchar(255)=NULL,@MaNhanVien int,
+ @KetQua nvarchar(255)=N'Đã tiêm',@PhanUngSauTiem nvarchar(2000)=NULL,@GhiChu nvarchar(1000)=NULL,@ReturnRow bit=1
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+ SET @NgayTiem=COALESCE(@NgayTiem,CONVERT(datetime2(0),CONVERT(varchar(19),SYSUTCDATETIME(),126)));
+ IF @MaNguoiDan IS NULL OR @MaNguoiDan<=0 OR @MaVaccine IS NULL OR @MaVaccine<=0 OR @MaLo IS NULL OR @MaLo<=0 OR @MuiSo IS NULL OR @MuiSo NOT BETWEEN 1 AND 20 OR @NgayTiem>SYSUTCDATETIME()
+  THROW 51000,N'Mũi số hoặc thời điểm tiêm không hợp lệ.',1;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  DECLARE @LockResult int;
+  EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
+  IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaNhanVien AND t.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro IN(N'Nhân viên',N'Quản trị viên'))
+   THROW 51002,N'Nhân viên ghi nhận không hợp lệ.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.NGUOIDAN WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=1)
+   THROW 51001,N'Không tìm thấy hồ sơ người dân đang hoạt động.',1;
+  DECLARE @Existing int;
+  SELECT TOP(1) @Existing=MaMuiTiem FROM dbo.MUITIEM WITH(UPDLOCK,HOLDLOCK)
+   WHERE (@MaLichTiem IS NOT NULL AND MaLichTiem=@MaLichTiem) OR (MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo);
+  IF @Existing IS NOT NULL
+  BEGIN
+   IF NOT EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaMuiTiem=@Existing AND MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo AND MaLo=@MaLo AND (MaLichTiem=@MaLichTiem OR (MaLichTiem IS NULL AND @MaLichTiem IS NULL)))
+    THROW 51003,N'Mũi tiêm hoặc lịch đã được sử dụng với thông tin khác.',1;
+   COMMIT;
+   IF @ReturnRow=1 SELECT * FROM dbo.MUITIEM WHERE MaMuiTiem=@Existing;
+   RETURN;
+  END;
+  IF NOT EXISTS(SELECT 1 FROM dbo.VACCINE WHERE MaVaccine=@MaVaccine AND TrangThai=1)
+   THROW 51000,N'Vaccine không tồn tại hoặc đang ngừng sử dụng.',1;
+  IF EXISTS(SELECT 1 FROM dbo.CHONGCHIDINH WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=N'Đã xác nhận' AND COALESCE(NgayXacNhan,NgayTao)<=@NgayTiem)
+   THROW 51003,N'Hồ sơ có chống chỉ định đang hiệu lực; cần đánh giá y tế.',1;
+  IF EXISTS(SELECT 1 FROM dbo.MUITIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo)
+   THROW 51003,N'Mũi vaccine này đã được ghi nhận; không được trừ kho lần hai.',1;
+  DECLARE @ReservedBatch int=NULL,@ScheduleStatus nvarchar(50),@ScheduleCitizen int,@ScheduleVaccine int,@ScheduleDose int;
+  IF @MaLichTiem IS NOT NULL
+  BEGIN
+   SELECT @ReservedBatch=MaLoDuKien,@ScheduleStatus=TrangThai,@ScheduleCitizen=MaNguoiDan,@ScheduleVaccine=MaVaccine,@ScheduleDose=MuiSo FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+   IF @ScheduleCitizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
+   IF @ScheduleCitizen<>@MaNguoiDan OR @ScheduleVaccine<>@MaVaccine OR @ScheduleDose<>@MuiSo
+    THROW 51003,N'Người dân, vaccine hoặc mũi số không khớp lịch.',1;
+   IF @ScheduleStatus NOT IN(N'Đã lên lịch',N'Đã xác nhận') OR EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaLichTiem=@MaLichTiem)
+    THROW 51003,N'Lịch không còn hiệu lực hoặc đã được ghi nhận tiêm.',1;
+  END;
+  DECLARE @Stock int,@Reservations int,@Expiry date,@BatchVaccine int,@BatchStatus nvarchar(50),@Manufactured date;
+  SELECT @Stock=SoLuongCon,@Reservations=SoLuongDatTruoc,@Expiry=HanSuDung,@BatchVaccine=MaVaccine,@BatchStatus=TrangThai,@Manufactured=NgaySanXuat FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLo;
+  IF @BatchVaccine IS NULL THROW 51001,N'Không tìm thấy lô vaccine.',1;
+  IF @BatchVaccine<>@MaVaccine THROW 51000,N'Lô không thuộc vaccine đã chọn.',1;
+  IF @BatchStatus<>N'Đang sử dụng' OR @Expiry<CAST(@NgayTiem AS date) OR @Expiry<CAST(SYSUTCDATETIME() AS date) OR (@Manufactured IS NOT NULL AND @Manufactured>CAST(@NgayTiem AS date))
+   THROW 51004,N'Lô vaccine không được sử dụng hoặc không đủ hạn.',1;
+  IF @Stock<=0 OR (@ReservedBatch=@MaLo AND @Reservations<=0) OR ((@ReservedBatch IS NULL OR @ReservedBatch<>@MaLo) AND @Stock<=@Reservations)
+   THROW 51004,N'Lô vaccine không còn lượng khả dụng.',1;
+  IF @ReservedBatch IS NOT NULL AND @ReservedBatch<>@MaLo
+  BEGIN
+   UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc-1 WHERE MaLo=@ReservedBatch AND SoLuongDatTruoc>0;
+   IF @@ROWCOUNT=0 THROW 51003,N'Số lượng giữ chỗ không nhất quán.',1;
+  END;
+  UPDATE dbo.LOVACCINE SET SoLuongCon=SoLuongCon-1,SoLuongDatTruoc=SoLuongDatTruoc-CASE WHEN @ReservedBatch=@MaLo THEN 1 ELSE 0 END,
+   TrangThai=CASE WHEN SoLuongCon=1 THEN N'Hết hàng' ELSE TrangThai END WHERE MaLo=@MaLo;
+  INSERT dbo.MUITIEM(MaNguoiDan,MaVaccine,MaLo,MaLichTiem,MuiSo,NgayTiem,CoSoTiem,MaNhanVien,KetQua,PhanUngSauTiem,GhiChu)
+  VALUES(@MaNguoiDan,@MaVaccine,@MaLo,@MaLichTiem,@MuiSo,@NgayTiem,@CoSoTiem,@MaNhanVien,COALESCE(@KetQua,N'Đã tiêm'),@PhanUngSauTiem,@GhiChu);
+  DECLARE @Id int=CONVERT(int,SCOPE_IDENTITY());
+  IF @MaLichTiem IS NOT NULL UPDATE dbo.LICHTIEM SET TrangThai=N'Đã tiêm',NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
+  INSERT dbo.THONGBAO(MaNguoiDan,MaLichTiem,TieuDe,NoiDung,ThoiGianGui)
+  VALUES(@MaNguoiDan,@MaLichTiem,N'Theo dõi sức khỏe sau tiêm',N'Mũi tiêm đã được ghi nhận. Bạn có thể gửi tình trạng sức khỏe tại mục Theo dõi sau tiêm. Khi có khó thở, ngất hoặc dấu hiệu nguy hiểm, hãy gọi 115 hoặc đến cơ sở y tế ngay; không chờ phản hồi trên website.',SYSUTCDATETIME());
+  COMMIT;
+  IF @ReturnRow=1 SELECT * FROM dbo.MUITIEM WHERE MaMuiTiem=@Id;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.usp_BaoCaoSauTiem
+ @MaTaiKhoan int,@MaMuiTiem int,@KhoiPhatLuc datetime2(0)=NULL,@ThoiLuongGio decimal(6,2)=NULL,
+ @NhietDo decimal(4,1)=NULL,@TrieuChung nvarchar(2000)=N'',@MucDo varchar(16)='none',@TrieuChungJson nvarchar(max)=N'[]'
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ IF @MucDo IS NULL OR @MucDo NOT IN('none','mild','moderate','severe','emergency') OR (@NhietDo IS NOT NULL AND @NhietDo NOT BETWEEN 30 AND 45) OR (@ThoiLuongGio IS NOT NULL AND @ThoiLuongGio NOT BETWEEN 0 AND 8760)
+  THROW 51000,N'Dữ liệu theo dõi không hợp lệ.',1;
+ IF ISNULL(ISJSON(@TrieuChungJson),0)<>1 OR LEFT(LTRIM(@TrieuChungJson),1)<>'['
+  THROW 51000,N'Danh sách triệu chứng phải là mảng JSON.',1;
+ IF EXISTS(SELECT 1 FROM OPENJSON(@TrieuChungJson) j LEFT JOIN dbo.DANHMUCTRIEUCHUNG d ON d.MaTrieuChung=j.value AND d.DangHoatDong=1 WHERE j.type<>1 OR d.MaTrieuChung IS NULL)
+  THROW 51000,N'Mã triệu chứng không hợp lệ.',1;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  DECLARE @Citizen int,@Vaccinated datetime2(0);
+  SELECT @Citizen=m.MaNguoiDan,@Vaccinated=m.NgayTiem FROM dbo.MUITIEM m JOIN dbo.NGUOIDAN n ON n.MaNguoiDan=m.MaNguoiDan JOIN dbo.TAIKHOAN t ON t.MaTaiKhoan=n.MaTaiKhoan JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE m.MaMuiTiem=@MaMuiTiem AND n.MaTaiKhoan=@MaTaiKhoan AND t.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro=N'Người dân';
+  IF @Citizen IS NULL THROW 51002,N'Chỉ được gửi theo dõi cho mũi tiêm của chính mình.',1;
+  IF @KhoiPhatLuc IS NOT NULL AND (@KhoiPhatLuc<@Vaccinated OR @KhoiPhatLuc>SYSUTCDATETIME())
+   THROW 51000,N'Thời điểm khởi phát phải từ lúc tiêm đến hiện tại.',1;
+  DECLARE @Warning bit=0,@Severity int=CASE @MucDo WHEN 'none' THEN 0 WHEN 'mild' THEN 1 WHEN 'moderate' THEN 2 WHEN 'severe' THEN 3 ELSE 4 END;
+  IF EXISTS(SELECT 1 FROM OPENJSON(@TrieuChungJson) j JOIN dbo.DANHMUCTRIEUCHUNG d ON d.MaTrieuChung=j.value WHERE d.LaDauHieuCanhBao=1)
+   BEGIN SET @Warning=1; SET @Severity=4; END;
+  IF (@NhietDo>=39 OR @NhietDo<35) AND @Severity<3 SET @Severity=3;
+  IF @NhietDo>=38.5 AND @Severity<2 SET @Severity=2;
+  IF (@NhietDo>=38 OR LEN(LTRIM(RTRIM(COALESCE(@TrieuChung,N''))))>0 OR EXISTS(SELECT 1 FROM OPENJSON(@TrieuChungJson))) AND @Severity<1 SET @Severity=1;
+  SET @MucDo=CASE @Severity WHEN 0 THEN 'none' WHEN 1 THEN 'mild' WHEN 2 THEN 'moderate' WHEN 3 THEN 'severe' ELSE 'emergency' END;
+  DECLARE @Status varchar(16)=CASE WHEN @Severity>=3 OR @Warning=1 THEN 'escalated' ELSE 'new' END;
+  INSERT dbo.THEODOISAUTIEM(MaMuiTiem,MaNguoiDan,KhoiPhatLuc,ThoiLuongGio,NhietDo,TrieuChung,MucDo,CoDauHieuCanhBao,TrangThai)
+  VALUES(@MaMuiTiem,@Citizen,@KhoiPhatLuc,@ThoiLuongGio,@NhietDo,COALESCE(@TrieuChung,N''),@MucDo,@Warning,@Status);
+  DECLARE @Id int=CONVERT(int,SCOPE_IDENTITY());
+  INSERT dbo.THEODOI_TRIEUCHUNG(MaTheoDoi,MaTrieuChung) SELECT DISTINCT @Id,CONVERT(varchar(40),value) FROM OPENJSON(@TrieuChungJson);
+  INSERT dbo.THEODOI_LICHSU(MaTheoDoi,MaTaiKhoan,TrangThaiMoi,LanCapNhat,HanhDong,NoiDung)
+  VALUES(@Id,@MaTaiKhoan,@Status,1,N'Gửi báo cáo',CASE WHEN @Status='escalated' THEN N'Ưu tiên tiếp nhận do có dấu hiệu cảnh báo hoặc mức độ nặng; không phải chẩn đoán tự động.' ELSE N'Người dân gửi tình trạng sau tiêm.' END);
+  COMMIT;
+  SELECT * FROM dbo.THEODOISAUTIEM WHERE MaTheoDoi=@Id;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.usp_XuLyTheoDoi
+ @MaTaiKhoan int,@MaTheoDoi int,@TrangThai varchar(16),@HuongXuLy nvarchar(2000),
+ @HenTheoDoiLuc datetime2(0)=NULL,@LanCapNhatMongDoi int
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ IF @LanCapNhatMongDoi IS NULL OR @LanCapNhatMongDoi<1 OR @TrangThai IS NULL OR @TrangThai NOT IN('new','reviewing','monitoring','escalated','resolved') OR LEN(LTRIM(RTRIM(COALESCE(@HuongXuLy,N''))))=0
+  THROW 51000,N'Cần trạng thái và nội dung xử lý hợp lệ.',1;
+ IF @TrangThai='monitoring' AND (@HenTheoDoiLuc IS NULL OR @HenTheoDoiLuc<=SYSUTCDATETIME())
+  THROW 51000,N'Hồ sơ đang theo dõi cần hẹn kiểm tra lại trong tương lai.',1;
+ IF @HenTheoDoiLuc IS NOT NULL AND @HenTheoDoiLuc<=SYSUTCDATETIME()
+  THROW 51000,N'Lần theo dõi tiếp theo phải ở tương lai.',1;
+ IF @TrangThai='resolved' SET @HenTheoDoiLuc=NULL;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  IF NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaTaiKhoan AND t.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro IN(N'Nhân viên',N'Quản trị viên'))
+   THROW 51002,N'Chỉ nhân viên y tế hoặc quản trị viên được xử lý theo dõi.',1;
+  DECLARE @Old varchar(16),@Revision int,@Citizen int;
+  SELECT @Old=TrangThai,@Revision=LanCapNhat,@Citizen=MaNguoiDan FROM dbo.THEODOISAUTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaTheoDoi=@MaTheoDoi;
+  IF @Old IS NULL THROW 51001,N'Không tìm thấy báo cáo.',1;
+  IF @Revision<>@LanCapNhatMongDoi THROW 51003,N'Hồ sơ đã được cập nhật; tải lại trước khi xử lý.',1;
+  IF NOT(@Old=@TrangThai OR (@Old='new' AND @TrangThai IN('reviewing','escalated')) OR (@Old='reviewing' AND @TrangThai IN('monitoring','escalated','resolved')) OR (@Old='monitoring' AND @TrangThai IN('reviewing','escalated','resolved')) OR (@Old='escalated' AND @TrangThai IN('reviewing','monitoring','resolved')) OR (@Old='resolved' AND @TrangThai IN('reviewing','escalated')))
+   THROW 51003,N'Không được chuyển trạng thái theo dõi theo cách này.',1;
+  UPDATE dbo.THEODOISAUTIEM SET TrangThai=@TrangThai,HuongXuLy=@HuongXuLy,HenTheoDoiLuc=@HenTheoDoiLuc,MaNhanVienXuLy=@MaTaiKhoan,ThoiDiemXuLy=SYSUTCDATETIME(),LanCapNhat=LanCapNhat+1,NgayCapNhat=SYSUTCDATETIME() WHERE MaTheoDoi=@MaTheoDoi;
+  INSERT dbo.THEODOI_LICHSU(MaTheoDoi,MaTaiKhoan,TrangThaiCu,TrangThaiMoi,LanCapNhat,HanhDong,NoiDung)
+  VALUES(@MaTheoDoi,@MaTaiKhoan,@Old,@TrangThai,@Revision+1,N'Cập nhật xử lý',@HuongXuLy);
+  INSERT dbo.THONGBAO(MaNguoiDan,TieuDe,NoiDung,ThoiGianGui)
+  VALUES(@Citizen,N'Phản hồi theo dõi sau tiêm',@HuongXuLy,SYSUTCDATETIME());
+  COMMIT;
+  SELECT * FROM dbo.THEODOISAUTIEM WHERE MaTheoDoi=@MaTheoDoi;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO
+/* Explicitly invoked, repeatable reminder generation. No SQL Agent/background job
+   is silently installed. Date comparisons use the Vietnam calendar (UTC+07). */
+CREATE OR ALTER PROCEDURE dbo.usp_TaoNhacLich @DaysAhead int=3
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ IF @DaysAhead IS NULL OR @DaysAhead NOT BETWEEN 0 AND 30 THROW 51000,N'Số ngày nhắc phải từ 0 đến 30.',1;
+ BEGIN TRY
+  SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+  BEGIN TRANSACTION;
+  DECLARE @LockResult int;
+  EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
+  IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý lịch; vui lòng thử lại.',1;
+  INSERT dbo.THONGBAO(MaNguoiDan,MaLichTiem,TieuDe,NoiDung,ThoiGianGui)
+  SELECT l.MaNguoiDan,l.MaLichTiem,N'Nhắc lịch tiêm',N'Bạn có lịch tiêm '+v.TenVaccine+N' tại '+COALESCE(l.CoSoTiem,N'cơ sở đã đăng ký')+N'. Xem lịch trên website để kiểm tra thời gian.',SYSUTCDATETIME()
+  FROM dbo.LICHTIEM l JOIN dbo.VACCINE v ON v.MaVaccine=l.MaVaccine
+  WHERE l.TrangThai=N'Đã xác nhận' AND l.NgayDuKien>=SYSUTCDATETIME() AND DATEDIFF(day,CAST(DATEADD(hour,7,SYSUTCDATETIME()) AS date),CAST(DATEADD(hour,7,l.NgayDuKien) AS date)) BETWEEN 0 AND @DaysAhead
+   AND NOT EXISTS(SELECT 1 FROM dbo.THONGBAO t WITH(UPDLOCK,HOLDLOCK) WHERE t.MaLichTiem=l.MaLichTiem AND t.TieuDe=N'Nhắc lịch tiêm');
+  DECLARE @Created int=@@ROWCOUNT;
+  COMMIT;
+  SELECT @Created AS created;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO
+USE [VaccinationCommunity_Demo];
+GO
+SET ANSI_NULLS ON;
+SET QUOTED_IDENTIFIER ON;
+GO
+CREATE OR ALTER VIEW dbo.vw_TonKhoVaccine
+AS
+SELECT l.MaLo,l.MaLoVaccine,l.MaVaccine,v.TenVaccine,l.NgaySanXuat,l.HanSuDung,
+ l.SoLuongNhap,l.SoLuongCon,l.SoLuongDatTruoc,
+ l.SoLuongCon-l.SoLuongDatTruoc AS SoLuongKhaDung,l.TrangThai,l.NgayNhap,
+ DATEDIFF(day,CAST(SYSUTCDATETIME() AS date),l.HanSuDung) AS SoNgayConHan,
+ CAST(CASE WHEN l.TrangThai=N'Đang sử dụng' AND l.HanSuDung>=CAST(SYSUTCDATETIME() AS date) AND l.SoLuongCon>l.SoLuongDatTruoc THEN 1 ELSE 0 END AS bit) AS CoTheDatLich
+FROM dbo.LOVACCINE l JOIN dbo.VACCINE v ON v.MaVaccine=l.MaVaccine;
+GO
+CREATE OR ALTER VIEW dbo.vw_LichTiemChiTiet
+AS
+SELECT l.*,n.HoTen,n.SoDienThoai,n.Email,v.TenVaccine,b.MaLoVaccine,
+ t.TenDangNhap AS NhanVienTao,
+ CAST(CASE WHEN l.TrangThai IN(N'Đã lên lịch',N'Đã xác nhận') AND l.NgayDuKien<SYSUTCDATETIME() THEN 1 ELSE 0 END AS bit) AS QuaHen
+FROM dbo.LICHTIEM l JOIN dbo.NGUOIDAN n ON n.MaNguoiDan=l.MaNguoiDan
+ JOIN dbo.VACCINE v ON v.MaVaccine=l.MaVaccine
+ LEFT JOIN dbo.LOVACCINE b ON b.MaLo=l.MaLoDuKien
+ LEFT JOIN dbo.TAIKHOAN t ON t.MaTaiKhoan=l.MaNhanVienTao;
+GO
+CREATE OR ALTER VIEW dbo.vw_LichSuTiemChung
+AS
+SELECT m.*,n.HoTen,n.CCCD,n.NgaySinh,n.GioiTinh,v.TenVaccine,v.LoaiVaccine,
+ l.MaLoVaccine,l.HanSuDung,t.TenDangNhap AS NhanVienGhiNhan
+FROM dbo.MUITIEM m JOIN dbo.NGUOIDAN n ON n.MaNguoiDan=m.MaNguoiDan
+ JOIN dbo.VACCINE v ON v.MaVaccine=m.MaVaccine
+ JOIN dbo.LOVACCINE l ON l.MaLo=m.MaLo
+ JOIN dbo.TAIKHOAN t ON t.MaTaiKhoan=m.MaNhanVien;
+GO
+CREATE OR ALTER VIEW dbo.vw_TheoDoiSauTiemChiTiet
+AS
+SELECT d.*,n.HoTen,n.SoDienThoai,n.Email,n.MaTaiKhoan AS MaTaiKhoanNguoiDan,
+ m.MaVaccine,v.TenVaccine,m.MuiSo,m.NgayTiem,m.CoSoTiem,m.MaLo,l.MaLoVaccine,
+ t.TenDangNhap AS NhanVienXuLy,
+ DATEDIFF(hour,m.NgayTiem,d.ThoiDiemBaoCao) AS SoGioSauTiem,
+ CAST(CASE WHEN d.TrangThai<>'resolved' AND d.HenTheoDoiLuc<SYSUTCDATETIME() THEN 1 ELSE 0 END AS bit) AS QuaHenTheoDoi
+FROM dbo.THEODOISAUTIEM d JOIN dbo.NGUOIDAN n ON n.MaNguoiDan=d.MaNguoiDan
+ JOIN dbo.MUITIEM m ON m.MaMuiTiem=d.MaMuiTiem
+ JOIN dbo.VACCINE v ON v.MaVaccine=m.MaVaccine
+ JOIN dbo.LOVACCINE l ON l.MaLo=m.MaLo
+ LEFT JOIN dbo.TAIKHOAN t ON t.MaTaiKhoan=d.MaNhanVienXuLy;
+GO
+CREATE OR ALTER VIEW dbo.vw_TheoDoiSauTiemTongHop
+AS
+SELECT CAST(ThoiDiemBaoCao AS date) AS NgayBaoCao,MucDo,TrangThai,
+ COUNT_BIG(*) AS SoBaoCao,
+ SUM(CONVERT(bigint,CoDauHieuCanhBao)) AS SoCanhBao,
+ SUM(CONVERT(bigint,CASE WHEN TrangThai<>'resolved' AND HenTheoDoiLuc<SYSUTCDATETIME() THEN 1 ELSE 0 END)) AS SoQuaHenTheoDoi
+FROM dbo.THEODOISAUTIEM GROUP BY CAST(ThoiDiemBaoCao AS date),MucDo,TrangThai;
+GO
+CREATE OR ALTER VIEW dbo.vw_HoatDongTiemChungTheoNgay
+AS
+SELECT CAST(m.NgayTiem AS date) AS Ngay,m.MaVaccine,v.TenVaccine,m.CoSoTiem,
+ COUNT_BIG(*) AS SoMuiTiem,COUNT(DISTINCT m.MaNguoiDan) AS SoNguoiDan
+FROM dbo.MUITIEM m JOIN dbo.VACCINE v ON v.MaVaccine=m.MaVaccine
+GROUP BY CAST(m.NgayTiem AS date),m.MaVaccine,v.TenVaccine,m.CoSoTiem;
+GO
+/* INSERT/UPDATE checks are set-based and safe for multirow statements.
+   These triggers NEVER decrement vaccine inventory. All app inventory writes
+   go through the three transactional procedures from 02-routines.sql. */
+CREATE OR ALTER TRIGGER dbo.trg_MuiTiem_ValidateAudit ON dbo.MUITIEM
+AFTER INSERT,UPDATE,DELETE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN dbo.LOVACCINE l ON l.MaLo=i.MaLo WHERE i.MaVaccine<>l.MaVaccine OR CAST(i.NgayTiem AS date)>l.HanSuDung OR (l.NgaySanXuat IS NOT NULL AND CAST(i.NgayTiem AS date)<l.NgaySanXuat))
+  THROW 51000,N'Mũi tiêm không khớp vaccine hoặc thời hạn lô.',1;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN dbo.LICHTIEM l ON l.MaLichTiem=i.MaLichTiem WHERE i.MaNguoiDan<>l.MaNguoiDan OR i.MaVaccine<>l.MaVaccine OR i.MuiSo<>l.MuiSo)
+  THROW 51003,N'Mũi tiêm không khớp người dân, vaccine hoặc mũi số trong lịch.',1;
+ IF EXISTS(SELECT 1 FROM inserted WHERE NgayTiem>SYSUTCDATETIME())
+  THROW 51000,N'Không được ghi nhận mũi tiêm trong tương lai.',1;
+ /* Clinical administration records are append-only. Corrections belong in the
+    append-only audit log, not silent replacement of historical administrations. */
+ IF EXISTS(SELECT 1 FROM deleted)
+  THROW 51003,N'Không sửa trực tiếp mũi tiêm đã ghi nhận; cần quy trình hiệu chỉnh có kiểm soát.',1;
+ INSERT dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,HanhDong,DuLieuMoi,MaTaiKhoan)
+ SELECT 'MUITIEM',i.MaMuiTiem,N'Ghi nhận mũi tiêm',
+  (SELECT i.MaNguoiDan,i.MaVaccine,i.MaLo,i.MaLichTiem,i.MuiSo,i.NgayTiem FOR JSON PATH,WITHOUT_ARRAY_WRAPPER),i.MaNhanVien
+ FROM inserted i;
+END;
+GO
+CREATE OR ALTER TRIGGER dbo.trg_LoVaccine_ValidateAudit ON dbo.LOVACCINE
+AFTER UPDATE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM inserted WHERE SoLuongNhap<=0 OR SoLuongCon<0 OR SoLuongCon>SoLuongNhap OR SoLuongDatTruoc<0 OR SoLuongDatTruoc>SoLuongCon)
+  THROW 51004,N'Tồn kho hoặc lượng giữ chỗ không hợp lệ.',1;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN deleted d ON d.MaLo=i.MaLo WHERE i.MaVaccine<>d.MaVaccine AND (EXISTS(SELECT 1 FROM dbo.MUITIEM m WHERE m.MaLo=i.MaLo) OR EXISTS(SELECT 1 FROM dbo.LICHTIEM l WHERE l.MaLoDuKien=i.MaLo)))
+  THROW 51003,N'Không chuyển vaccine của lô đã được sử dụng hoặc giữ chỗ.',1;
+ INSERT dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,HanhDong,DuLieuCu,DuLieuMoi)
+ SELECT 'LOVACCINE',i.MaLo,N'Cập nhật tồn kho / lô',
+  (SELECT d.SoLuongCon,d.SoLuongDatTruoc,d.TrangThai,d.HanSuDung FOR JSON PATH,WITHOUT_ARRAY_WRAPPER),
+  (SELECT i.SoLuongCon,i.SoLuongDatTruoc,i.TrangThai,i.HanSuDung FOR JSON PATH,WITHOUT_ARRAY_WRAPPER)
+ FROM inserted i JOIN deleted d ON d.MaLo=i.MaLo
+ WHERE i.SoLuongCon<>d.SoLuongCon OR i.SoLuongDatTruoc<>d.SoLuongDatTruoc OR i.TrangThai<>d.TrangThai OR i.HanSuDung<>d.HanSuDung;
+END;
+GO
+CREATE OR ALTER TRIGGER dbo.trg_LichTiem_ValidateAudit ON dbo.LICHTIEM
+AFTER INSERT,UPDATE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN dbo.LOVACCINE b ON b.MaLo=i.MaLoDuKien WHERE b.MaVaccine<>i.MaVaccine)
+  THROW 51003,N'Lô giữ chỗ không thuộc vaccine trong lịch.',1;
+ IF EXISTS(SELECT 1 FROM inserted i WHERE i.TrangThai IN(N'Đã lên lịch',N'Đã xác nhận') AND i.MaLoDuKien IS NULL)
+  THROW 51004,N'Lịch đang hoạt động phải có lô vaccine được giữ chỗ.',1;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN dbo.LICHTIEM l WITH(UPDLOCK,HOLDLOCK) ON l.MaNguoiDan=i.MaNguoiDan AND l.MaVaccine=i.MaVaccine AND l.MaLichTiem<>i.MaLichTiem WHERE i.TrangThai IN(N'Đã lên lịch',N'Đã xác nhận') AND l.TrangThai IN(N'Đã lên lịch',N'Đã xác nhận'))
+  THROW 51003,N'Mỗi người dân chỉ có một lịch hoạt động cho cùng vaccine.',1;
+ INSERT dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,HanhDong,DuLieuCu,DuLieuMoi,MaTaiKhoan)
+ SELECT 'LICHTIEM',i.MaLichTiem,CASE WHEN d.MaLichTiem IS NULL THEN N'Tạo lịch' ELSE N'Cập nhật lịch' END,
+  CASE WHEN d.MaLichTiem IS NOT NULL THEN (SELECT d.TrangThai,d.MaLoDuKien,d.NgayDuKien FOR JSON PATH,WITHOUT_ARRAY_WRAPPER) END,
+  (SELECT i.MaNguoiDan,i.MaVaccine,i.TrangThai,i.MaLoDuKien,i.NgayDuKien FOR JSON PATH,WITHOUT_ARRAY_WRAPPER),CASE WHEN d.MaLichTiem IS NULL THEN i.MaNhanVienTao ELSE NULL END
+ FROM inserted i LEFT JOIN deleted d ON d.MaLichTiem=i.MaLichTiem;
+END;
+GO
+CREATE OR ALTER TRIGGER dbo.trg_TheoDoi_Validate ON dbo.THEODOISAUTIEM
+AFTER INSERT,UPDATE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN dbo.MUITIEM m ON m.MaMuiTiem=i.MaMuiTiem WHERE i.MaNguoiDan<>m.MaNguoiDan OR (i.KhoiPhatLuc IS NOT NULL AND i.KhoiPhatLuc<m.NgayTiem))
+  THROW 51000,N'Báo cáo không khớp người được tiêm hoặc thời điểm khởi phát.',1;
+ IF EXISTS(SELECT 1 FROM inserted i JOIN deleted d ON d.MaTheoDoi=i.MaTheoDoi WHERE i.MaMuiTiem<>d.MaMuiTiem OR i.MaNguoiDan<>d.MaNguoiDan OR i.MucDo<>d.MucDo OR i.TrieuChung<>d.TrieuChung OR ISNULL(i.NhietDo,-1)<>ISNULL(d.NhietDo,-1))
+  THROW 51003,N'Không được ghi đè nội dung người dân đã báo cáo.',1;
+END;
+GO
+CREATE OR ALTER TRIGGER dbo.trg_TheoDoiLichSu_Immutable ON dbo.THEODOI_LICHSU
+AFTER UPDATE,DELETE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM deleted) THROW 51003,N'Lịch sử xử lý là dữ liệu chỉ ghi thêm, không được sửa hoặc xóa.',1;
+END;
+GO
+
+CREATE OR ALTER TRIGGER dbo.trg_LichSuHieuChinh_Immutable ON dbo.LICHSUHIEUCHINH
+AFTER UPDATE,DELETE
+AS
+BEGIN
+ SET NOCOUNT ON;
+ IF EXISTS(SELECT 1 FROM deleted) THROW 51003,N'Nhật ký hiệu chỉnh là dữ liệu chỉ ghi thêm, không được sửa hoặc xóa.',1;
+END;
+GO
+USE [VaccinationCommunity_Demo];
+GO
+/* DEFINES the opt-in seed procedure. Nothing below runs it automatically.
+   To populate this isolated demo database, explicitly execute:
+       EXEC dbo.usp_SeedDemo @ConfirmDemo = 1;
+   Accounts: admin.demo; nv01..nv12; nd001..nd200.
+   Shared local-demo password: Demo@123456. All people/contact data is fictitious.
+   Vaccine dose/interval numbers are software fixtures, not clinical guidance. */
+CREATE OR ALTER PROCEDURE dbo.usp_SeedDemo @ConfirmDemo bit=0
+AS
+BEGIN
+ SET NOCOUNT ON; SET XACT_ABORT ON;
+ IF @ConfirmDemo<>1 THROW 51000,N'Cần chủ động gọi EXEC dbo.usp_SeedDemo @ConfirmDemo=1 để thêm dữ liệu minh họa.',1;
+ IF DB_NAME()<>N'VaccinationCommunity_Demo' THROW 51002,N'Chỉ tạo dữ liệu mẫu trong VaccinationCommunity_Demo.',1;
+ IF EXISTS(SELECT 1 FROM dbo.SCHEMAVERSION WHERE VersionNo=100)
+ BEGIN
+  SELECT N'Dữ liệu mẫu đã tồn tại; không thêm lại, không thay đổi ngày hoặc mật khẩu.' AS KetQua;
+  RETURN;
+ END;
+ IF EXISTS(SELECT 1 FROM dbo.TAIKHOAN WHERE TenDangNhap IN('admin.demo','nv01','nd001'))
+  THROW 51003,N'Tên tài khoản mẫu đã tồn tại nhưng thiếu dấu mốc seed; không ghi đè dữ liệu.',1;
+ BEGIN TRY
+  BEGIN TRANSACTION;
+  DECLARE @LockResult int;
+  EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
+  IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý dữ liệu; vui lòng thử lại.',1;
+  DECLARE @Now datetime2(0)=CONVERT(datetime2(0),CONVERT(varchar(19),SYSUTCDATETIME(),126)),@Hash varchar(255)='$2b$10$kh/ON9VfESUNROAP986ZuO7ooSBi.0LYSnnOcLXqpjIt8UOdStm9m';
+  DECLARE @AdminRole int=(SELECT MaVaiTro FROM dbo.VAITRO WHERE TenVaiTro=N'Quản trị viên'),
+   @StaffRole int=(SELECT MaVaiTro FROM dbo.VAITRO WHERE TenVaiTro=N'Nhân viên'),
+   @CitizenRole int=(SELECT MaVaiTro FROM dbo.VAITRO WHERE TenVaiTro=N'Người dân');
+  INSERT dbo.TAIKHOAN(TenDangNhap,MatKhau,Email,SoDienThoai,MaVaiTro,NgayTao)
+  VALUES('admin.demo',@Hash,'admin.demo@example.test','0900000000',@AdminRole,DATEADD(day,-300,@Now));
+  DECLARE @AdminId int=CONVERT(int,SCOPE_IDENTITY());
+  DECLARE @Numbers TABLE(N int PRIMARY KEY);
+  INSERT @Numbers SELECT TOP(200) ROW_NUMBER() OVER(ORDER BY (SELECT NULL)) FROM sys.all_objects;
+  INSERT dbo.TAIKHOAN(TenDangNhap,MatKhau,Email,SoDienThoai,MaVaiTro,NgayTao)
+  SELECT 'nv'+RIGHT('00'+CONVERT(varchar(3),N),2),@Hash,'nv'+RIGHT('00'+CONVERT(varchar(3),N),2)+'@example.test',
+   '091000'+RIGHT('0000'+CONVERT(varchar(4),N),4),@StaffRole,DATEADD(day,-280+N,@Now) FROM @Numbers WHERE N<=12;
+  INSERT dbo.TAIKHOAN(TenDangNhap,MatKhau,Email,SoDienThoai,MaVaiTro,NgayTao)
+  SELECT 'nd'+RIGHT('000'+CONVERT(varchar(3),N),3),@Hash,'nd'+RIGHT('000'+CONVERT(varchar(3),N),3)+'@example.test',
+   '092000'+RIGHT('0000'+CONVERT(varchar(4),N),4),@CitizenRole,DATEADD(day,-260+(N%20),@Now) FROM @Numbers;
+  INSERT dbo.NGUOIDAN(MaTaiKhoan,HoTen,NgaySinh,GioiTinh,CCCD,SoBHYT,SoDienThoai,Email,DiaChi,PhuongXa,QuanHuyen,TinhThanh,NgayTao,NgayCapNhat)
+  SELECT t.MaTaiKhoan,
+   CASE N%10 WHEN 0 THEN N'Nguyễn' WHEN 1 THEN N'Trần' WHEN 2 THEN N'Lê' WHEN 3 THEN N'Phạm' WHEN 4 THEN N'Hoàng' WHEN 5 THEN N'Vũ' WHEN 6 THEN N'Đặng' WHEN 7 THEN N'Bùi' WHEN 8 THEN N'Đỗ' ELSE N'Võ' END+N' '+
+   CASE N%8 WHEN 0 THEN N'Minh Anh' WHEN 1 THEN N'Thành Đạt' WHEN 2 THEN N'Thảo Nguyên' WHEN 3 THEN N'Quang Huy' WHEN 4 THEN N'Ngọc Hà' WHEN 5 THEN N'Hoài Nam' WHEN 6 THEN N'Lan Phương' ELSE N'Đức Long' END,
+   DATEADD(day,-(N*31%365),DATEADD(year,-(18+N%58),CAST(@Now AS date))),
+   CASE WHEN N%2=0 THEN N'Nữ' ELSE N'Nam' END,
+   '9999'+RIGHT('00000000'+CONVERT(varchar(8),N),8),'DEMO'+RIGHT('0000000000'+CONVERT(varchar(10),N),10),
+   t.SoDienThoai,t.Email,CONVERT(nvarchar(10),10+N%180)+N' đường '+CASE N%4 WHEN 0 THEN N'Hoa Mai' WHEN 1 THEN N'Bình Minh' WHEN 2 THEN N'Đồng Tâm' ELSE N'An Phú' END,
+   CASE N%4 WHEN 0 THEN N'Phường An Khánh' WHEN 1 THEN N'Phường Tân Định' WHEN 2 THEN N'Phường Bình Thạnh' ELSE N'Phường Phú Nhuận' END,
+   N'Khu vực trung tâm',N'Thành phố Hồ Chí Minh',t.NgayTao,t.NgayTao
+  FROM @Numbers n JOIN dbo.TAIKHOAN t ON t.TenDangNhap='nd'+RIGHT('000'+CONVERT(varchar(3),n.N),3);
+  DECLARE @Citizens TABLE(N int PRIMARY KEY,Id int,AccountId int);
+  INSERT @Citizens SELECT n.N,g.MaNguoiDan,t.MaTaiKhoan FROM @Numbers n JOIN dbo.TAIKHOAN t ON t.TenDangNhap='nd'+RIGHT('000'+CONVERT(varchar(3),n.N),3) JOIN dbo.NGUOIDAN g ON g.MaTaiKhoan=t.MaTaiKhoan;
+  DECLARE @VaccineNames TABLE(N int PRIMARY KEY,Name nvarchar(150),Type nvarchar(100),Manufacturer nvarchar(150),Doses int,Gap int);
+  INSERT @VaccineNames VALUES
+   (1,N'Engerix-B',N'Viêm gan B',N'GSK',3,30),(2,N'Influvac Tetra',N'Cúm mùa',N'Abbott Biologicals',1,0),
+   (3,N'Gardasil 9',N'HPV',N'MSD',3,60),(4,N'Priorix',N'Sởi - quai bị - rubella',N'GSK',2,30),
+   (5,N'Varivax',N'Thủy đậu',N'MSD',2,90),(6,N'Prevenar 13',N'Phế cầu',N'Pfizer',2,60),
+   (7,N'Adacel',N'Bạch hầu - ho gà - uốn ván',N'Sanofi',1,0),(8,N'Menactra',N'Não mô cầu ACYW',N'Sanofi',2,180),
+   (9,N'Bexsero',N'Não mô cầu B',N'GSK',2,30),(10,N'Avaxim 160U',N'Viêm gan A',N'Sanofi',2,180),
+   (11,N'Imojev',N'Viêm não Nhật Bản',N'Sanofi',2,365),(12,N'Verorab',N'Dại',N'Sanofi',3,7),
+   (13,N'Typhim Vi',N'Thương hàn',N'Sanofi',1,0),(14,N'Tetavax',N'Uốn ván',N'Sanofi',3,30);
+  INSERT dbo.VACCINE(TenVaccine,LoaiVaccine,NhaSanXuat,MoTa,SoMuiKhuyenNghi,KhoangCachMui,NgayTao)
+  SELECT v.Name,v.Type,v.Manufacturer,N'Danh mục phục vụ bản trình diễn quản lý tiêm chủng. Phác đồ, chỉ định, độ tuổi và khoảng cách thực tế phải do cơ sở y tế xác định; các con số trong dữ liệu mẫu không phải hướng dẫn điều trị.',v.Doses,v.Gap,DATEADD(day,-300,@Now)
+  FROM @VaccineNames v WHERE NOT EXISTS(SELECT 1 FROM dbo.VACCINE x WHERE x.TenVaccine=v.Name);
+  DECLARE @Vaccines TABLE(N int PRIMARY KEY,Id int,Doses int);
+  INSERT @Vaccines SELECT n.N,v.MaVaccine,n.Doses FROM @VaccineNames n JOIN dbo.VACCINE v ON v.TenVaccine=n.Name;
+  DECLARE @i int=1,@VaccineId int,@BatchId int,@CitizenId int,@StaffId int,@Dose int,@Date datetime2(0),@ScheduleId int,@VaccineNo int,@BatchCode varchar(50);
+  WHILE @i<=30
+  BEGIN
+   SELECT @VaccineId=Id FROM @Vaccines WHERE N=1+((@i-1)%14);
+   SET @BatchCode='DEMO-'+RIGHT('00'+CONVERT(varchar(3),@i),2)+'-'+CONVERT(char(4),YEAR(@Now));
+   IF EXISTS(SELECT 1 FROM dbo.LOVACCINE WHERE MaLoVaccine=@BatchCode) THROW 51003,N'Mã lô mẫu đã tồn tại; không ghi đè.',1;
+   INSERT dbo.LOVACCINE(MaLoVaccine,MaVaccine,NgaySanXuat,HanSuDung,SoLuongNhap,SoLuongCon,NgayNhap,TrangThai,GhiChu)
+   VALUES(@BatchCode,@VaccineId,DATEADD(day,-500,CAST(@Now AS date)),CASE WHEN @i=30 THEN DATEADD(day,-5,CAST(@Now AS date)) ELSE DATEADD(day,150+@i*7,CAST(@Now AS date)) END,
+    100+@i*5,100+@i*5,DATEADD(day,-470,@Now),CASE WHEN @i=29 THEN N'Tạm ngừng' WHEN @i=30 THEN N'Hết hạn' ELSE N'Đang sử dụng' END,N'Lô mô phỏng; không phải lô hàng thực tế.');
+   SET @i+=1;
+  END;
+  DECLARE @Administrations TABLE(N int PRIMARY KEY,Id int,CitizenId int,VaccineId int,Vaccinated datetime2(0));
+  SET @i=1;
+  WHILE @i<=300
+  BEGIN
+   SELECT @CitizenId=Id FROM @Citizens WHERE N=CASE WHEN @i<=200 THEN @i ELSE @i-200 END;
+   SET @VaccineNo=1+((CASE WHEN @i<=200 THEN @i ELSE @i-200 END-1)%14);
+   SET @Dose=1;
+   IF @i>200
+   BEGIN
+    IF (SELECT Doses FROM @Vaccines WHERE N=@VaccineNo)>1 SET @Dose=2;
+    ELSE SET @VaccineNo=1+(@VaccineNo%14);
+   END;
+   SELECT @VaccineId=Id FROM @Vaccines WHERE N=@VaccineNo;
+   SELECT TOP(1) @BatchId=MaLo FROM dbo.LOVACCINE WHERE MaVaccine=@VaccineId AND MaLoVaccine LIKE 'DEMO-%' AND TrangThai=N'Đang sử dụng' AND SoLuongCon>SoLuongDatTruoc ORDER BY HanSuDung,MaLo;
+   SELECT @StaffId=MaTaiKhoan FROM dbo.TAIKHOAN WHERE TenDangNhap='nv'+RIGHT('00'+CONVERT(varchar(3),1+(@i%12)),2);
+   DECLARE @FixtureGap int=(SELECT Gap FROM @VaccineNames WHERE N=@VaccineNo);
+   SET @Date=CASE WHEN @i<=200 THEN DATEADD(day,-(CASE WHEN @FixtureGap>=365 THEN 410 WHEN @FixtureGap>=180 THEN 240 WHEN @FixtureGap>=90 THEN 150 WHEN @FixtureGap>=60 THEN 120 ELSE 90 END+@i%30),@Now) ELSE DATEADD(hour,-(24+((@i-200)%12)*24+(@i%8)),@Now) END;
+   SET @ScheduleId=NULL;
+   IF @i<=50
+   BEGIN
+    /* Reconstruct historical bookings before recording their administrations. */
+    UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc+1 WHERE MaLo=@BatchId;
+    INSERT dbo.LICHTIEM(MaNguoiDan,MaVaccine,MaLoDuKien,MuiSo,NgayDuKien,CoSoTiem,TrangThai,MaNhanVienTao,NgayTao,NgayCapNhat,GhiChu)
+    VALUES(@CitizenId,@VaccineId,@BatchId,@Dose,@Date,N'Trung tâm Tiêm chủng An Tâm',N'Đã xác nhận',@StaffId,DATEADD(day,-7,@Date),@Date,N'Lịch sử mẫu đã được thực hiện.');
+    SET @ScheduleId=CONVERT(int,SCOPE_IDENTITY());
+   END;
+   EXEC dbo.usp_GhiNhanMuiTiem @MaNguoiDan=@CitizenId,@MaVaccine=@VaccineId,@MaLo=@BatchId,@MaLichTiem=@ScheduleId,@MuiSo=@Dose,@NgayTiem=@Date,@CoSoTiem=N'Trung tâm Tiêm chủng An Tâm',@MaNhanVien=@StaffId,@KetQua=N'Đã tiêm',@GhiChu=N'Dữ liệu trình diễn giả lập, không phải hồ sơ bệnh nhân thực.',@ReturnRow=0;
+   INSERT @Administrations SELECT @i,MaMuiTiem,MaNguoiDan,MaVaccine,NgayTiem FROM dbo.MUITIEM WHERE MaNguoiDan=@CitizenId AND MaVaccine=@VaccineId AND MuiSo=@Dose;
+   SET @i+=1;
+  END;
+  /* Current appointments: reserve one usable dose each via the production SP. */
+  SET @i=141;
+  WHILE @i<=200
+  BEGIN
+   SELECT @CitizenId=Id FROM @Citizens WHERE N=@i;
+   SET @VaccineNo=1+((@i-1)%14); SET @Dose=2;
+   IF (SELECT Doses FROM @Vaccines WHERE N=@VaccineNo)=1 BEGIN SET @VaccineNo=1+(@VaccineNo%14); SET @Dose=1; END;
+   SELECT @VaccineId=Id FROM @Vaccines WHERE N=@VaccineNo;
+   SET @Date=DATEADD(hour,1+(@i%8),DATEADD(day,1+(@i%28),CAST(CAST(@Now AS date) AS datetime2(0))));
+   DECLARE @Status nvarchar(50)=CASE WHEN @i%3=0 THEN N'Đã lên lịch' ELSE N'Đã xác nhận' END;
+   EXEC dbo.usp_LuuLichTiem @MaNguoiDan=@CitizenId,@MaVaccine=@VaccineId,@MuiSo=@Dose,@NgayDuKien=@Date,@CoSoTiem=N'Trung tâm Tiêm chủng An Tâm',@TrangThai=@Status,@GhiChu=N'Lịch hẹn mẫu cho bản trình diễn.',@MaNhanVienTao=NULL,@ReturnRow=0;
+   SET @i+=1;
+  END;
+  /* Closed appointments consume no reservation. */
+  INSERT dbo.LICHTIEM(MaNguoiDan,MaVaccine,MuiSo,NgayDuKien,CoSoTiem,TrangThai,GhiChu,MaNhanVienTao)
+  SELECT c.Id,v.Id,2,DATEADD(day,-1-n.N,@Now),N'Trạm y tế Bình Minh',CASE WHEN n.N%2=0 THEN N'Đã hủy' ELSE N'Vắng mặt' END,N'Lịch hẹn mẫu đã đóng; không giữ tồn kho.',@AdminId
+  FROM @Numbers n JOIN @Citizens c ON c.N=100+n.N JOIN @Vaccines v ON v.N=1+(n.N%14) WHERE n.N<=20;
+  /* Contraindications are sample records added after historical administrations;
+     they do not retroactively imply an unsafe historical administration. */
+  INSERT dbo.CHONGCHIDINH(MaNguoiDan,NoiDung,NgayXacNhan,MaNguoiXacNhan,TrangThai,GhiChu)
+  SELECT c.Id,CASE n.N%3 WHEN 0 THEN N'Tạm hoãn do bệnh cấp tính; cần tái khám sàng lọc.' WHEN 1 THEN N'Tiền sử phản ứng cần được bác sĩ đánh giá trước khi chỉ định.' ELSE N'Cần bổ sung hồ sơ chuyên khoa trước buổi tiêm tiếp theo.' END,
+   DATEADD(hour,-n.N,@Now),@AdminId,CASE WHEN n.N%4=0 THEN N'Đã hủy' ELSE N'Đã xác nhận' END,N'Tình huống giả lập cho quy trình sàng lọc, không phải chẩn đoán.'
+  FROM @Numbers n JOIN @Citizens c ON c.N=120+n.N WHERE n.N<=18;
+  /* 90 dated follow-up reports and a genuine append-only event trail. */
+  SET @i=1;
+  WHILE @i<=90
+  BEGIN
+   DECLARE @AdministrationId int,@AccountId int,@ReportDate datetime2(0),@Onset datetime2(0),@CaseId int,@Severity varchar(16),@CaseStatus varchar(16),@Warning bit,@Temp decimal(4,1),@Symptoms nvarchar(2000),@SymptomCode varchar(40);
+   SELECT @AdministrationId=Id,@CitizenId=CitizenId,@Date=Vaccinated FROM @Administrations WHERE N=200+@i;
+   SELECT @AccountId=MaTaiKhoan FROM dbo.NGUOIDAN WHERE MaNguoiDan=@CitizenId;
+   SET @ReportDate=DATEADD(hour,8,@Date); SET @Onset=DATEADD(hour,4,@Date);
+   SET @Severity=CASE WHEN @i%30=0 THEN 'emergency' WHEN @i%15=0 THEN 'severe' WHEN @i%7=0 THEN 'moderate' WHEN @i%3=0 THEN 'none' ELSE 'mild' END;
+   SET @Warning=CASE WHEN @Severity='emergency' THEN 1 ELSE 0 END;
+   SET @Temp=CASE @Severity WHEN 'none' THEN 36.7 WHEN 'mild' THEN 37.4 WHEN 'moderate' THEN 38.6 WHEN 'severe' THEN 39.1 ELSE 37.0 END;
+   SET @Symptoms=CASE @Severity WHEN 'none' THEN N'' WHEN 'mild' THEN N'Đau nhẹ tại chỗ tiêm và hơi mệt. Báo cáo giả lập.' WHEN 'moderate' THEN N'Sốt và đau đầu; cần nhân viên hướng dẫn. Báo cáo giả lập.' WHEN 'severe' THEN N'Sốt cao kéo dài; đã liên hệ cơ sở y tế. Báo cáo giả lập.' ELSE N'Khó thở; đã gọi cấp cứu và được tiếp nhận trực tiếp. Tình huống giả lập.' END;
+   SET @SymptomCode=CASE @Severity WHEN 'none' THEN NULL WHEN 'mild' THEN 'injection_pain' WHEN 'moderate' THEN 'fever' WHEN 'severe' THEN 'fever' ELSE 'breathing_difficulty' END;
+   SET @CaseStatus=CASE WHEN @i%11=0 THEN CASE WHEN @Severity IN('severe','emergency') THEN 'escalated' ELSE 'new' END WHEN @i%5=0 THEN 'monitoring' WHEN @i%4=0 THEN 'reviewing' ELSE 'resolved' END;
+   INSERT dbo.THEODOISAUTIEM(MaMuiTiem,MaNguoiDan,ThoiDiemBaoCao,KhoiPhatLuc,ThoiLuongGio,NhietDo,TrieuChung,MucDo,CoDauHieuCanhBao,TrangThai,NgayTao,NgayCapNhat)
+   VALUES(@AdministrationId,@CitizenId,@ReportDate,CASE WHEN @Severity='none' THEN NULL ELSE @Onset END,CASE WHEN @Severity='none' THEN NULL ELSE 4 END,@Temp,@Symptoms,@Severity,@Warning,CASE WHEN @Severity IN('severe','emergency') THEN 'escalated' ELSE 'new' END,@ReportDate,@ReportDate);
+   SET @CaseId=CONVERT(int,SCOPE_IDENTITY());
+   IF @SymptomCode IS NOT NULL INSERT dbo.THEODOI_TRIEUCHUNG(MaTheoDoi,MaTrieuChung) VALUES(@CaseId,@SymptomCode);
+   INSERT dbo.THEODOI_LICHSU(MaTheoDoi,MaTaiKhoan,TrangThaiMoi,LanCapNhat,HanhDong,NoiDung,NgayTao)
+   VALUES(@CaseId,@AccountId,CASE WHEN @Severity IN('severe','emergency') THEN 'escalated' ELSE 'new' END,1,N'Gửi báo cáo',N'Báo cáo tình trạng sức khỏe giả lập.',@ReportDate);
+   IF @CaseStatus NOT IN('new','escalated')
+   BEGIN
+    SELECT @StaffId=MaTaiKhoan FROM dbo.TAIKHOAN WHERE TenDangNhap='nv'+RIGHT('00'+CONVERT(varchar(3),1+(@i%12)),2);
+    UPDATE dbo.THEODOISAUTIEM SET TrangThai='reviewing',HuongXuLy=N'Nhân viên đã tiếp nhận và liên hệ người dân.',MaNhanVienXuLy=@StaffId,ThoiDiemXuLy=DATEADD(hour,1,@ReportDate),LanCapNhat=2,NgayCapNhat=DATEADD(hour,1,@ReportDate) WHERE MaTheoDoi=@CaseId;
+    INSERT dbo.THEODOI_LICHSU(MaTheoDoi,MaTaiKhoan,TrangThaiCu,TrangThaiMoi,LanCapNhat,HanhDong,NoiDung,NgayTao)
+    VALUES(@CaseId,@StaffId,CASE WHEN @Severity IN('severe','emergency') THEN 'escalated' ELSE 'new' END,'reviewing',2,N'Tiếp nhận',N'Đã liên hệ để đánh giá và hướng dẫn; nội dung trình diễn.',DATEADD(hour,1,@ReportDate));
+    IF @CaseStatus<>'reviewing'
+    BEGIN
+     DECLARE @Response nvarchar(2000)=CASE WHEN @CaseStatus='resolved' THEN N'Đã liên hệ, cập nhật tình trạng ổn định và kết thúc theo dõi theo đánh giá của nhân viên. Nếu có dấu hiệu mới, liên hệ cơ sở y tế. Nội dung giả lập.' ELSE N'Đã liên hệ và hẹn cập nhật tình trạng. Nếu có khó thở, ngất hoặc dấu hiệu nguy hiểm, gọi 115 hoặc đến cơ sở y tế ngay. Nội dung giả lập.' END;
+     UPDATE dbo.THEODOISAUTIEM SET TrangThai=@CaseStatus,HuongXuLy=@Response,HenTheoDoiLuc=CASE WHEN @CaseStatus='monitoring' THEN DATEADD(hour,4+@i%36,@Now) ELSE NULL END,ThoiDiemXuLy=DATEADD(hour,2,@ReportDate),LanCapNhat=3,NgayCapNhat=DATEADD(hour,2,@ReportDate) WHERE MaTheoDoi=@CaseId;
+     INSERT dbo.THEODOI_LICHSU(MaTheoDoi,MaTaiKhoan,TrangThaiCu,TrangThaiMoi,LanCapNhat,HanhDong,NoiDung,NgayTao)
+     VALUES(@CaseId,@StaffId,'reviewing',@CaseStatus,3,N'Cập nhật xử lý',@Response,DATEADD(hour,2,@ReportDate));
+    END;
+   END;
+   SET @i+=1;
+  END;
+  INSERT dbo.THONGBAO(MaNguoiDan,TieuDe,NoiDung,ThoiGianGui,DaDoc,NgayTao)
+  SELECT Id,N'Chào mừng đến Cộng đồng Tiêm chủng',N'Hồ sơ và liên hệ trong tài khoản này là dữ liệu mẫu. Kiểm tra lịch hẹn, lịch sử tiêm và báo cáo tình trạng sau tiêm trên website.',DATEADD(day,-20,@Now),CASE WHEN N%3=0 THEN 1 ELSE 0 END,DATEADD(day,-20,@Now) FROM @Citizens;
+  INSERT dbo.SCHEMAVERSION(VersionNo,Description) VALUES(100,N'Demo fixtures: 200 citizens, 12 staff, 14 vaccines, 30 batches, 300 administrations, 60 future appointments and 90 follow-up reports; UTC-relative dates at first seed.');
+  COMMIT;
+  SELECT N'Tạo dữ liệu mẫu thành công. Chạy 05-verify.sql để kiểm tra số lượng và tính nhất quán.' AS KetQua;
+ END TRY
+ BEGIN CATCH
+  IF @@TRANCOUNT>0 ROLLBACK;
+  THROW;
+ END CATCH;
+END;
+GO

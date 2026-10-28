@@ -1,0 +1,60 @@
+name: Vaccination portal checks
+on:
+  push:
+    paths: ["VaccinationCommunity/**", ".github/workflows/vaccination-ci.yml"]
+  pull_request:
+    paths: ["VaccinationCommunity/**", ".github/workflows/vaccination-ci.yml"]
+permissions:
+  contents: read
+jobs:
+  application:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: VaccinationCommunity
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: VaccinationCommunity/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+  sql-server:
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: Y
+          MSSQL_PID: Developer
+          MSSQL_SA_PASSWORD: GithubCI_Demo_123456!
+        ports: ["1433:1433"]
+    defaults:
+      run:
+        working-directory: VaccinationCommunity
+    env:
+      DB_SERVER: 127.0.0.1
+      DB_PORT: 1433
+      DB_USER: sa
+      DB_PASSWORD: GithubCI_Demo_123456!
+      DB_DATABASE: VaccinationCommunity_Demo
+      DB_ENCRYPT: "false"
+      DB_TRUST_SERVER_CERTIFICATE: "true"
+      JWT_SECRET: isolated-github-ci-secret-for-vaccination-demo-only-123456
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: VaccinationCommunity/package-lock.json
+      - run: npm ci
+      - name: Wait for SQL Server
+        run: node scripts/wait-sql.js
+      - run: npm run test:sql

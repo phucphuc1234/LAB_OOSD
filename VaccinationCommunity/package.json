@@ -1,0 +1,27 @@
+{
+  "name": "cong-theo-doi-tiem-chung-cong-dong",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "npm run build --workspace client",
+    "start": "npm start --workspace server",
+    "env:init": "node server/scripts/init-env.js",
+    "db:check": "node server/scripts/check-database.js",
+    "db:install": "node server/scripts/install-database.js",
+    "db:seed": "node server/scripts/install-database.js --seed-only",
+    "test": "node --test server/tests/*.test.js",
+    "test:sql": "node server/scripts/test-sql.js",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  }
+}
