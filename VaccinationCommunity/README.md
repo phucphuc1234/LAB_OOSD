@@ -96,7 +96,7 @@ Kiểm thử **SQL Server thật** cần kết nối có quyền tạo/xóa data
 npm run test:sql
 ```
 
-Lệnh này tạo một database ngẫu nhiên `VaccinationCommunity_Test_...`, cài schema/seed, kiểm tra tranh liều cuối, quyền hủy lịch, chống ghi tiêm trùng, báo cáo/phản hồi HTTP và trigger; cuối cùng chỉ xóa database kiểm thử đó. `npm test` bình thường bỏ qua bài SQL thật, không âm thầm kết nối hoặc thay đổi database của bạn. Workflow GitHub Actions có job SQL Server 2022 riêng.
+Lệnh này tạo một database ngẫu nhiên `VaccinationCommunity_Test_...`, cài schema/seed, kiểm tra tranh liều cuối, quyền hủy lịch, chống ghi tiêm trùng, báo cáo/phản hồi HTTP và trigger; cuối cùng chỉ xóa database kiểm thử đó. `npm test` bình thường bỏ qua bài SQL thật, không âm thầm kết nối hoặc thay đổi database của bạn. Workflow GitHub Actions có job SQL Server 2022 riêng. Bản nâng cấp đã đạt job SQL Server thật và job ứng dụng; xem [kết quả kiểm chứng](docs/verification.md).
 
 ## Chạy bản build
 
