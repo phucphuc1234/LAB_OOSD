@@ -58,3 +58,18 @@ jobs:
       - name: Wait for SQL Server
         run: node scripts/wait-sql.js
       - run: npm run test:sql
+  windows-build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: VaccinationCommunity
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+          cache: npm
+          cache-dependency-path: VaccinationCommunity/package-lock.json
+      - run: npm ci --include=optional
+      - run: npm test
+      - run: npm run build

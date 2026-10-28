@@ -9,7 +9,7 @@ Cần **Node.js 22.12 trở lên** (khuyến nghị Node 24 LTS), SQL Server 201
 Mở terminal **trong thư mục `VaccinationCommunity` có file `package.json` này**. Khi tải cả repo, thư mục có thể là `LAB_OOSD-main\VaccinationCommunity`.
 
 ```bat
-npm install
+npm ci --include=optional
 npm run env:init
 ```
 
@@ -117,4 +117,18 @@ docs/          Tài liệu database
 tests/e2e/     Kiểm thử giao diện bằng Playwright
 ```
 
-Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài khoản SQL và `DB_DATABASE`; chạy lại `npm run db:check`. Nếu cổng web đang được sử dụng, dừng tiến trình cũ hoặc cấu hình lại cổng trước khi chạy. Nếu bạn giải nén bản cũ rồi chép đè, nên chạy `npm install` lại để đồng bộ dependency.
+Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài khoản SQL và `DB_DATABASE`; chạy lại `npm run db:check`. Nếu cổng web đang được sử dụng, dừng tiến trình cũ hoặc cấu hình lại cổng trước khi chạy.
+
+### Sửa lỗi native binding trên Windows
+
+Bản lock đã bổ sung đầy đủ native binding Windows cho Rolldown, Tailwind Oxide, cả hai phiên bản Lightning CSS và Oxlint. Khi cập nhật từ ZIP cũ, dùng `package-lock.json` của bản mới. Dừng tiến trình dev bằng Ctrl+C, mở **CMD tại thư mục gốc dự án**, rồi chạy:
+
+```bat
+if exist node_modules rmdir /s /q node_modules
+if exist client\node_modules rmdir /s /q client\node_modules
+if exist server\node_modules rmdir /s /q server\node_modules
+npm ci --include=optional
+npm run dev
+```
+
+Các lệnh chỉ cài lại thư viện được sinh tự động; giữ nguyên `server/.env` và database. Không cần chạy lại seed. Không chỉ cài riêng Rolldown vì Tailwind và Lightning CSS cũng cần binding Windows đúng phiên bản.
