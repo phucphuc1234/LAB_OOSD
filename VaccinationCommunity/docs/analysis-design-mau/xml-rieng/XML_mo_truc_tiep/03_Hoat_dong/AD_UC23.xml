@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="UC23" name="UC23 - Tiếp nhận và xử lý theo dõi sau tiêm">
+    <mxGraphModel dx="1390" dy="1421" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="1421" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UC23-title" value="Sơ đồ hoạt động: Tiếp nhận và xử lý theo dõi sau tiêm" style="shape=rectangle;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=20;fontColor=#000000;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="10" width="1350" height="42" />
+        </mxCell>
+        <mxCell id="UC23-actorLane" value="NHÂN VIÊN / QUẢN TRỊ VIÊN" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="62" width="600" height="1283.0" />
+        </mxCell>
+        <mxCell id="UC23-systemLane" value="HỆ THỐNG" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="62" width="750" height="1283.0" />
+        </mxCell>
+        <mxCell id="UC23-start" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="309.0" y="109.0" width="22" height="22" />
+        </mxCell>
+        <mxCell id="UC23-open" value="Mở phiếu cần xử lý" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="180.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC23-load" value="GET chi tiết / nhật ký / revision&lt;br&gt;và các trạng thái được phép" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="270.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC23-input" value="Xem lại phiếu; chọn trạng thái; nhập&lt;br&gt;phản hồi / hẹn tiếp; bấm lưu" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="360.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC23-check" value="Kiểm tra dữ liệu, phản hồi, lịch hẹn&lt;br&gt;và chuyển trạng thái" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="450.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC23-valid" value="Dữ liệu / chuyển&lt;br&gt;trạng thái hợp lệ?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="534.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC23-invalid" value="400 / 409: báo lỗi;&lt;br&gt;giữ nội dung đang sửa" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="534.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC23-tx" value="usp_XuLyTheoDoi: BEGIN; kiểm tra quyền;&lt;br&gt;khóa dòng và đọc revision hiện tại" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="630.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC23-revision" value="expectedRevision&lt;br&gt;còn khớp?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="714.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC23-conflict" value="409: tải phiên bản mới;&lt;br&gt;giữ bản nháp để người xử lý xem lại" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="714.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC23-save" value="Kiểm tra lại state; cập nhật phiếu / actor;&lt;br&gt;tăng revision; thêm nhật ký và thông báo" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="810.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC23-saved" value="Ghi thành công?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="894.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC23-rollback" value="Rollback phiếu / nhật ký / thông báo;&lt;br&gt;báo lỗi và giữ bản nháp" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="894.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC23-commit" value="COMMIT trong SP;&lt;br&gt;GET chi tiết mới sau COMMIT" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="990.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC23-readok" value="Đọc trả kết quả&lt;br&gt;thành công?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="1074.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC23-uncertain" value="Xử lý đã lưu; lỗi tải chi tiết;&lt;br&gt;giữ nháp, tải lại phiếu để kiểm tra" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="1074.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC23-result" value="Xem trạng thái, phản hồi,&lt;br&gt;người xử lý và nhật ký mới" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="1170.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC23-end" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="307.0" y="1277.0" width="26" height="26" />
+        </mxCell>
+        <mxCell id="UC23-end_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="312.0" y="1282.0" width="16" height="16" />
+        </mxCell>
+        <mxCell id="UC23-e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-start" target="UC23-open">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-open" target="UC23-load">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="320.0" y="260.0" />
+              <mxPoint x="940" y="260.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-load" target="UC23-input">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="940" y="350.0" />
+              <mxPoint x="320.0" y="350.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-input" target="UC23-check">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="320.0" y="440.0" />
+              <mxPoint x="940" y="440.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-check" target="UC23-valid">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e5" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-valid" target="UC23-tx">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e6" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC23-valid" target="UC23-invalid">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e7" value="Sửa / gửi lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-invalid" target="UC23-input">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="570.0" />
+              <mxPoint x="1352" y="349.5" />
+              <mxPoint x="320.0" y="349.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-tx" target="UC23-revision">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e9" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-revision" target="UC23-save">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e10" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC23-revision" target="UC23-conflict">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e11" value="Xem lại rồi gửi thủ công" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-conflict" target="UC23-input">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="750.0" />
+              <mxPoint x="1352" y="349.5" />
+              <mxPoint x="320.0" y="349.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-save" target="UC23-saved">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e13" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-saved" target="UC23-commit">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e14" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC23-saved" target="UC23-rollback">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e15" value="Xem lại / thử lưu" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-rollback" target="UC23-input">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="930.0" />
+              <mxPoint x="1352" y="349.5" />
+              <mxPoint x="320.0" y="349.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-commit" target="UC23-readok">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e17" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-readok" target="UC23-result">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="940" y="1160.0" />
+              <mxPoint x="320.0" y="1160.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e18" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC23-readok" target="UC23-uncertain">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-e19" value="Tải lại để kiểm tra" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-uncertain" target="UC23-open">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="1110.0" />
+              <mxPoint x="1352" y="169.5" />
+              <mxPoint x="320.0" y="169.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC23-e20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC23-result" target="UC23-end">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC23-note" value="UC23 — Lưu mới gán người xử lý. Revision không khớp trả 409 và giữ nháp. SP commit trước bước đọc lại." style="shape=rectangle;html=1;fillColor=none;strokeColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=3;fontFamily=Arial;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1357.0" width="1350" height="54" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

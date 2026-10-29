@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxGraphModel dx="1390" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="971" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="UC08-title" value="Sơ đồ hoạt động: Hủy lịch tiêm cá nhân" style="shape=rectangle;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=20;fontColor=#000000;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="10" width="1350" height="42" />
+    </mxCell>
+    <mxCell id="UC08-actorLane" value="NGƯỜI DÂN" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="62" width="600" height="833.0" />
+    </mxCell>
+    <mxCell id="UC08-systemLane" value="HỆ THỐNG" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="620" y="62" width="750" height="833.0" />
+    </mxCell>
+    <mxCell id="UC08-start" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="309.0" y="109.0" width="22" height="22" />
+    </mxCell>
+    <mxCell id="UC08-select" value="Chọn Hủy lịch ở lịch&lt;br&gt;đang hoạt động" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="180.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC08-confirm" value="Xác nhận hủy?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="245.0" y="264.0" width="150" height="72" />
+    </mxCell>
+    <mxCell id="UC08-check" value="Tìm hồ sơ và lịch;&lt;br&gt;kiểm tra sở hữu / trạng thái" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="780.0" y="360.0" width="320" height="60" />
+    </mxCell>
+    <mxCell id="UC08-valid" value="Đúng chủ và&lt;br&gt;lịch còn hoạt động?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="865.0" y="444.0" width="150" height="72" />
+    </mxCell>
+    <mxCell id="UC08-error" value="403 / 404 / 409;&lt;br&gt;hiển thị lỗi và tải lại danh sách" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1129.0" y="444.0" width="212" height="72" />
+    </mxCell>
+    <mxCell id="UC08-save" value="usp_DoiTrangThaiLichTiem: khóa và&lt;br&gt;kiểm tra lại; giữ chỗ −1; Đã hủy; COMMIT" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="780.0" y="540.0" width="320" height="60" />
+    </mxCell>
+    <mxCell id="UC08-saved" value="Hủy thành công?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="865.0" y="624.0" width="150" height="72" />
+    </mxCell>
+    <mxCell id="UC08-rollback" value="Rollback nếu lỗi kho / xung đột;&lt;br&gt;tải lại trạng thái lịch" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1129.0" y="624.0" width="212" height="72" />
+    </mxCell>
+    <mxCell id="UC08-result" value="Xem lịch ở trạng thái Đã hủy" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="720.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC08-end" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="307.0" y="827.0" width="26" height="26" />
+    </mxCell>
+    <mxCell id="UC08-end_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="312.0" y="832.0" width="16" height="16" />
+    </mxCell>
+    <mxCell id="UC08-e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-start" target="UC08-select">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-select" target="UC08-confirm">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e2" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-confirm" target="UC08-check">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="320.0" y="350.0" />
+          <mxPoint x="940" y="350.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC08-e3" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC08-confirm" target="UC08-end">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="50.69767441860465" y="300.0" />
+          <mxPoint x="50.69767441860465" y="840.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC08-e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-check" target="UC08-valid">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e5" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-valid" target="UC08-save">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e6" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC08-valid" target="UC08-error">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e7" value="Chọn lại lịch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-error" target="UC08-select">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1352" y="480.0" />
+          <mxPoint x="1352" y="169.5" />
+          <mxPoint x="320.0" y="169.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC08-e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-save" target="UC08-saved">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e9" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-saved" target="UC08-result">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="940" y="710.0" />
+          <mxPoint x="320.0" y="710.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC08-e10" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC08-saved" target="UC08-rollback">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-e11" value="Tải lại / thử lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-rollback" target="UC08-select">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1352" y="660.0" />
+          <mxPoint x="1352" y="169.5" />
+          <mxPoint x="320.0" y="169.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC08-e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC08-result" target="UC08-end">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC08-note" value="UC08 — Chỉ hủy lịch của mình đang hoạt động; giải phóng giữ chỗ trong cùng giao dịch." style="shape=rectangle;html=1;fillColor=none;strokeColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=3;fontFamily=Arial;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="907.0" width="1350" height="54" />
+    </mxCell>
+  </root>
+</mxGraphModel>

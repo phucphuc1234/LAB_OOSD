@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="UC02" name="UC02 - Đăng nhập">
+    <mxGraphModel dx="1390" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="971" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UC02-title" value="Sơ đồ hoạt động: Đăng nhập" style="shape=rectangle;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=20;fontColor=#000000;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="10" width="1350" height="42" />
+        </mxCell>
+        <mxCell id="UC02-actorLane" value="NGƯỜI CÓ TÀI KHOẢN (CHƯA ĐĂNG NHẬP)" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="62" width="600" height="833.0" />
+        </mxCell>
+        <mxCell id="UC02-systemLane" value="HỆ THỐNG" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="62" width="750" height="833.0" />
+        </mxCell>
+        <mxCell id="UC02-start" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="309.0" y="109.0" width="22" height="22" />
+        </mxCell>
+        <mxCell id="UC02-input" value="Mở Đăng nhập; nhập tên đăng nhập&lt;br&gt;và mật khẩu; gửi yêu cầu" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="180.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC02-check" value="Tìm tài khoản và vai trò;&lt;br&gt;so sánh mật khẩu bằng bcrypt" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="270.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC02-valid" value="Thông tin&lt;br&gt;đăng nhập đúng?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="354.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC02-invalid" value="401: thông báo chung&lt;br&gt;sai tài khoản / mật khẩu" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="354.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC02-active" value="Tài khoản / vai trò&lt;br&gt;đang hoạt động?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="444.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC02-locked" value="403: từ chối đăng nhập" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="444.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC02-lockedEnd" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1222.0" y="557.0" width="26" height="26" />
+        </mxCell>
+        <mxCell id="UC02-lockedEnd_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1227" y="562.0" width="16" height="16" />
+        </mxCell>
+        <mxCell id="UC02-token" value="Tạo JWT + credentialVersion;&lt;br&gt;cập nhật lần đăng nhập cuối" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="540.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC02-store" value="Lưu token / user vào localStorage;&lt;br&gt;điều hướng /citizen, /staff hoặc /admin" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="630.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC02-view" value="Vào khu vực đúng vai trò" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="720.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC02-end" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="307.0" y="827.0" width="26" height="26" />
+        </mxCell>
+        <mxCell id="UC02-end_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="312.0" y="832.0" width="16" height="16" />
+        </mxCell>
+        <mxCell id="UC02-e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-start" target="UC02-input">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-input" target="UC02-check">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="320.0" y="260.0" />
+              <mxPoint x="940" y="260.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC02-e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-check" target="UC02-valid">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e3" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-valid" target="UC02-active">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e4" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC02-valid" target="UC02-invalid">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e5" value="Nhập lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-invalid" target="UC02-input">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="390.0" />
+              <mxPoint x="1352" y="169.5" />
+              <mxPoint x="320.0" y="169.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC02-e6" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-active" target="UC02-token">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e7" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC02-active" target="UC02-locked">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-locked" target="UC02-lockedEnd">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-token" target="UC02-store">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-store" target="UC02-view">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="940" y="710.0" />
+              <mxPoint x="320.0" y="710.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC02-e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC02-view" target="UC02-end">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC02-note" value="UC02 — Ba loại tài khoản dùng chung màn hình đăng nhập; tài khoản/vai trò bị khóa sẽ bị từ chối." style="shape=rectangle;html=1;fillColor=none;strokeColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=3;fontFamily=Arial;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="907.0" width="1350" height="54" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

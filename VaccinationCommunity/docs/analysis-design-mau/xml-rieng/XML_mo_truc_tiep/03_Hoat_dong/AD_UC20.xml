@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="UC20" name="UC20 - Tra cứu lịch sử tiêm người dân">
+    <mxGraphModel dx="1390" dy="1061" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="1061" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UC20-title" value="Sơ đồ hoạt động: Tra cứu lịch sử tiêm người dân" style="shape=rectangle;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=20;fontColor=#000000;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="10" width="1350" height="42" />
+        </mxCell>
+        <mxCell id="UC20-actorLane" value="NHÂN VIÊN / QUẢN TRỊ VIÊN" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="62" width="600" height="923.0" />
+        </mxCell>
+        <mxCell id="UC20-systemLane" value="HỆ THỐNG" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="62" width="750" height="923.0" />
+        </mxCell>
+        <mxCell id="UC20-start" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="309.0" y="109.0" width="22" height="22" />
+        </mxCell>
+        <mxCell id="UC20-open" value="Mở Tra cứu lịch sử; chọn người dân&lt;br&gt;và bấm tra cứu" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="180.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC20-load" value="Kiểm tra hồ sơ; GET các mũi&lt;br&gt;của người dân đã chọn" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="270.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC20-list" value="Xem danh sách mũi đã ghi nhận&lt;br&gt;(hoặc trạng thái danh sách rỗng)" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="360.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC20-want" value="Mở chi tiết?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="245.0" y="444.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC20-select" value="Chọn mũi cần xem Chi tiết" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="540.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC20-detail" value="GET chi tiết mũi: người dân,&lt;br&gt;vaccine, lô và nhân viên ghi nhận" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780.0" y="630.0" width="320" height="60" />
+        </mxCell>
+        <mxCell id="UC20-found" value="Bản ghi tồn tại&lt;br&gt;và được phép xem?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865.0" y="714.0" width="150" height="72" />
+        </mxCell>
+        <mxCell id="UC20-error" value="Hiện lỗi 400 / 403 / 404&lt;br&gt;theo API tương ứng" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1129.0" y="714.0" width="212" height="72" />
+        </mxCell>
+        <mxCell id="UC20-view" value="Xem chi tiết được trả về" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="161.0" y="810.0" width="318" height="60" />
+        </mxCell>
+        <mxCell id="UC20-end" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="307.0" y="917.0" width="26" height="26" />
+        </mxCell>
+        <mxCell id="UC20-end_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="312.0" y="922.0" width="16" height="16" />
+        </mxCell>
+        <mxCell id="UC20-e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-start" target="UC20-open">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-open" target="UC20-load">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="320.0" y="260.0" />
+              <mxPoint x="940" y="260.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-load" target="UC20-list">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="940" y="350.0" />
+              <mxPoint x="320.0" y="350.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-list" target="UC20-want">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-e4" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-want" target="UC20-select">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-e5" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC20-want" target="UC20-end">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="50.69767441860465" y="480.0" />
+              <mxPoint x="50.69767441860465" y="930.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-select" target="UC20-detail">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="320.0" y="620.0" />
+              <mxPoint x="940" y="620.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-detail" target="UC20-found">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-e8" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-found" target="UC20-view">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="940" y="800.0" />
+              <mxPoint x="320.0" y="800.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e9" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC20-found" target="UC20-error">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-e10" value="Tải lại / chọn lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-error" target="UC20-open">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1352" y="750.0" />
+              <mxPoint x="1352" y="169.5" />
+              <mxPoint x="320.0" y="169.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UC20-e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC20-view" target="UC20-end">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="UC20-note" value="UC20 — Tra cứu lịch sử và chi tiết mũi theo quyền; không sửa mũi đã ghi." style="shape=rectangle;html=1;fillColor=none;strokeColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=3;fontFamily=Arial;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="997.0" width="1350" height="54" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

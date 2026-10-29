@@ -113,11 +113,15 @@ Express phục vụ cả giao diện đã build và API tại **http://localhost
 client/        React, giao diện và HTTP services
 server/        Express, phân quyền, validation, services và SQL repositories
 database/      Schema, stored procedures, views, triggers, dữ liệu mẫu, kiểm tra
-docs/          Tài liệu database
+docs/          Tài liệu database và bộ XML phân tích thiết kế
 tests/e2e/     Kiểm thử giao diện bằng Playwright
 ```
 
 Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài khoản SQL và `DB_DATABASE`; chạy lại `npm run db:check`. Nếu cổng web đang được sử dụng, dừng tiến trình cũ hoặc cấu hình lại cổng trước khi chạy.
+
+## Sơ đồ phân tích thiết kế theo mẫu
+
+[Bộ XML theo mẫu](docs/analysis-design-mau/README.md) có **78 sơ đồ**, giữ mã **UC01–UC28**: tổng quát, phân rã, hoạt động, lớp/kiến trúc, ERD và tuần tự. Mỗi sơ đồ có bản mở trực tiếp và bản XML để dán vào **Extras → Edit Diagram** trên draw.io. Tải toàn bộ tại [VaccinationCommunity_XML_theo_mau.zip](../VaccinationCommunity_XML_theo_mau.zip).
 
 ### Sửa lỗi native binding trên Windows
 

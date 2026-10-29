@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="CL02" name="CL02 — Các module triển khai thực tế">
+    <mxGraphModel dx="2200" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2320" pageHeight="1660" math="0" shadow="0">
+      <root>
+        <mxCell id="0" style="" />
+        <mxCell id="1" parent="0" style="" />
+        <mxCell id="CL02-title" value="CL02 — Các module triển khai thực tế" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="2270" height="50" />
+        </mxCell>
+        <mxCell id="CL02-subtitle" value="Mỗi hộp &lt;&lt;module&gt;&gt; là module JavaScript và hàm export có thật, không phải khai báo class/ORM. Luồng chính: React → route/middleware → controller → service → repository → SQL." style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=14;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="69" width="2260" height="65" />
+        </mxCell>
+        <mxCell id="arch-middleware" value="Express routes + authMiddleware + roleMiddleware&#10;JWT, trạng thái/vai trò hiện tại, credentialVersion; service kiểm tra chủ sở hữu" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="145" width="1520" height="75" />
+        </mxCell>
+        <mxCell id="arch-auth-ui" value="&lt;&lt;boundary&gt;&gt;&#10;RegisterPage / LoginPage&#10;&#10;client/src/services/authService" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="260" width="315" height="245" />
+        </mxCell>
+        <mxCell id="arch-authController" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="260" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-authController-head" value="&lt;&lt;module&gt;&gt;&#10;authController" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-authController">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-authController-body" value="+ changePassword()&#10;+ login()&#10;+ logout()&#10;+ register()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="418" y="326" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-authService" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="860" y="260" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-authService-head" value="&lt;&lt;module&gt;&gt;&#10;authService" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-authService">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-authService-body" value="+ register()&#10;+ login()&#10;+ changePassword()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="868" y="326" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-authRepository" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1310" y="260" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-authRepository-head" value="&lt;&lt;module&gt;&gt;&#10;authRepository" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-authRepository">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-authRepository-body" value="+ createCitizenAccount()&#10;+ findAccountById()&#10;+ findAuthenticatedAccount()&#10;+ findByCCCD()&#10;+ findByEmail()&#10;+ findByUsername()&#10;+ updateLastLogin()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1318" y="326" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-auth-db" value="SQL Server&#10;&#10;TAIKHOAN / VAITRO / NGUOIDAN&#10;SQL có tham số; transaction đăng ký" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1790" y="260" width="480" height="245" />
+        </mxCell>
+        <mxCell id="arch-auth-e0" value="HTTP API" edge="1" parent="1" source="arch-auth-ui" target="arch-authController" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-auth-e1" value="Gọi hàm" edge="1" parent="1" source="arch-authController" target="arch-authService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-auth-e2" value="Truy cập dữ liệu" edge="1" parent="1" source="arch-authService" target="arch-authRepository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-auth-e3" value="SQL / SP" edge="1" parent="1" source="arch-authRepository" target="arch-auth-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-schedule-ui" value="&lt;&lt;boundary&gt;&gt;&#10;SchedulePage / ScheduleManagementPage&#10;&#10;client/src/services/scheduleService" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="580" width="315" height="245" />
+        </mxCell>
+        <mxCell id="arch-scheduleController" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="580" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-scheduleController-head" value="&lt;&lt;module&gt;&gt;&#10;scheduleController" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-scheduleController">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-scheduleController-body" value="+ cancelMySchedule()&#10;+ changeStatus()&#10;+ createMySchedule()&#10;+ createSchedule()&#10;+ getAllSchedules()&#10;+ getMySchedules()&#10;+ getScheduleById()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="418" y="646" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-scheduleService" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="860" y="580" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-scheduleService-head" value="&lt;&lt;module&gt;&gt;&#10;scheduleService" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-scheduleService">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-scheduleService-body" value="+ getMySchedules()&#10;+ createMySchedule()&#10;+ cancelMySchedule()&#10;+ createSchedule()&#10;+ updateSchedule()&#10;+ changeStatus()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="868" y="646" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-scheduleRepository" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1310" y="580" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-scheduleRepository-head" value="&lt;&lt;module&gt;&gt;&#10;scheduleRepository" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-scheduleRepository">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-scheduleRepository-body" value="+ create()&#10;+ createByCitizen()&#10;+ findAll()&#10;+ findByCitizenId()&#10;+ findById()&#10;+ update()&#10;+ updateStatus()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1318" y="646" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-schedule-db" value="SQL Server&#10;&#10;usp_LuuLichTiem&#10;usp_DoiTrangThaiLichTiem" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1790" y="580" width="480" height="245" />
+        </mxCell>
+        <mxCell id="arch-schedule-e0" value="HTTP API" edge="1" parent="1" source="arch-schedule-ui" target="arch-scheduleController" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-schedule-e1" value="Gọi hàm" edge="1" parent="1" source="arch-scheduleController" target="arch-scheduleService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-schedule-e2" value="Truy cập dữ liệu" edge="1" parent="1" source="arch-scheduleService" target="arch-scheduleRepository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-schedule-e3" value="SQL / SP" edge="1" parent="1" source="arch-scheduleRepository" target="arch-schedule-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-vaccination-ui" value="&lt;&lt;boundary&gt;&gt;&#10;VaccinationManagementPage&#10;&#10;client/src/services/vaccinationService" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="900" width="315" height="245" />
+        </mxCell>
+        <mxCell id="arch-vaccinationController" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="900" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-vaccinationController-head" value="&lt;&lt;module&gt;&gt;&#10;vaccinationController" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-vaccinationController">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-vaccinationController-body" value="+ createVaccination()&#10;+ getVaccinationById()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="418" y="966" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-vaccinationService" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="860" y="900" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-vaccinationService-head" value="&lt;&lt;module&gt;&gt;&#10;vaccinationService" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-vaccinationService">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-vaccinationService-body" value="+ createVaccination()&#10;+ getVaccinationById()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="868" y="966" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-vaccinationRepository" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1310" y="900" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-vaccinationRepository-head" value="&lt;&lt;module&gt;&gt;&#10;vaccinationRepository" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-vaccinationRepository">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-vaccinationRepository-body" value="+ create()&#10;+ findById()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1318" y="966" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-vaccination-db" value="SQL Server&#10;&#10;usp_GhiNhanMuiTiem&#10;Kho + mũi + lịch + thông báo" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1790" y="900" width="480" height="245" />
+        </mxCell>
+        <mxCell id="arch-vaccination-e0" value="HTTP API" edge="1" parent="1" source="arch-vaccination-ui" target="arch-vaccinationController" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-vaccination-e1" value="Gọi hàm" edge="1" parent="1" source="arch-vaccinationController" target="arch-vaccinationService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-vaccination-e2" value="Truy cập dữ liệu" edge="1" parent="1" source="arch-vaccinationService" target="arch-vaccinationRepository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-vaccination-e3" value="SQL / SP" edge="1" parent="1" source="arch-vaccinationRepository" target="arch-vaccination-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-followup-ui" value="&lt;&lt;boundary&gt;&gt;&#10;PostVaccinationPage / FollowupManagementPage&#10;&#10;client/src/services/followupService" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="1220" width="315" height="245" />
+        </mxCell>
+        <mxCell id="arch-followupController" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="1220" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-followupController-head" value="&lt;&lt;module&gt;&gt;&#10;followupController" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-followupController">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-followupController-body" value="+ detail()&#10;+ list()&#10;+ mine()&#10;+ review()&#10;+ submit()&#10;+ symptoms()&#10;+ vaccinations()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="418" y="1286" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-followupService" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="860" y="1220" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-followupService-head" value="&lt;&lt;module&gt;&gt;&#10;followupService" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-followupService">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-followupService-body" value="+ submit()&#10;+ review()&#10;+ listMine()&#10;+ listAll()&#10;+ detail()&#10;+ vaccinations()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="868" y="1286" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-followupRepository" value="" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1310" y="1220" width="370" height="245" />
+        </mxCell>
+        <mxCell id="arch-followupRepository-head" value="&lt;&lt;module&gt;&gt;&#10;followupRepository" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="arch-followupRepository">
+          <mxGeometry as="geometry" x="0" y="0" width="370" height="58" />
+        </mxCell>
+        <mxCell id="arch-followupRepository-body" value="+ checkInTimes()&#10;+ findActor()&#10;+ findReport()&#10;+ findVaccination()&#10;+ history()&#10;+ listReports()&#10;+ listSymptoms()" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1318" y="1286" width="354" height="172" />
+        </mxCell>
+        <mxCell id="arch-followup-db" value="SQL Server&#10;&#10;usp_BaoCaoSauTiem&#10;usp_XuLyTheoDoi&#10;vw_TheoDoiSauTiemChiTiet" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontFamily=Arial;fontSize=15;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1790" y="1220" width="480" height="245" />
+        </mxCell>
+        <mxCell id="arch-followup-e0" value="HTTP API" edge="1" parent="1" source="arch-followup-ui" target="arch-followupController" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-followup-e1" value="Gọi hàm" edge="1" parent="1" source="arch-followupController" target="arch-followupService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-followup-e2" value="Truy cập dữ liệu" edge="1" parent="1" source="arch-followupService" target="arch-followupRepository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-followup-e3" value="SQL / SP" edge="1" parent="1" source="arch-followupRepository" target="arch-followup-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=open;endFill=0;strokeColor=#000000;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="arch-note" value="Các hình domain là mô hình phân tích. Việc ghi dữ liệu không phải lúc nào cũng dùng SP: sửa lô, hồ sơ và phân quyền mở transaction tại repository. Đăng xuất UI chỉ localStorage; không suy ra SQL ở mọi use case." style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=14;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="1565" width="2240" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

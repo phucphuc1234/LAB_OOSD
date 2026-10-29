@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxGraphModel dx="1390" dy="1151" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1390" pageHeight="1151" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="UC19-title" value="Sơ đồ hoạt động: Ghi nhận và cập nhật chống chỉ định" style="shape=rectangle;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=20;fontColor=#000000;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="10" width="1350" height="42" />
+    </mxCell>
+    <mxCell id="UC19-actorLane" value="NHÂN VIÊN / QUẢN TRỊ VIÊN" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="62" width="600" height="1013.0" />
+    </mxCell>
+    <mxCell id="UC19-systemLane" value="HỆ THỐNG" style="shape=swimlane;html=1;horizontal=1;startSize=32;collapsible=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=Arial;fontStyle=1;fontSize=14;fontColor=#000000;fillColor=#ffffff;swimlaneFillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="620" y="62" width="750" height="1013.0" />
+    </mxCell>
+    <mxCell id="UC19-start" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="309.0" y="109.0" width="22" height="22" />
+    </mxCell>
+    <mxCell id="UC19-open" value="Mở Chống chỉ định" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="180.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC19-load" value="GET bản ghi chống chỉ định&lt;br&gt;và danh sách người dân" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="780.0" y="270.0" width="320" height="60" />
+    </mxCell>
+    <mxCell id="UC19-op" value="Chọn thao tác" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="245.0" y="354.0" width="150" height="72" />
+    </mxCell>
+    <mxCell id="UC19-newIn" value="Chọn người dân; nhập nội dung,&lt;br&gt;ngày xác nhận và ghi chú" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="450.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC19-newRun" value="Kiểm tra: trạng thái mới Đã xác nhận;&lt;br&gt;INSERT + người xác nhận + audit; COMMIT" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="780.0" y="450.0" width="320" height="60" />
+    </mxCell>
+    <mxCell id="UC19-editIn" value="Chọn bản ghi; sửa nội dung / ngày /&lt;br&gt;ghi chú hoặc đổi Đã hủy" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="630.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC19-editRun" value="Giữ nguyên chủ hồ sơ; kiểm tra;&lt;br&gt;UPDATE + audit trong giao dịch; COMMIT" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="780.0" y="630.0" width="320" height="60" />
+    </mxCell>
+    <mxCell id="UC19-merge" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="926.0" y="736.0" width="28" height="28" />
+    </mxCell>
+    <mxCell id="UC19-ok" value="Thao tác&lt;br&gt;thành công?" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rhombus;fontSize=13;spacing=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="865.0" y="804.0" width="150" height="72" />
+    </mxCell>
+    <mxCell id="UC19-error" value="Hiện lỗi; giữ nội dung nhập;&lt;br&gt;rollback nếu có giao dịch" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1129.0" y="804.0" width="212" height="72" />
+    </mxCell>
+    <mxCell id="UC19-result" value="Xem kết quả; danh sách&lt;br&gt;được tải lại" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=rectangle;rounded=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="161.0" y="900.0" width="318" height="60" />
+    </mxCell>
+    <mxCell id="UC19-end" value="" style="html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#000000;strokeColor=#000000;strokeWidth=1.1;fillColor=#ffffff;spacing=6;shape=ellipse;fillColor=#ffffff;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="307.0" y="1007.0" width="26" height="26" />
+    </mxCell>
+    <mxCell id="UC19-end_inner" value="" style="shape=ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="312.0" y="1012.0" width="16" height="16" />
+    </mxCell>
+    <mxCell id="UC19-e0" value="Thêm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC19-op" target="UC19-newIn">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC19-newIn" target="UC19-newRun">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e2" value="Sửa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC19-op" target="UC19-editIn">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="75.81395348837209" y="390.0" />
+          <mxPoint x="75.81395348837209" y="660.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC19-editIn" target="UC19-editRun">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="UC19-newRun" target="UC19-merge">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1105" y="480.0" />
+          <mxPoint x="1105" y="750.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="UC19-editRun" target="UC19-merge">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1105" y="660.0" />
+          <mxPoint x="1105" y="750.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC19-merge" target="UC19-ok">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e7" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC19-ok" target="UC19-result">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="940" y="890.0" />
+          <mxPoint x="320.0" y="890.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-e8" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC19-ok" target="UC19-error">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e9" value="Chọn sửa / thử lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC19-error" target="UC19-op">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1352" y="840.0" />
+          <mxPoint x="1352" y="349.5" />
+          <mxPoint x="320.0" y="349.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="UC19-result" target="UC19-end">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="UC19-e11" value="Chỉ xem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=12;fontColor=#d00000;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="UC19-op" target="UC19-end">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="26.97674418604651" y="390.0" />
+          <mxPoint x="26.97674418604651" y="1020.0" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="UC19-note" value="UC19 — Chống chỉ định gắn người dân, chưa gắn riêng vaccine; chuyển Đã hủy thay vì xóa vật lý." style="shape=rectangle;html=1;fillColor=none;strokeColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=3;fontFamily=Arial;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="20" y="1087.0" width="1350" height="54" />
+    </mxCell>
+  </root>
+</mxGraphModel>

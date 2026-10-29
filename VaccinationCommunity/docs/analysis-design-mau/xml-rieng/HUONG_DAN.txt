@@ -1,0 +1,31 @@
+BỘ XML VẼ THEO MẪU — CỔNG THEO DÕI TIÊM CHỦNG CỘNG ĐỒNG
+
+Có 78 sơ đồ riêng: 1 tổng quát, 14 phân rã, 28 hoạt động, 2 lớp/kiến trúc, 5 ERD và 28 tuần tự.
+Mỗi sơ đồ có HAI cách dùng, cùng một nội dung hình học và nghiệp vụ:
+
+1. MỞ FILE TRỰC TIẾP
+   Chọn file trong XML_mo_truc_tiep.
+   Trên diagrams.net/draw.io: File > Open From > Device > chọn file .xml.
+   Mỗi file chỉ có một sơ đồ. 00_Tat_ca_so_do.xml/.drawio chứa đủ 78 trang nếu muốn mở cùng lúc.
+
+2. COPY VÀ DÁN XML
+   Chọn file cùng tên trong XML_dan_Edit_Diagram.
+   Mở file bằng VS Code hoặc Notepad, copy toàn bộ mã.
+   Trên draw.io: Extras > Edit Diagram > chọn toàn bộ mã cũ trong ô > dán mã > Apply.
+   Những file này có root mxGraphModel, đúng định dạng cần dán. Đừng dùng bản mxfile ở thư mục 1 để dán vào ô này.
+
+3. TÌM ĐÚNG SƠ ĐỒ
+   Danh_muc_so_do.csv có đầy đủ tên, mã và đường dẫn.
+   AD_UC07 là hoạt động đăng ký lịch; SD_UC07 là tuần tự đăng ký lịch.
+   Mã UC01–UC28 giữ nguyên như tài liệu đặc tả.
+
+PHONG CÁCH VÀ PHẠM VI
+- Tổng quát đen trắng: tác nhân ngoài khung, use case hình ellipse, bố cục người dân/nhân viên bên trái và admin bên phải như mẫu. Cùng mã UC được trình bày lại cạnh từng vai trò, không phải chức năng mới.
+- Phân rã: ellipse kem, viền hồng, include/extend hồng; nhánh lựa chọn dùng khái quát hóa đúng nghĩa, không ép mọi CRUD thành include bắt buộc.
+- Hoạt động: hai làn, hình chữ nhật/kim cương, điều kiện đỏ, nút cuối vòng đỏ.
+- Tuần tự: Actor–Boundary–Control–Database, activation xanh nhạt, alt/opt/loop. Control gộp controller/service/repository ở mức thiết kế. Riêng đăng xuất chỉ có các đối tượng trình duyệt vì code không gọi API/SQL.
+- Luồng đặt lịch kiểm tra liều vaccine khả dụng/FEFO; chưa quản lý công suất khung giờ/cơ sở. Không sao chép điều kiện “còn suất” chưa có trong code.
+- UC28 là API admin đã có, chưa có nút web hoặc job tự chạy. Ghi tiêm có thể không có lịch và retry khớp không trừ kho thêm lần nữa.
+- Không thêm OTP, SMS/email thật, xóa mũi tiêm, CRUD hồ sơ bằng nhân viên hoặc quy tắc phác đồ chưa có.
+
+Đối chiếu source VaccinationCommunity, commit 27fdf334fbb2fb3762498796c8fa4fddf395adbf. File KIEM_TRA.json ghi kiểm tra XML, độ phủ và các bản render.

@@ -1,0 +1,1957 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false" version="24.7.17" agent="VaccinationCommunity sample-style use case decomposition">
+  <diagram id="PR01" name="PR01 — Truy cập">
+    <mxGraphModel dx="1380" dy="1010" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="1010" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR01-c1" value="PHÂN RÃ USE CASE: TRUY CẬP TÀI KHOẢN" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR01-c2" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="175" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR01-c3" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="176" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR01-c4" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="194" />
+            <mxPoint as="targetPoint" x="100" y="224" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="206" />
+            <mxPoint as="targetPoint" x="122" y="206" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="224" />
+            <mxPoint as="targetPoint" x="80" y="247" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="224" />
+            <mxPoint as="targetPoint" x="120" y="247" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c8" value="Khách" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="253" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR01-c9" value="UC01 — Đăng ký tài khoản người&#10;dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="125" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR01-c10" value="UC02 — Đăng nhập" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="305" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR01-c11" source="PR01-c2" target="PR01-c9" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR01-c12" source="PR01-c2" target="PR01-c10" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR01-c13" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="615" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR01-c14" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="616" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR01-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="634" />
+            <mxPoint as="targetPoint" x="100" y="664" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="646" />
+            <mxPoint as="targetPoint" x="122" y="646" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c17" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="664" />
+            <mxPoint as="targetPoint" x="80" y="687" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c18" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="664" />
+            <mxPoint as="targetPoint" x="120" y="687" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR01-c19" value="Người đã đăng nhập" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="693" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR01-c20" value="UC03 — Đăng xuất" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="545" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR01-c21" value="UC04 — Đổi mật khẩu" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="725" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR01-c22" source="PR01-c13" target="PR01-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR01-c23" source="PR01-c13" target="PR01-c21" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR01-c24" value="Bốn mục tiêu độc lập; không tách thêm&#10;các bước nhập/nhấn nút thành use case." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="830" y="400" width="430" height="100" />
+        </mxCell>
+        <mxCell id="PR01-c25" value="Đăng ký chỉ dành cho Khách; ba loại tài khoản dùng chung chức năng đăng nhập.&#10;Đăng nhập là tiền điều kiện của các chức năng bảo vệ, không phải include ở mọi UC." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="900" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR02" name="PR02 — Hồ sơ và tổng quan">
+    <mxGraphModel dx="1380" dy="1360" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="1360" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR02-c1" value="PHÂN RÃ USE CASE: HỒ SƠ VÀ TỔNG QUAN" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR02-c2" value="UC05 — Xem và cập nhật hồ sơ&#10;cá nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="192.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="197.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="198.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="216.5" />
+            <mxPoint as="targetPoint" x="100" y="246.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="228.5" />
+            <mxPoint as="targetPoint" x="122" y="228.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="246.5" />
+            <mxPoint as="targetPoint" x="80" y="269.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="246.5" />
+            <mxPoint as="targetPoint" x="120" y="269.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c9" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="275.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c10" source="PR02-c3" target="PR02-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c11" value="Xem hồ sơ cá nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR02-c12" source="PR02-c11" target="PR02-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c13" value="Cập nhật liên hệ và địa chỉ" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR02-c14" source="PR02-c13" target="PR02-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c15" value="UC14 — Tra cứu hồ sơ người dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="475.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c16" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="412.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c17" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="413.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c18" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="431.5" />
+            <mxPoint as="targetPoint" x="100" y="461.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c19" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="443.5" />
+            <mxPoint as="targetPoint" x="122" y="443.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c20" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="461.5" />
+            <mxPoint as="targetPoint" x="80" y="484.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c21" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="461.5" />
+            <mxPoint as="targetPoint" x="120" y="484.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c22" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="490.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c23" source="PR02-c16" target="PR02-c15" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c24" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="547.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c25" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="548.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="566.5" />
+            <mxPoint as="targetPoint" x="100" y="596.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c27" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="578.5" />
+            <mxPoint as="targetPoint" x="122" y="578.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c28" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="596.5" />
+            <mxPoint as="targetPoint" x="80" y="619.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c29" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="596.5" />
+            <mxPoint as="targetPoint" x="120" y="619.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c30" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="625.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c31" source="PR02-c24" target="PR02-c15" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c32" value="Danh sách và chi tiết hồ sơ; không&#10;thêm/sửa/xóa." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="460.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR02-c33" value="UC24 — Xem tổng quan theo vai&#10;trò" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="675" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c34" value="Xem tổng quan Người dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="797" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c35" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="800" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c36" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="801" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c37" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="819" />
+            <mxPoint as="targetPoint" x="100" y="849" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c38" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="831" />
+            <mxPoint as="targetPoint" x="122" y="831" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c39" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="849" />
+            <mxPoint as="targetPoint" x="80" y="872" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c40" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="849" />
+            <mxPoint as="targetPoint" x="120" y="872" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c41" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="878" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c42" source="PR02-c35" target="PR02-c34" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c43" source="PR02-c34" target="PR02-c33" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c44" value="Xem tổng quan Nhân viên" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="912" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c45" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="915" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c46" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="916" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c47" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="934" />
+            <mxPoint as="targetPoint" x="100" y="964" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c48" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="946" />
+            <mxPoint as="targetPoint" x="122" y="946" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c49" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="964" />
+            <mxPoint as="targetPoint" x="80" y="987" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c50" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="964" />
+            <mxPoint as="targetPoint" x="120" y="987" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c51" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="993" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c52" source="PR02-c45" target="PR02-c44" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c53" source="PR02-c44" target="PR02-c33" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c54" value="Xem tổng quan Quản trị viên" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="1027" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR02-c55" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="1030" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR02-c56" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="1031" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR02-c57" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="1049" />
+            <mxPoint as="targetPoint" x="100" y="1079" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c58" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="1061" />
+            <mxPoint as="targetPoint" x="122" y="1061" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c59" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="1079" />
+            <mxPoint as="targetPoint" x="80" y="1102" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c60" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="1079" />
+            <mxPoint as="targetPoint" x="120" y="1102" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR02-c61" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="1108" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR02-c62" source="PR02-c55" target="PR02-c54" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c63" source="PR02-c54" target="PR02-c33" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR02-c64" value="Chỉ sửa liên hệ/địa chỉ của chính mình; nhân viên và admin chỉ tra cứu hồ sơ.&#10;Tổng quan từng vai trò dùng các nguồn GET tương ứng, không có API dashboard riêng." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="1270" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR03" name="PR03 — Lịch tiêm cá nhân">
+    <mxGraphModel dx="1380" dy="945" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="945" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR03-c1" value="PHÂN RÃ USE CASE: LỊCH TIÊM CÁ NHÂN" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR03-c2" value="UC06 — Xem lịch tiêm cá nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="180.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR03-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="185.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR03-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="186.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR03-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="204.0" />
+            <mxPoint as="targetPoint" x="100" y="234.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="216.0" />
+            <mxPoint as="targetPoint" x="122" y="216.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="80" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="120" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c9" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="263.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR03-c10" source="PR03-c3" target="PR03-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR03-c11" value="Xem danh sách lịch tiêm thuộc chính hồ&#10;sơ." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="165.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR03-c12" value="UC07 — Đăng ký lịch tiêm cá&#10;nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="410.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR03-c13" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="415.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR03-c14" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="416.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR03-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="434.0" />
+            <mxPoint as="targetPoint" x="100" y="464.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="446.0" />
+            <mxPoint as="targetPoint" x="122" y="446.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c17" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="80" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c18" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="120" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c19" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="493.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR03-c20" source="PR03-c13" target="PR03-c12" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR03-c21" value="Giữ một liều từ lô phù hợp&#10;ưu tiên hết hạn sớm (FEFO)" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="412.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR03-c22" source="PR03-c12" target="PR03-c21" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR03-c23" value="UC08 — Hủy lịch tiêm cá nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="640.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR03-c24" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="645.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR03-c25" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="646.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR03-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="664.0" />
+            <mxPoint as="targetPoint" x="100" y="694.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c27" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="676.0" />
+            <mxPoint as="targetPoint" x="122" y="676.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c28" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="694.0" />
+            <mxPoint as="targetPoint" x="80" y="717.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c29" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="694.0" />
+            <mxPoint as="targetPoint" x="120" y="717.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR03-c30" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="723.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR03-c31" source="PR03-c24" target="PR03-c23" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR03-c32" value="Giải phóng liều đã giữ&#10;cho lịch bị hủy" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="642.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR03-c33" source="PR03-c23" target="PR03-c32" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR03-c34" value="Chỉ thao tác lịch của chính người dân. Đặt lịch giữ một liều FEFO; hủy lịch giải phóng liều.&#10;Project chưa quản lý công suất ca tiêm hoặc số suất theo khung giờ." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="855" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR04" name="PR04 — Dữ liệu cá nhân">
+    <mxGraphModel dx="1380" dy="970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="970" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR04-c1" value="PHÂN RÃ USE CASE: LỊCH SỬ, CHỐNG CHỈ ĐỊNH VÀ THÔNG BÁO" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR04-c2" value="UC09 — Xem lịch sử tiêm cá&#10;nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="180.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR04-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="185.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR04-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="186.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR04-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="204.0" />
+            <mxPoint as="targetPoint" x="100" y="234.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="216.0" />
+            <mxPoint as="targetPoint" x="122" y="216.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="80" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="120" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c9" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="263.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR04-c10" source="PR04-c3" target="PR04-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR04-c11" value="Lịch sử mũi đã được ghi nhận; chỉ đọc." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="165.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR04-c12" value="UC10 — Xem chống chỉ định cá&#10;nhân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="410.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR04-c13" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="415.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR04-c14" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="416.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR04-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="434.0" />
+            <mxPoint as="targetPoint" x="100" y="464.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="446.0" />
+            <mxPoint as="targetPoint" x="122" y="446.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c17" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="80" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c18" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="120" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c19" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="493.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR04-c20" source="PR04-c13" target="PR04-c12" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR04-c21" value="Xem chống chỉ định của chính hồ sơ;&#10;chỉ đọc." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="395.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR04-c22" value="UC11 — Xem thông báo và đánh&#10;dấu đã đọc" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="652.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR04-c23" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="657.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR04-c24" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="658.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR04-c25" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="676.5" />
+            <mxPoint as="targetPoint" x="100" y="706.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="688.5" />
+            <mxPoint as="targetPoint" x="122" y="688.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c27" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="706.5" />
+            <mxPoint as="targetPoint" x="80" y="729.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c28" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="706.5" />
+            <mxPoint as="targetPoint" x="120" y="729.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR04-c29" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="735.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR04-c30" source="PR04-c23" target="PR04-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR04-c31" value="Xem danh sách thông báo" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="597.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR04-c32" source="PR04-c31" target="PR04-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR04-c33" value="Đánh dấu thông báo đã đọc" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="712.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR04-c34" source="PR04-c33" target="PR04-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR04-c35" value="Người dân chỉ xem dữ liệu thuộc hồ sơ mình; lịch sử và chống chỉ định chỉ đọc.&#10;Xem thông báo và đánh dấu đã đọc là hai thao tác lựa chọn." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="880" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR05" name="PR05 — Theo dõi của người dân">
+    <mxGraphModel dx="1380" dy="995" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="995" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR05-c1" value="PHÂN RÃ USE CASE: CẬP NHẬT SỨC KHỎE VÀ XEM PHẢN HỒI" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR05-c2" value="UC12 — Gửi cập nhật sức khỏe&#10;sau tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="307.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR05-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="312.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR05-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="313.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR05-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="331.5" />
+            <mxPoint as="targetPoint" x="100" y="361.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="343.5" />
+            <mxPoint as="targetPoint" x="122" y="343.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="361.5" />
+            <mxPoint as="targetPoint" x="80" y="384.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="361.5" />
+            <mxPoint as="targetPoint" x="120" y="384.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c9" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="390.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR05-c10" source="PR05-c3" target="PR05-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c11" value="Cập nhật định kỳ&#10;không khai báo dấu hiệu bất&#10;thường" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c12" source="PR05-c11" target="PR05-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c13" value="Khai báo triệu chứng hoặc&#10;nhiệt độ, diễn biến" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c14" source="PR05-c13" target="PR05-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c15" value="Xác định mức ưu tiên&#10;tiếp nhận từ khai báo" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c16" source="PR05-c2" target="PR05-c15" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c17" value="Hiển thị cảnh báo đỏ&#10;và hướng dẫn gọi 115" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="482.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c18" source="PR05-c17" target="PR05-c2" value="«extend»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c19" value="UC13 — Xem cập nhật và phản&#10;hồi của mình" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="677.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR05-c20" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="682.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR05-c21" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="683.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR05-c22" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="701.5" />
+            <mxPoint as="targetPoint" x="100" y="731.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c23" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="713.5" />
+            <mxPoint as="targetPoint" x="122" y="713.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c24" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="731.5" />
+            <mxPoint as="targetPoint" x="80" y="754.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c25" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="731.5" />
+            <mxPoint as="targetPoint" x="120" y="754.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR05-c26" value="Người dân" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="760.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR05-c27" source="PR05-c20" target="PR05-c19" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c28" value="Xem danh sách các lần cập nhật" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="622.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c29" source="PR05-c28" target="PR05-c19" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c30" value="Xem chi tiết cập nhật,&#10;phản hồi và nhật ký xử lý" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="737.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR05-c31" source="PR05-c30" target="PR05-c19" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR05-c32" value="Mỗi lần gửi tạo một phiếu riêng; mức ưu tiên do hệ thống xác định, không phải chẩn đoán.&#10;Cảnh báo đỏ xuất hiện khi khai báo có dấu hiệu tương ứng; hệ thống không tự gọi 115." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="905" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR06" name="PR06 — Danh mục vaccine">
+    <mxGraphModel dx="1380" dy="740" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR06-c1" value="PHÂN RÃ USE CASE: QUẢN LÝ DANH MỤC VACCINE" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR06-c2" value="UC15 — Quản lý danh mục&#10;vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="307.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR06-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="245.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR06-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="246.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR06-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="264.0" />
+            <mxPoint as="targetPoint" x="100" y="294.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="276.0" />
+            <mxPoint as="targetPoint" x="122" y="276.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="294.0" />
+            <mxPoint as="targetPoint" x="80" y="317.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="294.0" />
+            <mxPoint as="targetPoint" x="120" y="317.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="323.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR06-c10" source="PR06-c3" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="380.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR06-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="381.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR06-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="399.0" />
+            <mxPoint as="targetPoint" x="100" y="429.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="411.0" />
+            <mxPoint as="targetPoint" x="122" y="411.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="429.0" />
+            <mxPoint as="targetPoint" x="80" y="452.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="429.0" />
+            <mxPoint as="targetPoint" x="120" y="452.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR06-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="458.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR06-c18" source="PR06-c11" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c19" value="Xem danh mục vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR06-c20" source="PR06-c19" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c21" value="Thêm vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR06-c22" source="PR06-c21" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c23" value="Sửa thông tin vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR06-c24" source="PR06-c23" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c25" value="Đổi trạng thái vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="482.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR06-c26" source="PR06-c25" target="PR06-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR06-c27" value="Các nhánh là thao tác lựa chọn, không thực hiện bắt buộc tất cả trong một lần.&#10;Không có xóa vaccine; thông tin số mũi/khoảng cách chưa phải kiểm tra phác đồ." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="650" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR07" name="PR07 — Lô vaccine và tồn kho">
+    <mxGraphModel dx="1380" dy="740" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR07-c1" value="PHÂN RÃ USE CASE: QUẢN LÝ LÔ VACCINE VÀ TỒN KHO" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR07-c2" value="UC16 — Quản lý lô vaccine và&#10;xem tồn kho" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="307.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR07-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="245.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR07-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="246.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR07-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="264.0" />
+            <mxPoint as="targetPoint" x="100" y="294.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="276.0" />
+            <mxPoint as="targetPoint" x="122" y="276.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="294.0" />
+            <mxPoint as="targetPoint" x="80" y="317.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="294.0" />
+            <mxPoint as="targetPoint" x="120" y="317.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="323.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR07-c10" source="PR07-c3" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="380.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR07-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="381.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR07-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="399.0" />
+            <mxPoint as="targetPoint" x="100" y="429.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="411.0" />
+            <mxPoint as="targetPoint" x="122" y="411.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="429.0" />
+            <mxPoint as="targetPoint" x="80" y="452.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="429.0" />
+            <mxPoint as="targetPoint" x="120" y="452.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR07-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="458.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR07-c18" source="PR07-c11" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c19" value="Xem lô và tồn kho&#10;thực tế, giữ chỗ, khả dụng" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR07-c20" source="PR07-c19" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c21" value="Thêm lô vaccine để nhập kho" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR07-c22" source="PR07-c21" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c23" value="Sửa thông tin lô vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR07-c24" source="PR07-c23" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c25" value="Đổi trạng thái lô vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="482.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR07-c26" source="PR07-c25" target="PR07-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR07-c27" value="Không có xóa lô hoặc ghi đè số nhập/số còn khi sửa. Nhập bổ sung bằng lô mới.&#10;Liều khả dụng = tồn thực tế − số giữ chỗ." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="650" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR08" name="PR08 — Điều phối lịch tiêm">
+    <mxGraphModel dx="1380" dy="855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="855" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR08-c1" value="PHÂN RÃ USE CASE: QUẢN LÝ VÀ ĐIỀU PHỐI LỊCH TIÊM" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR08-c2" value="UC17 — Quản lý và điều phối&#10;lịch tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="365.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR08-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="302.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR08-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="303.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR08-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="321.5" />
+            <mxPoint as="targetPoint" x="100" y="351.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="333.5" />
+            <mxPoint as="targetPoint" x="122" y="333.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="351.5" />
+            <mxPoint as="targetPoint" x="80" y="374.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="351.5" />
+            <mxPoint as="targetPoint" x="120" y="374.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="380.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR08-c10" source="PR08-c3" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="437.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR08-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="438.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR08-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="456.5" />
+            <mxPoint as="targetPoint" x="100" y="486.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="468.5" />
+            <mxPoint as="targetPoint" x="122" y="468.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="486.5" />
+            <mxPoint as="targetPoint" x="80" y="509.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="486.5" />
+            <mxPoint as="targetPoint" x="120" y="509.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR08-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="515.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR08-c18" source="PR08-c11" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c19" value="Tra cứu lịch tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR08-c20" source="PR08-c19" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c21" value="Tạo lịch cho người dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR08-c22" source="PR08-c21" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c23" value="Sửa lịch đang hoạt động" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR08-c24" source="PR08-c23" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c25" value="Xác nhận lịch tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="482.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR08-c26" source="PR08-c25" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c27" value="Hủy lịch hoặc ghi nhận vắng&#10;mặt&#10;theo điều kiện trạng thái" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="597.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR08-c28" source="PR08-c27" target="PR08-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR08-c29" value="Chỉ sửa lịch đang hoạt động; ghi vắng chỉ khi đã đến giờ hẹn.&#10;Đã tiêm được cập nhật qua UC18, không chỉ bằng chọn trạng thái." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="765" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR09" name="PR09 — Ghi nhận mũi tiêm">
+    <mxGraphModel dx="1380" dy="855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="855" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR09-c1" value="PHÂN RÃ USE CASE: GHI NHẬN MŨI TIÊM THỰC TẾ" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR09-c2" value="UC18 — Ghi nhận mũi tiêm thực&#10;tế" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="365.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR09-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="302.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR09-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="303.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR09-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="321.5" />
+            <mxPoint as="targetPoint" x="100" y="351.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="333.5" />
+            <mxPoint as="targetPoint" x="122" y="333.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="351.5" />
+            <mxPoint as="targetPoint" x="80" y="374.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="351.5" />
+            <mxPoint as="targetPoint" x="120" y="374.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="380.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR09-c10" source="PR09-c3" target="PR09-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="437.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR09-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="438.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR09-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="456.5" />
+            <mxPoint as="targetPoint" x="100" y="486.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="468.5" />
+            <mxPoint as="targetPoint" x="122" y="468.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="486.5" />
+            <mxPoint as="targetPoint" x="80" y="509.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="486.5" />
+            <mxPoint as="targetPoint" x="120" y="509.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR09-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="515.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR09-c18" source="PR09-c11" target="PR09-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c19" value="Ghi nhận theo lịch đang hoạt&#10;động" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR09-c20" source="PR09-c19" target="PR09-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c21" value="Ghi nhận trực tiếp không qua&#10;lịch" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR09-c22" source="PR09-c21" target="PR09-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c23" value="Cập nhật tồn kho và giữ chỗ&#10;đồng bộ với lịch nếu có" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR09-c24" source="PR09-c2" target="PR09-c23" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c25" value="Lưu nhật ký ghi nhận mũi tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="482.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR09-c26" source="PR09-c2" target="PR09-c25" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c27" value="Tạo thông báo hướng dẫn&#10;theo dõi sau tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="597.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR09-c28" source="PR09-c2" target="PR09-c27" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR09-c29" value="Include mô tả lần TẠO MŨI MỚI thành công; retry khớp chỉ trả mũi cũ, không trừ kho lại.&#10;Có thể ghi trực tiếp hoặc theo lịch Đã lên lịch/Đã xác nhận." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="765" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR10" name="PR10 — Chống chỉ định">
+    <mxGraphModel dx="1380" dy="625" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="625" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR10-c1" value="PHÂN RÃ USE CASE: GHI NHẬN VÀ CẬP NHẬT CHỐNG CHỈ ĐỊNH" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR10-c2" value="UC19 — Ghi nhận và cập nhật&#10;chống chỉ định" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="250.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR10-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="187.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR10-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="188.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR10-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="206.5" />
+            <mxPoint as="targetPoint" x="100" y="236.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="218.5" />
+            <mxPoint as="targetPoint" x="122" y="218.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="236.5" />
+            <mxPoint as="targetPoint" x="80" y="259.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="236.5" />
+            <mxPoint as="targetPoint" x="120" y="259.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="265.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR10-c10" source="PR10-c3" target="PR10-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR10-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="322.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR10-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="323.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR10-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="341.5" />
+            <mxPoint as="targetPoint" x="100" y="371.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="353.5" />
+            <mxPoint as="targetPoint" x="122" y="353.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="371.5" />
+            <mxPoint as="targetPoint" x="80" y="394.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="371.5" />
+            <mxPoint as="targetPoint" x="120" y="394.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR10-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="400.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR10-c18" source="PR10-c11" target="PR10-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR10-c19" value="Tra cứu chống chỉ định" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="137.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR10-c20" source="PR10-c19" target="PR10-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR10-c21" value="Ghi nhận chống chỉ định" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="252.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR10-c22" source="PR10-c21" target="PR10-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR10-c23" value="Cập nhật nội dung, thời điểm&#10;và trạng thái chống chỉ định" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="367.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR10-c24" source="PR10-c23" target="PR10-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR10-c25" value="Chống chỉ định gắn hồ sơ người dân, chưa gắn riêng vaccine; không xóa vật lý.&#10;Người dân chỉ xem ở UC10; nhân viên/admin ghi nhận hoặc cập nhật ở UC19." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="535" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR11" name="PR11 — Lịch sử và truy vết">
+    <mxGraphModel dx="1380" dy="875" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="875" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR11-c1" value="PHÂN RÃ USE CASE: TRA CỨU LỊCH SỬ VÀ TRUY VẾT" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR11-c2" value="UC20 — Tra cứu lịch sử tiêm&#10;người dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="220.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR11-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="157.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR11-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="158.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR11-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="176.5" />
+            <mxPoint as="targetPoint" x="100" y="206.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="188.5" />
+            <mxPoint as="targetPoint" x="122" y="188.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="206.5" />
+            <mxPoint as="targetPoint" x="80" y="229.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="206.5" />
+            <mxPoint as="targetPoint" x="120" y="229.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="235.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR11-c10" source="PR11-c3" target="PR11-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="292.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR11-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="293.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR11-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="311.5" />
+            <mxPoint as="targetPoint" x="100" y="341.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="323.5" />
+            <mxPoint as="targetPoint" x="122" y="323.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="341.5" />
+            <mxPoint as="targetPoint" x="80" y="364.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="341.5" />
+            <mxPoint as="targetPoint" x="120" y="364.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="370.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR11-c18" source="PR11-c11" target="PR11-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c19" value="Tra cứu theo người dân và xem chi tiết&#10;mũi tiêm." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="205.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR11-c20" value="UC21 — Truy vết lô và truy&#10;ngược mũi tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="530.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR11-c21" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="467.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR11-c22" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="468.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR11-c23" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="486.5" />
+            <mxPoint as="targetPoint" x="100" y="516.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c24" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="498.5" />
+            <mxPoint as="targetPoint" x="122" y="498.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c25" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="516.5" />
+            <mxPoint as="targetPoint" x="80" y="539.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="516.5" />
+            <mxPoint as="targetPoint" x="120" y="539.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c27" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="545.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR11-c28" source="PR11-c21" target="PR11-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c29" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="602.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR11-c30" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="603.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR11-c31" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="621.5" />
+            <mxPoint as="targetPoint" x="100" y="651.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c32" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="633.5" />
+            <mxPoint as="targetPoint" x="122" y="633.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c33" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="651.5" />
+            <mxPoint as="targetPoint" x="80" y="674.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c34" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="651.5" />
+            <mxPoint as="targetPoint" x="120" y="674.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR11-c35" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="680.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR11-c36" source="PR11-c29" target="PR11-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c37" value="Truy từ mã lô vaccine&#10;tới các mũi đã sử dụng" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="474.5" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR11-c38" source="PR11-c37" target="PR11-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c39" value="Truy ngược từ mã mũi tiêm&#10;về lô và vaccine" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="589.5" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR11-c40" source="PR11-c39" target="PR11-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR11-c41" value="Các nhánh đều chỉ đọc: từ mã lô tới các mũi đã dùng, hoặc từ mã mũi về lô.&#10;Không có chức năng thu hồi lô hoặc gửi cảnh báo hàng loạt." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="785" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR12" name="PR12 — Xử lý theo dõi sau tiêm">
+    <mxGraphModel dx="1380" dy="1165" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="1165" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR12-c1" value="PHÂN RÃ USE CASE: HÀNG ĐỢI VÀ XỬ LÝ THEO DÕI SAU TIÊM" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR12-c2" value="UC22 — Tra cứu hàng đợi theo&#10;dõi sau tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="220.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR12-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="157.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR12-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="158.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR12-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="176.5" />
+            <mxPoint as="targetPoint" x="100" y="206.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="188.5" />
+            <mxPoint as="targetPoint" x="122" y="188.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="206.5" />
+            <mxPoint as="targetPoint" x="80" y="229.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="206.5" />
+            <mxPoint as="targetPoint" x="120" y="229.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="235.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR12-c10" source="PR12-c3" target="PR12-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="292.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR12-c12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="293.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR12-c13" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="311.5" />
+            <mxPoint as="targetPoint" x="100" y="341.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c14" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="323.5" />
+            <mxPoint as="targetPoint" x="122" y="323.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="341.5" />
+            <mxPoint as="targetPoint" x="80" y="364.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="341.5" />
+            <mxPoint as="targetPoint" x="120" y="364.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="370.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR12-c18" source="PR12-c11" target="PR12-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c19" value="Hàng đợi có lọc/phân trang; mở chi&#10;tiết phiếu." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="205.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR12-c20" value="UC23 — Tiếp nhận và xử lý theo&#10;dõi sau tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="675.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR12-c21" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="612.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR12-c22" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="613.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR12-c23" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="631.5" />
+            <mxPoint as="targetPoint" x="100" y="661.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c24" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="643.5" />
+            <mxPoint as="targetPoint" x="122" y="643.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c25" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="661.5" />
+            <mxPoint as="targetPoint" x="80" y="684.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="661.5" />
+            <mxPoint as="targetPoint" x="120" y="684.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c27" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="690.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR12-c28" source="PR12-c21" target="PR12-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c29" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="747.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR12-c30" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="748.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR12-c31" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="766.5" />
+            <mxPoint as="targetPoint" x="100" y="796.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c32" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="778.5" />
+            <mxPoint as="targetPoint" x="122" y="778.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c33" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="796.5" />
+            <mxPoint as="targetPoint" x="80" y="819.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c34" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="796.5" />
+            <mxPoint as="targetPoint" x="120" y="819.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR12-c35" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="825.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR12-c36" source="PR12-c29" target="PR12-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c37" value="Tiếp nhận và cập nhật&#10;kế hoạch theo dõi" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="447.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR12-c38" source="PR12-c37" target="PR12-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c39" value="Kết thúc theo dõi&#10;từ trạng thái cho phép" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="562.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR12-c40" source="PR12-c39" target="PR12-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c41" value="Mở lại ca đã kết thúc&#10;sang reviewing hoặc escalated" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="677.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR12-c42" source="PR12-c41" target="PR12-c20" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c43" value="Lưu phản hồi và nhật ký xử lý" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="792.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR12-c44" source="PR12-c20" target="PR12-c43" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c45" value="Tạo thông báo phản hồi&#10;cho người dân" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="907.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR12-c46" source="PR12-c20" target="PR12-c45" value="«include»" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR12-c47" value="Lưu phải đúng revision và chuyển trạng thái hợp lệ; monitoring cần hẹn tương lai.&#10;new không chuyển thẳng resolved; kết thúc phiếu không có nghĩa xác nhận an toàn." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="1075" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR13" name="PR13 — Tài khoản và phân quyền">
+    <mxGraphModel dx="1380" dy="970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="970" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR13-c1" value="PHÂN RÃ USE CASE: TRA CỨU, PHÂN QUYỀN VÀ KHÓA TÀI KHOẢN" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR13-c2" value="UC25 — Tra cứu tài khoản hệ&#10;thống" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="180.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR13-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="185.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR13-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="186.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR13-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="204.0" />
+            <mxPoint as="targetPoint" x="100" y="234.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="216.0" />
+            <mxPoint as="targetPoint" x="122" y="216.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="80" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="120" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c9" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="263.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR13-c10" source="PR13-c3" target="PR13-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR13-c11" value="Danh sách, lọc và chi tiết tài khoản." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="165.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR13-c12" value="UC26 — Phân quyền tài khoản" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="410.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR13-c13" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="415.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR13-c14" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="416.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR13-c15" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="434.0" />
+            <mxPoint as="targetPoint" x="100" y="464.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c16" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="446.0" />
+            <mxPoint as="targetPoint" x="122" y="446.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c17" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="80" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c18" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="464.0" />
+            <mxPoint as="targetPoint" x="120" y="487.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c19" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="493.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR13-c20" source="PR13-c13" target="PR13-c12" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR13-c21" value="Đổi một vai trò hợp lệ cho tài khoản&#10;đích." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="395.0" width="370" height="110" />
+        </mxCell>
+        <mxCell id="PR13-c22" value="UC27 — Khóa và mở khóa tài&#10;khoản" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="652.5" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR13-c23" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="657.5" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR13-c24" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="658.5" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR13-c25" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="676.5" />
+            <mxPoint as="targetPoint" x="100" y="706.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c26" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="688.5" />
+            <mxPoint as="targetPoint" x="122" y="688.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c27" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="706.5" />
+            <mxPoint as="targetPoint" x="80" y="729.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c28" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="706.5" />
+            <mxPoint as="targetPoint" x="120" y="729.5" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR13-c29" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="735.5" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR13-c30" source="PR13-c23" target="PR13-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR13-c31" value="Khóa tài khoản" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="597.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR13-c32" source="PR13-c31" target="PR13-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="-0.15" y="-8" />
+        </mxCell>
+        <mxCell id="PR13-c33" value="Mở khóa tài khoản" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="945" y="712.0" width="320" height="76" />
+        </mxCell>
+        <mxCell id="PR13-c34" source="PR13-c33" target="PR13-c22" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#ff4081;endArrow=block;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0.0" y="-8" />
+        </mxCell>
+        <mxCell id="PR13-c35" value="Chỉ admin phân quyền/khóa; không tự đổi vai trò hoặc tự khóa tài khoản đang dùng.&#10;Không có tạo/xóa/reset mật khẩu tài khoản trực tiếp trên trang này." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="880" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PR14" name="PR14 — API tạo nhắc lịch">
+    <mxGraphModel dx="1380" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="485" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR14-c1" value="PHÂN RÃ USE CASE: CHỦ ĐỘNG TẠO THÔNG BÁO NHẮC LỊCH · API" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=21;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="15" width="1320" height="55" />
+        </mxCell>
+        <mxCell id="PR14-c2" value="UC28 — Chủ động tạo thông báo&#10;nhắc lịch" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#fffbdc;strokeColor=#ff4081;strokeWidth=1.2;fontFamily=Arial;fontColor=#111111;fontSize=16;align=center;verticalAlign=middle;spacing=5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="180.0" width="320" height="80" />
+        </mxCell>
+        <mxCell id="PR14-c3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="75" y="185.0" width="50" height="72" />
+        </mxCell>
+        <mxCell id="PR14-c4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="91" y="186.0" width="18" height="18" />
+        </mxCell>
+        <mxCell id="PR14-c5" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="204.0" />
+            <mxPoint as="targetPoint" x="100" y="234.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR14-c6" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="78" y="216.0" />
+            <mxPoint as="targetPoint" x="122" y="216.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR14-c7" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="80" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR14-c8" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.1;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="100" y="234.0" />
+            <mxPoint as="targetPoint" x="120" y="257.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR14-c9" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="263.0" width="150" height="48" />
+        </mxCell>
+        <mxCell id="PR14-c10" source="PR14-c3" target="PR14-c2" value="" style="edgeStyle=none;html=0;rounded=0;fontFamily=Arial;fontSize=12;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.1;strokeColor=#111111;endArrow=none;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR14-c11" value="API quản trị; chưa có nút web.&#10;Mục tiêu đơn, không phân rã thành từng bước SQL." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="160.0" width="390" height="120" />
+        </mxCell>
+        <mxCell id="PR14-c12" value="UC28 là API chủ động POST /api/notifications/generate; chưa có nút web hoặc job tự chạy.&#10;Nhắc lịch đã xác nhận trong tương lai, chống trùng; mỗi thông báo có giao dịch riêng." style="shape=rectangle;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontColor=#111111;fontSize=14;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="395" width="1270" height="70" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

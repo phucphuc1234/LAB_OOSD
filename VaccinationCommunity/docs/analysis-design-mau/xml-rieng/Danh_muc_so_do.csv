@@ -1,0 +1,79 @@
+﻿stt,nhom,ma,ten,xml_mo,xml_dan
+1,Use case tổng quát,UC-TQ,Use case tổng quát — Cổng theo dõi tiêm chủng cộng đồng,XML_mo_truc_tiep/01_Use_case_tong_quat/UC_Tong_quat.xml,XML_dan_Edit_Diagram/01_Use_case_tong_quat/UC_Tong_quat.xml
+2,Phân rã use case,PR01,PR01 — Truy cập,XML_mo_truc_tiep/02_Phan_ra_use_case/PR01.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR01.xml
+3,Phân rã use case,PR02,PR02 — Hồ sơ và tổng quan,XML_mo_truc_tiep/02_Phan_ra_use_case/PR02.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR02.xml
+4,Phân rã use case,PR03,PR03 — Lịch tiêm cá nhân,XML_mo_truc_tiep/02_Phan_ra_use_case/PR03.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR03.xml
+5,Phân rã use case,PR04,PR04 — Dữ liệu cá nhân,XML_mo_truc_tiep/02_Phan_ra_use_case/PR04.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR04.xml
+6,Phân rã use case,PR05,PR05 — Theo dõi của người dân,XML_mo_truc_tiep/02_Phan_ra_use_case/PR05.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR05.xml
+7,Phân rã use case,PR06,PR06 — Danh mục vaccine,XML_mo_truc_tiep/02_Phan_ra_use_case/PR06.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR06.xml
+8,Phân rã use case,PR07,PR07 — Lô vaccine và tồn kho,XML_mo_truc_tiep/02_Phan_ra_use_case/PR07.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR07.xml
+9,Phân rã use case,PR08,PR08 — Điều phối lịch tiêm,XML_mo_truc_tiep/02_Phan_ra_use_case/PR08.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR08.xml
+10,Phân rã use case,PR09,PR09 — Ghi nhận mũi tiêm,XML_mo_truc_tiep/02_Phan_ra_use_case/PR09.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR09.xml
+11,Phân rã use case,PR10,PR10 — Chống chỉ định,XML_mo_truc_tiep/02_Phan_ra_use_case/PR10.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR10.xml
+12,Phân rã use case,PR11,PR11 — Lịch sử và truy vết,XML_mo_truc_tiep/02_Phan_ra_use_case/PR11.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR11.xml
+13,Phân rã use case,PR12,PR12 — Xử lý theo dõi sau tiêm,XML_mo_truc_tiep/02_Phan_ra_use_case/PR12.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR12.xml
+14,Phân rã use case,PR13,PR13 — Tài khoản và phân quyền,XML_mo_truc_tiep/02_Phan_ra_use_case/PR13.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR13.xml
+15,Phân rã use case,PR14,PR14 — API tạo nhắc lịch,XML_mo_truc_tiep/02_Phan_ra_use_case/PR14.xml,XML_dan_Edit_Diagram/02_Phan_ra_use_case/PR14.xml
+16,Sơ đồ hoạt động,UC01,UC01 - Đăng ký tài khoản người dân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC01.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC01.xml
+17,Sơ đồ hoạt động,UC02,UC02 - Đăng nhập,XML_mo_truc_tiep/03_Hoat_dong/AD_UC02.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC02.xml
+18,Sơ đồ hoạt động,UC03,UC03 - Đăng xuất,XML_mo_truc_tiep/03_Hoat_dong/AD_UC03.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC03.xml
+19,Sơ đồ hoạt động,UC04,UC04 - Đổi mật khẩu,XML_mo_truc_tiep/03_Hoat_dong/AD_UC04.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC04.xml
+20,Sơ đồ hoạt động,UC05,UC05 - Xem và cập nhật hồ sơ cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC05.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC05.xml
+21,Sơ đồ hoạt động,UC06,UC06 - Xem lịch tiêm cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC06.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC06.xml
+22,Sơ đồ hoạt động,UC07,UC07 - Đăng ký lịch tiêm cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC07.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC07.xml
+23,Sơ đồ hoạt động,UC08,UC08 - Hủy lịch tiêm cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC08.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC08.xml
+24,Sơ đồ hoạt động,UC09,UC09 - Xem lịch sử tiêm cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC09.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC09.xml
+25,Sơ đồ hoạt động,UC10,UC10 - Xem chống chỉ định cá nhân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC10.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC10.xml
+26,Sơ đồ hoạt động,UC11,UC11 - Xem thông báo và đánh dấu đã đọc,XML_mo_truc_tiep/03_Hoat_dong/AD_UC11.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC11.xml
+27,Sơ đồ hoạt động,UC12,UC12 - Gửi cập nhật sức khỏe sau tiêm,XML_mo_truc_tiep/03_Hoat_dong/AD_UC12.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC12.xml
+28,Sơ đồ hoạt động,UC13,UC13 - Xem cập nhật và phản hồi của mình,XML_mo_truc_tiep/03_Hoat_dong/AD_UC13.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC13.xml
+29,Sơ đồ hoạt động,UC14,UC14 - Tra cứu hồ sơ người dân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC14.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC14.xml
+30,Sơ đồ hoạt động,UC15,UC15 - Quản lý danh mục vaccine,XML_mo_truc_tiep/03_Hoat_dong/AD_UC15.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC15.xml
+31,Sơ đồ hoạt động,UC16,UC16 - Quản lý lô vaccine và xem tồn kho,XML_mo_truc_tiep/03_Hoat_dong/AD_UC16.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC16.xml
+32,Sơ đồ hoạt động,UC17,UC17 - Quản lý và điều phối lịch tiêm,XML_mo_truc_tiep/03_Hoat_dong/AD_UC17.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC17.xml
+33,Sơ đồ hoạt động,UC18,UC18 - Ghi nhận mũi tiêm thực tế,XML_mo_truc_tiep/03_Hoat_dong/AD_UC18.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC18.xml
+34,Sơ đồ hoạt động,UC19,UC19 - Ghi nhận và cập nhật chống chỉ định,XML_mo_truc_tiep/03_Hoat_dong/AD_UC19.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC19.xml
+35,Sơ đồ hoạt động,UC20,UC20 - Tra cứu lịch sử tiêm người dân,XML_mo_truc_tiep/03_Hoat_dong/AD_UC20.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC20.xml
+36,Sơ đồ hoạt động,UC21,UC21 - Truy vết lô và truy ngược mũi tiêm,XML_mo_truc_tiep/03_Hoat_dong/AD_UC21.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC21.xml
+37,Sơ đồ hoạt động,UC22,UC22 - Tra cứu hàng đợi theo dõi sau tiêm,XML_mo_truc_tiep/03_Hoat_dong/AD_UC22.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC22.xml
+38,Sơ đồ hoạt động,UC23,UC23 - Tiếp nhận và xử lý theo dõi sau tiêm,XML_mo_truc_tiep/03_Hoat_dong/AD_UC23.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC23.xml
+39,Sơ đồ hoạt động,UC24,UC24 - Xem tổng quan theo vai trò,XML_mo_truc_tiep/03_Hoat_dong/AD_UC24.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC24.xml
+40,Sơ đồ hoạt động,UC25,UC25 - Tra cứu tài khoản hệ thống,XML_mo_truc_tiep/03_Hoat_dong/AD_UC25.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC25.xml
+41,Sơ đồ hoạt động,UC26,UC26 - Phân quyền tài khoản,XML_mo_truc_tiep/03_Hoat_dong/AD_UC26.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC26.xml
+42,Sơ đồ hoạt động,UC27,UC27 - Khóa và mở khóa tài khoản,XML_mo_truc_tiep/03_Hoat_dong/AD_UC27.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC27.xml
+43,Sơ đồ hoạt động,UC28,UC28 - Chủ động tạo thông báo nhắc lịch,XML_mo_truc_tiep/03_Hoat_dong/AD_UC28.xml,XML_dan_Edit_Diagram/03_Hoat_dong/AD_UC28.xml
+44,Sơ đồ lớp và kiến trúc,CL01,CL01 — Sơ đồ lớp miền khái niệm (14 thực thể),XML_mo_truc_tiep/04_Lop_va_kien_truc/CL01.xml,XML_dan_Edit_Diagram/04_Lop_va_kien_truc/CL01.xml
+45,Sơ đồ lớp và kiến trúc,CL02,CL02 — Các module triển khai thực tế,XML_mo_truc_tiep/04_Lop_va_kien_truc/CL02.xml,XML_dan_Edit_Diagram/04_Lop_va_kien_truc/CL02.xml
+46,Sơ đồ ERD,ERD01,"ERD01 — Toàn bộ lược đồ vật lý (15 bảng, 135 cột, 24 FK)",XML_mo_truc_tiep/05_ERD/ERD01.xml,XML_dan_Edit_Diagram/05_ERD/ERD01.xml
+47,Sơ đồ ERD,ERD02,"ERD02 — Tài khoản, vai trò, hồ sơ và chống chỉ định",XML_mo_truc_tiep/05_ERD/ERD02.xml,XML_dan_Edit_Diagram/05_ERD/ERD02.xml
+48,Sơ đồ ERD,ERD03,"ERD03 — Vaccine, lô, lịch hẹn và mũi tiêm",XML_mo_truc_tiep/05_ERD/ERD03.xml,XML_dan_Edit_Diagram/05_ERD/ERD03.xml
+49,Sơ đồ ERD,ERD04,ERD04 — Theo dõi sau tiêm và triệu chứng,XML_mo_truc_tiep/05_ERD/ERD04.xml,XML_dan_Edit_Diagram/05_ERD/ERD04.xml
+50,Sơ đồ ERD,ERD05,"ERD05 — Thông báo, nhật ký và phiên bản lược đồ",XML_mo_truc_tiep/05_ERD/ERD05.xml,XML_dan_Edit_Diagram/05_ERD/ERD05.xml
+51,Sơ đồ tuần tự,TT-UC01,UC01 — Đăng ký tài khoản người dân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC01.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC01.xml
+52,Sơ đồ tuần tự,TT-UC02,UC02 — Đăng nhập,XML_mo_truc_tiep/06_Tuan_tu/SD_UC02.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC02.xml
+53,Sơ đồ tuần tự,TT-UC03,UC03 — Đăng xuất,XML_mo_truc_tiep/06_Tuan_tu/SD_UC03.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC03.xml
+54,Sơ đồ tuần tự,TT-UC04,UC04 — Đổi mật khẩu,XML_mo_truc_tiep/06_Tuan_tu/SD_UC04.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC04.xml
+55,Sơ đồ tuần tự,TT-UC05,UC05 — Xem và cập nhật hồ sơ cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC05.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC05.xml
+56,Sơ đồ tuần tự,TT-UC06,UC06 — Xem lịch tiêm cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC06.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC06.xml
+57,Sơ đồ tuần tự,TT-UC07,UC07 — Đăng ký lịch tiêm cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC07.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC07.xml
+58,Sơ đồ tuần tự,TT-UC08,UC08 — Hủy lịch tiêm cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC08.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC08.xml
+59,Sơ đồ tuần tự,TT-UC09,UC09 — Xem lịch sử tiêm cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC09.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC09.xml
+60,Sơ đồ tuần tự,TT-UC10,UC10 — Xem chống chỉ định cá nhân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC10.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC10.xml
+61,Sơ đồ tuần tự,TT-UC11,UC11 — Xem thông báo và đánh dấu đã đọc,XML_mo_truc_tiep/06_Tuan_tu/SD_UC11.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC11.xml
+62,Sơ đồ tuần tự,TT-UC12,UC12 — Gửi cập nhật sức khỏe sau tiêm,XML_mo_truc_tiep/06_Tuan_tu/SD_UC12.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC12.xml
+63,Sơ đồ tuần tự,TT-UC13,UC13 — Xem cập nhật và phản hồi của mình,XML_mo_truc_tiep/06_Tuan_tu/SD_UC13.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC13.xml
+64,Sơ đồ tuần tự,TT-UC14,UC14 — Tra cứu hồ sơ người dân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC14.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC14.xml
+65,Sơ đồ tuần tự,TT-UC15,UC15 — Quản lý danh mục vaccine,XML_mo_truc_tiep/06_Tuan_tu/SD_UC15.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC15.xml
+66,Sơ đồ tuần tự,TT-UC16,UC16 — Quản lý lô vaccine và xem tồn kho,XML_mo_truc_tiep/06_Tuan_tu/SD_UC16.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC16.xml
+67,Sơ đồ tuần tự,TT-UC17,UC17 — Quản lý và điều phối lịch tiêm,XML_mo_truc_tiep/06_Tuan_tu/SD_UC17.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC17.xml
+68,Sơ đồ tuần tự,TT-UC18,UC18 — Ghi nhận mũi tiêm thực tế,XML_mo_truc_tiep/06_Tuan_tu/SD_UC18.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC18.xml
+69,Sơ đồ tuần tự,TT-UC19,UC19 — Ghi nhận và cập nhật chống chỉ định,XML_mo_truc_tiep/06_Tuan_tu/SD_UC19.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC19.xml
+70,Sơ đồ tuần tự,TT-UC20,UC20 — Tra cứu lịch sử tiêm người dân,XML_mo_truc_tiep/06_Tuan_tu/SD_UC20.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC20.xml
+71,Sơ đồ tuần tự,TT-UC21,UC21 — Truy vết lô và truy ngược mũi tiêm,XML_mo_truc_tiep/06_Tuan_tu/SD_UC21.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC21.xml
+72,Sơ đồ tuần tự,TT-UC22,UC22 — Tra cứu hàng đợi theo dõi sau tiêm,XML_mo_truc_tiep/06_Tuan_tu/SD_UC22.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC22.xml
+73,Sơ đồ tuần tự,TT-UC23,UC23 — Tiếp nhận và xử lý theo dõi sau tiêm,XML_mo_truc_tiep/06_Tuan_tu/SD_UC23.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC23.xml
+74,Sơ đồ tuần tự,TT-UC24,UC24 — Xem tổng quan theo vai trò,XML_mo_truc_tiep/06_Tuan_tu/SD_UC24.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC24.xml
+75,Sơ đồ tuần tự,TT-UC25,UC25 — Tra cứu tài khoản hệ thống,XML_mo_truc_tiep/06_Tuan_tu/SD_UC25.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC25.xml
+76,Sơ đồ tuần tự,TT-UC26,UC26 — Phân quyền tài khoản,XML_mo_truc_tiep/06_Tuan_tu/SD_UC26.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC26.xml
+77,Sơ đồ tuần tự,TT-UC27,UC27 — Khóa và mở khóa tài khoản,XML_mo_truc_tiep/06_Tuan_tu/SD_UC27.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC27.xml
+78,Sơ đồ tuần tự,TT-UC28,UC28 — Chủ động tạo thông báo nhắc lịch,XML_mo_truc_tiep/06_Tuan_tu/SD_UC28.xml,XML_dan_Edit_Diagram/06_Tuan_tu/SD_UC28.xml

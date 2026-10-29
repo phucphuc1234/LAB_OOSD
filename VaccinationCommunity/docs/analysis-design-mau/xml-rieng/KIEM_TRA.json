@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "baseline": "27fdf334fbb2fb3762498796c8fa4fddf395adbf",
+  "diagram_count": 78,
+  "individual_xml_open_files": 78,
+  "individual_xml_paste_files": 78,
+  "usecases": 28,
+  "rendered_pages": 78,
+  "text_width_warnings": 0,
+  "model_equivalence": "All 78 standalone mxfile/model pairs match their reviewed source model.",
+  "reviewed_semantics": [
+    "Actors/roles and scope",
+    "No fake capacity per time slot",
+    "Browser-only logout",
+    "Warning before submitting followup",
+    "Vaccination without appointment and idempotent retry",
+    "Expected revision and allowed followup state transitions",
+    "Reminder transaction per schedule",
+    "Real database cardinalities and no invented FK"
+  ],
+  "source_scope": "Documentation models and actual mxGraph rendering; application/SQL runtime tests not rerun in this document revision."
+}

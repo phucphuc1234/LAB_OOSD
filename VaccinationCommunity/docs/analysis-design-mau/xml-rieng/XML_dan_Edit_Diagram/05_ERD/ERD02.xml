@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxGraphModel dx="2200" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2167" pageHeight="1502" math="0" shadow="0">
+  <root>
+    <mxCell id="0" style="" />
+    <mxCell id="1" parent="0" style="" />
+    <mxCell id="ERD02-title" value="ERD02 — Tài khoản, vai trò, hồ sơ và chống chỉ định" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="25" y="15" width="2117" height="50" />
+    </mxCell>
+    <mxCell id="ERD02-subtitle" value="ERD vật lý theo database/01-schema.sql. PK: khóa chính; FK: khóa ngoại; UK: duy nhất; NULL: tùy chọn. Các cột không ghi NULL là NOT NULL. Bảng xám là tham chiếu ngoài cụm (chỉ hiện PK); xem trang tổng thể để đủ cột và quan hệ." style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=14;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="30" y="69" width="2107" height="65" />
+    </mxCell>
+    <mxCell id="ERD02-VAITRO" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="45.0" y="858.0" width="430" height="145" />
+    </mxCell>
+    <mxCell id="ERD02-VAITRO-head" value="VAITRO&#10;Vai trò" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-VAITRO">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-VAITRO-MaVaiTro" value="MaVaiTro : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-VAITRO">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-VAITRO-TenVaiTro" value="TenVaiTro : nvarchar(50) [UK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-VAITRO">
+      <mxGeometry as="geometry" x="0" y="83" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-VAITRO-TrangThai" value="TrangThai : bit" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-VAITRO">
+      <mxGeometry as="geometry" x="0" y="108" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="594.0" y="783.0" width="430" height="295" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-head" value="TAIKHOAN&#10;Tài khoản" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-MaTaiKhoan" value="MaTaiKhoan : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-TenDangNhap" value="TenDangNhap : varchar(100) [UK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="83" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-MatKhau" value="MatKhau : varchar(255)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="108" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-Email" value="Email : varchar(150) [UK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="133" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-SoDienThoai" value="SoDienThoai : varchar(20) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="158" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-MaVaiTro" value="MaVaiTro : int [FK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="183" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-TrangThai" value="TrangThai : bit" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="208" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-NgayTao" value="NgayTao : datetime2(0)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="233" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-TAIKHOAN-LanDangNhapCuoi" value="LanDangNhapCuoi : datetime2(0) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-TAIKHOAN">
+      <mxGeometry as="geometry" x="0" y="258" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1143.0" y="378.5" width="430" height="470" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-head" value="NGUOIDAN&#10;Người dân" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-MaNguoiDan" value="MaNguoiDan : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-MaTaiKhoan" value="MaTaiKhoan : int [FK, NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="83" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-HoTen" value="HoTen : nvarchar(150)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="108" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-NgaySinh" value="NgaySinh : date [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="133" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-GioiTinh" value="GioiTinh : nvarchar(20) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="158" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-CCCD" value="CCCD : varchar(20) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="183" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-SoBHYT" value="SoBHYT : varchar(30) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="208" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-SoDienThoai" value="SoDienThoai : varchar(20) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="233" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-Email" value="Email : varchar(150) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="258" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-DiaChi" value="DiaChi : nvarchar(255) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="283" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-PhuongXa" value="PhuongXa : nvarchar(100) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="308" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-QuanHuyen" value="QuanHuyen : nvarchar(100) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="333" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-TinhThanh" value="TinhThanh : nvarchar(100) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="358" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-NgayTao" value="NgayTao : datetime2(0)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="383" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-NgayCapNhat" value="NgayCapNhat : datetime2(0)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="408" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-NGUOIDAN-TrangThai" value="TrangThai : bit" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-NGUOIDAN">
+      <mxGeometry as="geometry" x="0" y="433" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-LICHTIEM" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1692.0" y="160.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-LICHTIEM-head" value="LICHTIEM&#10;Lịch tiêm — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-LICHTIEM">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-LICHTIEM-MaLichTiem" value="MaLichTiem : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-LICHTIEM">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-MUITIEM" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1692.0" y="329.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-MUITIEM-head" value="MUITIEM&#10;Mũi tiêm — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-MUITIEM">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-MUITIEM-MaMuiTiem" value="MaMuiTiem : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-MUITIEM">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1692.0" y="668.5" width="430" height="270" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-head" value="CHONGCHIDINH&#10;Chống chỉ định" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-MaChongChiDinh" value="MaChongChiDinh : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-MaNguoiDan" value="MaNguoiDan : int [FK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="83" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-NoiDung" value="NoiDung : nvarchar(2000)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="108" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-NgayXacNhan" value="NgayXacNhan : datetime2(0) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="133" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-MaNguoiXacNhan" value="MaNguoiXacNhan : int [FK, NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="158" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-TrangThai" value="TrangThai : nvarchar(50)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="183" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-GhiChu" value="GhiChu : nvarchar(1000) [NULL]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="208" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-CHONGCHIDINH-NgayTao" value="NgayTao : datetime2(0)" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-CHONGCHIDINH">
+      <mxGeometry as="geometry" x="0" y="233" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-THONGBAO" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1692.0" y="519.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-THONGBAO-head" value="THONGBAO&#10;Thông báo — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-THONGBAO">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-THONGBAO-MaThongBao" value="MaThongBao : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-THONGBAO">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-LICHSUHIEUCHINH" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1143.0" y="1123.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-LICHSUHIEUCHINH-head" value="LICHSUHIEUCHINH&#10;Nhật ký hiệu chỉnh — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-LICHSUHIEUCHINH">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-LICHSUHIEUCHINH-MaLichSu" value="MaLichSu : bigint [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-LICHSUHIEUCHINH">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOISAUTIEM" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1692.0" y="993.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOISAUTIEM-head" value="THEODOISAUTIEM&#10;Phiếu theo dõi sau tiêm — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-THEODOISAUTIEM">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOISAUTIEM-MaTheoDoi" value="MaTheoDoi : int [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-THEODOISAUTIEM">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOI_LICHSU" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1143.0" y="1272.0" width="430" height="95" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOI_LICHSU-head" value="THEODOI_LICHSU&#10;Lịch sử xử lý phiếu — tham chiếu" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontFamily=Arial;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="ERD02-THEODOI_LICHSU">
+      <mxGeometry as="geometry" x="0" y="0" width="430" height="55" />
+    </mxCell>
+    <mxCell id="ERD02-THEODOI_LICHSU-MaLichSu" value="MaLichSu : bigint [PK]" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=11;fontFamily=Arial;fontSize=13;fontColor=#000000;" vertex="1" parent="ERD02-THEODOI_LICHSU">
+      <mxGeometry as="geometry" x="0" y="58" width="430" height="25" />
+    </mxCell>
+    <mxCell id="ERD02-fk-1" value="" edge="1" parent="1" source="ERD02-VAITRO" target="ERD02-TAIKHOAN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="514.08" y="930.5" />
+          <mxPoint x="554.85" y="930.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-1-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="458.63800000000003" y="904.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-1-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="546.292" y="904.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-1-name" value="MaVaiTro" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="418.97" y="925.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-2" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-NGUOIDAN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.11101694915254237;exitDx=0;exitDy=0;entryX=0;entryY=0.9303191489361702;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1063.08" y="815.75" />
+          <mxPoint x="1103.85" y="815.75" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-2-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1007.6379999999999" y="789.75" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-2-c" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1095.292" y="789.75" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-2-name" value="MaTaiKhoan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="959.5" y="797.25" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-3" value="" edge="1" parent="1" source="ERD02-NGUOIDAN" target="ERD02-LICHTIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.6666315789473686;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1358.0" y="295.86" />
+          <mxPoint x="1358.0" y="223.33" />
+          <mxPoint x="1538.1" y="223.33" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-3-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1326.0" y="319.372" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-3-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.99" y="197.33" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-3-name" value="MaNguoiDan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1321.5" y="217.79999999999995" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-4" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-LICHTIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=0.33488372093023255;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.3333684210526314;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="738.0" y="567.15" />
+          <mxPoint x="738.0" y="191.67" />
+          <mxPoint x="1354.28" y="191.67" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-4-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="706.0" y="722.76" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-4-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.91" y="165.67" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-4-name" value="MaNhanVienTao" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="784.41" y="186.20000000000005" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-5" value="" edge="1" parent="1" source="ERD02-NGUOIDAN" target="ERD02-MUITIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.04840425531914894;exitDx=0;exitDy=0;entryX=0;entryY=0.7605263157894737;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1612.08" y="401.25" />
+          <mxPoint x="1652.85" y="401.25" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-5-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1556.638" y="375.25" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-5-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1644.292" y="375.25" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-5-name" value="MaNguoiDan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1506.5" y="395.75" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-6" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-MUITIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=0.6674418604651163;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.26052631578947366;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="881.0" y="611.84" />
+          <mxPoint x="881.0" y="353.75" />
+          <mxPoint x="1391.06" y="353.75" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-6-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="849.0" y="722.72" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-6-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.92" y="327.75" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-6-name" value="MaNhanVien" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="946.97" y="348.20000000000005" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-7" value="" edge="1" parent="1" source="ERD02-NGUOIDAN" target="ERD02-CHONGCHIDINH" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.8085106382978723;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1612.08" y="758.5" />
+          <mxPoint x="1652.85" y="758.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-7-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1556.638" y="732.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-7-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1644.292" y="732.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-7-name" value="MaNguoiDan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1506.5" y="753.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-8" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-CHONGCHIDINH" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.37457627118644066;exitDx=0;exitDy=0;entryX=0;entryY=0.8333333333333334;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1217.24" y="893.5" />
+          <mxPoint x="1498.81" y="893.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-8-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1026.29" y="867.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-8-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.74" y="867.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-8-name" value="MaNguoiXacNhan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1218.0" y="888.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-9" value="" edge="1" parent="1" source="ERD02-NGUOIDAN" target="ERD02-THONGBAO" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1612.08" y="566.5" />
+          <mxPoint x="1652.85" y="566.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-9-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1556.638" y="540.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-9-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1644.292" y="540.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-9-name" value="MaNguoiDan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1506.5" y="561.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-10" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-LICHSUHIEUCHINH" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.9279661016949152;exitDx=0;exitDy=0;entryX=0.33488372093023255;entryY=0;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1151.1" y="1056.75" />
+          <mxPoint x="1287.0" y="1056.75" />
+          <mxPoint x="1287.0" y="1091.75" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-10-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1026.23" y="1030.75" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-10-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1255.0" y="1084.452" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-10-name" value="MaTaiKhoan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1064.7" y="1051.25" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-11" value="" edge="1" parent="1" source="ERD02-NGUOIDAN" target="ERD02-THEODOISAUTIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=0.6674418604651163;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.2236842105263158;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1430.0" y="936.0" />
+          <mxPoint x="1430.0" y="1014.25" />
+          <mxPoint x="1565.37" y="1014.25" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-11-p" value="1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1398.0" y="856.65" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-11-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.87" y="988.25" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-11-name" value="MaNguoiDan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1352.1" y="1008.75" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-12" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-THEODOISAUTIEM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=1;exitY=0.8559322033898306;exitDx=0;exitDy=0;entryX=0;entryY=0.4473684210526316;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="1217.24" y="1035.5" />
+          <mxPoint x="1498.81" y="1035.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-12-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1026.29" y="1009.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-12-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1625.74" y="1009.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-12-name" value="MaNhanVienXuLy" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1219.5" y="1030.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-13" value="" edge="1" parent="1" source="ERD02-TAIKHOAN" target="ERD02-THEODOI_LICHSU" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;strokeColor=#000000;strokeWidth=1.2;startArrow=none;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="809.0" y="1188.16" />
+          <mxPoint x="809.0" y="1319.5" />
+          <mxPoint x="989.1" y="1319.5" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ERD02-fk-13-p" value="0..1" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="777.0" y="1086.12" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-13-c" value="0..*" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=1;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1076.99" y="1293.5" width="64" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-fk-13-name" value="MaTaiKhoan" style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=12;fontColor=#000000;fontStyle=0;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="731.3" y="1314.0" width="180" height="24" />
+    </mxCell>
+    <mxCell id="ERD02-legend" value="Lực lượng ở mỗi đầu là số đối tượng tại đầu đó: 1 = đúng một; 0..1 = không hoặc một; 0..* = không hoặc nhiều. Đường liền là liên kết/FK, không biểu thị xóa lan truyền." style="text;html=0;whiteSpace=wrap;overflow=hidden;strokeColor=none;fillColor=#ffffff;fontFamily=Arial;fontSize=14;fontColor=#000000;fontStyle=0;align=left;verticalAlign=middle;spacing=4;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="40" y="1392" width="2087" height="80" />
+    </mxCell>
+  </root>
+</mxGraphModel>
