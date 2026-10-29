@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="PR23" name="PR23 — UC23 — Tiếp nhận và xử lý theo dõi sau tiêm">
+    <mxGraphModel dx="1660" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1660" pageHeight="825" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PR23-n1" value="PHÂN RÃ USE CASE: UC23 — Tiếp nhận và xử lý theo dõi sau tiêm" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=22;fontColor=#111111;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="16" width="1600" height="58" />
+        </mxCell>
+        <mxCell id="PR23-n2" value="UC23 — Tiếp nhận và xử lý theo&#10;dõi sau tiêm" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="430" y="340.5" width="370" height="94" />
+        </mxCell>
+        <mxCell id="PR23-n3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="105" y="270.0" width="70" height="95" />
+        </mxCell>
+        <mxCell id="PR23-n4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="129" y="270.0" width="22" height="22" />
+        </mxCell>
+        <mxCell id="PR23-n5" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="292.0" />
+            <mxPoint as="targetPoint" x="140" y="333.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n6" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="110" y="311.0" />
+            <mxPoint as="targetPoint" x="170" y="311.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n7" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="333.0" />
+            <mxPoint as="targetPoint" x="112" y="365.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n8" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="333.0" />
+            <mxPoint as="targetPoint" x="168" y="365.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n9" value="Nhân viên y tế" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=15;fontColor=#111111;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="373.0" width="200" height="62" />
+        </mxCell>
+        <mxCell id="PR23-n10" source="PR23-n3" target="PR23-n2" value="" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;endArrow=open;endFill=0;startArrow=none;exitX=1;exitY=0.45;entryX=0;entryY=0.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n11" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="105" y="425.0" width="70" height="95" />
+        </mxCell>
+        <mxCell id="PR23-n12" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="129" y="425.0" width="22" height="22" />
+        </mxCell>
+        <mxCell id="PR23-n13" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="447.0" />
+            <mxPoint as="targetPoint" x="140" y="488.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n14" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="110" y="466.0" />
+            <mxPoint as="targetPoint" x="170" y="466.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n15" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="488.0" />
+            <mxPoint as="targetPoint" x="112" y="520.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n16" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="140" y="488.0" />
+            <mxPoint as="targetPoint" x="168" y="520.0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PR23-n17" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=15;fontColor=#111111;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="528.0" width="200" height="62" />
+        </mxCell>
+        <mxCell id="PR23-n18" source="PR23-n11" target="PR23-n2" value="" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;endArrow=open;endFill=0;startArrow=none;exitX=1;exitY=0.45;entryX=0;entryY=0.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n19" value="Kiểm tra phiên bản và chuyển&#10;trạng thái hợp lệ" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1080" y="123" width="350" height="94" />
+        </mxCell>
+        <mxCell id="PR23-n20" source="PR23-n2" target="PR23-n19" value="«include»" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n21" value="Lưu phản hồi và nhân viên đang&#10;xử lý" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1080" y="268" width="350" height="94" />
+        </mxCell>
+        <mxCell id="PR23-n22" source="PR23-n2" target="PR23-n21" value="«include»" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n23" value="Lưu nhật ký, tăng phiên bản và&#10;tạo thông báo" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1080" y="413" width="350" height="94" />
+        </mxCell>
+        <mxCell id="PR23-n24" source="PR23-n2" target="PR23-n23" value="«include»" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n25" value="Hẹn cập nhật tiếp" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1080" y="558" width="350" height="94" />
+        </mxCell>
+        <mxCell id="PR23-n26" source="PR23-n25" target="PR23-n2" value="«extend»&#10;[có hẹn tiếp hoặc chọn&#10;monitoring]" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+        </mxCell>
+        <mxCell id="PR23-n27" value="monitoring cần hẹn tương lai; resolved bỏ hẹn. new không sang thẳng resolved. Lưu xử lý mới gán nhân viên; xung đột revision trả409 và giữ bản nháp." style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=14;fontColor=#111111;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="713" width="1590" height="90" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

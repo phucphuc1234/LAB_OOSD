@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxGraphModel dx="2110" dy="660" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2110" pageHeight="660" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="PR28-n1" value="PHÂN RÃ USE CASE: UC28 — Chủ động tạo thông báo nhắc lịch" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=22;fontColor=#111111;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="30" y="16" width="2050" height="58" />
+    </mxCell>
+    <mxCell id="PR28-n2" value="UC28 — Chủ động tạo thông báo&#10;nhắc lịch" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="430" y="203" width="370" height="94" />
+    </mxCell>
+    <mxCell id="PR28-n3" value="" style="shape=rectangle;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="105" y="210.0" width="70" height="95" />
+    </mxCell>
+    <mxCell id="PR28-n4" value="" style="shape=ellipse;fillColor=#ffffff;strokeColor=#111111;strokeWidth=1.2;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="129" y="210.0" width="22" height="22" />
+    </mxCell>
+    <mxCell id="PR28-n5" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+      <mxGeometry as="geometry" relative="1">
+        <mxPoint as="sourcePoint" x="140" y="232.0" />
+        <mxPoint as="targetPoint" x="140" y="273.0" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="PR28-n6" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+      <mxGeometry as="geometry" relative="1">
+        <mxPoint as="sourcePoint" x="110" y="251.0" />
+        <mxPoint as="targetPoint" x="170" y="251.0" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="PR28-n7" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+      <mxGeometry as="geometry" relative="1">
+        <mxPoint as="sourcePoint" x="140" y="273.0" />
+        <mxPoint as="targetPoint" x="112" y="305.0" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="PR28-n8" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#111111;strokeWidth=1.2;">
+      <mxGeometry as="geometry" relative="1">
+        <mxPoint as="sourcePoint" x="140" y="273.0" />
+        <mxPoint as="targetPoint" x="168" y="305.0" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="PR28-n9" value="Quản trị viên" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=15;fontColor=#111111;fontStyle=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="40" y="313.0" width="200" height="62" />
+    </mxCell>
+    <mxCell id="PR28-n10" source="PR28-n3" target="PR28-n2" value="" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;endArrow=open;endFill=0;startArrow=none;exitX=1;exitY=0.45;entryX=0;entryY=0.5;" edge="1" parent="1">
+      <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+    </mxCell>
+    <mxCell id="PR28-n11" value="Tra cứu lịch đã xác nhận, sắp&#10;tới" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1050" y="123" width="350" height="94" />
+    </mxCell>
+    <mxCell id="PR28-n12" source="PR28-n2" target="PR28-n11" value="«include»" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+      <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+    </mxCell>
+    <mxCell id="PR28-n13" value="Tạo thông báo nhắc lịch Website" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1050" y="268" width="350" height="94" />
+    </mxCell>
+    <mxCell id="PR28-n14" source="PR28-n13" target="PR28-n2" value="«extend»&#10;[có lịch phù hợp chưa được nhắc]" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+      <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+    </mxCell>
+    <mxCell id="PR28-n15" value="Kiểm tra lại điều kiện và chống&#10;thông báo trùng" style="shape=ellipse;html=0;whiteSpace=wrap;strokeColor=#111111;fillColor=#ffffff;strokeWidth=1.2;fontFamily=Arial;fontSize=16;fontColor=#111111;align=center;verticalAlign=middle;spacing=7;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="1640" y="268.0" width="345" height="94" />
+    </mxCell>
+    <mxCell id="PR28-n16" source="PR28-n13" target="PR28-n15" value="«include»" style="edgeStyle=none;rounded=0;html=0;fontFamily=Arial;fontSize=13;fontColor=#111111;labelBackgroundColor=#ffffff;strokeWidth=1.2;strokeColor=#111111;dashed=1;dashPattern=8 6;endArrow=open;endFill=0;startArrow=none;" edge="1" parent="1">
+      <mxGeometry as="geometry" relative="1" x="0" y="-8" />
+    </mxCell>
+    <mxCell id="PR28-n17" value="API admin gọi chủ động; chưa có nút web hoặc job tự chạy. Mỗi lịch được xử lý trong giao dịch riêng; không có lịch phù hợp thì trả0." style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=14;fontColor=#111111;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry as="geometry" x="35" y="548" width="2040" height="90" />
+    </mxCell>
+  </root>
+</mxGraphModel>

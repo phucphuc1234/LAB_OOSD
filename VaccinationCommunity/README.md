@@ -121,7 +121,7 @@ Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài
 
 ## Sơ đồ phân tích thiết kế theo mẫu
 
-[Bộ XML theo mẫu](docs/analysis-design-mau/README.md) có **78 sơ đồ**, giữ mã **UC01–UC28**: tổng quát, phân rã, hoạt động, lớp/kiến trúc, ERD và tuần tự. Mỗi sơ đồ có bản mở trực tiếp và bản XML để dán vào **Extras → Edit Diagram** trên draw.io. Tải toàn bộ tại [VaccinationCommunity_XML_theo_mau.zip](../VaccinationCommunity_XML_theo_mau.zip).
+[Bộ XML theo mẫu](docs/analysis-design-mau/README.md) có **98 sơ đồ**, giữ mã **UC01–UC28**. Sơ đồ tổng quát gồm **18 mục tiêu chính**, các use case chung chỉ vẽ một lần; phần phân rã có **34 trang**. Bộ tài liệu còn có hoạt động, lớp/kiến trúc, ERD và tuần tự. Mỗi sơ đồ có bản mở trực tiếp và bản XML để dán vào **Extras → Edit Diagram** trên draw.io. Tải toàn bộ tại [VaccinationCommunity_XML_theo_mau.zip](../VaccinationCommunity_XML_theo_mau.zip).
 
 ### Sửa lỗi native binding trên Windows
 
