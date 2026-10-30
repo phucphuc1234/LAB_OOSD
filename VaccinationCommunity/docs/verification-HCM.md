@@ -4,7 +4,7 @@
 
 ## Kiểm tra tại workspace
 
-- Kiểm thử backend: phân quyền hiện tại, truy cập chéo cơ sở, quyền sở hữu, thu hồi phân công, tồn kho, khóa giao dịch, xử lý theo dõi sau tiêm và lỗi dữ liệu.
+- Kiểm thử backend: **92 đạt, 1 bài SQL được bỏ qua trong lệnh mặc định**; phân quyền hiện tại, truy cập chéo cơ sở, quyền sở hữu, thu hồi phân công, tồn kho, khóa giao dịch, xử lý theo dõi sau tiêm và lỗi dữ liệu.
 - Playwright: **22/22 đạt**, dùng fixture HTTP tách biệt. Có chọn cơ sở/ngày/vaccine, phản hồi HTTP đến trễ, giữ liều cuối theo lịch, phân công nhiều cơ sở, thu hồi, cơ sở ngừng hoạt động và hiển thị điện thoại.
 - Build Vite thành công. Lint không có lỗi; vẫn có cảnh báo React về cách nạp dữ liệu trong effect ở các trang cũ/mới.
 - SQLFluff phân tích cú pháp T-SQL cả hai file standalone đầy đủ, không bỏ qua file lớn; đạt. Đây là kiểm tra cú pháp, không thay thế SQL Server.
@@ -14,7 +14,13 @@
 
 Bộ `npm run test:sql` tạo database kiểm thử riêng, bao gồm **11 trường hợp tích hợp** về nâng cấp dữ liệu cũ, schema/seed, phân quyền, đặt lịch đồng thời, ghi mũi lặp đồng thời, API cơ sở, phản hồi theo dõi và nhật ký. Không thao tác database demo đang sử dụng. Workflow GitHub Actions chạy SQL Server 2022 và một job Windows Node 22.17 để kiểm tra tương thích thư viện.
 
-Trạng thái chạy CI của bản này đang được cập nhật; không suy diễn rằng mock HTTP hoặc parser đã chứng minh giao dịch SQL thực thi thành công. Kết quả bản cũ trong `verification.md` không áp dụng thay cho bản HCM này.
+Commit mã nguồn **`b8efda935ea1c2a7cf73e3e428851e6e87baa895`**:
+
+- [SQL Server 2022: thành công](https://github.com/phucphuc1234/LAB_OOSD/actions/runs/41064644323/job/124092749164), chạy bộ SQL/HTTP thật, gồm 11 kiểm thử con và các thao tác nâng cấp/seed.
+- [Windows Node 22.17: thành công](https://github.com/phucphuc1234/LAB_OOSD/actions/runs/41064644323/job/124092749034), `npm ci --include=optional`, backend tests và build.
+- [Lượt CI đầy đủ: thành công cả ba job](https://github.com/phucphuc1234/LAB_OOSD/actions/runs/41064644323), gồm ứng dụng Linux (backend/build/22 Playwright), SQL Server 2022 và Windows Node 22.17. Cập nhật tài liệu/ZIP sau commit trên không thay đổi logic ứng dụng.
+
+Kết quả bản cũ trong `verification.md` được giữ làm lịch sử; các liên kết trên kiểm chứng riêng bản HCM.
 
 ## Giao diện
 
