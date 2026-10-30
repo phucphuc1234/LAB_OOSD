@@ -1,0 +1,587 @@
+{
+  "baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "application_unchanged": true,
+  "overview": {
+    "actors": {
+      "citizen": "Người dân",
+      "staff": "Nhân viên y tế",
+      "admin": "Quản trị viên"
+    },
+    "goals": [
+      {
+        "id": "login",
+        "name": "Đăng nhập",
+        "usecases": [
+          "UC02"
+        ],
+        "actors": [
+          "citizen",
+          "staff",
+          "admin"
+        ],
+        "x": 810,
+        "y": 160,
+        "w": 360,
+        "h": 94
+      },
+      {
+        "id": "logout",
+        "name": "Đăng xuất",
+        "usecases": [
+          "UC03"
+        ],
+        "actors": [
+          "citizen",
+          "staff",
+          "admin"
+        ],
+        "x": 810,
+        "y": 305,
+        "w": 360,
+        "h": 94
+      },
+      {
+        "id": "password",
+        "name": "Đổi mật khẩu",
+        "usecases": [
+          "UC04"
+        ],
+        "actors": [
+          "citizen",
+          "staff",
+          "admin"
+        ],
+        "x": 810,
+        "y": 450,
+        "w": 360,
+        "h": 94
+      },
+      {
+        "id": "register",
+        "name": "Đăng ký tài khoản Người dân",
+        "usecases": [
+          "UC01"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 635,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "profile",
+        "name": "Quản lý hồ sơ cá nhân",
+        "usecases": [
+          "UC05"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 805,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "my-schedules",
+        "name": "Quản lý lịch tiêm cá nhân",
+        "usecases": [
+          "UC06",
+          "UC07",
+          "UC08"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 950,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "my-history",
+        "name": "Tra cứu lịch sử tiêm và chống chỉ định",
+        "usecases": [
+          "UC09",
+          "UC10"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 1095,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "my-notices",
+        "name": "Xem thông báo",
+        "usecases": [
+          "UC11"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 1240,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "my-followups",
+        "name": "Theo dõi sức khỏe sau tiêm",
+        "usecases": [
+          "UC12",
+          "UC13"
+        ],
+        "actors": [
+          "citizen"
+        ],
+        "x": 405,
+        "y": 1385,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "patients",
+        "name": "Tra cứu hồ sơ người dân thuộc phạm vi",
+        "usecases": [
+          "UC14"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 700,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "facility-workspace",
+        "name": "Quản lý cơ sở phụ trách và vaccine tiếp nhận",
+        "usecases": [
+          "UC32",
+          "UC33"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 845,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "stock",
+        "name": "Quản lý lô vaccine và tồn kho tại cơ sở",
+        "usecases": [
+          "UC16"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 990,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "schedules",
+        "name": "Quản lý, điều phối lịch tiêm",
+        "usecases": [
+          "UC17"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1135,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "doses",
+        "name": "Ghi nhận mũi tiêm",
+        "usecases": [
+          "UC18"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1280,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "contra",
+        "name": "Quản lý chống chỉ định",
+        "usecases": [
+          "UC19"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1425,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "trace",
+        "name": "Tra cứu lịch sử và truy vết tiêm chủng",
+        "usecases": [
+          "UC20",
+          "UC21"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1570,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "review",
+        "name": "Tiếp nhận và xử lý theo dõi sau tiêm",
+        "usecases": [
+          "UC22",
+          "UC23"
+        ],
+        "actors": [
+          "staff",
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1715,
+        "w": 390,
+        "h": 96
+      },
+      {
+        "id": "catalog",
+        "name": "Quản lý danh mục vaccine dùng chung",
+        "usecases": [
+          "UC15"
+        ],
+        "actors": [
+          "admin"
+        ],
+        "x": 1160,
+        "y": 1900,
+        "w": 400,
+        "h": 102
+      },
+      {
+        "id": "accounts",
+        "name": "Quản lý tài khoản và phân quyền",
+        "usecases": [
+          "UC25",
+          "UC26",
+          "UC27"
+        ],
+        "actors": [
+          "admin"
+        ],
+        "x": 1160,
+        "y": 2045,
+        "w": 400,
+        "h": 102
+      },
+      {
+        "id": "network",
+        "name": "Quản lý khu vực, cơ sở và phân công nhân viên",
+        "usecases": [
+          "UC29",
+          "UC30",
+          "UC31"
+        ],
+        "actors": [
+          "admin"
+        ],
+        "x": 1160,
+        "y": 2190,
+        "w": 400,
+        "h": 102
+      },
+      {
+        "id": "dashboard",
+        "name": "Xem tổng quan theo vai trò",
+        "usecases": [
+          "UC24"
+        ],
+        "actors": [
+          "citizen",
+          "staff",
+          "admin"
+        ],
+        "x": 560,
+        "y": 2190,
+        "w": 420,
+        "h": 100
+      }
+    ],
+    "associations": [
+      {
+        "actor": "citizen",
+        "goal": "login"
+      },
+      {
+        "actor": "staff",
+        "goal": "login"
+      },
+      {
+        "actor": "admin",
+        "goal": "login"
+      },
+      {
+        "actor": "citizen",
+        "goal": "logout"
+      },
+      {
+        "actor": "staff",
+        "goal": "logout"
+      },
+      {
+        "actor": "admin",
+        "goal": "logout"
+      },
+      {
+        "actor": "citizen",
+        "goal": "password"
+      },
+      {
+        "actor": "staff",
+        "goal": "password"
+      },
+      {
+        "actor": "admin",
+        "goal": "password"
+      },
+      {
+        "actor": "citizen",
+        "goal": "register"
+      },
+      {
+        "actor": "citizen",
+        "goal": "profile"
+      },
+      {
+        "actor": "citizen",
+        "goal": "my-schedules"
+      },
+      {
+        "actor": "citizen",
+        "goal": "my-history"
+      },
+      {
+        "actor": "citizen",
+        "goal": "my-notices"
+      },
+      {
+        "actor": "citizen",
+        "goal": "my-followups"
+      },
+      {
+        "actor": "staff",
+        "goal": "patients"
+      },
+      {
+        "actor": "admin",
+        "goal": "patients"
+      },
+      {
+        "actor": "staff",
+        "goal": "facility-workspace"
+      },
+      {
+        "actor": "admin",
+        "goal": "facility-workspace"
+      },
+      {
+        "actor": "staff",
+        "goal": "stock"
+      },
+      {
+        "actor": "admin",
+        "goal": "stock"
+      },
+      {
+        "actor": "staff",
+        "goal": "schedules"
+      },
+      {
+        "actor": "admin",
+        "goal": "schedules"
+      },
+      {
+        "actor": "staff",
+        "goal": "doses"
+      },
+      {
+        "actor": "admin",
+        "goal": "doses"
+      },
+      {
+        "actor": "staff",
+        "goal": "contra"
+      },
+      {
+        "actor": "admin",
+        "goal": "contra"
+      },
+      {
+        "actor": "staff",
+        "goal": "trace"
+      },
+      {
+        "actor": "admin",
+        "goal": "trace"
+      },
+      {
+        "actor": "staff",
+        "goal": "review"
+      },
+      {
+        "actor": "admin",
+        "goal": "review"
+      },
+      {
+        "actor": "admin",
+        "goal": "catalog"
+      },
+      {
+        "actor": "admin",
+        "goal": "accounts"
+      },
+      {
+        "actor": "admin",
+        "goal": "network"
+      },
+      {
+        "actor": "citizen",
+        "goal": "dashboard"
+      },
+      {
+        "actor": "staff",
+        "goal": "dashboard"
+      },
+      {
+        "actor": "admin",
+        "goal": "dashboard"
+      }
+    ]
+  },
+  "erd": {
+    "file": "05-ERD.drawio",
+    "id": "ERD-HCM",
+    "title": "02 — ERD vật lý: 19 bảng, 159 cột, 34 khóa ngoại",
+    "tables": [
+      "SCHEMAVERSION",
+      "VAITRO",
+      "TAIKHOAN",
+      "NGUOIDAN",
+      "VACCINE",
+      "LOVACCINE",
+      "LICHTIEM",
+      "MUITIEM",
+      "CHONGCHIDINH",
+      "THONGBAO",
+      "LICHSUHIEUCHINH",
+      "DANHMUCTRIEUCHUNG",
+      "THEODOISAUTIEM",
+      "THEODOI_TRIEUCHUNG",
+      "THEODOI_LICHSU",
+      "KHUVUCTIEM",
+      "COSOTIEM",
+      "PHANCONG_COSOTIEM",
+      "COSOTIEM_VACCINE"
+    ],
+    "full_tables": [
+      "SCHEMAVERSION",
+      "VAITRO",
+      "TAIKHOAN",
+      "NGUOIDAN",
+      "VACCINE",
+      "LOVACCINE",
+      "LICHTIEM",
+      "MUITIEM",
+      "CHONGCHIDINH",
+      "THONGBAO",
+      "LICHSUHIEUCHINH",
+      "DANHMUCTRIEUCHUNG",
+      "THEODOISAUTIEM",
+      "THEODOI_TRIEUCHUNG",
+      "THEODOI_LICHSU",
+      "KHUVUCTIEM",
+      "COSOTIEM",
+      "PHANCONG_COSOTIEM",
+      "COSOTIEM_VACCINE"
+    ],
+    "stub_tables": [],
+    "field_count": 159,
+    "relationships": [
+      "FK_TAIKHOAN_VAITRO",
+      "FK_NGUOIDAN_TAIKHOAN",
+      "FK_LOVACCINE_VACCINE",
+      "FK_LICHTIEM_NGUOIDAN",
+      "FK_LICHTIEM_VACCINE",
+      "FK_LICHTIEM_LOVACCINE",
+      "FK_LICHTIEM_NhanVien",
+      "FK_MUITIEM_NGUOIDAN",
+      "FK_MUITIEM_VACCINE",
+      "FK_MUITIEM_LOVACCINE",
+      "FK_MUITIEM_LICHTIEM",
+      "FK_MUITIEM_NhanVien",
+      "FK_CHONGCHIDINH_NGUOIDAN",
+      "FK_CHONGCHIDINH_TAIKHOAN",
+      "FK_THONGBAO_NGUOIDAN",
+      "FK_THONGBAO_LICHTIEM",
+      "FK_LICHSUHIEUCHINH_TAIKHOAN",
+      "FK_THEODOISAUTIEM_MUITIEM",
+      "FK_THEODOISAUTIEM_NGUOIDAN",
+      "FK_THEODOISAUTIEM_NhanVien",
+      "FK_THEODOI_TRIEUCHUNG_TheoDoi",
+      "FK_THEODOI_TRIEUCHUNG_Catalog",
+      "FK_THEODOI_LICHSU_TheoDoi",
+      "FK_THEODOI_LICHSU_TaiKhoan",
+      "FK_COSOTIEM_KhuVuc",
+      "FK_PHANCONG_TaiKhoan",
+      "FK_PHANCONG_CoSo",
+      "FK_PHANCONG_NguoiPhanCong",
+      "FK_COSOTIEM_VACCINE_CoSo",
+      "FK_COSOTIEM_VACCINE_Vaccine",
+      "FK_LOVACCINE_CoSoTiem",
+      "FK_LICHTIEM_CoSoTiem",
+      "FK_MUITIEM_CoSoTiem",
+      "FK_CHONGCHIDINH_CoSoTiem"
+    ],
+    "width": 3814,
+    "height": 3137,
+    "domain": false
+  },
+  "counts": {
+    "tables": 19,
+    "columns": 159,
+    "foreign_keys": 34,
+    "procedures": 8,
+    "views": 8,
+    "triggers": 6,
+    "functions": 2
+  },
+  "notes": [
+    "Ba tác nhân: Người dân, Nhân viên y tế, Quản trị viên. Mỗi use case dùng chung chỉ vẽ một lần.",
+    "Người dân bao gồm người chuẩn bị đăng ký. Đăng ký chỉ tạo Người dân; admin cấp quyền và phân công nhân viên.",
+    "Nhân viên chỉ xử lý dữ liệu cơ sở được giao. Nhân viên được đọc danh mục vaccine; chỉ admin sửa danh mục dùng chung.",
+    "Tổng quát giữ 21 mục tiêu chính; các thao tác con được nhóm theo nghiệp vụ. API nhắc lịch UC28 chưa có nút web."
+  ]
+}

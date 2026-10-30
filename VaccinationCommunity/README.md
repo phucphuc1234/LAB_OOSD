@@ -136,6 +136,8 @@ Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài
 
 ## Sơ đồ phân tích thiết kế theo mẫu
 
+**Bản mới cho quản lý cơ sở/phân công:** [Use case tổng quát và ERD TP.HCM](docs/analysis-design-HCM/README.md), ba tác nhân, 19 bảng và 34 khóa ngoại. Có một XML gồm hai trang để mở bằng draw.io.
+
 **Lưu ý:** bộ sơ đồ này mô tả phiên bản trước khi thêm quản lý cơ sở/phân công; cần cập nhật các luồng và ERD theo phiên bản mới trước khi đưa vào báo cáo.
 
 [Bộ XML theo mẫu](docs/analysis-design-mau/README.md) có **98 sơ đồ**, giữ mã **UC01–UC28**. Sơ đồ tổng quát gồm **18 mục tiêu chính**, các use case chung chỉ vẽ một lần; phần phân rã có **34 trang**. Bộ tài liệu còn có hoạt động, lớp/kiến trúc, ERD và tuần tự. Mỗi sơ đồ có bản mở trực tiếp và bản XML để dán vào **Extras → Edit Diagram** trên draw.io. Tải toàn bộ tại [VaccinationCommunity_XML_theo_mau.zip](../VaccinationCommunity_XML_theo_mau.zip).

@@ -1,0 +1,26 @@
+[
+  {
+    "file": "05-ERD-HCM.drawio",
+    "group": "05-ERD-HCM",
+    "id": "ERD-HCM",
+    "name": "02 — ERD vật lý: 19 bảng, 159 cột, 34 khóa ngoại",
+    "index": 1,
+    "width": 3835,
+    "height": 3183,
+    "png": "previews/05-ERD-HCM/01-ERD-HCM.png",
+    "svg": "svg/05-ERD-HCM/01-ERD-HCM.svg",
+    "warnings": []
+  },
+  {
+    "file": "01-Use-case-tong-quat-HCM.drawio",
+    "group": "01-Use-case-tong-quat-HCM",
+    "id": "UC-TONG-QUAT-HCM",
+    "name": "01 — Use case tổng quát",
+    "index": 1,
+    "width": 1993,
+    "height": 2561,
+    "png": "previews/01-Use-case-tong-quat-HCM/01-UC-TONG-QUAT-HCM.png",
+    "svg": "svg/01-Use-case-tong-quat-HCM/01-UC-TONG-QUAT-HCM.svg",
+    "warnings": []
+  }
+]

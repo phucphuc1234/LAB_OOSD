@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "pages": 2,
+  "overview_actors": 3,
+  "overview_primary_goals": 21,
+  "shared_auth_nodes_per_function": 1,
+  "registration_creates": "Người dân",
+  "erd_tables": 19,
+  "erd_columns": 159,
+  "foreign_keys": 34,
+  "compound_primary_keys": 3,
+  "rendered_pages": 2,
+  "text_width_warnings": 0,
+  "individual_models_equal_combined": true,
+  "independent_schema_review": "19 tables / 159 columns / 34 FK compared to authored DDL and dynamic migration; no discrepancy",
+  "application_modified": false
+}
