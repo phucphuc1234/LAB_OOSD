@@ -1,141 +1,33 @@
-const { integer } = require("../utils/validation");
-const historyRepository =
-    require("../repositories/historyRepository");
-
-const citizenRepository =
-    require("../repositories/citizenRepository");
-
-
-const createError = (
-    message,
-    statusCode = 400
-) => {
-    const error = new Error(message);
-
-    error.statusCode = statusCode;
-
-    return error;
+const { integer, fail } = require("../utils/validation");
+const history = require("../repositories/historyRepository");
+const citizens = require("../repositories/citizenRepository");
+const ownCitizen = async accountId => {
+    const ownerAccountId = integer(accountId, "Tài khoản người dân");
+    const row = await citizens.findByAccountId(ownerAccountId);
+    if (!row) fail("Không tìm thấy hồ sơ người dân.", 404);
+    return { row, ownerAccountId };
 };
-
-
-// Người dân xem lịch sử của chính mình
-const getMyHistory = async (
-    maTaiKhoan
-) => {
-    const citizen =
-        await citizenRepository
-            .findByAccountId(maTaiKhoan);
-
-    if (!citizen) {
-        throw createError(
-            "Không tìm thấy hồ sơ người dân.",
-            404
-        );
-    }
-
-    return await historyRepository
-        .findByCitizenId(
-            citizen.MaNguoiDan
-        );
+const getMyHistory = async accountId => {
+    const { row, ownerAccountId } = await ownCitizen(accountId);
+    return history.findByCitizenId(row.MaNguoiDan, { ownerAccountId });
 };
-
-
-// Nhân viên xem lịch sử của người dân
-const getCitizenHistory = async (
-    maNguoiDan
-) => {
-    maNguoiDan = integer(maNguoiDan, "Mã người dân");
-    const citizen =
-        await citizenRepository.findById(
-            maNguoiDan
-        );
-
-    if (!citizen) {
-        throw createError(
-            "Không tìm thấy người dân.",
-            404
-        );
-    }
-
-    return await historyRepository
-        .findByCitizenId(
-            maNguoiDan
-        );
+const getCitizenHistory = async (citizenId, accountId) => {
+    citizenId = integer(citizenId, "Mã người dân");
+    const actorId = integer(accountId, "Tài khoản nhân viên");
+    if (!await citizens.findScopedById(citizenId, actorId)) fail("Không tìm thấy hồ sơ người dân được phép xem.", 404);
+    return history.findByCitizenId(citizenId, { actorId });
 };
-
-
-// Xem chi tiết một mũi tiêm
-const getHistoryDetail = async (
-    maMuiTiem
-) => {
-    maMuiTiem = integer(maMuiTiem, "Mã mũi tiêm");
-    const vaccination =
-        await historyRepository
-            .findByVaccinationId(
-                maMuiTiem
-            );
-
-    if (!vaccination) {
-        throw createError(
-            "Không tìm thấy bản ghi tiêm.",
-            404
-        );
-    }
-
-    return vaccination;
+const getHistoryDetail = async (vaccinationId, accountId) => {
+    const row = await history.findByVaccinationId(integer(vaccinationId, "Mã mũi tiêm"), {
+        actorId: integer(accountId, "Tài khoản nhân viên"),
+    });
+    if (!row) fail("Không tìm thấy bản ghi tiêm được phép xem.", 404);
+    return row;
 };
-
-
-// Người dân xem chi tiết,
-// nhưng chỉ được xem mũi tiêm của mình
-const getMyHistoryDetail = async (
-    maTaiKhoan,
-    maMuiTiem
-) => {
-    maMuiTiem = integer(maMuiTiem, "Mã mũi tiêm");
-    const citizen =
-        await citizenRepository
-            .findByAccountId(
-                maTaiKhoan
-            );
-
-    if (!citizen) {
-        throw createError(
-            "Không tìm thấy hồ sơ người dân.",
-            404
-        );
-    }
-
-    const vaccination =
-        await historyRepository
-            .findByVaccinationId(
-                maMuiTiem
-            );
-
-    if (!vaccination) {
-        throw createError(
-            "Không tìm thấy bản ghi tiêm.",
-            404
-        );
-    }
-
-    if (
-        vaccination.MaNguoiDan !==
-        citizen.MaNguoiDan
-    ) {
-        throw createError(
-            "Bạn không có quyền xem bản ghi này.",
-            403
-        );
-    }
-
-    return vaccination;
+const getMyHistoryDetail = async (accountId, vaccinationId) => {
+    const { ownerAccountId } = await ownCitizen(accountId);
+    const row = await history.findByVaccinationId(integer(vaccinationId, "Mã mũi tiêm"), { ownerAccountId });
+    if (!row) fail("Không tìm thấy bản ghi tiêm thuộc hồ sơ của bạn.", 404);
+    return row;
 };
-
-
-module.exports = {
-    getMyHistory,
-    getCitizenHistory,
-    getHistoryDetail,
-    getMyHistoryDetail
-};
+module.exports = { getMyHistory, getCitizenHistory, getHistoryDetail, getMyHistoryDetail };

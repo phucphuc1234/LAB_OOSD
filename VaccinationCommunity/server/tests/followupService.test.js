@@ -10,24 +10,27 @@ function setup() {
     const actors = new Map([[1, { TrangThai: 1, TenVaiTro: "Người dân" }],
         [2, { TrangThai: 1, TenVaiTro: "Nhân viên" }],
         [3, { TrangThai: 1, TenVaiTro: "Người dân" }],
-        [4, { TrangThai: 1, TenVaiTro: "Quản trị viên" }]]);
+        [4, { TrangThai: 1, TenVaiTro: "Quản trị viên" }],
+        [5, { TrangThai: 1, TenVaiTro: "Nhân viên" }]]);
+    const assignments = new Map([[2, new Set([11])], [5, new Set([22])]]);
+    const canReadSite = (accountId, row) => actors.get(accountId)?.TenVaiTro === "Quản trị viên" || assignments.get(accountId)?.has(row.MaCoSoTiem);
     const reports = new Map(); const history = []; const calls = [];
     const catalog = [{ MaTrieuChung: "pain", TenTrieuChung: "Đau tại chỗ", LaDauHieuCanhBao: 0 },
         { MaTrieuChung: "breathing_difficulty", TenTrieuChung: "Khó thở", LaDauHieuCanhBao: 1 }];
-    const vaccines = [{ MaMuiTiem: 10, NgayTiem: new Date("2026-10-27T00:00:00Z"), MuiSo: 1 }];
+    const vaccines = [{ MaMuiTiem: 10, MaCoSoTiem: 11, NgayTiem: new Date("2026-10-27T00:00:00Z"), MuiSo: 1 }];
     const repo = {
         findActor: async (id) => actors.get(id),
         listSymptoms: async () => catalog,
         findVaccination: async (id, accountId) => accountId === 1 ? vaccines.find((v) => v.MaMuiTiem === id) : null,
         listVaccinations: async (id) => id === 1 ? vaccines : [],
         checkInTimes: async () => [...reports.values()].map((r) => ({ MaMuiTiem: r.MaMuiTiem, ThoiDiemBaoCao: r.ThoiDiemBaoCao })),
-        findReport: async (id, owner) => {
+        findReport: async (id, owner, staffAccountId) => {
             const row = reports.get(id);
-            return row && (!owner || row.MaTaiKhoanNguoiDan === owner) ? row : null;
+            return row && (owner ? row.MaTaiKhoanNguoiDan === owner : canReadSite(staffAccountId, row)) ? row : null;
         },
-        listReports: async (filters, owner) => {
-            calls.push({ action: "list", filters, owner });
-            const rows = [...reports.values()].filter((r) => !owner || r.MaTaiKhoanNguoiDan === owner);
+        listReports: async (filters, owner, staffAccountId) => {
+            calls.push({ action: "list", filters, owner, staffAccountId });
+            const rows = [...reports.values()].filter((r) => owner ? r.MaTaiKhoanNguoiDan === owner : canReadSite(staffAccountId, r));
             return { items: rows, total: rows.length };
         },
         reportSymptoms: async (ids) => [...reports.values()].filter((r) => ids.includes(r.MaTheoDoi))
@@ -36,7 +39,7 @@ function setup() {
         submit: async (owner, data) => {
             calls.push({ action: "submit", owner, data });
             const reportId = reports.size + 1;
-            const row = { MaTheoDoi: reportId, MaMuiTiem: data.vaccinationId, MaNguoiDan: 1,
+            const row = { MaTheoDoi: reportId, MaMuiTiem: data.vaccinationId, MaNguoiDan: 1, MaCoSoTiem: 11,
                 MaTaiKhoanNguoiDan: owner, HoTen: "Người dân", NgayTiem: vaccines[0].NgayTiem,
                 ThoiDiemBaoCao: NOW, KhoiPhatLuc: data.onsetAt, ThoiLuongGio: data.durationHours,
                 NhietDo: data.temperature, TrieuChung: data.description, MucDo: data.severity,
@@ -46,8 +49,9 @@ function setup() {
             reports.set(reportId, row); return row;
         },
         review: async (accountId, reportId, data) => {
-            calls.push({ action: "review", accountId, reportId, data });
             const row = reports.get(reportId);
+            if (!canReadSite(accountId, row)) throw Object.assign(new Error("outside assigned facility"), { statusCode: 403 });
+            calls.push({ action: "review", accountId, reportId, data });
             if (row.LanCapNhat !== data.expectedRevision) throw Object.assign(new Error("stale"), { number: 51003 });
             history.push({ MaTheoDoi: reportId, MaLichSu: history.length + 1, MaTaiKhoan: accountId,
                 TrangThaiCu: row.TrangThai, TrangThaiMoi: data.status, LanCapNhat: row.LanCapNhat + 1,
@@ -57,7 +61,7 @@ function setup() {
             return row;
         },
     };
-    return { api: createFollowupService(repo, { now: () => new Date(NOW) }), repo, actors, reports, calls, history, vaccines };
+    return { api: createFollowupService(repo, { now: () => new Date(NOW) }), repo, actors, reports, calls, history, vaccines, assignments };
 }
 const checkin = (extra = {}) => ({ vaccinationId: 10, symptoms: [], ...extra });
 const update = (extra = {}) => ({ status: "reviewing", staffAdvice: "Đã tiếp nhận, tiếp tục theo dõi.", expectedRevision: 1, ...extra });
@@ -173,4 +177,37 @@ test("controller maps DB concurrency errors and does not leak unexpected SQL det
         status = value; return { json: (value) => { body = value; } };
     } });
     assert.equal(status, 404); assert.equal(body.success, false);
+});
+
+test("staff list, detail and review respect facility assignments while citizens retain their own history", async () => {
+    const { api, calls, assignments } = setup();
+    const row = await api.submit(citizen, checkin());
+    assert.equal(row.facilityId, 11);
+    const otherStaff = { maTaiKhoan: 5, tenVaiTro: "Nhân viên" };
+    assert.equal((await api.listAll(otherStaff)).total, 0);
+    await assert.rejects(api.detail(otherStaff, row.id), { statusCode: 404 });
+    await assert.rejects(api.review(otherStaff, row.id, update()), { statusCode: 404 });
+    assert.equal(calls.filter(call => call.action === "review").length, 0);
+    assignments.get(5).add(11);
+    assert.equal((await api.listAll(otherStaff)).total, 1);
+    assert.equal((await api.review(otherStaff, row.id, update())).revision, 2);
+    assignments.get(5).delete(11);
+    await assert.rejects(api.detail(otherStaff, row.id), { statusCode: 404 });
+    assert.equal((await api.detail(citizen, row.id)).revision, 2);
+    assert.equal((await api.detail({ maTaiKhoan: 4 }, row.id)).id, row.id);
+    const staffListCall = calls.find(call => call.action === "list" && call.staffAccountId === 5);
+    assert.equal(staffListCall.owner, null);
+});
+
+test("assignment revocation between review lookup and write cannot commit a report update", async () => {
+    const { api, repo, assignments, calls } = setup();
+    const row = await api.submit(citizen, checkin());
+    const lookup = repo.findReport;
+    repo.findReport = async (...args) => {
+        const result = await lookup(...args);
+        if (args[2] === 2) assignments.get(2).clear();
+        return result;
+    };
+    await assert.rejects(api.review(staff, row.id, update()), { statusCode: 403 });
+    assert.equal(calls.filter(call => call.action === "review").length, 0);
 });

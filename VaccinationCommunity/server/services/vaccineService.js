@@ -21,20 +21,23 @@ const uniqueName = async (data, id) => {
     const row = await repository.findByName(data.tenVaccine);
     if (row && row.MaVaccine !== id) fail("Tên vaccine đã tồn tại.", 409);
 };
-const createVaccine = async (body) => {
+const createVaccine = async (body, actor) => {
+    actor = integer(actor, "Tài khoản quản trị");
     const data = normalize(body);
     await uniqueName(data);
-    return repository.create(data);
+    return repository.create(data, actor);
 };
-const updateVaccine = async (id, body) => {
+const updateVaccine = async (id, body, actor) => {
+    actor = integer(actor, "Tài khoản quản trị");
     const current = await getVaccineById(id);
     const data = normalize(body, current);
     await uniqueName(data, current.MaVaccine);
-    return repository.update(current.MaVaccine, data);
+    return repository.update(current.MaVaccine, data, actor);
 };
-const changeStatus = async (id, status) => {
+const changeStatus = async (id, status, actor) => {
+    actor = integer(actor, "Tài khoản quản trị");
     const current = await getVaccineById(id);
     if (typeof status !== "boolean") fail("Trạng thái phải là true hoặc false.");
-    return repository.updateStatus(current.MaVaccine, status);
+    return repository.updateStatus(current.MaVaccine, status, actor);
 };
 module.exports = { getAllVaccines, getVaccineById, createVaccine, updateVaccine, changeStatus };

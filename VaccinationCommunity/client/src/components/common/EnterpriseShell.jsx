@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Bell, CalendarDays, ChevronRight, LogOut, Menu, X } from "lucide-react";
+import { Bell, CalendarDays, ChevronRight, LogOut, Menu, ShieldCheck, X } from "lucide-react";
 import authService from "../../services/authService";
 import MedicalBrand from "./MedicalBrand";
 
@@ -51,6 +51,7 @@ export default function EnterpriseShell({ role = "citizen", menuItems = [] }) {
                     </NavLink>;
                 })}
             </nav>
+            <div className="sidebar-scope-note"><ShieldCheck size={17} /><span>{role === "citizen" ? "Chủ động đặt lịch và cập nhật sức khỏe tại các cơ sở tiêm trong TP. Hồ Chí Minh." : role === "staff" ? "Hồ sơ và nghiệp vụ được giới hạn theo các cơ sở bạn được phân công." : "Quản lý mạng lưới cơ sở và phân công nhân viên tại TP. Hồ Chí Minh."}</span></div>
             <div className="sidebar-account">
                 <span className="account-avatar">{initials}</span>
                 <div><strong>{username}</strong><small>{roleLabels[role]}</small></div>
@@ -69,8 +70,8 @@ export default function EnterpriseShell({ role = "citizen", menuItems = [] }) {
                     <span className="header-account"><span className="account-avatar">{initials}</span><span>{username}</span></span>
                 </div>
             </header>
-            <main className="app-content enterprise-content" id="main-content" tabIndex={-1}><Outlet /></main>
-            <footer className="enterprise-footer"><span>Cổng theo dõi tiêm chủng cộng đồng</span><span>Chủ động theo dõi · Chăm sóc sức khỏe</span></footer>
+            <main className="app-content enterprise-content" id="main-content" tabIndex={-1}><div className="route-stage" key={location.pathname}><Outlet /></div></main>
+            <footer className="enterprise-footer"><span>Cổng theo dõi tiêm chủng cộng đồng</span><span>TP. Hồ Chí Minh · Chủ động chăm sóc sức khỏe</span></footer>
         </div>
     </div>;
 }

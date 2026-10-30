@@ -49,7 +49,7 @@ app.get("/api/health", async (_req, res) => {
 const modules = {
     auth: "authRoutes", citizens: "citizenRoutes", vaccines: "vaccineRoutes", batches: "batchRoutes",
     schedules: "scheduleRoutes", vaccinations: "vaccinationRoutes", contraindications: "contraindicationRoutes",
-    history: "historyRoutes", trace: "traceRoutes", notifications: "notificationRoutes", users: "userRoutes", followups: "followupRoutes",
+    history: "historyRoutes", trace: "traceRoutes", notifications: "notificationRoutes", users: "userRoutes", followups: "followupRoutes", facilities: "facilityRoutes",
 };
 for (const [name, file] of Object.entries(modules)) app.use(`/api/${name}`, require(`./routes/${file}`));
 app.use("/api", (_req, res) => res.status(404).json({ success: false, message: "Không tìm thấy chức năng API." }));

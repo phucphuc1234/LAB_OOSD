@@ -30,33 +30,30 @@ router.get(
 );
 
 
-// Nhân viên và Admin được thêm
+// Global catalog is managed by admin; staff manage offerings at assigned sites.
 router.post(
     "/",
     authorizeRoles(
-        "Nhân viên",
         "Quản trị viên"
     ),
     vaccineController.createVaccine
 );
 
 
-// Nhân viên và Admin được sửa
+// Chỉ Admin sửa danh mục dùng chung.
 router.put(
     "/:id",
     authorizeRoles(
-        "Nhân viên",
         "Quản trị viên"
     ),
     vaccineController.updateVaccine
 );
 
 
-// Nhân viên và Admin đổi trạng thái
+// Chỉ Admin đổi trạng thái danh mục dùng chung.
 router.patch(
     "/:id/status",
     authorizeRoles(
-        "Nhân viên",
         "Quản trị viên"
     ),
     vaccineController.changeStatus

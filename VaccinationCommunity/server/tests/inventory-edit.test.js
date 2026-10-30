@@ -17,6 +17,8 @@ class Request {
     constructor(transaction) { this.transaction = transaction; this.parameters = {}; }
     input(name, _type, value) { this.parameters[name] = value; return this; }
     async query(query) {
+        if(query.includes("AS HasPermission")) return { recordset: [{ HasPermission: state.permission !== false }] };
+        if(query.includes("AS IsAvailable")) return { recordset: [{ IsAvailable: state.offering !== false }] };
         state.queries.push({ query, parameters: this.parameters, transactional: !!this.transaction });
         if (query.includes('sys.sp_getapplock')) {
             if (state.lockError) throw state.lockError;
@@ -58,7 +60,7 @@ require.cache[vaccineFile] = { id: vaccineFile, filename: vaccineFile, loaded: t
     exports: { findById: async () => ({ MaVaccine: 2, TrangThai: true }) } };
 const service = require('../services/batchService');
 const reset = (overrides = {}) => {
-    state = { batch: { MaLo: 17, MaLoVaccine: 'BATCH-2099', MaVaccine: 2,
+    state = { batch: { MaLo: 17, MaCoSoTiem: 2, MaLoVaccine: 'BATCH-2099', MaVaccine: 2,
         NgaySanXuat: new Date('2020-01-01T00:00:00Z'), HanSuDung: new Date('2099-12-31T00:00:00Z'),
         SoLuongNhap: 100, SoLuongCon: 100, SoLuongDatTruoc: 0, TrangThai: 'Đang sử dụng', GhiChu: null,
         ...overrides }, queries: [], updateCount: 0 };
@@ -73,7 +75,7 @@ const rejectedWithoutWrite = async (operation, status) => {
 
 test('stale quantity body after a concurrent vaccination cannot restore consumed inventory', async () => {
     reset(); state.concurrentVaccination = true;
-    await rejectedWithoutWrite(service.updateBatch(17, { soLuongNhap: 100, soLuongCon: 100, ghiChu: 'new note' }), 409);
+    await rejectedWithoutWrite(service.updateBatch(17, { soLuongNhap: 100, soLuongCon: 100, ghiChu: 'new note' }, 8), 409);
     assert.equal(state.batch.SoLuongCon, 99);
     assert.equal(state.batch.GhiChu, null);
     assert.equal(state.lockAcquired, true);
@@ -81,47 +83,47 @@ test('stale quantity body after a concurrent vaccination cannot restore consumed
 
 test('an explicit inventory quantity edit is rejected before any write', async () => {
     reset();
-    await rejectedWithoutWrite(service.updateBatch(17, { soLuongNhap: 150, soLuongCon: 150 }), 409);
+    await rejectedWithoutWrite(service.updateBatch(17, { soLuongNhap: 150, soLuongCon: 150 }, 8), 409);
     assert.equal(state.batch.SoLuongNhap, 100);
     assert.equal(state.batch.SoLuongCon, 100);
 });
 
 test('a batch reserved for an appointment cannot be made inactive', async () => {
     reset({ SoLuongDatTruoc: 7 });
-    await rejectedWithoutWrite(service.changeStatus(17, 'Tạm ngừng'), 409);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Tạm ngừng', 8), 409);
     assert.equal(state.batch.TrangThai, 'Đang sử dụng');
     assert.equal(state.batch.SoLuongDatTruoc, 7);
 });
 
 test('an expiry edit cannot invalidate appointments already holding stock', async () => {
     reset({ SoLuongDatTruoc: 1 }); state.lastAppointment = new Date('2099-06-01T09:00:00Z');
-    await rejectedWithoutWrite(service.updateBatch(17, { hanSuDung: '2099-05-31' }), 409);
+    await rejectedWithoutWrite(service.updateBatch(17, { hanSuDung: '2099-05-31' }, 8), 409);
     assert.equal(state.batch.HanSuDung.toISOString().slice(0, 10), '2099-12-31');
 });
 
 test('no available stock means a batch cannot return to in-use state', async () => {
     reset({ SoLuongCon: 0, TrangThai: 'Hết hàng' });
-    await rejectedWithoutWrite(service.changeStatus(17, 'Đang sử dụng'), 409);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Đang sử dụng', 8), 409);
 });
 
 test('an expired batch cannot return to in-use state', async () => {
     reset({ NgaySanXuat: new Date('1999-01-01'), HanSuDung: new Date('2000-01-01'), TrangThai: 'Hết hạn' });
-    await rejectedWithoutWrite(service.changeStatus(17, 'Đang sử dụng'), 409);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Đang sử dụng', 8), 409);
 });
 
 test('status cannot claim out of stock while physical stock remains', async () => {
     reset();
-    await rejectedWithoutWrite(service.changeStatus(17, 'Hết hàng'), 409);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Hết hàng', 8), 409);
 });
 
 test('status cannot claim expiry before its actual expiry date', async () => {
     reset();
-    await rejectedWithoutWrite(service.changeStatus(17, 'Hết hạn'), 409);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Hết hạn', 8), 409);
 });
 
 test('valid metadata changes commit without changing stock or its reservations', async () => {
     reset({ SoLuongDatTruoc: 2 }); state.lastAppointment = new Date('2099-06-01');
-    const row = await service.updateBatch(17, { ghiChu: 'Bảo quản theo hướng dẫn' });
+    const row = await service.updateBatch(17, { ghiChu: 'Bảo quản theo hướng dẫn' }, 8);
     assert.equal(row.GhiChu, 'Bảo quản theo hướng dẫn');
     assert.equal(row.SoLuongCon, 100);
     assert.equal(row.SoLuongNhap, 100);
@@ -133,12 +135,12 @@ test('valid metadata changes commit without changing stock or its reservations',
 
 test('a missing batch rolls back before mutation', async () => {
     reset(); state.batch = null;
-    await rejectedWithoutWrite(service.changeStatus(17, 'Tạm ngừng'), 404);
+    await rejectedWithoutWrite(service.changeStatus(17, 'Tạm ngừng', 8), 404);
 });
 
 test('an error after UPDATE rolls back metadata and keeps the original failure', async () => {
     reset(); const original = new Error('final read failed'); state.finalReadError = original;
-    await assert.rejects(service.updateBatch(17, { ghiChu: 'must not persist' }), (failure) => failure === original);
+    await assert.rejects(service.updateBatch(17, { ghiChu: 'must not persist' }, 8), (failure) => failure === original);
     assert.equal(state.batch.GhiChu, null);
     assert.equal(state.batch.SoLuongCon, 100);
     assert.equal(state.rolledBack, true);
@@ -148,8 +150,26 @@ test('an error after UPDATE rolls back metadata and keeps the original failure',
 test('a lock acquisition failure performs no inventory update and is not masked by rollback failure', async () => {
     reset(); const original = Object.assign(new Error('inventory lock unavailable'), { number: 51003 });
     state.lockError = original; state.rollbackError = new Error('rollback interrupted');
-    await assert.rejects(service.changeStatus(17, 'Tạm ngừng'), (failure) => failure === original);
+    await assert.rejects(service.changeStatus(17, 'Tạm ngừng', 8), (failure) => failure === original);
     assert.equal(state.updateCount, 0);
     assert.equal(state.committed, undefined);
     assert.equal(state.rolledBack, true);
+});
+
+test('revoking facility assignment before the transaction prevents the inventory mutation', async () => {
+    reset(); state.permission = false;
+    await rejectedWithoutWrite(service.changeStatus(17, 'Tạm ngừng', 8), 403);
+    assert.equal(state.batch.TrangThai, 'Đang sử dụng');
+});
+
+test('an unavailable facility or disabled vaccine offering prevents activating stock', async () => {
+    reset({ TrangThai: 'Tạm ngừng' }); state.offering = false;
+    await rejectedWithoutWrite(service.changeStatus(17, 'Đang sử dụng', 8), 409);
+    assert.equal(state.batch.TrangThai, 'Tạm ngừng');
+});
+
+test('expiry edits cover the appointment day in Vietnam even when the UTC day is earlier', async () => {
+    reset({ SoLuongDatTruoc: 1 }); state.lastAppointment = new Date('2099-06-01T18:00:00Z');
+    await rejectedWithoutWrite(service.updateBatch(17, { hanSuDung: '2099-06-01' }, 8), 409);
+    assert.equal(state.batch.HanSuDung.toISOString().slice(0, 10), '2099-12-31');
 });

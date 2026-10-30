@@ -50,6 +50,8 @@ import RegisterPage
     from "../pages/auth/RegisterPage";
 import PostVaccinationPage from "../pages/citizen/PostVaccinationPage";
 import FollowupManagementPage from "../pages/staff/FollowupManagementPage";
+import FacilityManagementPage from "../pages/admin/FacilityManagementPage";
+import FacilityWorkspacePage from "../pages/staff/FacilityWorkspacePage";
 function AppRoutes() {
     return (
         <Routes>
@@ -138,6 +140,7 @@ function AppRoutes() {
                         path="citizens"
                         element={<CitizenManagementPage />}
                     />
+                    <Route path="facilities" element={<FacilityWorkspacePage />} />
                     <Route path="followups" element={<FollowupManagementPage />} />
                     <Route
                         path="vaccines"
@@ -195,6 +198,8 @@ function AppRoutes() {
                         path="users"
                         element={<UserManagementPage />}
                     />
+                    <Route path="facilities" element={<FacilityManagementPage />} />
+                    <Route path="facility-workspace" element={<FacilityWorkspacePage />} />
                     <Route path="followups" element={<FollowupManagementPage />} />
                     <Route path="citizens" element={<CitizenManagementPage />} />
                     <Route path="schedules" element={<ScheduleManagementPage />} />

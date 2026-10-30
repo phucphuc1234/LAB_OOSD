@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, CalendarCheck2, Eye, EyeOff, FileHeart, HeartPulse, ShieldCheck } from "lucide-react";
+import { ArrowRight, CalendarCheck2, Eye, EyeOff, FileHeart, HeartPulse, MapPin, ShieldCheck } from "lucide-react";
 import authService from "../../services/authService";
 import MedicalBrand from "../../components/common/MedicalBrand";
 
@@ -24,12 +24,13 @@ export default function LoginPage() {
         finally { setLoading(false); }
     };
     return <div className="auth-page">
-        <aside className="auth-aside"><MedicalBrand />
-            <div className="auth-story"><div className="page-eyebrow">ĐỒNG HÀNH CÙNG SỨC KHỎE CỘNG ĐỒNG</div><h1>Chủ động tiêm chủng.<br />An tâm mỗi ngày.</h1><p>Một nơi để theo dõi lịch hẹn, lưu giữ hồ sơ và cập nhật sức khỏe sau mỗi mũi tiêm.</p>
+        <aside className="auth-aside"><MedicalBrand /><div className="auth-light auth-light-one" aria-hidden="true" /><div className="auth-light auth-light-two" aria-hidden="true" />
+            <div className="auth-story"><div className="page-eyebrow">ĐỒNG HÀNH CÙNG SỨC KHỎE CỘNG ĐỒNG</div><h1>Chủ động tiêm chủng.<br /><span>Vững vàng sức khỏe.</span></h1><p>Một nơi để theo dõi lịch hẹn, lưu giữ hồ sơ và cập nhật sức khỏe sau mỗi mũi tiêm.</p>
+                <div className="auth-visual" aria-hidden="true"><span className="auth-orbit auth-orbit-one" /><span className="auth-orbit auth-orbit-two" /><span className="auth-orbit-core"><HeartPulse size={62} strokeWidth={1.3} /></span><span className="auth-floating auth-floating-top"><CalendarCheck2 size={18} />Lịch hẹn tại cơ sở</span><span className="auth-floating auth-floating-bottom"><ShieldCheck size={18} />Đồng hành sau tiêm</span></div>
                 <div className="auth-benefit"><span><CalendarCheck2 size={23} strokeWidth={1.6} /></span><div><strong>Theo dõi lịch tiêm</strong><small>Xem lịch hẹn và trạng thái xác nhận</small></div></div>
                 <div className="auth-benefit"><span><FileHeart size={23} strokeWidth={1.6} /></span><div><strong>Hồ sơ tiêm chủng tập trung</strong><small>Tra cứu lịch sử và thông tin của bạn</small></div></div>
                 <div className="auth-benefit"><span><HeartPulse size={23} strokeWidth={1.6} /></span><div><strong>Chăm sóc sau tiêm</strong><small>Khai báo tình trạng và theo dõi phản hồi</small></div></div>
-            </div><div className="auth-aside-footer">Cổng theo dõi tiêm chủng cộng đồng</div>
+            </div><div className="auth-aside-footer"><MapPin size={14} />Phục vụ tại Thành phố Hồ Chí Minh</div>
         </aside>
         <main className="auth-main"><div className="auth-form-container"><div className="auth-mobile-brand"><MedicalBrand /></div><div className="page-eyebrow">CHÀO MỪNG BẠN TRỞ LẠI</div><h2>Đăng nhập</h2><p>Truy cập tài khoản để tiếp tục theo dõi và quản lý thông tin tiêm chủng.</p>
             {error && <div className="alert alert-danger" role="alert">{error}</div>}

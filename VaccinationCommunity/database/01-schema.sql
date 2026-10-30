@@ -8,6 +8,13 @@ IF DB_ID(N'VaccinationCommunity_Demo') IS NULL
 GO
 USE [VaccinationCommunity_Demo];
 GO
+/* Fail closed if SSMS could not switch to the target database. */
+IF DB_NAME()<>N'VaccinationCommunity_Demo'
+BEGIN
+ RAISERROR(N'Không đúng database đích. Kiểm tra tên/quyền tạo database rồi chạy SET NOEXEC OFF trước khi thử lại.',16,1);
+ SET NOEXEC ON;
+END;
+GO
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 SET XACT_ABORT ON;

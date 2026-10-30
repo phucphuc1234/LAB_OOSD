@@ -16,7 +16,7 @@ EXEC dbo.usp_SeedDemo @ConfirmDemo = 1;
 4. Chạy [`database/05-verify.sql`](../database/05-verify.sql). Các truy vấn kiểm tra sai lệch ở cuối file phải trả về **0 dòng**.
 5. Trong `server/.env`, đặt `DB_DATABASE=VaccinationCommunity_Demo`; cấu hình `DB_SERVER`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` theo SQL Server trên máy. Không đưa mật khẩu thật vào Git. Phần hướng dẫn chạy ứng dụng nằm trong README ở thư mục dự án.
 
-File tổng hợp chứa nguyên nội dung bốn phần theo thứ tự `01-schema.sql`, `02-routines.sql`, `03-views-triggers.sql`, `04-seed-demo.sql`. Có thể chạy riêng từng phần theo thứ tự đó. Các file có dấu phân batch `GO`, phù hợp SSMS và `sqlcmd`; không gửi nguyên file nhiều batch vào một lệnh `pool.request().query()`.
+File tổng hợp chứa các phần theo thứ tự `01-schema.sql`, `06-facilities.sql`, `02-routines.sql`, `03-views-triggers.sql`, `04-seed-demo.sql`. Với bản cũ có cấu trúc dự án này, dùng `VaccinationCommunity_HCM_Upgrade.sql` để nâng cấp tại chỗ; xem [hướng dẫn cơ sở và phân công](facility-upgrade.md). Có thể chạy riêng từng phần theo thứ tự đó. Các file có dấu phân batch `GO`, phù hợp SSMS và `sqlcmd`; không gửi nguyên file nhiều batch vào một lệnh `pool.request().query()`.
 
 Bộ cài chạy lại không xóa database, bảng hay hồ sơ. `CREATE OR ALTER` cập nhật định nghĩa routine/view/trigger. Các thay đổi cột bổ sung được kiểm tra trước khi thêm. Đây là bộ cài cho database demo mới; không trỏ nó vào database bệnh nhân thật. Với database có sẵn cấu trúc khác, cần đối chiếu và sao lưu trước khi viết migration riêng; script không tự sửa/xóa hồ sơ mâu thuẫn để ép cài thành công.
 
@@ -30,7 +30,7 @@ Bộ cài chạy lại không xóa database, bảng hay hồ sơ. `CREATE OR ALT
 
 Mật khẩu được lưu bằng bcrypt cost 10. `MatKhau` chỉ chứa hash; không có mật khẩu rõ trong bảng. Các tài khoản demo dùng chung mật khẩu để trình diễn cục bộ, cần thay đổi trước khi cho người ngoài truy cập.
 
-Một lần seed thành công tạo 213 tài khoản, 200 hồ sơ người dân, 14 vaccine, 30 lô, 300 mũi tiêm, 130 lịch hẹn gồm 60 lịch tương lai/50 lịch đã tiêm/20 lịch đã đóng, 18 hồ sơ chống chỉ định và 90 báo cáo sau tiêm có triệu chứng, mức độ, trạng thái và lịch sử xử lý khác nhau. Còn có thông báo website và nhật ký thay đổi. Số dòng thông báo/nhật ký tăng khi thao tác trên ứng dụng.
+Một lần seed thành công tạo 213 tài khoản, 200 hồ sơ người dân, 14 vaccine, 198 lô theo cơ sở, 300 mũi tiêm, 280 lịch hẹn gồm 60 lịch tương lai, 200 lịch đã tiêm và 20 lịch đã đóng, 18 hồ sơ chống chỉ định và 90 báo cáo sau tiêm có triệu chứng, mức độ, trạng thái và lịch sử xử lý khác nhau. Còn có thông báo website và nhật ký thay đổi. Số dòng thông báo/nhật ký tăng khi thao tác trên ứng dụng.
 
 Tên người, CCCD, bảo hiểm, điện thoại, email và lô hàng đều giả lập. Email dùng miền `example.test`. Các số CCCD dạng `9999xxxxxxxx` chỉ là định danh dữ liệu mẫu, không xác nhận danh tính thật. Tên sản phẩm vaccine phục vụ danh mục phần mềm; số mũi và khoảng cách trong seed không phải phác đồ, hướng dẫn điều trị hay chỉ định cho từng người.
 
@@ -45,6 +45,10 @@ Ngày dữ liệu được tính tương đối tại **lần seed đầu tiên*
 | `TAIKHOAN` | `MaTaiKhoan` | Tên đăng nhập/email duy nhất, bcrypt hash, điện thoại, vai trò và trạng thái. Nhiều tài khoản thuộc một vai trò. |
 | `NGUOIDAN` | `MaNguoiDan` | Hồ sơ nhân khẩu, địa chỉ, liên hệ. Tối đa một hồ sơ cho một tài khoản; tài khoản có thể không có hồ sơ người dân. CCCD/email không null phải duy nhất. Điện thoại được dùng chung giữa thành viên gia đình. |
 | `VACCINE` | `MaVaccine` | Danh mục vaccine, nhà sản xuất, thông tin mô tả, trạng thái. |
+| `KHUVUCTIEM` | `MaKhuVuc` | Khu vực phục vụ nội bộ, thành phố cố định TP. Hồ Chí Minh; không thay danh mục hành chính chính thức. |
+| `COSOTIEM` | `MaCoSoTiem` | Cơ sở thuộc khu vực; tên, địa chỉ, phường/xã, liên hệ, trạng thái; CHECK giới hạn thành phố. |
+| `PHANCONG_COSOTIEM` | `(MaTaiKhoan, MaCoSoTiem)` | Nhiều cơ sở cho một nhân viên; admin phân công và ghi nhật ký. |
+| `COSOTIEM_VACCINE` | `(MaCoSoTiem, MaVaccine)` | Danh mục vaccine cơ sở đang cung cấp; tách với danh mục vaccine chung. |
 | `LOVACCINE` | `MaLo` | Mã lô duy nhất, vaccine, ngày sản xuất/hạn dùng, số nhập/còn/giữ chỗ. Mỗi vaccine có nhiều lô. |
 | `LICHTIEM` | `MaLichTiem` | Người dân, vaccine, mũi số, ngày hẹn, cơ sở, trạng thái, người tạo; `MaLoDuKien` giữ một liều trong lô khi lịch đang hoạt động. |
 | `MUITIEM` | `MaMuiTiem` | Mũi tiêm thực tế, người dân, vaccine, lô, nhân viên, thời điểm, kết quả. Lịch hẹn là tùy chọn; một lịch liên kết tối đa một mũi. Bộ `(MaNguoiDan, MaVaccine, MuiSo)` duy nhất. |
@@ -68,6 +72,7 @@ Các FK dùng `NO ACTION`: không có xóa dây chuyền bệnh án. Backend kh�
 | `usp_BaoCaoSauTiem` | Repository theo dõi | Xác thực người dân sở hữu mũi tiêm, kiểm tra JSON danh sách mã triệu chứng; lưu báo cáo, triệu chứng chuẩn hóa và sự kiện đầu tiên cùng giao dịch. |
 | `usp_XuLyTheoDoi` | Repository theo dõi | Xác thực nhân viên/admin, kiểm tra luồng trạng thái và phiên bản mong đợi, cập nhật phản hồi, lịch sử và thông báo cùng giao dịch. Hai người sửa cùng phiên bản thì một yêu cầu nhận conflict. |
 | `usp_TaoNhacLich` | Công cụ SQL chủ động | Sinh nhắc cho lịch xác nhận còn ở tương lai trong khoảng ngày Việt Nam được yêu cầu; chạy lại không tạo trùng. API hiện dùng repository với cùng quy tắc và giao dịch. |
+| `usp_SeedFacilityDemo` | Seed opt-in | Thêm danh mục cơ sở, vaccine tại cơ sở, phân công và tồn kho demo một lần; không sửa hồ sơ cũ. |
 | `usp_SeedDemo` | Lệnh SQL opt-in | Tạo dữ liệu giả lập một lần; không được ứng dụng tự chạy khi khởi động. |
 
 Ba procedure lịch/kho dùng giao dịch `SERIALIZABLE`, `UPDLOCK/HOLDLOCK` và transaction-owned exclusive application lock tên `VaccinationCommunity.Inventory`. Backend sửa lô cũng lấy cùng lock. Vì vậy hai lịch không cùng giữ liều cuối, tiêm không chiếm liều đã giữ cho lịch khác và đổi lô không để lại giữ chỗ cũ. Cách khóa chung ưu tiên tính nhất quán và dễ kiểm chứng cho quy mô demo; khi triển khai nhiều cơ sở lưu lượng lớn có thể thiết kế khóa theo vaccine/cơ sở với thứ tự khóa thống nhất.
@@ -93,10 +98,16 @@ Trạng thái `monitoring` yêu cầu hẹn theo dõi ở tương lai. `resolved
 
 ## View và trigger
 
-Sáu view: `vw_TonKhoVaccine`, `vw_LichTiemChiTiet`, `vw_LichSuTiemChung`, `vw_TheoDoiSauTiemChiTiet`, `vw_TheoDoiSauTiemTongHop`, `vw_HoatDongTiemChungTheoNgay`. View chi tiết theo dõi được backend sử dụng; các view còn lại phục vụ truy vấn/đối chiếu và có thể dùng trong báo cáo đồ án.
+Tám view: `vw_CoSoTiemTongQuan`, `vw_PhanCongNhanVien`, `vw_TonKhoVaccine`, `vw_LichTiemChiTiet`, `vw_LichSuTiemChung`, `vw_TheoDoiSauTiemChiTiet`, `vw_TheoDoiSauTiemTongHop`, `vw_HoatDongTiemChungTheoNgay`. View chi tiết theo dõi được backend sử dụng; các view còn lại phục vụ truy vấn/đối chiếu và có thể dùng trong báo cáo đồ án.
 
 Trigger xử lý theo tập `inserted/deleted`, không giả định mỗi lệnh chỉ có một dòng. Chúng kiểm tra mũi–lô–lịch, chặn chỉnh sửa lịch sử mũi, kiểm tra số lượng kho, kiểm tra lịch trùng và lô giữ chỗ, bảo vệ liên kết báo cáo với người được tiêm, ghi nhật ký lịch/kho/mũi và chặn sửa/xóa hai loại nhật ký. Trigger audit không chứa mật khẩu. Các thay đổi nội bộ kho có thể có actor null; không gán nhầm người tạo lịch thành người sửa lịch.
 
 ## Kiểm chứng
 
 `05-verify.sql` đọc số lượng bảng, phân bố trạng thái và kiểm tra: giữ chỗ khớp lịch hoạt động, số tồn hợp lệ, vaccine–lô khớp, người báo cáo đúng mũi, không trùng mũi/lịch hoạt động, phiên bản có audit và sổ kho demo khớp số mũi. Chạy lại bộ cài và seed phải không sinh bản sao hoặc đổi dữ liệu đã có. Kiểm thử giao dịch cần SQL Server thật; test mock backend không đủ chứng minh khóa đồng thời hoặc rollback trigger.
+
+## Phạm vi cơ sở từ bản HCM
+
+`MaCoSoTiem` là FK bắt buộc trên lô, lịch, mũi và chống chỉ định. FEFO, giữ chỗ, ghi mũi và retry kiểm tra đúng cơ sở; tên/địa chỉ hiển thị được lấy từ danh mục thay vì tin chuỗi do trình duyệt gửi. Bản cũ được gắn cơ sở chờ đối soát bằng migration, không viết lại bệnh sử hoặc tắt trigger bất biến.
+
+`fn_CoSoDuocPhep` kiểm tra vai trò, trạng thái tài khoản và phân công hiện tại. `fn_NguoiDanDuocPhep` cho nhân viên tra cứu hồ sơ có lịch hoặc mũi tại cơ sở được giao; bao gồm quan hệ lịch sử, kể cả lịch đã hủy/vắng. Lịch sử mũi và phiếu theo dõi vẫn lọc theo cơ sở của từng bản ghi. Người dân xem dữ liệu của chính mình tại mọi cơ sở; admin có phạm vi toàn hệ thống. Views trong SSMS phục vụ đối chiếu, không tự thay thế phân quyền API; người có quyền quản trị SQL vẫn có thể đọc dữ liệu theo quyền SQL của họ.

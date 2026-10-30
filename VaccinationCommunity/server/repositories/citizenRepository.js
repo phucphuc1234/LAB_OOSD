@@ -1,4 +1,5 @@
 const { sql } = require("../config/database");
+const { integer } = require("../utils/validation");
 
 
 // Tìm hồ sơ người dân theo tài khoản đăng nhập
@@ -83,12 +84,13 @@ const updateOwnProfile = async (maTaiKhoan, data) => {
 };
 
 // Danh sách tất cả người dân
-const findAll = async () => {
+const findAll = async (actorId) => {
 
     const pool = await sql.connect();
 
     const result = await pool
         .request()
+        .input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
         .query(`
             SELECT
                 MaNguoiDan,
@@ -105,10 +107,23 @@ const findAll = async () => {
                 TinhThanh,
                 TrangThai
             FROM NGUOIDAN
+            WHERE dbo.fn_NguoiDanDuocPhep(@ActorId,MaNguoiDan)=1
             ORDER BY MaNguoiDan DESC
         `);
 
     return result.recordset;
+};
+
+// Staff detail lookups must use this method; findById remains an internal
+// reference lookup for ownership-checked citizen and inventory operations.
+const findScopedById = async (citizenId, actorId) => {
+    const pool = await sql.connect();
+    return (await pool.request()
+        .input("CitizenId", sql.Int, integer(citizenId, "Mã người dân"))
+        .input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
+        .query(`SELECT nd.* FROM dbo.NGUOIDAN nd
+            WHERE nd.MaNguoiDan=@CitizenId
+              AND dbo.fn_NguoiDanDuocPhep(@ActorId,nd.MaNguoiDan)=1`)).recordset[0] || null;
 };
 
 
@@ -154,5 +169,6 @@ module.exports = {
     findByAccountId,
     updateOwnProfile,
     findAll,
+    findScopedById,
     findById
 };

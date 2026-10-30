@@ -8,7 +8,9 @@ async function main() {
         throw new Error("Lệnh cài/seed tự động chỉ dùng VaccinationCommunity_Demo. Xem docs/database.md nếu cần triển khai database khác.");
     }
     const seedOnly = process.argv.includes("--seed-only");
-    if (!seedOnly) {
+    const upgrade = process.argv.includes("--upgrade");
+    if (seedOnly && upgrade) throw new Error("Chạy db:upgrade và db:seed thành hai lệnh riêng.");
+    if (!seedOnly && !upgrade) {
         const master = await new sql.ConnectionPool({ ...databaseConfig, database: "master" }).connect();
         try {
             await master.request().batch("IF DB_ID(N'VaccinationCommunity_Demo') IS NULL EXEC(N'CREATE DATABASE [VaccinationCommunity_Demo]');");
@@ -20,8 +22,9 @@ async function main() {
             await pool.request().input("ConfirmDemo", sql.Bit, true).execute("dbo.usp_SeedDemo");
             console.log("Dữ liệu minh họa đã sẵn sàng. Tài khoản mẫu và mật khẩu nằm trong README.md; dữ liệu đã có được giữ nguyên.");
         } else {
-            const count = await executeFile(pool, "VaccinationCommunity_Demo.sql");
-            console.log(`Đã cài cấu trúc, Stored Procedures, Triggers và Views (${count} batch). Chạy npm run db:seed để thêm dữ liệu minh họa.`);
+            const filename = upgrade ? "VaccinationCommunity_HCM_Upgrade.sql" : "VaccinationCommunity_Demo.sql";
+            const count = await executeFile(pool, filename);
+            console.log(`Đã ${upgrade ? "nâng cấp" : "cài"} cấu trúc, Stored Procedures, Triggers và Views (${count} batch). Chạy npm run db:seed để thêm dữ liệu minh họa.`);
         }
     } finally { await pool.close(); }
 }

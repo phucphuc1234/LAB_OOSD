@@ -18,7 +18,8 @@ const load = (file, mocks) => {
 const future = () => new Date(Date.now() + 86400000).toISOString();
 const own = { MaNguoiDan: 12, MaTaiKhoan: 4, TrangThai: true };
 const scheduleUnit = (repository = {}) => load("services/scheduleService.js", {
-    "../repositories/scheduleRepository": repository,
+    "../repositories/scheduleRepository": { findAvailableFacility: async () => ({ MaCoSoTiem: 2 }), ...repository },
+    "../utils/facilityScope": { assertFacility: async () => ({ MaCoSoTiem: 2 }), assertCitizen: async () => own },
     "../repositories/citizenRepository": { findByAccountId: async () => own, findById: async () => own },
     "../repositories/vaccineRepository": { findById: async () => ({ MaVaccine: 3, TrangThai: true }) },
 });
@@ -35,7 +36,7 @@ test("calendar and ID validation rejects normalized dates, booleans, fractions a
 test("citizen booking uses own profile and server status, ignoring forged owner/status", async () => {
     let received;
     const service = scheduleUnit({ createByCitizen: async (citizen, data) => { received = { citizen, data }; return { MaLichTiem: 99 }; } });
-    const result = await service.createMySchedule(4, { maNguoiDan: 777, maVaccine: 3, muiSo: 1, ngayDuKien: future(), trangThai: "Đã tiêm" });
+    const result = await service.createMySchedule(4, { maNguoiDan: 777, maVaccine: 3, maCoSoTiem: 2, muiSo: 1, ngayDuKien: future(), trangThai: "Đã tiêm" });
     assert.equal(received.citizen, own.MaNguoiDan);
     assert.equal(received.data.maNguoiDan, own.MaNguoiDan);
     assert.equal(received.data.trangThai, "Đã lên lịch");
@@ -45,24 +46,24 @@ test("citizen booking uses own profile and server status, ignoring forged owner/
 test("booking invalid date, negative dose and noninteger vaccine never reaches persistence", async () => {
     let writes = 0;
     const service = scheduleUnit({ createByCitizen: async () => writes++ });
-    const valid = { maVaccine: 3, muiSo: 1, ngayDuKien: future() };
+    const valid = { maVaccine: 3, maCoSoTiem: 2, muiSo: 1, ngayDuKien: future() };
     for (const patch of [{ ngayDuKien: "2027-02-30" }, { ngayDuKien: new Date(Date.now()-1000).toISOString() }, { muiSo: -1 }, { maVaccine: 2.2 }]) {
         await assert.rejects(service.createMySchedule(4, { ...valid, ...patch }), validationError);
     }
     assert.equal(writes, 0);
 });
 
-test("citizen cannot cancel another person's appointment", async () => {
+test("citizen cannot cancel an appointment outside own profile", async () => {
     let writes = 0;
-    const service = scheduleUnit({ findById: async () => ({ MaLichTiem: 5, MaNguoiDan: 999, TrangThai: "Đã lên lịch" }), updateStatus: async () => writes++ });
-    await assert.rejects(service.cancelMySchedule(4, 5), error => error.statusCode === 403);
+    const service = scheduleUnit({ findByIdForCitizen: async () => null, updateStatus: async () => writes++ });
+    await assert.rejects(service.cancelMySchedule(4, 5), error => error.statusCode === 404);
     assert.equal(writes, 0);
 });
 
 test("citizen cancellation passes actor to atomic procedure; completed appointments cannot cancel", async () => {
     const calls = [];
     let status = "Đã xác nhận";
-    const service = scheduleUnit({ findById: async () => ({ MaLichTiem: 5, MaNguoiDan: 12, TrangThai: status }), updateStatus: async (...args) => { calls.push(args); return { TrangThai: args[1] }; } });
+    const service = scheduleUnit({ findByIdForCitizen: async () => ({ MaLichTiem: 5, MaNguoiDan: 12, TrangThai: status }), updateStatus: async (...args) => { calls.push(args); return { TrangThai: args[1] }; } });
     assert.equal((await service.cancelMySchedule(4, 5)).TrangThai, "Đã hủy");
     assert.deepEqual(calls, [[5, "Đã hủy", 4]]);
     status = "Đã tiêm";
@@ -71,7 +72,7 @@ test("citizen cancellation passes actor to atomic procedure; completed appointme
 });
 
 test("staff cannot rewrite terminal appointments or transfer their citizen", async () => {
-    let row = { MaLichTiem: 5, MaNguoiDan: 12, MaVaccine: 3, MuiSo: 1, NgayDuKien: future(), TrangThai: "Đã tiêm" };
+    let row = { MaLichTiem: 5, MaNguoiDan: 12, MaVaccine: 3, MaCoSoTiem: 2, MuiSo: 1, NgayDuKien: future(), TrangThai: "Đã tiêm" };
     const service = scheduleUnit({ findById: async () => row });
     await assert.rejects(service.updateSchedule(5, {}, 8), error => error.statusCode === 409);
     row.TrangThai = "Đã xác nhận";
@@ -81,7 +82,7 @@ test("staff cannot rewrite terminal appointments or transfer their citizen", asy
 test("changing vaccine clears old default batch so SQL can reserve a compatible batch", async () => {
     let written;
     const service = scheduleUnit({
-        findById: async () => ({ MaLichTiem: 5, MaNguoiDan: 12, MaVaccine: 2, MaLoDuKien: 41, MuiSo: 1, NgayDuKien: future(), TrangThai: "Đã xác nhận" }),
+        findById: async () => ({ MaLichTiem: 5, MaNguoiDan: 12, MaVaccine: 2, MaCoSoTiem: 2, MaLoDuKien: 41, MuiSo: 1, NgayDuKien: future(), TrangThai: "Đã xác nhận" }),
         update: async (id, data) => { written = data; return data; },
     });
     await service.updateSchedule(5, { maVaccine: 3 }, 8);
@@ -92,8 +93,8 @@ test("changing vaccine clears old default batch so SQL can reserve a compatible 
 test("vaccination retries reach the idempotent SQL procedure without stale inventory prechecks", async () => {
     const calls = [];
     const saved = { MaMuiTiem: 50, MaLichTiem: 5 };
-    const service = load("services/vaccinationService.js", { "../repositories/vaccinationRepository": { create: async (...args) => { calls.push(args); return saved; } } });
-    const data = { maNguoiDan: 12, maVaccine: 3, maLo: 41, maLichTiem: 5, muiSo: 1, ngayTiem: new Date(Date.now()-60000).toISOString() };
+    const service = load("services/vaccinationService.js", { "../repositories/vaccinationRepository": { create: async (...args) => { calls.push(args); return saved; } }, "../utils/facilityScope": { assertFacility: async () => ({ MaCoSoTiem: 2 }), assertCitizen: async () => own } });
+    const data = { maNguoiDan: 12, maVaccine: 3, maCoSoTiem: 2, maLo: 41, maLichTiem: 5, muiSo: 1, ngayTiem: new Date(Date.now()-60000).toISOString() };
     assert.equal((await service.createVaccination(data, 8)).MaMuiTiem, 50);
     assert.equal((await service.createVaccination(data, 8)).MaMuiTiem, 50);
     assert.equal(calls.length, 2);

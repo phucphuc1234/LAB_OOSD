@@ -1,443 +1,92 @@
 const { sql } = require("../config/database");
-
-
-// Danh sách chống chỉ định
-const findAll = async () => {
+const { integer } = require("../utils/validation");
+const selection = `SELECT c.*,nd.HoTen,tk.TenDangNhap AS NguoiXacNhan,
+    cs.TenCoSo,cs.DiaChi AS DiaChiCoSo
+    FROM dbo.CHONGCHIDINH c JOIN dbo.NGUOIDAN nd ON nd.MaNguoiDan=c.MaNguoiDan
+    JOIN dbo.COSOTIEM cs ON cs.MaCoSoTiem=c.MaCoSoTiem
+    LEFT JOIN dbo.TAIKHOAN tk ON tk.MaTaiKhoan=c.MaNguoiXacNhan`;
+const findAll = async actorId => {
     const pool = await sql.connect();
-
-    const result = await pool.request().query(`
-        SELECT
-            c.MaChongChiDinh,
-            c.MaNguoiDan,
-            nd.HoTen,
-            c.NoiDung,
-            c.NgayXacNhan,
-            c.MaNguoiXacNhan,
-            tk.TenDangNhap AS NguoiXacNhan,
-            c.TrangThai,
-            c.GhiChu,
-            c.NgayTao
-        FROM CHONGCHIDINH c
-        INNER JOIN NGUOIDAN nd
-            ON c.MaNguoiDan = nd.MaNguoiDan
-        LEFT JOIN TAIKHOAN tk
-            ON c.MaNguoiXacNhan = tk.MaTaiKhoan
-        ORDER BY c.MaChongChiDinh DESC
-    `);
-
-    return result.recordset;
+    return (await pool.request().input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
+        .query(`${selection} WHERE dbo.fn_CoSoDuocPhep(@ActorId,c.MaCoSoTiem)=1
+            ORDER BY c.MaChongChiDinh DESC`)).recordset;
 };
-
-
-// Tìm theo ID
-const findById = async (id) => {
+const findById = async (id, actorId) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaChongChiDinh",
-            sql.Int,
-            id
-        )
-        .query(`
-            SELECT
-                c.MaChongChiDinh,
-                c.MaNguoiDan,
-                nd.HoTen,
-                c.NoiDung,
-                c.NgayXacNhan,
-                c.MaNguoiXacNhan,
-                tk.TenDangNhap AS NguoiXacNhan,
-                c.TrangThai,
-                c.GhiChu,
-                c.NgayTao
-            FROM CHONGCHIDINH c
-            INNER JOIN NGUOIDAN nd
-                ON c.MaNguoiDan = nd.MaNguoiDan
-            LEFT JOIN TAIKHOAN tk
-                ON c.MaNguoiXacNhan = tk.MaTaiKhoan
-            WHERE c.MaChongChiDinh =
-                @MaChongChiDinh
-        `);
-
-    return result.recordset[0] || null;
+    return (await pool.request().input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
+        .input("Id", sql.Int, integer(id, "Mã chống chỉ định"))
+        .query(`${selection} WHERE c.MaChongChiDinh=@Id
+            AND dbo.fn_CoSoDuocPhep(@ActorId,c.MaCoSoTiem)=1`)).recordset[0] || null;
 };
-
-
-// Lấy theo người dân
-const findByCitizenId = async (
-    maNguoiDan
-) => {
+const findByCitizenId = async (citizenId, ownerAccountId) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaNguoiDan",
-            sql.Int,
-            maNguoiDan
-        )
-        .query(`
-            SELECT
-                MaChongChiDinh,
-                MaNguoiDan,
-                NoiDung,
-                NgayXacNhan,
-                TrangThai,
-                GhiChu,
-                NgayTao
-            FROM CHONGCHIDINH
-            WHERE MaNguoiDan = @MaNguoiDan
-            ORDER BY MaChongChiDinh DESC
-        `);
-
-    return result.recordset;
+    return (await pool.request()
+        .input("CitizenId", sql.Int, integer(citizenId, "Mã người dân"))
+        .input("OwnerAccountId", sql.Int, integer(ownerAccountId, "Tài khoản người dân"))
+        .query(`${selection} WHERE c.MaNguoiDan=@CitizenId AND nd.MaTaiKhoan=@OwnerAccountId
+            ORDER BY c.MaChongChiDinh DESC`)).recordset;
 };
-
-
-// Thêm chống chỉ định
-const create = async (
-    data,
-    maNguoiXacNhan
-) => {
+// Keep the assignment and patient-scope reads in the same SERIALIZABLE
+// transaction as the clinical change and its audit. A concurrent revocation
+// cannot slip between an authorization check and the write.
+const save = async (id, data, actorId) => {
+    actorId = integer(actorId, "Tài khoản nhân viên");
     const pool = await sql.connect();
-
-    const transaction =
-        new sql.Transaction(pool);
-
+    const transaction = new sql.Transaction(pool);
     try {
-
-        await transaction.begin();
-
-        const request =
-            new sql.Request(transaction);
-
-        request.input(
-            "MaNguoiDan",
-            sql.Int,
-            data.maNguoiDan
-        );
-
-        request.input(
-            "NoiDung",
-            sql.NVarChar(500),
-            data.noiDung
-        );
-
-        request.input(
-            "NgayXacNhan",
-            sql.DateTime2,
-            data.ngayXacNhan
-                ? new Date(data.ngayXacNhan)
-                : new Date()
-        );
-
-        request.input(
-            "MaNguoiXacNhan",
-            sql.Int,
-            maNguoiXacNhan
-        );
-
-        request.input(
-            "TrangThai",
-            sql.NVarChar(50),
-            "Đã xác nhận"
-        );
-
-        request.input(
-            "GhiChu",
-            sql.NVarChar(500),
-            data.ghiChu || null
-        );
-
-        const result =
-            await request.query(`
-                INSERT INTO CHONGCHIDINH
-                (
-                    MaNguoiDan,
-                    NoiDung,
-                    NgayXacNhan,
-                    MaNguoiXacNhan,
-                    TrangThai,
-                    GhiChu
-                )
-
-                VALUES
-                (
-                    @MaNguoiDan,
-                    @NoiDung,
-                    @NgayXacNhan,
-                    @MaNguoiXacNhan,
-                    @TrangThai,
-                    @GhiChu
-                )
-            ; SELECT * FROM CHONGCHIDINH WHERE MaChongChiDinh=CONVERT(int,SCOPE_IDENTITY());
-        `);
-
-        const record =
-            result.recordset[0];
-
-
-        // Lưu lịch sử
-        const historyRequest =
-            new sql.Request(transaction);
-
-        historyRequest.input(
-            "TenBang",
-            sql.VarChar(100),
-            "CHONGCHIDINH"
-        );
-
-        historyRequest.input(
-            "MaBanGhi",
-            sql.Int,
-            record.MaChongChiDinh
-        );
-
-        historyRequest.input(
-            "HanhDong",
-            sql.NVarChar(50),
-            "Thêm mới"
-        );
-
-        historyRequest.input(
-            "DuLieuMoi",
-            sql.NVarChar(sql.MAX),
-            JSON.stringify(record)
-        );
-
-        historyRequest.input(
-            "MaTaiKhoan",
-            sql.Int,
-            maNguoiXacNhan
-        );
-
-        await historyRequest.query(`
-            INSERT INTO LICHSUHIEUCHINH
-            (
-                TenBang,
-                MaBanGhi,
-                HanhDong,
-                DuLieuMoi,
-                MaTaiKhoan
-            )
-            VALUES
-            (
-                @TenBang,
-                @MaBanGhi,
-                @HanhDong,
-                @DuLieuMoi,
-                @MaTaiKhoan
-            )
-        `);
-
+        await transaction.begin(sql.ISOLATION_LEVEL.SERIALIZABLE);
+        await new sql.Request(transaction).query(`DECLARE @LockResult int;
+            EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',
+                @LockMode=N'Exclusive',@LockOwner=N'Transaction',@LockTimeout=10000;
+            IF @LockResult<0 THROW 51003,N'Dữ liệu tiêm chủng đang được xử lý; vui lòng thử lại.',1;`);
+        const req = new sql.Request(transaction)
+            .input("Id", sql.Int, id)
+            .input("ActorId", sql.Int, actorId)
+            .input("CitizenId", sql.Int, data.maNguoiDan)
+            .input("FacilityId", sql.Int, data.maCoSoTiem)
+            .input("Content", sql.NVarChar(500), data.noiDung)
+            .input("ConfirmedAt", sql.DateTime2, data.ngayXacNhan)
+            .input("Status", sql.NVarChar(50), data.trangThai)
+            .input("Note", sql.NVarChar(500), data.ghiChu ?? null);
+        const result = await req.query(`
+            DECLARE @Old nvarchar(max),@New nvarchar(max),@PreviousCitizen int,@PreviousFacility int;
+            IF ISNULL(dbo.fn_CoSoDuocPhep(@ActorId,@FacilityId),0)<>1
+                OR ISNULL(dbo.fn_NguoiDanDuocPhep(@ActorId,@CitizenId),0)<>1
+                THROW 51002,N'Bạn không được quản lý hồ sơ tại cơ sở tiêm này.',1;
+            IF NOT EXISTS(SELECT 1 FROM dbo.NGUOIDAN WITH(HOLDLOCK) WHERE MaNguoiDan=@CitizenId AND TrangThai=1)
+                THROW 51001,N'Không tìm thấy hồ sơ người dân đang hoạt động.',1;
+            IF @Id IS NULL
+            BEGIN
+                IF NOT EXISTS(SELECT 1 FROM dbo.COSOTIEM cs WITH(HOLDLOCK)
+                    JOIN dbo.KHUVUCTIEM kv WITH(HOLDLOCK) ON kv.MaKhuVuc=cs.MaKhuVuc
+                    WHERE cs.MaCoSoTiem=@FacilityId AND cs.TrangThai=1 AND kv.TrangThai=1)
+                    THROW 51003,N'Cơ sở tiêm hoặc khu vực đang ngừng hoạt động.',1;
+                INSERT dbo.CHONGCHIDINH(MaNguoiDan,MaCoSoTiem,NoiDung,NgayXacNhan,MaNguoiXacNhan,TrangThai,GhiChu)
+                    VALUES(@CitizenId,@FacilityId,@Content,@ConfirmedAt,@ActorId,N'Đã xác nhận',@Note);
+                SET @Id=CONVERT(int,SCOPE_IDENTITY());
+            END
+            ELSE
+            BEGIN
+                SELECT @PreviousCitizen=MaNguoiDan,@PreviousFacility=MaCoSoTiem
+                    FROM dbo.CHONGCHIDINH WITH(UPDLOCK,HOLDLOCK) WHERE MaChongChiDinh=@Id;
+                IF @PreviousCitizen IS NULL THROW 51001,N'Không tìm thấy chống chỉ định.',1;
+                IF @PreviousCitizen<>@CitizenId OR @PreviousFacility<>@FacilityId
+                    THROW 51003,N'Không được đổi người dân hoặc cơ sở của chống chỉ định.',1;
+                SET @Old=(SELECT * FROM dbo.CHONGCHIDINH WHERE MaChongChiDinh=@Id FOR JSON PATH,WITHOUT_ARRAY_WRAPPER);
+                UPDATE dbo.CHONGCHIDINH SET NoiDung=@Content,NgayXacNhan=@ConfirmedAt,
+                    TrangThai=@Status,GhiChu=@Note WHERE MaChongChiDinh=@Id;
+            END;
+            SET @New=(SELECT * FROM dbo.CHONGCHIDINH WHERE MaChongChiDinh=@Id FOR JSON PATH,WITHOUT_ARRAY_WRAPPER);
+            INSERT dbo.LICHSUHIEUCHINH(TenBang,MaBanGhi,HanhDong,DuLieuCu,DuLieuMoi,MaTaiKhoan)
+                VALUES('CHONGCHIDINH',@Id,CASE WHEN @Old IS NULL THEN N'Thêm mới' ELSE N'Cập nhật' END,@Old,@New,@ActorId);
+            SELECT * FROM dbo.CHONGCHIDINH WHERE MaChongChiDinh=@Id;`);
         await transaction.commit();
-
-        return record;
-
+        return result.recordset[0];
     } catch (error) {
-
-        try {
-            await transaction.rollback();
-        } catch (_) { }
-
+        try { await transaction.rollback(); } catch (_) { /* preserve original error */ }
         throw error;
     }
 };
-
-
-// Cập nhật chống chỉ định
-const update = async (
-    id,
-    data,
-    maTaiKhoan
-) => {
-    const pool = await sql.connect();
-
-    const transaction =
-        new sql.Transaction(pool);
-
-    try {
-
-        await transaction.begin();
-
-        const oldRequest =
-            new sql.Request(transaction);
-
-        oldRequest.input(
-            "MaChongChiDinh",
-            sql.Int,
-            id
-        );
-
-        const oldResult =
-            await oldRequest.query(`
-                SELECT *
-                FROM CHONGCHIDINH
-                WHERE MaChongChiDinh =
-                    @MaChongChiDinh
-            `);
-
-        const oldData =
-            oldResult.recordset[0];
-
-
-        const request =
-            new sql.Request(transaction);
-
-        request.input(
-            "MaChongChiDinh",
-            sql.Int,
-            id
-        );
-
-        request.input(
-            "NoiDung",
-            sql.NVarChar(500),
-            data.noiDung ?? null
-        );
-
-        request.input(
-            "NgayXacNhan",
-            sql.DateTime2,
-            data.ngayXacNhan
-                ? new Date(data.ngayXacNhan)
-                : null
-        );
-
-        request.input(
-            "TrangThai",
-            sql.NVarChar(50),
-            data.trangThai ?? null
-        );
-
-        request.input(
-            "GhiChu",
-            sql.NVarChar(500),
-            data.ghiChu ?? null
-        );
-
-        const result =
-            await request.query(`
-                UPDATE CHONGCHIDINH
-                SET
-                    NoiDung =
-                        COALESCE(
-                            @NoiDung,
-                            NoiDung
-                        ),
-
-                    NgayXacNhan =
-                        COALESCE(
-                            @NgayXacNhan,
-                            NgayXacNhan
-                        ),
-
-                    TrangThai =
-                        COALESCE(
-                            @TrangThai,
-                            TrangThai
-                        ),
-
-                    GhiChu =
-                        COALESCE(
-                            @GhiChu,
-                            GhiChu
-                        )
-
-                WHERE MaChongChiDinh =
-                    @MaChongChiDinh;
-
-                SELECT *
-                FROM CHONGCHIDINH
-                WHERE MaChongChiDinh =
-                    @MaChongChiDinh;
-            `);
-
-        const newData =
-            result.recordset[0];
-
-
-        const historyRequest =
-            new sql.Request(transaction);
-
-        historyRequest.input(
-            "TenBang",
-            sql.VarChar(100),
-            "CHONGCHIDINH"
-        );
-
-        historyRequest.input(
-            "MaBanGhi",
-            sql.Int,
-            id
-        );
-
-        historyRequest.input(
-            "HanhDong",
-            sql.NVarChar(50),
-            "Cập nhật"
-        );
-
-        historyRequest.input(
-            "DuLieuCu",
-            sql.NVarChar(sql.MAX),
-            JSON.stringify(oldData)
-        );
-
-        historyRequest.input(
-            "DuLieuMoi",
-            sql.NVarChar(sql.MAX),
-            JSON.stringify(newData)
-        );
-
-        historyRequest.input(
-            "MaTaiKhoan",
-            sql.Int,
-            maTaiKhoan
-        );
-
-        await historyRequest.query(`
-            INSERT INTO LICHSUHIEUCHINH
-            (
-                TenBang,
-                MaBanGhi,
-                HanhDong,
-                DuLieuCu,
-                DuLieuMoi,
-                MaTaiKhoan
-            )
-            VALUES
-            (
-                @TenBang,
-                @MaBanGhi,
-                @HanhDong,
-                @DuLieuCu,
-                @DuLieuMoi,
-                @MaTaiKhoan
-            )
-        `);
-
-        await transaction.commit();
-
-        return newData;
-
-    } catch (error) {
-
-        try {
-            await transaction.rollback();
-        } catch (_) { }
-
-        throw error;
-    }
-};
-
-
-module.exports = {
-    findAll,
-    findById,
-    findByCitizenId,
-    create,
-    update
-};
+const create = (data, actorId) => save(null, data, actorId);
+const update = (id, data, actorId) => save(integer(id, "Mã chống chỉ định"), data, actorId);
+module.exports = { findAll, findById, findByCitizenId, create, update };

@@ -10,7 +10,8 @@ CREATE OR ALTER PROCEDURE dbo.usp_LuuLichTiem
  @MaLichTiem int=NULL, @MaNguoiDan int, @MaVaccine int, @MuiSo int,
  @NgayDuKien datetime2(0), @CoSoTiem nvarchar(255)=NULL,
  @TrangThai nvarchar(50)=N'Đã lên lịch', @GhiChu nvarchar(1000)=NULL,
- @MaNhanVienTao int=NULL, @MaLoDuKien int=NULL, @ReturnRow bit=1
+ @MaNhanVienTao int=NULL, @MaLoDuKien int=NULL, @ReturnRow bit=1,
+ @MaCoSoTiem int=NULL, @MaTaiKhoanNguoiDan int=NULL
 AS
 BEGIN
  SET NOCOUNT ON; SET XACT_ABORT ON;
@@ -19,11 +20,32 @@ BEGIN
   THROW 51000,N'Ngày hẹn phải ở tương lai và mũi số hợp lệ.',1;
  IF @TrangThai IS NULL OR @TrangThai NOT IN (N'Đã lên lịch',N'Đã xác nhận')
   THROW 51000,N'Chỉ tạo hoặc sửa lịch đang hoạt động.',1;
+ IF @MaCoSoTiem IS NULL OR @MaCoSoTiem<=0 THROW 51000,N'Cần chọn cơ sở tiêm từ danh mục TP. Hồ Chí Minh.',1;
+ IF (@MaNhanVienTao IS NULL AND @MaTaiKhoanNguoiDan IS NULL) OR (@MaNhanVienTao IS NOT NULL AND @MaTaiKhoanNguoiDan IS NOT NULL)
+  THROW 51002,N'Cần xác định đúng một tài khoản thực hiện đặt lịch.',1;
  BEGIN TRY
   BEGIN TRANSACTION;
   DECLARE @LockResult int;
   EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
   IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
+  SET @CoSoTiem=NULL;
+  SELECT @CoSoTiem=c.TenCoSo FROM dbo.COSOTIEM c WITH(HOLDLOCK)
+   JOIN dbo.KHUVUCTIEM k WITH(HOLDLOCK) ON k.MaKhuVuc=c.MaKhuVuc
+   WHERE c.MaCoSoTiem=@MaCoSoTiem AND c.TrangThai=1 AND k.TrangThai=1
+    AND c.TinhThanh=N'Thành phố Hồ Chí Minh';
+  IF @CoSoTiem IS NULL THROW 51000,N'Cơ sở tiêm không tiếp nhận đặt lịch hoặc chưa được xác minh tại TP. Hồ Chí Minh.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.COSOTIEM_VACCINE WITH(HOLDLOCK) WHERE MaCoSoTiem=@MaCoSoTiem AND MaVaccine=@MaVaccine AND TrangThai=1)
+   THROW 51003,N'Cơ sở không triển khai vaccine đã chọn.',1;
+  IF @MaNhanVienTao IS NOT NULL AND (dbo.fn_CoSoDuocPhep(@MaNhanVienTao,@MaCoSoTiem)=0 OR dbo.fn_NguoiDanDuocPhep(@MaNhanVienTao,@MaNguoiDan)=0)
+   THROW 51002,N'Nhân viên không được phân công cơ sở hoặc hồ sơ người dân này.',1;
+  IF @MaTaiKhoanNguoiDan IS NOT NULL
+  BEGIN
+   IF @MaLichTiem IS NOT NULL OR @TrangThai<>N'Đã lên lịch' OR NOT EXISTS(
+    SELECT 1 FROM dbo.NGUOIDAN n WITH(HOLDLOCK) JOIN dbo.TAIKHOAN t WITH(HOLDLOCK) ON t.MaTaiKhoan=n.MaTaiKhoan
+    JOIN dbo.VAITRO r WITH(HOLDLOCK) ON r.MaVaiTro=t.MaVaiTro
+    WHERE n.MaNguoiDan=@MaNguoiDan AND t.MaTaiKhoan=@MaTaiKhoanNguoiDan AND t.TrangThai=1 AND n.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro=N'Người dân')
+    THROW 51002,N'Người dân chỉ được đăng ký lịch mới cho chính hồ sơ của mình.',1;
+  END;
   IF NOT EXISTS(SELECT 1 FROM dbo.NGUOIDAN WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=1)
    THROW 51001,N'Không tìm thấy hồ sơ người dân đang hoạt động.',1;
   IF NOT EXISTS(SELECT 1 FROM dbo.VACCINE WITH(HOLDLOCK) WHERE MaVaccine=@MaVaccine AND TrangThai=1)
@@ -32,11 +54,12 @@ BEGIN
    THROW 51002,N'Tài khoản lập lịch không có quyền.',1;
   IF EXISTS(SELECT 1 FROM dbo.CHONGCHIDINH WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=N'Đã xác nhận')
    THROW 51003,N'Hồ sơ có chống chỉ định đang hiệu lực; cần nhân viên y tế đánh giá.',1;
-  DECLARE @OldBatch int, @OldStatus nvarchar(50), @ExistingCitizen int;
+  DECLARE @OldBatch int, @OldStatus nvarchar(50), @ExistingCitizen int, @OldFacility int;
   IF @MaLichTiem IS NOT NULL
   BEGIN
-   SELECT @OldBatch=MaLoDuKien,@OldStatus=TrangThai,@ExistingCitizen=MaNguoiDan FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+   SELECT @OldBatch=MaLoDuKien,@OldStatus=TrangThai,@ExistingCitizen=MaNguoiDan,@OldFacility=MaCoSoTiem FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
    IF @ExistingCitizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
+   IF dbo.fn_CoSoDuocPhep(@MaNhanVienTao,@OldFacility)=0 THROW 51002,N'Không được sửa lịch thuộc cơ sở ngoài phạm vi phân công.',1;
    IF @ExistingCitizen<>@MaNguoiDan THROW 51003,N'Không được chuyển lịch sang người dân khác.',1;
    IF @OldStatus NOT IN (N'Đã lên lịch',N'Đã xác nhận') THROW 51003,N'Lịch đã đóng; không thể sửa.',1;
   END;
@@ -51,18 +74,18 @@ BEGIN
   END;
   IF @MaLoDuKien IS NULL
    SELECT TOP(1) @MaLoDuKien=MaLo FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK)
-   WHERE MaVaccine=@MaVaccine AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(@NgayDuKien AS date) AND SoLuongCon>SoLuongDatTruoc
+   WHERE MaVaccine=@MaVaccine AND MaCoSoTiem=@MaCoSoTiem AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(DATEADD(hour,7,@NgayDuKien) AS date) AND SoLuongCon>SoLuongDatTruoc
    ORDER BY HanSuDung,MaLo;
-  IF NOT EXISTS(SELECT 1 FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLoDuKien AND MaVaccine=@MaVaccine AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(@NgayDuKien AS date) AND SoLuongCon>SoLuongDatTruoc)
+  IF NOT EXISTS(SELECT 1 FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLoDuKien AND MaVaccine=@MaVaccine AND MaCoSoTiem=@MaCoSoTiem AND TrangThai=N'Đang sử dụng' AND HanSuDung>=CAST(DATEADD(hour,7,@NgayDuKien) AS date) AND SoLuongCon>SoLuongDatTruoc)
    THROW 51004,N'Không còn lô vaccine đủ hạn và đủ lượng để giữ chỗ ngày đã chọn.',1;
   UPDATE dbo.LOVACCINE SET SoLuongDatTruoc=SoLuongDatTruoc+1 WHERE MaLo=@MaLoDuKien;
   IF @MaLichTiem IS NULL
   BEGIN
-   INSERT dbo.LICHTIEM(MaNguoiDan,MaVaccine,MaLoDuKien,MuiSo,NgayDuKien,CoSoTiem,TrangThai,GhiChu,MaNhanVienTao)
-   VALUES(@MaNguoiDan,@MaVaccine,@MaLoDuKien,@MuiSo,@NgayDuKien,@CoSoTiem,@TrangThai,@GhiChu,@MaNhanVienTao);
+   INSERT dbo.LICHTIEM(MaNguoiDan,MaVaccine,MaLoDuKien,MuiSo,NgayDuKien,CoSoTiem,TrangThai,GhiChu,MaNhanVienTao,MaCoSoTiem)
+   VALUES(@MaNguoiDan,@MaVaccine,@MaLoDuKien,@MuiSo,@NgayDuKien,@CoSoTiem,@TrangThai,@GhiChu,@MaNhanVienTao,@MaCoSoTiem);
    SET @MaLichTiem=CONVERT(int,SCOPE_IDENTITY());
   END
-  ELSE UPDATE dbo.LICHTIEM SET MaVaccine=@MaVaccine,MaLoDuKien=@MaLoDuKien,MuiSo=@MuiSo,NgayDuKien=@NgayDuKien,CoSoTiem=@CoSoTiem,TrangThai=@TrangThai,GhiChu=@GhiChu,NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
+  ELSE UPDATE dbo.LICHTIEM SET MaVaccine=@MaVaccine,MaLoDuKien=@MaLoDuKien,MuiSo=@MuiSo,NgayDuKien=@NgayDuKien,CoSoTiem=@CoSoTiem,MaCoSoTiem=@MaCoSoTiem,TrangThai=@TrangThai,GhiChu=@GhiChu,NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
   COMMIT TRANSACTION;
   IF @ReturnRow=1 SELECT * FROM dbo.LICHTIEM WHERE MaLichTiem=@MaLichTiem;
  END TRY
@@ -86,10 +109,10 @@ BEGIN
   DECLARE @LockResult int;
   EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
   IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
-  DECLARE @OldStatus nvarchar(50),@Batch int,@Citizen int,@Date datetime2(0);
-  SELECT @OldStatus=TrangThai,@Batch=MaLoDuKien,@Citizen=MaNguoiDan,@Date=NgayDuKien FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+  DECLARE @OldStatus nvarchar(50),@Batch int,@Citizen int,@Date datetime2(0),@Facility int;
+  SELECT @OldStatus=TrangThai,@Batch=MaLoDuKien,@Citizen=MaNguoiDan,@Date=NgayDuKien,@Facility=MaCoSoTiem FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
   IF @Citizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
-  IF @MaTaiKhoan IS NOT NULL AND NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaTaiKhoan AND t.TrangThai=1 AND r.TrangThai=1 AND (r.TenVaiTro IN(N'Nhân viên',N'Quản trị viên') OR (@TrangThai=N'Đã hủy' AND EXISTS(SELECT 1 FROM dbo.NGUOIDAN n WHERE n.MaNguoiDan=@Citizen AND n.MaTaiKhoan=t.MaTaiKhoan))))
+  IF @MaTaiKhoan IS NOT NULL AND NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaTaiKhoan AND t.TrangThai=1 AND r.TrangThai=1 AND (dbo.fn_CoSoDuocPhep(@MaTaiKhoan,@Facility)=1 OR (r.TenVaiTro=N'Người dân' AND @TrangThai=N'Đã hủy' AND EXISTS(SELECT 1 FROM dbo.NGUOIDAN n WHERE n.MaNguoiDan=@Citizen AND n.MaTaiKhoan=t.MaTaiKhoan))))
    THROW 51002,N'Không có quyền đổi trạng thái lịch này.',1;
   IF @OldStatus=@TrangThai
   BEGIN
@@ -121,7 +144,8 @@ GO
 CREATE OR ALTER PROCEDURE dbo.usp_GhiNhanMuiTiem
  @MaNguoiDan int,@MaVaccine int,@MaLo int,@MaLichTiem int=NULL,@MuiSo int,
  @NgayTiem datetime2(0)=NULL,@CoSoTiem nvarchar(255)=NULL,@MaNhanVien int,
- @KetQua nvarchar(255)=N'Đã tiêm',@PhanUngSauTiem nvarchar(2000)=NULL,@GhiChu nvarchar(1000)=NULL,@ReturnRow bit=1
+ @KetQua nvarchar(255)=N'Đã tiêm',@PhanUngSauTiem nvarchar(2000)=NULL,@GhiChu nvarchar(1000)=NULL,@ReturnRow bit=1,
+ @MaCoSoTiem int=NULL
 AS
 BEGIN
  SET NOCOUNT ON; SET XACT_ABORT ON;
@@ -134,6 +158,9 @@ BEGIN
   DECLARE @LockResult int;
   EXEC @LockResult=sys.sp_getapplock @Resource=N'VaccinationCommunity.Inventory',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000;
   IF @LockResult<0 THROW 51003,N'Hệ thống đang xử lý tồn kho; vui lòng thử lại.',1;
+  IF @MaCoSoTiem IS NULL OR @MaCoSoTiem<=0 THROW 51000,N'Cần chọn cơ sở tiêm từ danh mục TP. Hồ Chí Minh.',1;
+  IF dbo.fn_CoSoDuocPhep(@MaNhanVien,@MaCoSoTiem)=0 OR dbo.fn_NguoiDanDuocPhep(@MaNhanVien,@MaNguoiDan)=0
+   THROW 51002,N'Nhân viên không được phân công cơ sở hoặc hồ sơ người dân này.',1;
   IF NOT EXISTS(SELECT 1 FROM dbo.TAIKHOAN t JOIN dbo.VAITRO r ON r.MaVaiTro=t.MaVaiTro WHERE t.MaTaiKhoan=@MaNhanVien AND t.TrangThai=1 AND r.TrangThai=1 AND r.TenVaiTro IN(N'Nhân viên',N'Quản trị viên'))
    THROW 51002,N'Nhân viên ghi nhận không hợp lệ.',1;
   IF NOT EXISTS(SELECT 1 FROM dbo.NGUOIDAN WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=1)
@@ -143,33 +170,40 @@ BEGIN
    WHERE (@MaLichTiem IS NOT NULL AND MaLichTiem=@MaLichTiem) OR (MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo);
   IF @Existing IS NOT NULL
   BEGIN
-   IF NOT EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaMuiTiem=@Existing AND MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo AND MaLo=@MaLo AND (MaLichTiem=@MaLichTiem OR (MaLichTiem IS NULL AND @MaLichTiem IS NULL)))
+   IF NOT EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaMuiTiem=@Existing AND MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo AND MaLo=@MaLo AND MaCoSoTiem=@MaCoSoTiem AND (MaLichTiem=@MaLichTiem OR (MaLichTiem IS NULL AND @MaLichTiem IS NULL)))
     THROW 51003,N'Mũi tiêm hoặc lịch đã được sử dụng với thông tin khác.',1;
    COMMIT;
    IF @ReturnRow=1 SELECT * FROM dbo.MUITIEM WHERE MaMuiTiem=@Existing;
    RETURN;
   END;
+  SET @CoSoTiem=NULL;
+  SELECT @CoSoTiem=c.TenCoSo FROM dbo.COSOTIEM c WITH(HOLDLOCK)
+   JOIN dbo.KHUVUCTIEM k WITH(HOLDLOCK) ON k.MaKhuVuc=c.MaKhuVuc
+   WHERE c.MaCoSoTiem=@MaCoSoTiem AND c.TrangThai=1 AND k.TrangThai=1 AND c.TinhThanh=N'Thành phố Hồ Chí Minh';
+  IF @CoSoTiem IS NULL THROW 51003,N'Cơ sở tiêm đang ngừng tiếp nhận hoặc chưa được đối soát.',1;
+  IF NOT EXISTS(SELECT 1 FROM dbo.COSOTIEM_VACCINE WITH(HOLDLOCK) WHERE MaCoSoTiem=@MaCoSoTiem AND MaVaccine=@MaVaccine AND TrangThai=1)
+   THROW 51003,N'Cơ sở không triển khai vaccine đã chọn.',1;
   IF NOT EXISTS(SELECT 1 FROM dbo.VACCINE WHERE MaVaccine=@MaVaccine AND TrangThai=1)
    THROW 51000,N'Vaccine không tồn tại hoặc đang ngừng sử dụng.',1;
   IF EXISTS(SELECT 1 FROM dbo.CHONGCHIDINH WHERE MaNguoiDan=@MaNguoiDan AND TrangThai=N'Đã xác nhận' AND COALESCE(NgayXacNhan,NgayTao)<=@NgayTiem)
    THROW 51003,N'Hồ sơ có chống chỉ định đang hiệu lực; cần đánh giá y tế.',1;
   IF EXISTS(SELECT 1 FROM dbo.MUITIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaNguoiDan=@MaNguoiDan AND MaVaccine=@MaVaccine AND MuiSo=@MuiSo)
    THROW 51003,N'Mũi vaccine này đã được ghi nhận; không được trừ kho lần hai.',1;
-  DECLARE @ReservedBatch int=NULL,@ScheduleStatus nvarchar(50),@ScheduleCitizen int,@ScheduleVaccine int,@ScheduleDose int;
+  DECLARE @ReservedBatch int=NULL,@ScheduleStatus nvarchar(50),@ScheduleCitizen int,@ScheduleVaccine int,@ScheduleDose int,@ScheduleFacility int;
   IF @MaLichTiem IS NOT NULL
   BEGIN
-   SELECT @ReservedBatch=MaLoDuKien,@ScheduleStatus=TrangThai,@ScheduleCitizen=MaNguoiDan,@ScheduleVaccine=MaVaccine,@ScheduleDose=MuiSo FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
+   SELECT @ReservedBatch=MaLoDuKien,@ScheduleStatus=TrangThai,@ScheduleCitizen=MaNguoiDan,@ScheduleVaccine=MaVaccine,@ScheduleDose=MuiSo,@ScheduleFacility=MaCoSoTiem FROM dbo.LICHTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaLichTiem=@MaLichTiem;
    IF @ScheduleCitizen IS NULL THROW 51001,N'Không tìm thấy lịch tiêm.',1;
-   IF @ScheduleCitizen<>@MaNguoiDan OR @ScheduleVaccine<>@MaVaccine OR @ScheduleDose<>@MuiSo
+   IF @ScheduleCitizen<>@MaNguoiDan OR @ScheduleVaccine<>@MaVaccine OR @ScheduleDose<>@MuiSo OR @ScheduleFacility<>@MaCoSoTiem
     THROW 51003,N'Người dân, vaccine hoặc mũi số không khớp lịch.',1;
    IF @ScheduleStatus NOT IN(N'Đã lên lịch',N'Đã xác nhận') OR EXISTS(SELECT 1 FROM dbo.MUITIEM WHERE MaLichTiem=@MaLichTiem)
     THROW 51003,N'Lịch không còn hiệu lực hoặc đã được ghi nhận tiêm.',1;
   END;
-  DECLARE @Stock int,@Reservations int,@Expiry date,@BatchVaccine int,@BatchStatus nvarchar(50),@Manufactured date;
-  SELECT @Stock=SoLuongCon,@Reservations=SoLuongDatTruoc,@Expiry=HanSuDung,@BatchVaccine=MaVaccine,@BatchStatus=TrangThai,@Manufactured=NgaySanXuat FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLo;
+  DECLARE @Stock int,@Reservations int,@Expiry date,@BatchVaccine int,@BatchStatus nvarchar(50),@Manufactured date,@BatchFacility int;
+  SELECT @Stock=SoLuongCon,@Reservations=SoLuongDatTruoc,@Expiry=HanSuDung,@BatchVaccine=MaVaccine,@BatchStatus=TrangThai,@Manufactured=NgaySanXuat,@BatchFacility=MaCoSoTiem FROM dbo.LOVACCINE WITH(UPDLOCK,HOLDLOCK) WHERE MaLo=@MaLo;
   IF @BatchVaccine IS NULL THROW 51001,N'Không tìm thấy lô vaccine.',1;
-  IF @BatchVaccine<>@MaVaccine THROW 51000,N'Lô không thuộc vaccine đã chọn.',1;
-  IF @BatchStatus<>N'Đang sử dụng' OR @Expiry<CAST(@NgayTiem AS date) OR @Expiry<CAST(SYSUTCDATETIME() AS date) OR (@Manufactured IS NOT NULL AND @Manufactured>CAST(@NgayTiem AS date))
+  IF @BatchVaccine<>@MaVaccine OR @BatchFacility<>@MaCoSoTiem THROW 51000,N'Lô không thuộc vaccine hoặc cơ sở đã chọn.',1;
+  IF @BatchStatus<>N'Đang sử dụng' OR @Expiry<CAST(DATEADD(hour,7,@NgayTiem) AS date) OR @Expiry<CAST(DATEADD(hour,7,SYSUTCDATETIME()) AS date) OR (@Manufactured IS NOT NULL AND @Manufactured>CAST(DATEADD(hour,7,@NgayTiem) AS date))
    THROW 51004,N'Lô vaccine không được sử dụng hoặc không đủ hạn.',1;
   IF @Stock<=0 OR (@ReservedBatch=@MaLo AND @Reservations<=0) OR ((@ReservedBatch IS NULL OR @ReservedBatch<>@MaLo) AND @Stock<=@Reservations)
    THROW 51004,N'Lô vaccine không còn lượng khả dụng.',1;
@@ -180,8 +214,8 @@ BEGIN
   END;
   UPDATE dbo.LOVACCINE SET SoLuongCon=SoLuongCon-1,SoLuongDatTruoc=SoLuongDatTruoc-CASE WHEN @ReservedBatch=@MaLo THEN 1 ELSE 0 END,
    TrangThai=CASE WHEN SoLuongCon=1 THEN N'Hết hàng' ELSE TrangThai END WHERE MaLo=@MaLo;
-  INSERT dbo.MUITIEM(MaNguoiDan,MaVaccine,MaLo,MaLichTiem,MuiSo,NgayTiem,CoSoTiem,MaNhanVien,KetQua,PhanUngSauTiem,GhiChu)
-  VALUES(@MaNguoiDan,@MaVaccine,@MaLo,@MaLichTiem,@MuiSo,@NgayTiem,@CoSoTiem,@MaNhanVien,COALESCE(@KetQua,N'Đã tiêm'),@PhanUngSauTiem,@GhiChu);
+  INSERT dbo.MUITIEM(MaNguoiDan,MaVaccine,MaLo,MaLichTiem,MuiSo,NgayTiem,CoSoTiem,MaNhanVien,KetQua,PhanUngSauTiem,GhiChu,MaCoSoTiem)
+  VALUES(@MaNguoiDan,@MaVaccine,@MaLo,@MaLichTiem,@MuiSo,@NgayTiem,@CoSoTiem,@MaNhanVien,COALESCE(@KetQua,N'Đã tiêm'),@PhanUngSauTiem,@GhiChu,@MaCoSoTiem);
   DECLARE @Id int=CONVERT(int,SCOPE_IDENTITY());
   IF @MaLichTiem IS NOT NULL UPDATE dbo.LICHTIEM SET TrangThai=N'Đã tiêm',NgayCapNhat=SYSUTCDATETIME() WHERE MaLichTiem=@MaLichTiem;
   INSERT dbo.THONGBAO(MaNguoiDan,MaLichTiem,TieuDe,NoiDung,ThoiGianGui)
@@ -243,6 +277,7 @@ CREATE OR ALTER PROCEDURE dbo.usp_XuLyTheoDoi
 AS
 BEGIN
  SET NOCOUNT ON; SET XACT_ABORT ON;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
  IF @LanCapNhatMongDoi IS NULL OR @LanCapNhatMongDoi<1 OR @TrangThai IS NULL OR @TrangThai NOT IN('new','reviewing','monitoring','escalated','resolved') OR LEN(LTRIM(RTRIM(COALESCE(@HuongXuLy,N''))))=0
   THROW 51000,N'Cần trạng thái và nội dung xử lý hợp lệ.',1;
  IF @TrangThai='monitoring' AND (@HenTheoDoiLuc IS NULL OR @HenTheoDoiLuc<=SYSUTCDATETIME())
@@ -257,6 +292,8 @@ BEGIN
   DECLARE @Old varchar(16),@Revision int,@Citizen int;
   SELECT @Old=TrangThai,@Revision=LanCapNhat,@Citizen=MaNguoiDan FROM dbo.THEODOISAUTIEM WITH(UPDLOCK,HOLDLOCK) WHERE MaTheoDoi=@MaTheoDoi;
   IF @Old IS NULL THROW 51001,N'Không tìm thấy báo cáo.',1;
+  DECLARE @Facility int=(SELECT m.MaCoSoTiem FROM dbo.THEODOISAUTIEM d WITH(HOLDLOCK) JOIN dbo.MUITIEM m WITH(HOLDLOCK) ON m.MaMuiTiem=d.MaMuiTiem WHERE d.MaTheoDoi=@MaTheoDoi);
+  IF dbo.fn_CoSoDuocPhep(@MaTaiKhoan,@Facility)=0 THROW 51002,N'Phiếu theo dõi thuộc cơ sở ngoài phạm vi phân công.',1;
   IF @Revision<>@LanCapNhatMongDoi THROW 51003,N'Hồ sơ đã được cập nhật; tải lại trước khi xử lý.',1;
   IF NOT(@Old=@TrangThai OR (@Old='new' AND @TrangThai IN('reviewing','escalated')) OR (@Old='reviewing' AND @TrangThai IN('monitoring','escalated','resolved')) OR (@Old='monitoring' AND @TrangThai IN('reviewing','escalated','resolved')) OR (@Old='escalated' AND @TrangThai IN('reviewing','monitoring','resolved')) OR (@Old='resolved' AND @TrangThai IN('reviewing','escalated')))
    THROW 51003,N'Không được chuyển trạng thái theo dõi theo cách này.',1;

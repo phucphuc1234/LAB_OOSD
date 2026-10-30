@@ -42,3 +42,24 @@ test("list reads the SQL view and binds owner, filters and paging without SQL in
     assert.equal(calls[0].params.Offset.value, 20);
     assert.match(calls[0].params.Search.value, /~%/);
 });
+
+test("staff lists scope both the total and page to assigned dose facilities", async () => {
+    const { repo, calls } = setup();
+    await repo.listReports({ page: 1, limit: 20 }, null, 8);
+    const call = calls[0];
+    assert.equal(call.params.AccountId.value, null);
+    assert.equal(call.params.StaffAccountId.value, 8);
+    assert.equal((call.query.match(/fn_CoSoDuocPhep\(@StaffAccountId,scopeMt\.MaCoSoTiem\)=1/g) || []).length, 2);
+    assert.doesNotMatch(call.query, /\(@AccountId IS NULL OR MaTaiKhoanNguoiDan/);
+});
+
+test("report detail without either owner or staff identity stays fail-closed", async () => {
+    const { repo, calls } = setup();
+    await repo.findReport(7);
+    assert.equal(calls[0].params.AccountId.value, null);
+    assert.equal(calls[0].params.StaffAccountId.value, null);
+    assert.match(calls[0].query, /fn_CoSoDuocPhep\(@StaffAccountId,scopeMt\.MaCoSoTiem\)=1/);
+    await repo.findReport(7, null, 8);
+    assert.equal(calls[1].params.StaffAccountId.value, 8);
+    assert.equal(calls[1].params.ReportId.value, 7);
+});

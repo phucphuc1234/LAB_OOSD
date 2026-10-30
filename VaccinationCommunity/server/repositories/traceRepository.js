@@ -1,198 +1,35 @@
 const { sql } = require("../config/database");
-
-
-// Truy vết từ lô vaccine -> các mũi tiêm
-const traceByBatchId = async (maLo) => {
+const { integer } = require("../utils/validation");
+const selection = `SELECT lv.MaLo,lv.MaLoVaccine,lv.MaVaccine,v.TenVaccine,
+    lv.NgaySanXuat,lv.HanSuDung,lv.NgayNhap,lv.SoLuongNhap,lv.SoLuongCon,
+    lv.TrangThai,lv.MaCoSoTiem,cs.TenCoSo,cs.DiaChi AS DiaChiCoSo,
+    mt.MaMuiTiem,mt.MaNguoiDan,nd.HoTen,nd.NgaySinh,nd.CCCD,
+    mt.MuiSo,mt.NgayTiem,mt.CoSoTiem,mt.KetQua,mt.MaNhanVien,
+    tk.TenDangNhap AS NhanVienGhiNhan
+    FROM dbo.LOVACCINE lv JOIN dbo.VACCINE v ON v.MaVaccine=lv.MaVaccine
+    JOIN dbo.COSOTIEM cs ON cs.MaCoSoTiem=lv.MaCoSoTiem
+    LEFT JOIN dbo.MUITIEM mt ON mt.MaLo=lv.MaLo
+      AND dbo.fn_CoSoDuocPhep(@ActorId,mt.MaCoSoTiem)=1
+    LEFT JOIN dbo.NGUOIDAN nd ON nd.MaNguoiDan=mt.MaNguoiDan
+    LEFT JOIN dbo.TAIKHOAN tk ON tk.MaTaiKhoan=mt.MaNhanVien`;
+const findBatch = async (where, param, type, value, actorId) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaLo",
-            sql.Int,
-            maLo
-        )
-        .query(`
-            SELECT
-                lv.MaLo,
-                lv.MaLoVaccine,
-                lv.MaVaccine,
-                v.TenVaccine,
-                lv.NgaySanXuat,
-                lv.HanSuDung,
-                lv.SoLuongNhap,
-                lv.SoLuongCon,
-                lv.TrangThai,
-
-                mt.MaMuiTiem,
-                mt.MaNguoiDan,
-                nd.HoTen,
-                nd.NgaySinh,
-                nd.CCCD,
-
-                mt.MuiSo,
-                mt.NgayTiem,
-                mt.CoSoTiem,
-                mt.KetQua,
-
-                mt.MaNhanVien,
-                tk.TenDangNhap AS NhanVienGhiNhan
-
-            FROM LOVACCINE lv
-
-            INNER JOIN VACCINE v
-                ON lv.MaVaccine = v.MaVaccine
-
-            LEFT JOIN MUITIEM mt
-                ON lv.MaLo = mt.MaLo
-
-            LEFT JOIN NGUOIDAN nd
-                ON mt.MaNguoiDan = nd.MaNguoiDan
-
-            LEFT JOIN TAIKHOAN tk
-                ON mt.MaNhanVien = tk.MaTaiKhoan
-
-            WHERE lv.MaLo = @MaLo
-
-            ORDER BY mt.NgayTiem DESC
-        `);
-
-    return result.recordset;
+    return (await pool.request()
+        .input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
+        .input(param, type, value)
+        .query(`${selection} WHERE ${where}
+            AND dbo.fn_CoSoDuocPhep(@ActorId,lv.MaCoSoTiem)=1
+            ORDER BY mt.NgayTiem DESC,mt.MaMuiTiem DESC`)).recordset;
 };
-
-
-// Truy vết bằng mã lô
-const traceByBatchCode = async (
-    maLoVaccine
-) => {
+const traceByBatchId = (id, actorId) => findBatch("lv.MaLo=@BatchId", "BatchId", sql.Int, integer(id, "Mã lô"), actorId);
+const traceByBatchCode = (code, actorId) => findBatch("lv.MaLoVaccine=@BatchCode", "BatchCode", sql.VarChar(50), code, actorId);
+const traceByVaccinationId = async (id, actorId) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaLoVaccine",
-            sql.VarChar(50),
-            maLoVaccine
-        )
-        .query(`
-            SELECT
-                lv.MaLo,
-                lv.MaLoVaccine,
-                lv.MaVaccine,
-                v.TenVaccine,
-                lv.NgaySanXuat,
-                lv.HanSuDung,
-                lv.SoLuongNhap,
-                lv.SoLuongCon,
-                lv.TrangThai,
-
-                mt.MaMuiTiem,
-                mt.MaNguoiDan,
-                nd.HoTen,
-                nd.NgaySinh,
-                nd.CCCD,
-
-                mt.MuiSo,
-                mt.NgayTiem,
-                mt.CoSoTiem,
-                mt.KetQua,
-
-                tk.TenDangNhap
-                    AS NhanVienGhiNhan
-
-            FROM LOVACCINE lv
-
-            INNER JOIN VACCINE v
-                ON lv.MaVaccine = v.MaVaccine
-
-            LEFT JOIN MUITIEM mt
-                ON lv.MaLo = mt.MaLo
-
-            LEFT JOIN NGUOIDAN nd
-                ON mt.MaNguoiDan =
-                    nd.MaNguoiDan
-
-            LEFT JOIN TAIKHOAN tk
-                ON mt.MaNhanVien =
-                    tk.MaTaiKhoan
-
-            WHERE lv.MaLoVaccine =
-                @MaLoVaccine
-
-            ORDER BY mt.NgayTiem DESC
-        `);
-
-    return result.recordset;
+    return (await pool.request()
+        .input("ActorId", sql.Int, integer(actorId, "Tài khoản nhân viên"))
+        .input("VaccinationId", sql.Int, integer(id, "Mã mũi tiêm"))
+        .query(`${selection} WHERE mt.MaMuiTiem=@VaccinationId
+            AND dbo.fn_CoSoDuocPhep(@ActorId,lv.MaCoSoTiem)=1
+            AND dbo.fn_CoSoDuocPhep(@ActorId,mt.MaCoSoTiem)=1`)).recordset[0] || null;
 };
-
-
-// Truy từ mũi tiêm -> lô vaccine
-const traceByVaccinationId = async (
-    maMuiTiem
-) => {
-    const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaMuiTiem",
-            sql.Int,
-            maMuiTiem
-        )
-        .query(`
-            SELECT
-                mt.MaMuiTiem,
-                mt.MaNguoiDan,
-                nd.HoTen,
-
-                mt.MaVaccine,
-                v.TenVaccine,
-
-                mt.MaLo,
-                lv.MaLoVaccine,
-                lv.NgaySanXuat,
-                lv.HanSuDung,
-                lv.NgayNhap,
-                lv.SoLuongNhap,
-                lv.SoLuongCon,
-                lv.TrangThai AS TrangThaiLo,
-
-                mt.MuiSo,
-                mt.NgayTiem,
-                mt.CoSoTiem,
-                mt.KetQua,
-
-                mt.MaNhanVien,
-                tk.TenDangNhap
-                    AS NhanVienGhiNhan
-
-            FROM MUITIEM mt
-
-            INNER JOIN NGUOIDAN nd
-                ON mt.MaNguoiDan =
-                    nd.MaNguoiDan
-
-            INNER JOIN VACCINE v
-                ON mt.MaVaccine =
-                    v.MaVaccine
-
-            INNER JOIN LOVACCINE lv
-                ON mt.MaLo = lv.MaLo
-
-            INNER JOIN TAIKHOAN tk
-                ON mt.MaNhanVien =
-                    tk.MaTaiKhoan
-
-            WHERE mt.MaMuiTiem =
-                @MaMuiTiem
-        `);
-
-    return result.recordset[0] || null;
-};
-
-
-module.exports = {
-    traceByBatchId,
-    traceByBatchCode,
-    traceByVaccinationId
-};
+module.exports = { traceByBatchId, traceByBatchCode, traceByVaccinationId };

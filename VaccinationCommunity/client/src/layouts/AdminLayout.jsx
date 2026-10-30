@@ -1,4 +1,5 @@
 import {
+    Building2,
     ClipboardPlus,
     Activity,
     CalendarClock,
@@ -16,6 +17,8 @@ import EnterpriseShell from "../components/common/EnterpriseShell";
 
 const adminMenu = [
     { to: "/admin", label: "Trung tâm quản trị", icon: Gauge, end: true },
+    { to: "/admin/facilities", label: "Cơ sở & phân công", icon: Building2 },
+    { to: "/admin/facility-workspace", label: "Tiếp nhận tại cơ sở", icon: Building2 },
     { to: "/admin/users", label: "Tài khoản & phân quyền", icon: UsersRound },
     { to: "/admin/citizens", label: "Hồ sơ người dân", icon: UsersRound },
     { to: "/admin/schedules", label: "Quản lý lịch tiêm", icon: CalendarClock },

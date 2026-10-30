@@ -5,13 +5,13 @@
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    --brand: #0d827b;
-    --brand-dark: #096861;
-    --navy: #17324d;
+    --brand: #078b82;
+    --brand-dark: #066e68;
+    --navy: #12314e;
     --text-main: #23394d;
-    --text-muted: #708194;
-    --border: #e3eaf0;
-    --surface-page: #f4f7fa;
+    --text-muted: #61788e;
+    --border: #dce7ef;
+    --surface-page: #f3f7fc;
     --surface-soft: #f6f9fb;
     --surface-strong: #ffffff;
 }
@@ -23,5 +23,5 @@ a { text-underline-offset: 3px; }
 ::selection { background: #c8eeea; color: var(--navy); }
 :focus-visible { outline: 3px solid #61bcb5; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }

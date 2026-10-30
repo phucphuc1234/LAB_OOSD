@@ -1,8 +1,8 @@
 const service = require("../services/scheduleService");
 const { action, errorResponse } = require("../utils/http");
 module.exports = {
-    getAllSchedules: action(() => service.getAllSchedules()),
-    getScheduleById: action(req => service.getScheduleById(req.params.id)),
+    getAllSchedules: action(req => service.getAllSchedules(req.user.maTaiKhoan)),
+    getScheduleById: action(req => service.getScheduleById(req.params.id, req.user.maTaiKhoan)),
     getMySchedules: action(req => service.getMySchedules(req.user.maTaiKhoan)),
     createSchedule: action(req => service.createSchedule(req.body, req.user.maTaiKhoan), "Tạo lịch tiêm thành công.", 201),
     updateSchedule: action(req => service.updateSchedule(req.params.id, req.body, req.user.maTaiKhoan), "Cập nhật lịch tiêm thành công."),

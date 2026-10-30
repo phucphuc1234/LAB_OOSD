@@ -1,816 +1,120 @@
-import { EmptyState } from "../../components/common/DashboardUI";
 import { useEffect, useState } from "react";
+import { MapPin, CalendarPlus } from "lucide-react";
+import { EmptyState } from "../../components/common/DashboardUI";
+import scheduleService from "../../services/scheduleService";
+import citizenService from "../../services/citizenService";
+import vaccineService from "../../services/vaccineService";
+import { getFacilities, getFacilityVaccines } from "../../services/facilityService";
 
-import scheduleService
-    from "../../services/scheduleService";
+const activeStatuses = ["Đã lên lịch", "Đã xác nhận"];
+const emptyForm = () => ({ maNguoiDan: "", maVaccine: "", maCoSoTiem: "", muiSo: 1, ngayDuKien: "", ghiChu: "" });
+const formatDate = value => value ? new Date(value).toLocaleString("vi-VN") : "—";
+const localDate = value => { if (!value) return ""; const date = new Date(value); return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16); };
+const badge = status => ["Đã tiêm", "Hoàn thành"].includes(status) ? "bg-success" : activeStatuses.includes(status) ? "bg-primary" : "bg-secondary";
 
-import citizenService
-    from "../../services/citizenService";
-
-import vaccineService
-    from "../../services/vaccineService";
-
-
-function ScheduleManagementPage() {
-
-    const emptyForm = {
-        maNguoiDan: "",
-        maVaccine: "",
-        muiSo: 1,
-        ngayDuKien: "",
-        coSoTiem: "",
-        ghiChu: "",
-    };
-
-
-    const [schedules, setSchedules] =
-        useState([]);
-
-    const [citizens, setCitizens] =
-        useState([]);
-
-    const [vaccines, setVaccines] =
-        useState([]);
-
-    const [formData, setFormData] =
-        useState(emptyForm);
-
-    const [editingId, setEditingId] =
-        useState(null);
-
-    const [loading, setLoading] =
-        useState(true);
-
-    const [saving, setSaving] =
-        useState(false);
-
-    const [message, setMessage] =
-        useState("");
-
-    const [error, setError] =
-        useState("");
-
-
-    const loadData = async () => {
-
+export default function ScheduleManagementPage() {
+    const [schedules, setSchedules] = useState([]);
+    const [citizens, setCitizens] = useState([]);
+    const [vaccines, setVaccines] = useState([]);
+    const [facilities, setFacilities] = useState([]);
+    const [offerings, setOfferings] = useState({ site: "", rows: [], loading: false, error: "" });
+    const [form, setForm] = useState(emptyForm);
+    const [editingId, setEditingId] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
+    const [busyId, setBusyId] = useState(null);
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
+    async function loadData() {
+        setLoading(true);
         try {
-
-            setLoading(true);
-            setError("");
-
-            const [
-                scheduleResponse,
-                citizenResponse,
-                vaccineResponse
-            ] = await Promise.all([
-                scheduleService.getAllSchedules(),
-                citizenService.getAllCitizens(),
-                vaccineService.getAllVaccines(),
-            ]);
-
-            setSchedules(
-                scheduleResponse.data || []
-            );
-
-            setCitizens(
-                citizenResponse.data || []
-            );
-
-            setVaccines(
-                vaccineResponse.data || []
-            );
-
-        } catch (err) {
-
-            setError(
-                err.response?.data?.message ||
-                "Không thể tải dữ liệu lịch tiêm."
-            );
-
-        } finally {
-
-            setLoading(false);
-        }
-    };
-
-
-    useEffect(() => {
-        loadData();
-    }, []);
-
-
-    const handleChange = (e) => {
-
-        const { name, value } =
-            e.target;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
-
-    const formatDateTime = (date) => {
-
-        if (!date) return "-";
-
-        return new Date(date)
-            .toLocaleString("vi-VN");
-    };
-
-
-    const formatInputDateTime = (date) => {
-
-        if (!date) return "";
-
-        const d = new Date(date);
-
-        const year =
-            d.getFullYear();
-
-        const month =
-            String(
-                d.getMonth() + 1
-            ).padStart(2, "0");
-
-        const day =
-            String(
-                d.getDate()
-            ).padStart(2, "0");
-
-        const hour =
-            String(
-                d.getHours()
-            ).padStart(2, "0");
-
-        const minute =
-            String(
-                d.getMinutes()
-            ).padStart(2, "0");
-
-        return `${year}-${month}-${day}T${hour}:${minute}`;
-    };
-
-
-    const handleEdit = (item) => {
-
-        setEditingId(
-            item.MaLichTiem
-        );
-
-        setFormData({
-            maNguoiDan:
-                item.MaNguoiDan || "",
-
-            maVaccine:
-                item.MaVaccine || "",
-
-            muiSo:
-                item.MuiSo || 1,
-
-            ngayDuKien:
-                formatInputDateTime(
-                    item.NgayDuKien
-                ),
-
-            coSoTiem:
-                item.CoSoTiem || "",
-
-            ghiChu:
-                item.GhiChu || "",
-        });
-
-        setMessage("");
-        setError("");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-
-    const handleCancel = () => {
-
-        setEditingId(null);
-
-        setFormData(
-            emptyForm
-        );
-
-        setMessage("");
-        setError("");
-    };
-
-
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-
-        try {
-
-            setSaving(true);
-            setMessage("");
-            setError("");
-
-            const data = {
-                maNguoiDan:
-                    Number(
-                        formData.maNguoiDan
-                    ),
-
-                maVaccine:
-                    Number(
-                        formData.maVaccine
-                    ),
-
-                muiSo:
-                    Number(
-                        formData.muiSo
-                    ),
-
-                ngayDuKien:
-                    new Date(formData.ngayDuKien).toISOString(),
-
-                coSoTiem:
-                    formData.coSoTiem,
-
-                ghiChu:
-                    formData.ghiChu,
-            };
-
-
-            if (editingId) {
-
-                await scheduleService
-                    .updateSchedule(
-                        editingId,
-                        data
-                    );
-
-                setMessage(
-                    "Cập nhật lịch tiêm thành công."
-                );
-
-            } else {
-
-                await scheduleService
-                    .createSchedule(data);
-
-                setMessage(
-                    "Tạo lịch tiêm thành công."
-                );
-            }
-
-
-            setEditingId(null);
-
-            setFormData(
-                emptyForm
-            );
-
-            await loadData();
-
-        } catch (err) {
-
-            setError(
-                err.response?.data?.message ||
-                "Không thể lưu lịch tiêm."
-            );
-
-        } finally {
-
-            setSaving(false);
-        }
-    };
-
-
-    const handleStatus = async (
-        item,
-        trangThai
-    ) => {
-
-        try {
-
-            setMessage("");
-            setError("");
-
-            await scheduleService
-                .updateScheduleStatus(
-                    item.MaLichTiem,
-                    trangThai
-                );
-
-            setMessage(
-                "Cập nhật trạng thái lịch tiêm thành công."
-            );
-
-            await loadData();
-
-        } catch (err) {
-
-            setError(
-                err.response?.data?.message ||
-                "Không thể cập nhật trạng thái."
-            );
-        }
-    };
-
-
-    const getStatusClass = (status) => {
-
-        switch (status) {
-
-            case "Đã lên lịch":
-                return "bg-primary";
-
-            case "Đã xác nhận":
-                return "bg-info text-dark";
-
-            case "Đã tiêm":
-            case "Hoàn thành":
-                return "bg-success";
-
-            case "Đã hủy":
-                return "bg-danger";
-
-            case "Vắng mặt":
-                return "bg-warning text-dark";
-
-            default:
-                return "bg-secondary";
-        }
-    };
-
-
-    if (loading) {
-
-        return (
-            <div className="text-center py-5">
-                Đang tải lịch tiêm...
-            </div>
-        );
+            const [appointments, people, catalog, sites] = await Promise.all([scheduleService.getAllSchedules(), citizenService.getAllCitizens(), vaccineService.getAllVaccines(), getFacilities()]);
+            setSchedules(appointments.data || []); setCitizens(people.data || []); setVaccines(catalog.data || []); setFacilities(sites.data || []);
+        } catch (failure) { setError(failure.response?.data?.message || "Không thể tải dữ liệu lịch tiêm."); }
+        finally { setLoading(false); }
     }
-
-
-    return (
-        <div>
-
-            <div className="mb-4">
-
-                <h2>
-                    Quản lý lịch tiêm
-                </h2>
-
-                <p className="text-muted">
-                    Tạo lịch, cập nhật lịch và
-                    trạng thái tiêm chủng
-                </p>
-
-            </div>
-
-
-            {message && (
-
-                <div className="alert alert-success" role="status">
-                    {message}
-                </div>
-
-            )}
-
-
-            {error && (
-
-                <div className="alert alert-danger" role="alert">
-                    {error}
-                </div>
-
-            )}
-
-
-            <div className="card shadow-sm mb-4">
-
-                <div className="card-header">
-
-                    <strong>
-                        {editingId
-                            ? "Cập nhật lịch tiêm"
-                            : "Tạo lịch tiêm"}
-                    </strong>
-
-                </div>
-
-
-                <div className="card-body">
-
-                    <form onSubmit={handleSubmit}>
-
-                        <div className="row">
-
-
-                            <div className="col-md-6 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-maNguoiDan" className="form-label">
-                                    Người dân
-                                </label>
-
-                                <select id="schedulemanagementpage-maNguoiDan"
-                                    className="form-select"
-                                    name="maNguoiDan"
-                                    value={
-                                        formData.maNguoiDan
-                                    }
-                                    onChange={handleChange}
-                                    required
-                                >
-
-                                    <option value="">
-                                        -- Chọn người dân --
-                                    </option>
-
-                                    {citizens.map(
-                                        (item) => (
-
-                                            <option
-                                                key={
-                                                    item.MaNguoiDan
-                                                }
-                                                value={
-                                                    item.MaNguoiDan
-                                                }
-                                            >
-                                                {item.HoTen}
-                                                {" - "}
-                                                {item.CCCD || "Không CCCD"}
-                                            </option>
-
-                                        )
-                                    )}
-
-                                </select>
-
-                            </div>
-
-
-                            <div className="col-md-6 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-maVaccine" className="form-label">
-                                    Vaccine
-                                </label>
-
-                                <select id="schedulemanagementpage-maVaccine"
-                                    className="form-select"
-                                    name="maVaccine"
-                                    value={
-                                        formData.maVaccine
-                                    }
-                                    onChange={handleChange}
-                                    required
-                                >
-
-                                    <option value="">
-                                        -- Chọn vaccine --
-                                    </option>
-
-                                    {vaccines
-                                        .filter(
-                                            (item) =>
-                                                item.TrangThai
-                                        )
-                                        .map(
-                                            (item) => (
-
-                                                <option
-                                                    key={
-                                                        item.MaVaccine
-                                                    }
-                                                    value={
-                                                        item.MaVaccine
-                                                    }
-                                                >
-                                                    {
-                                                        item.TenVaccine
-                                                    }
-                                                </option>
-
-                                            )
-                                        )}
-
-                                </select>
-
-                            </div>
-
-
-                            <div className="col-md-3 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-muiSo" className="form-label">
-                                    Mũi số
-                                </label>
-
-                                <input id="schedulemanagementpage-muiSo"
-                                    type="number"
-                                    min="1"
-                                    className="form-control"
-                                    name="muiSo"
-                                    value={
-                                        formData.muiSo
-                                    }
-                                    onChange={handleChange}
-                                    required
-                                />
-
-                            </div>
-
-
-                            <div className="col-md-5 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-ngayDuKien" className="form-label">
-                                    Ngày dự kiến
-                                </label>
-
-                                <input id="schedulemanagementpage-ngayDuKien"
-                                    type="datetime-local"
-                                    className="form-control"
-                                    name="ngayDuKien"
-                                    value={
-                                        formData.ngayDuKien
-                                    }
-                                    onChange={handleChange}
-                                    required
-                                />
-
-                            </div>
-
-
-                            <div className="col-md-4 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-coSoTiem" className="form-label">
-                                    Cơ sở tiêm
-                                </label>
-
-                                <input id="schedulemanagementpage-coSoTiem"
-                                    type="text"
-                                    className="form-control"
-                                    name="coSoTiem"
-                                    value={
-                                        formData.coSoTiem
-                                    }
-                                    onChange={handleChange}
-                                />
-
-                            </div>
-
-
-                            <div className="col-12 mb-3">
-
-                                <label htmlFor="schedulemanagementpage-ghiChu" className="form-label">
-                                    Ghi chú
-                                </label>
-
-                                <textarea id="schedulemanagementpage-ghiChu"
-                                    className="form-control"
-                                    rows="3"
-                                    name="ghiChu"
-                                    value={
-                                        formData.ghiChu
-                                    }
-                                    onChange={handleChange}
-                                />
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            className="btn btn-success me-2"
-                            disabled={saving}
-                        >
-                            {saving
-                                ? "Đang lưu..."
-                                : editingId
-                                    ? "Cập nhật"
-                                    : "Tạo lịch"}
-                        </button>
-
-
-                        {editingId && (
-
-                            <button
-                                type="button"
-                                className="btn btn-secondary"
-                                onClick={handleCancel}
-                            >
-                                Hủy
-                            </button>
-
-                        )}
-
-                    </form>
-
-                </div>
-
-            </div>
-
-
-            <div className="card shadow-sm">
-
-                <div className="card-header d-flex justify-content-between">
-
-                    <strong>
-                        Danh sách lịch tiêm
-                    </strong>
-
-                    <span className="badge bg-success">
-                        {schedules.length} lịch
-                    </span>
-
-                </div>
-
-
-                <div className="card-body">
-
-                    {schedules.length === 0 ? (
-
-                        <EmptyState title="Chưa có lịch tiêm" description="Các lịch đăng ký mới và lịch được tạo sẽ hiển thị tại đây." />
-
-                    ) : (
-
-                        <div className="table-responsive">
-
-                            <table className="table table-hover align-middle">
-
-                                <thead className="table-light">
-
-                                    <tr>
-                                        <th>Mã</th>
-                                        <th>Người dân</th>
-                                        <th>Vaccine</th>
-                                        <th>Mũi</th>
-                                        <th>Ngày dự kiến</th>
-                                        <th>Cơ sở</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-
-                                </thead>
-
-
-                                <tbody>
-
-                                    {schedules.map(
-                                        (item) => (
-
-                                            <tr
-                                                key={
-                                                    item.MaLichTiem
-                                                }
-                                            >
-
-                                                <td>
-                                                    {
-                                                        item.MaLichTiem
-                                                    }
-                                                </td>
-
-
-                                                <td>
-                                                    <strong>
-                                                        {
-                                                            item.HoTen ||
-                                                            item.TenNguoiDan ||
-                                                            item.MaNguoiDan
-                                                        }
-                                                    </strong>
-                                                </td>
-
-
-                                                <td>
-                                                    {
-                                                        item.TenVaccine ||
-                                                        item.MaVaccine
-                                                    }
-                                                </td>
-
-
-                                                <td>
-                                                    {
-                                                        item.MuiSo
-                                                    }
-                                                </td>
-
-
-                                                <td>
-                                                    {formatDateTime(
-                                                        item.NgayDuKien
-                                                    )}
-                                                </td>
-
-
-                                                <td>
-                                                    {
-                                                        item.CoSoTiem ||
-                                                        "-"
-                                                    }
-                                                </td>
-
-
-                                                <td>
-
-                                                    <span
-                                                        className={
-                                                            "badge " +
-                                                            getStatusClass(
-                                                                item.TrangThai
-                                                            )
-                                                        }
-                                                    >
-                                                        {
-                                                            item.TrangThai
-                                                        }
-                                                    </span>
-
-                                                </td>
-
-
-                                                <td>
-
-                                                    <button
-                                                        className="btn btn-sm btn-outline-primary me-2"
-                                                        disabled={!["Đã lên lịch", "Đã xác nhận"].includes(item.TrangThai)}
-                                                        onClick={() =>
-                                                            handleEdit(
-                                                                item
-                                                            )
-                                                        }
-                                                    >
-                                                        Sửa
-                                                    </button>
-
-
-                                                    <select
-                                                        className="form-select form-select-sm mt-2"
-                                                        disabled={!["Đã lên lịch", "Đã xác nhận"].includes(item.TrangThai)}
-                                                        aria-label={`Trạng thái lịch ${item.MaLichTiem}`}
-                                                        value={
-                                                            item.TrangThai
-                                                        }
-                                                        onChange={(e) =>
-                                                            handleStatus(
-                                                                item,
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    >
-
-                                                        <option value="Đã lên lịch">
-                                                            Đã lên lịch
-                                                        </option>
-
-                                                        <option value="Đã xác nhận">
-                                                            Đã xác nhận
-                                                        </option>
-
-                                                        <option value="Đã tiêm" disabled>
-                                                            Đã tiêm
-                                                        </option>
-
-                                                        <option value="Hoàn thành" disabled>
-                                                            Hoàn thành
-                                                        </option>
-
-                                                        <option value="Đã hủy">
-                                                            Đã hủy
-                                                        </option>
-
-                                                        <option value="Vắng mặt">
-                                                            Vắng mặt
-                                                        </option>
-
-                                                    </select>
-
-                                                </td>
-
-                                            </tr>
-
-                                        )
-                                    )}
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-                    )}
-
-                </div>
-
-            </div>
-
-        </div>
-    );
+    useEffect(() => { loadData(); }, []);
+    useEffect(() => {
+        if (!form.maCoSoTiem) return;
+        let cancelled = false;
+        const site = String(form.maCoSoTiem);
+        setOfferings({ site, rows: [], loading: true, error: "" });
+        getFacilityVaccines(site).then(response => { if (!cancelled) setOfferings({ site, rows: response.data || [], loading: false, error: "" }); })
+            .catch(failure => { if (!cancelled) setOfferings({ site, rows: [], loading: false, error: failure.response?.data?.message || "Không tải được vaccine của cơ sở." }); });
+        return () => { cancelled = true; };
+    }, [form.maCoSoTiem]);
+    const selectedSite = facilities.find(site => Number(site.MaCoSoTiem) === Number(form.maCoSoTiem));
+    const siteVaccines = offerings.site === String(form.maCoSoTiem) ? vaccines.filter(vaccine => vaccine.TrangThai && offerings.rows.some(offer => Number(offer.MaVaccine) === Number(vaccine.MaVaccine) && offer.TrangThai)) : [];
+    const siteName = item => item.TenCoSo || facilities.find(site => Number(site.MaCoSoTiem) === Number(item.MaCoSoTiem))?.TenCoSo || item.CoSoTiem || "—";
+    function change(event) {
+        const { name, value } = event.target;
+        setForm(previous => ({ ...previous, [name]: value, ...(name === "maCoSoTiem" ? { maVaccine: "" } : {}) }));
+    }
+    function edit(item) {
+        setEditingId(item.MaLichTiem); setForm({ maNguoiDan: item.MaNguoiDan, maVaccine: item.MaVaccine, maCoSoTiem: item.MaCoSoTiem || "", muiSo: item.MuiSo,
+            ngayDuKien: localDate(item.NgayDuKien), ghiChu: item.GhiChu || "" });
+        setError(""); setMessage(""); window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function reset() { setEditingId(null); setForm(emptyForm()); setOfferings({ site: "", rows: [], loading: false, error: "" }); }
+    async function submit(event) {
+        event.preventDefault(); setError(""); setMessage("");
+        if (!selectedSite || !siteVaccines.some(item => Number(item.MaVaccine) === Number(form.maVaccine))) {
+            setError("Vui lòng chọn cơ sở được phân công và vaccine đang triển khai tại cơ sở đó."); return;
+        }
+        const date = new Date(form.ngayDuKien);
+        if (!Number.isFinite(date.getTime()) || date <= new Date()) { setError("Ngày tiêm phải lớn hơn thời điểm hiện tại."); return; }
+        setSaving(true);
+        try {
+            const data = { maNguoiDan: Number(form.maNguoiDan), maVaccine: Number(form.maVaccine), maCoSoTiem: Number(form.maCoSoTiem),
+                muiSo: Number(form.muiSo), ngayDuKien: date.toISOString(), ghiChu: form.ghiChu };
+            if (editingId) await scheduleService.updateSchedule(editingId, data); else await scheduleService.createSchedule(data);
+            setMessage(editingId ? "Cập nhật lịch tiêm thành công." : "Tạo lịch tiêm thành công."); reset(); await loadData();
+        } catch (failure) { setError(failure.response?.data?.message || "Không thể lưu lịch tiêm."); }
+        finally { setSaving(false); }
+    }
+    async function changeStatus(item, status) {
+        if (status === "Đã hủy" && !window.confirm("Bạn muốn hủy lịch tiêm này và giải phóng liều đã giữ?")) return;
+        setBusyId(item.MaLichTiem); setMessage(""); setError("");
+        try { await scheduleService.updateScheduleStatus(item.MaLichTiem, status); await loadData(); setMessage("Cập nhật trạng thái lịch tiêm thành công."); }
+        catch (failure) { setError(failure.response?.data?.message || "Không thể cập nhật trạng thái lịch."); }
+        finally { setBusyId(null); }
+    }
+    if (loading) return <div className="text-center py-5" role="status">Đang tải lịch tiêm...</div>;
+    return <div><div className="mb-4"><h2>Quản lý lịch tiêm</h2><p className="text-muted">Tạo lịch, xác nhận và theo dõi lịch tại các cơ sở được phân công ở TP. Hồ Chí Minh.</p></div>
+        {message && <div className="alert alert-success" role="status">{message}</div>}{error && <div className="alert alert-danger" role="alert">{error}</div>}
+        {!facilities.length && <div className="alert alert-info">Bạn chưa được phân công cơ sở tiêm. Hãy liên hệ quản trị viên trước khi tạo hoặc xử lý lịch.</div>}
+        <section className="card shadow-sm mb-4"><div className="card-header"><strong>{editingId ? "Cập nhật lịch tiêm" : "Tạo lịch tiêm"}</strong></div><div className="card-body">
+            <div className="facility-context mb-4">Danh sách người dân được giới hạn theo phạm vi quản lý. Người dân mới có thể tự đặt lịch để được tiếp nhận tại cơ sở.</div>
+            <form onSubmit={submit}><div className="row g-3">
+                <div className="col-md-6"><label className="form-label" htmlFor="manage-schedule-facility">Cơ sở tiêm</label>
+                    <select id="manage-schedule-facility" className="form-select" name="maCoSoTiem" value={form.maCoSoTiem} onChange={change} required disabled={saving}>
+                        <option value="">— Chọn cơ sở được phân công —</option>{facilities.filter(site => site.TrangThai || Number(site.MaCoSoTiem) === Number(form.maCoSoTiem)).map(site => <option key={site.MaCoSoTiem} value={site.MaCoSoTiem}>{site.TenCoSo}{!site.TrangThai ? " (ngừng hoạt động)" : ""}</option>)}</select></div>
+                <div className="col-md-6"><label className="form-label" htmlFor="manage-schedule-citizen">Người dân</label>
+                    <select id="manage-schedule-citizen" className="form-select" name="maNguoiDan" value={form.maNguoiDan} onChange={change} disabled={Boolean(editingId) || saving} required>
+                        <option value="">— Chọn người dân —</option>{citizens.map(person => <option key={person.MaNguoiDan} value={person.MaNguoiDan}>{person.HoTen} — {person.CCCD || `#${person.MaNguoiDan}`}</option>)}</select></div>
+                <div className="col-md-6"><label className="form-label" htmlFor="manage-schedule-vaccine">Vaccine</label>
+                    <select id="manage-schedule-vaccine" className="form-select" name="maVaccine" value={form.maVaccine} onChange={change} disabled={saving || !form.maCoSoTiem || offerings.loading} required>
+                        <option value="">{offerings.loading ? "Đang tải vaccine của cơ sở..." : "— Chọn vaccine tại cơ sở —"}</option>{siteVaccines.map(item => <option key={item.MaVaccine} value={item.MaVaccine}>{item.TenVaccine}</option>)}</select>
+                    {offerings.error && <div className="text-danger small" role="alert">{offerings.error}</div>}
+                    {form.maCoSoTiem && !offerings.loading && !offerings.error && !siteVaccines.length && <div className="form-text">Chưa triển khai vaccine tại cơ sở này. Cập nhật tại mục Cơ sở tiêm được phân công.</div>}</div>
+                <div className="col-md-3"><label className="form-label" htmlFor="manage-schedule-dose">Mũi số</label>
+                    <input id="manage-schedule-dose" name="muiSo" className="form-control" type="number" min="1" max="20" value={form.muiSo} onChange={change} required disabled={saving} /></div>
+                <div className="col-md-3"><label className="form-label" htmlFor="manage-schedule-date">Ngày giờ dự kiến</label>
+                    <input id="manage-schedule-date" name="ngayDuKien" className="form-control" type="datetime-local" value={form.ngayDuKien} onChange={change} required disabled={saving} /></div>
+                {selectedSite && <div className="col-12"><div className="facility-context d-flex gap-2"><MapPin size={18} className="flex-shrink-0" /><span>{[selectedSite.DiaChi, selectedSite.PhuongXa, "Thành phố Hồ Chí Minh"].filter(Boolean).join(", ")}</span></div></div>}
+                <div className="col-12"><label className="form-label" htmlFor="manage-schedule-note">Ghi chú</label><textarea id="manage-schedule-note" className="form-control" name="ghiChu" rows="2" maxLength="1000" value={form.ghiChu} onChange={change} disabled={saving} /></div>
+            </div><div className="d-flex gap-2 mt-4"><button className="btn btn-primary" type="submit" disabled={saving || !facilities.length || offerings.loading}><CalendarPlus size={17} className="me-2" />{saving ? "Đang lưu..." : editingId ? "Cập nhật" : "Tạo lịch tiêm"}</button>
+                {editingId && <button type="button" className="btn btn-outline-secondary" onClick={reset} disabled={saving}>Hủy sửa</button>}</div></form>
+        </div></section>
+        <section className="card shadow-sm"><div className="card-header d-flex justify-content-between"><strong>Danh sách lịch tiêm</strong><span className="badge bg-primary">{schedules.length} lịch</span></div><div className="card-body">
+            {!schedules.length ? <EmptyState title="Chưa có lịch tiêm" description="Lịch thuộc cơ sở được phân công sẽ xuất hiện tại đây." /> : <div className="table-responsive"><table className="table table-hover align-middle">
+                <thead><tr><th>Mã / Người dân</th><th>Vaccine / Mũi</th><th>Ngày dự kiến</th><th>Cơ sở tiêm</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>{schedules.map(item =>
+                    <tr key={item.MaLichTiem}><td><strong>{item.HoTen}</strong><div className="small text-muted">#{item.MaLichTiem}</div></td><td>{item.TenVaccine}<div className="small text-muted">Mũi {item.MuiSo}</div></td>
+                        <td>{formatDate(item.NgayDuKien)}</td><td>{siteName(item)}</td><td><span className={`badge ${badge(item.TrangThai)}`}>{item.TrangThai}</span></td><td>
+                            {activeStatuses.includes(item.TrangThai) ? <div className="d-flex flex-wrap gap-2"><button className="btn btn-sm btn-outline-primary" type="button" onClick={() => edit(item)} disabled={saving || busyId !== null}>Sửa</button>
+                                {item.TrangThai === "Đã lên lịch" && <button className="btn btn-sm btn-outline-success" type="button" onClick={() => changeStatus(item, "Đã xác nhận")} disabled={busyId !== null}>Xác nhận</button>}
+                                <button className="btn btn-sm btn-outline-danger" type="button" onClick={() => changeStatus(item, "Đã hủy")} disabled={busyId !== null}>Hủy lịch</button>
+                                {new Date(item.NgayDuKien) <= new Date() && <button className="btn btn-sm btn-outline-secondary" type="button" onClick={() => changeStatus(item, "Vắng mặt")} disabled={busyId !== null}>Vắng mặt</button>}</div> : "—"}</td></tr>)}</tbody></table></div>}
+        </div></section>
+    </div>;
 }
-
-export default ScheduleManagementPage;

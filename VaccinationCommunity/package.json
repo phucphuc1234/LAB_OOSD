@@ -16,6 +16,7 @@
     "env:init": "node server/scripts/init-env.js",
     "db:check": "node server/scripts/check-database.js",
     "db:install": "node server/scripts/install-database.js",
+    "db:upgrade": "node server/scripts/install-database.js --upgrade",
     "db:seed": "node server/scripts/install-database.js --seed-only",
     "test": "node --test server/tests/*.test.js",
     "test:sql": "node server/scripts/test-sql.js",

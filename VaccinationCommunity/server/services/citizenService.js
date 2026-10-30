@@ -19,9 +19,9 @@ const updateMyProfile = async (accountId, input) => {
     if (!Object.keys(data).length) throw v.error('Không có thông tin liên hệ hoặc địa chỉ để cập nhật.');
     return citizenRepository.updateOwnProfile(id, data);
 };
-const getAllCitizens = () => citizenRepository.findAll();
-const getCitizenById = async (citizenId) => {
-    const citizen = await citizenRepository.findById(v.id(citizenId, 'Mã người dân'));
+const getAllCitizens = (actorId) => citizenRepository.findAll(v.id(actorId, 'Tài khoản nhân viên'));
+const getCitizenById = async (citizenId, actorId) => {
+    const citizen = await citizenRepository.findScopedById(v.id(citizenId, 'Mã người dân'), v.id(actorId, 'Tài khoản nhân viên'));
     if (!citizen) throw v.error('Không tìm thấy người dân.', 404);
     return citizen;
 };

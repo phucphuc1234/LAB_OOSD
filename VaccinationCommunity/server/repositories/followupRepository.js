@@ -32,15 +32,16 @@ function createFollowupRepository({ sql, connect }) {
     async function listVaccinations(accountId) {
         const req = await request();
         return (await req.input("AccountId", sql.Int, accountId).query(`
-            SELECT mt.MaMuiTiem,mt.NgayTiem,mt.MuiSo,mt.CoSoTiem,v.TenVaccine
+            SELECT mt.MaMuiTiem,mt.NgayTiem,mt.MuiSo,mt.CoSoTiem,mt.MaCoSoTiem,v.TenVaccine
             FROM dbo.MUITIEM mt JOIN dbo.NGUOIDAN nd ON nd.MaNguoiDan=mt.MaNguoiDan
             JOIN dbo.VACCINE v ON v.MaVaccine=mt.MaVaccine
             WHERE nd.MaTaiKhoan=@AccountId ORDER BY mt.NgayTiem DESC,mt.MaMuiTiem DESC`)).recordset;
     }
 
-    async function listReports(filters, accountId = null) {
+    async function listReports(filters, accountId = null, staffAccountId = null) {
         const req = await request();
         req.input("AccountId", sql.Int, accountId)
+            .input("StaffAccountId", sql.Int, staffAccountId)
             .input("Status", sql.VarChar(16), filters.status || null)
             .input("Severity", sql.VarChar(16), filters.severity || null)
             .input("VaccinationId", sql.Int, filters.vaccinationId || null)
@@ -48,15 +49,18 @@ function createFollowupRepository({ sql, connect }) {
                 ? `%${filters.search.replace(/[~%_\[]/g, "~$&")}%` : null)
             .input("Offset", sql.Int, (filters.page - 1) * filters.limit)
             .input("Limit", sql.Int, filters.limit);
-        const where = `WHERE (@AccountId IS NULL OR MaTaiKhoanNguoiDan=@AccountId)
+        const where = `WHERE ((@AccountId IS NOT NULL AND MaTaiKhoanNguoiDan=@AccountId)
+            OR (@AccountId IS NULL AND EXISTS(SELECT 1 FROM dbo.MUITIEM scopeMt
+                WHERE scopeMt.MaMuiTiem=td.MaMuiTiem
+                  AND dbo.fn_CoSoDuocPhep(@StaffAccountId,scopeMt.MaCoSoTiem)=1)))
             AND (@Status IS NULL OR TrangThai=@Status)
             AND (@Severity IS NULL OR MucDo=@Severity)
             AND (@VaccinationId IS NULL OR MaMuiTiem=@VaccinationId)
             AND (@Search IS NULL OR HoTen LIKE @Search ESCAPE N'~'
                 OR TenVaccine LIKE @Search ESCAPE N'~')`;
         const result = await req.query(`
-            SELECT COUNT_BIG(*) AS Total FROM dbo.vw_TheoDoiSauTiemChiTiet ${where};
-            SELECT * FROM dbo.vw_TheoDoiSauTiemChiTiet ${where}
+            SELECT COUNT_BIG(*) AS Total FROM dbo.vw_TheoDoiSauTiemChiTiet td ${where};
+            SELECT * FROM dbo.vw_TheoDoiSauTiemChiTiet td ${where}
             ORDER BY CASE WHEN TrangThai='resolved' THEN 1 ELSE 0 END,
                 CoDauHieuCanhBao DESC,
                 CASE MucDo WHEN 'emergency' THEN 0 WHEN 'severe' THEN 1
@@ -67,13 +71,17 @@ function createFollowupRepository({ sql, connect }) {
             items: result.recordsets?.[1] || [] };
     }
 
-    async function findReport(reportId, accountId = null) {
+    async function findReport(reportId, accountId = null, staffAccountId = null) {
         const req = await request();
         return first(await req.input("ReportId", sql.Int, reportId)
-            .input("AccountId", sql.Int, accountId).query(`
-            SELECT * FROM dbo.vw_TheoDoiSauTiemChiTiet
+            .input("AccountId", sql.Int, accountId)
+            .input("StaffAccountId", sql.Int, staffAccountId).query(`
+            SELECT * FROM dbo.vw_TheoDoiSauTiemChiTiet td
             WHERE MaTheoDoi=@ReportId
-              AND (@AccountId IS NULL OR MaTaiKhoanNguoiDan=@AccountId)`));
+              AND ((@AccountId IS NOT NULL AND MaTaiKhoanNguoiDan=@AccountId)
+                OR (@AccountId IS NULL AND EXISTS(SELECT 1 FROM dbo.MUITIEM scopeMt
+                    WHERE scopeMt.MaMuiTiem=td.MaMuiTiem
+                      AND dbo.fn_CoSoDuocPhep(@StaffAccountId,scopeMt.MaCoSoTiem)=1)))`));
     }
 
     async function reportSymptoms(reportIds) {

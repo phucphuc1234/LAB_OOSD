@@ -9,3 +9,5 @@ Source ứng dụng nằm trong **[VaccinationCommunity](VaccinationCommunity)**
 - [Tải ZIP bộ XML theo mẫu](VaccinationCommunity_XML_theo_mau.zip)
 
 Tải [VaccinationCommunity.zip](VaccinationCommunity.zip), giải nén rồi mở README trong thư mục dự án để cài đặt.
+
+- [Bản TP.HCM: cơ sở tiêm, phân công nhân viên, chọn địa điểm và SQL nâng cấp](VaccinationCommunity/docs/facility-upgrade.md)

@@ -234,7 +234,7 @@ function UserManagementPage() {
 
             setMessage(
                 response.message ||
-                "Phân quyền thành công."
+                "Đã lưu vai trò. Nếu đổi sang vai trò khác, phân công cơ sở cũ được thu hồi; hãy phân công lại khi cấp quyền nhân viên."
             );
 
 

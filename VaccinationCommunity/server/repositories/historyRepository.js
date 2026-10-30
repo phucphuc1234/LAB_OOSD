@@ -1,130 +1,33 @@
 const { sql } = require("../config/database");
+const { integer } = require("../utils/validation");
 
-
-// Lịch sử tiêm của một người dân
-const findByCitizenId = async (maNguoiDan) => {
+// Ownership and staff assignments are mutually explicit scopes. Omitting both
+// never opens a global query. Citizen history can span all of their facilities.
+const bindScope = (request, { actorId = null, ownerAccountId = null } = {}) => request
+    .input("ActorId", sql.Int, actorId === null ? null : integer(actorId, "Tài khoản nhân viên"))
+    .input("OwnerAccountId", sql.Int, ownerAccountId === null ? null : integer(ownerAccountId, "Tài khoản người dân"));
+const allowed = `((@OwnerAccountId IS NOT NULL AND nd.MaTaiKhoan=@OwnerAccountId)
+    OR (@OwnerAccountId IS NULL AND dbo.fn_CoSoDuocPhep(@ActorId,mt.MaCoSoTiem)=1))`;
+const selection = `SELECT mt.*,nd.HoTen,nd.NgaySinh,nd.GioiTinh,
+    v.TenVaccine,v.LoaiVaccine,v.NhaSanXuat,lv.MaLoVaccine,
+    lv.NgaySanXuat,lv.HanSuDung,tk.TenDangNhap AS NhanVienGhiNhan,
+    cs.TenCoSo,cs.DiaChi AS DiaChiCoSo,cs.PhuongXa AS PhuongXaCoSo
+    FROM dbo.MUITIEM mt JOIN dbo.NGUOIDAN nd ON nd.MaNguoiDan=mt.MaNguoiDan
+    JOIN dbo.VACCINE v ON v.MaVaccine=mt.MaVaccine
+    JOIN dbo.LOVACCINE lv ON lv.MaLo=mt.MaLo
+    JOIN dbo.TAIKHOAN tk ON tk.MaTaiKhoan=mt.MaNhanVien
+    JOIN dbo.COSOTIEM cs ON cs.MaCoSoTiem=mt.MaCoSoTiem`;
+const findByCitizenId = async (citizenId, scope) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaNguoiDan",
-            sql.Int,
-            maNguoiDan
-        )
-        .query(`
-            SELECT
-                mt.MaMuiTiem,
-                mt.MaNguoiDan,
-                nd.HoTen,
-
-                mt.MaVaccine,
-                v.TenVaccine,
-
-                mt.MaLo,
-                lv.MaLoVaccine,
-
-                mt.MaLichTiem,
-                mt.MuiSo,
-                mt.NgayTiem,
-                mt.CoSoTiem,
-
-                mt.MaNhanVien,
-                tk.TenDangNhap AS NhanVienGhiNhan,
-
-                mt.KetQua,
-                mt.PhanUngSauTiem,
-                mt.GhiChu
-
-            FROM MUITIEM mt
-
-            INNER JOIN NGUOIDAN nd
-                ON mt.MaNguoiDan = nd.MaNguoiDan
-
-            INNER JOIN VACCINE v
-                ON mt.MaVaccine = v.MaVaccine
-
-            INNER JOIN LOVACCINE lv
-                ON mt.MaLo = lv.MaLo
-
-            INNER JOIN TAIKHOAN tk
-                ON mt.MaNhanVien = tk.MaTaiKhoan
-
-            WHERE mt.MaNguoiDan = @MaNguoiDan
-
-            ORDER BY mt.NgayTiem DESC
-        `);
-
-    return result.recordset;
+    return (await bindScope(pool.request(), scope)
+        .input("CitizenId", sql.Int, integer(citizenId, "Mã người dân"))
+        .query(`${selection} WHERE mt.MaNguoiDan=@CitizenId AND ${allowed}
+            ORDER BY mt.NgayTiem DESC,mt.MaMuiTiem DESC`)).recordset;
 };
-
-
-// Chi tiết một mũi tiêm
-const findByVaccinationId = async (
-    maMuiTiem
-) => {
+const findByVaccinationId = async (vaccinationId, scope) => {
     const pool = await sql.connect();
-
-    const result = await pool
-        .request()
-        .input(
-            "MaMuiTiem",
-            sql.Int,
-            maMuiTiem
-        )
-        .query(`
-            SELECT
-                mt.MaMuiTiem,
-
-                mt.MaNguoiDan,
-                nd.HoTen,
-                nd.NgaySinh,
-                nd.GioiTinh,
-
-                mt.MaVaccine,
-                v.TenVaccine,
-                v.LoaiVaccine,
-                v.NhaSanXuat,
-
-                mt.MaLo,
-                lv.MaLoVaccine,
-                lv.NgaySanXuat,
-                lv.HanSuDung,
-
-                mt.MaLichTiem,
-                mt.MuiSo,
-                mt.NgayTiem,
-                mt.CoSoTiem,
-
-                mt.MaNhanVien,
-                tk.TenDangNhap AS NhanVienGhiNhan,
-
-                mt.KetQua,
-                mt.PhanUngSauTiem,
-                mt.GhiChu
-
-            FROM MUITIEM mt
-
-            INNER JOIN NGUOIDAN nd
-                ON mt.MaNguoiDan = nd.MaNguoiDan
-
-            INNER JOIN VACCINE v
-                ON mt.MaVaccine = v.MaVaccine
-
-            INNER JOIN LOVACCINE lv
-                ON mt.MaLo = lv.MaLo
-
-            INNER JOIN TAIKHOAN tk
-                ON mt.MaNhanVien = tk.MaTaiKhoan
-
-            WHERE mt.MaMuiTiem = @MaMuiTiem
-        `);
-
-    return result.recordset[0] || null;
+    return (await bindScope(pool.request(), scope)
+        .input("VaccinationId", sql.Int, integer(vaccinationId, "Mã mũi tiêm"))
+        .query(`${selection} WHERE mt.MaMuiTiem=@VaccinationId AND ${allowed}`)).recordset[0] || null;
 };
-
-
-module.exports = {
-    findByCitizenId,
-    findByVaccinationId
-};
+module.exports = { findByCitizenId, findByVaccinationId };

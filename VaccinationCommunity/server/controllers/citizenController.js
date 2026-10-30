@@ -9,12 +9,12 @@ const updateMyProfile = async (req, res) => {
         data: await citizenService.updateMyProfile(req.user.maTaiKhoan, req.body) }); }
     catch (failure) { return respondError(res, failure); }
 };
-const getAllCitizens = async (_req, res) => {
-    try { return res.json({ success: true, data: await citizenService.getAllCitizens() }); }
+const getAllCitizens = async (req, res) => {
+    try { return res.json({ success: true, data: await citizenService.getAllCitizens(req.user.maTaiKhoan) }); }
     catch (failure) { return respondError(res, failure); }
 };
 const getCitizenById = async (req, res) => {
-    try { return res.json({ success: true, data: await citizenService.getCitizenById(req.params.id) }); }
+    try { return res.json({ success: true, data: await citizenService.getCitizenById(req.params.id, req.user.maTaiKhoan) }); }
     catch (failure) { return respondError(res, failure); }
 };
 module.exports = { getMyProfile, updateMyProfile, getAllCitizens, getCitizenById };

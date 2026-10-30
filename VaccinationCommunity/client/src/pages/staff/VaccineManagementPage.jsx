@@ -1,9 +1,12 @@
 import { EmptyState } from "../../components/common/DashboardUI";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import authService from "../../services/authService";
 import vaccineService
     from "../../services/vaccineService";
 
 function VaccineManagementPage() {
+    const canManage = authService.getCurrentUser()?.tenVaiTro === "Quản trị viên";
     const emptyForm = {
         tenVaccine: "",
         loaiVaccine: "",
@@ -117,6 +120,7 @@ function VaccineManagementPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!canManage) return;
 
         try {
             setSaving(true);
@@ -173,6 +177,7 @@ function VaccineManagementPage() {
 
 
     const handleStatus = async (item) => {
+        if (!canManage) return;
         try {
             setError("");
             setMessage("");
@@ -214,11 +219,10 @@ function VaccineManagementPage() {
         <div>
 
             <div className="mb-4">
-                <h2>Quản lý vaccine</h2>
+                <h2>{canManage ? "Quản lý vaccine" : "Danh mục vaccine"}</h2>
 
                 <p className="text-muted">
-                    Thêm, chỉnh sửa và quản lý
-                    trạng thái vaccine
+                    {canManage ? "Quản lý danh mục vaccine dùng chung trong toàn hệ thống." : "Tra cứu thông tin vaccine. Tiếp nhận vaccine và nhập kho được quản lý theo từng cơ sở."}
                 </p>
             </div>
 
@@ -236,7 +240,9 @@ function VaccineManagementPage() {
             )}
 
 
-            <div className="card shadow-sm mb-4">
+            {!canManage && <div className="facility-context mb-4">Danh mục dùng chung do quản trị viên quản lý. Bạn có thể bật vaccine tiếp nhận tại <Link to="/staff/facilities">Cơ sở phụ trách</Link>, rồi nhập lô đúng cơ sở để người dân đặt lịch.</div>}
+
+            {canManage && <div className="card shadow-sm mb-4">
 
                 <div className="card-header">
                     <strong>
@@ -384,7 +390,7 @@ function VaccineManagementPage() {
                     </form>
 
                 </div>
-            </div>
+            </div>}
 
 
             <div className="card shadow-sm">
@@ -403,7 +409,7 @@ function VaccineManagementPage() {
                 <div className="card-body">
 
                     {vaccines.length === 0 ? (
-                        <EmptyState title="Chưa có vaccine trong danh mục" description="Thêm vaccine bằng biểu mẫu bên trên để bắt đầu quản lý." />
+                        <EmptyState title="Chưa có vaccine trong danh mục" description={canManage ? "Thêm vaccine bằng biểu mẫu bên trên để bắt đầu quản lý." : "Liên hệ quản trị viên để cập nhật danh mục dùng chung."} />
                     ) : (
 
                         <div className="table-responsive">
@@ -420,7 +426,7 @@ function VaccineManagementPage() {
                                         <th>Số mũi</th>
                                         <th>Khoảng cách</th>
                                         <th>Trạng thái</th>
-                                        <th>Thao tác</th>
+                                        {canManage && <th>Thao tác</th>}
                                     </tr>
 
                                 </thead>
@@ -492,7 +498,7 @@ function VaccineManagementPage() {
                                                     </span>
                                                 </td>
 
-                                                <td>
+                                                {canManage && <td>
                                                     <button
                                                         className="btn btn-sm btn-outline-primary me-2"
                                                         onClick={() =>
@@ -522,7 +528,7 @@ function VaccineManagementPage() {
                                                                 : "Kích hoạt"
                                                         }
                                                     </button>
-                                                </td>
+                                                </td>}
 
                                             </tr>
                                         )

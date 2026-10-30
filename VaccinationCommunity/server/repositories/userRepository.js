@@ -54,6 +54,28 @@ const updateAccount = async (id, field, value, actorId) => {
             .query(`UPDATE TAIKHOAN SET ${field}=@Value WHERE MaTaiKhoan=@MaTaiKhoan;
                 SELECT ${publicColumns} FROM TAIKHOAN tk INNER JOIN VAITRO vt ON vt.MaVaiTro=tk.MaVaiTro
                 WHERE tk.MaTaiKhoan=@MaTaiKhoan;`)).recordset[0];
+        // A real role change ends the previous facility grant. Promoting the
+        // account to staff again requires a new, explicit admin assignment.
+        // Keep this in the account transaction so neither a stale assignment
+        // nor an audit failure can leave a partially applied authorization change.
+        if (field === 'MaVaiTro' && previous.MaVaiTro !== value) {
+            const previousAssignments = (await new sql.Request(transaction)
+                .input('MaTaiKhoan', sql.Int, id)
+                .query(`SELECT MaCoSoTiem,MaNguoiPhanCong,NgayPhanCong
+                    FROM dbo.PHANCONG_COSOTIEM WITH (UPDLOCK,HOLDLOCK)
+                    WHERE MaTaiKhoan=@MaTaiKhoan`)).recordset;
+            if (previousAssignments.length) {
+                await new sql.Request(transaction).input('MaTaiKhoan', sql.Int, id)
+                    .query('DELETE dbo.PHANCONG_COSOTIEM WHERE MaTaiKhoan=@MaTaiKhoan');
+                await new sql.Request(transaction)
+                    .input('MaBanGhi', sql.Int, id)
+                    .input('DuLieuCu', sql.NVarChar(sql.MAX), JSON.stringify(previousAssignments))
+                    .input('DuLieuMoi', sql.NVarChar(sql.MAX), '[]')
+                    .input('MaTaiKhoan', sql.Int, actorId)
+                    .query(`INSERT INTO LICHSUHIEUCHINH(TenBang,MaBanGhi,HanhDong,DuLieuCu,DuLieuMoi,MaTaiKhoan)
+                        VALUES('PHANCONG_COSOTIEM',@MaBanGhi,N'Thu hồi phân công khi đổi vai trò',@DuLieuCu,@DuLieuMoi,@MaTaiKhoan)`);
+            }
+        }
         await new sql.Request(transaction)
             .input('MaBanGhi', sql.Int, id)
             .input('HanhDong', sql.NVarChar(50), field === 'TrangThai' ? 'Cập nhật trạng thái' : 'Phân quyền')

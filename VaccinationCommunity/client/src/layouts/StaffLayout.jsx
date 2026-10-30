@@ -1,4 +1,5 @@
 import {
+    Building2,
     ClipboardPlus,
     Activity,
     CalendarClock,
@@ -16,6 +17,7 @@ import EnterpriseShell from "../components/common/EnterpriseShell";
 
 const staffMenu = [
     { to: "/staff", label: "Tổng quan", icon: House, end: true },
+    { to: "/staff/facilities", label: "Cơ sở phụ trách", icon: Building2 },
     { to: "/staff/citizens", label: "Quản lý người dân", icon: UsersRound },
     { to: "/staff/vaccines", label: "Quản lý vaccine", icon: Syringe },
     { to: "/staff/batches", label: "Quản lý lô vaccine", icon: FlaskConical },

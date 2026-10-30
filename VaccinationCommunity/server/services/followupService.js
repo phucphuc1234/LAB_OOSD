@@ -91,6 +91,7 @@ function caseDto(row, symptoms = []) {
         citizenName: row.HoTen, vaccineName: row.TenVaccine, doseNumber: row.MuiSo,
         citizenPhone: row.SoDienThoai || null, citizenEmail: row.Email || null,
         facilityName: row.CoSoTiem || null,
+        facilityId: row.MaCoSoTiem || null,
         vaccinationDate: iso(row.NgayTiem), batchNumber: row.MaLoVaccine || null,
         reportedAt: iso(row.ThoiDiemBaoCao), onsetAt: iso(row.KhoiPhatLuc),
         durationHours: row.ThoiLuongGio == null ? null : Number(row.ThoiLuongGio),
@@ -139,14 +140,15 @@ function createFollowupService(repository, { now = () => new Date() } = {}) {
         return result;
     }
     async function getReportFor(actor, reportId, withHistory = true) {
-        const row = await repository.findReport(reportId, actor.role === "Người dân" ? actor.accountId : null);
+        const own = actor.role === "Người dân";
+        const row = await repository.findReport(reportId, own ? actor.accountId : null, own ? null : actor.accountId);
         if (!row) throw fail("Không tìm thấy phiếu theo dõi được phép xem.", 404);
         return hydrate(row, withHistory);
     }
     async function list(user, query = {}, own = false) {
         const actor = await authorize(user, own ? ["Người dân"] : STAFF_ROLES);
         const options = filters(query);
-        const result = await repository.listReports(options, own ? actor.accountId : null);
+        const result = await repository.listReports(options, own ? actor.accountId : null, own ? null : actor.accountId);
         const symptoms = await repository.reportSymptoms(result.items.map((row) => row.MaTheoDoi));
         return { ...options, total: result.total, items: result.items.map((row) =>
             caseDto(row, symptoms.filter((s) => s.MaTheoDoi === row.MaTheoDoi).map(symptom))) };
@@ -190,7 +192,7 @@ function createFollowupService(repository, { now = () => new Date() } = {}) {
         if (nextFollowupAt && nextFollowupAt <= now()) throw fail("Lịch theo dõi tiếp phải ở tương lai.");
         if (input.status === "monitoring" && !nextFollowupAt) throw fail("Cần hẹn thời điểm theo dõi tiếp.");
         if (input.status === "resolved" && nextFollowupAt) throw fail("Phiếu đã xử lý không giữ lịch theo dõi tiếp.");
-        const current = await repository.findReport(reportId, null);
+        const current = await repository.findReport(reportId, null, actor.accountId);
         if (!current) throw fail("Không tìm thấy phiếu theo dõi.", 404);
         if (Number(current.LanCapNhat) !== expectedRevision) throw fail("Phiếu đã thay đổi; hãy tải lại trước khi xử lý.", 409);
         if (input.status !== current.TrangThai && !TRANSITIONS[current.TrangThai]?.includes(input.status)) {

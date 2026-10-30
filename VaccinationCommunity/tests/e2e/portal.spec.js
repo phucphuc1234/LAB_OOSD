@@ -133,8 +133,8 @@ test("a failed vaccination load shows an error rather than a misleading empty me
 
 for (const [role, base, paths] of [
     ["Người dân", "/citizen", ["", "/profile", "/schedules", "/post-vaccination", "/history", "/contraindications", "/notifications", "/change-password"]],
-    ["Nhân viên", "/staff", ["", "/citizens", "/vaccines", "/batches", "/schedules", "/vaccinations", "/contraindications", "/followups", "/history", "/trace", "/change-password"]],
-    ["Quản trị viên", "/admin", ["", "/users", "/citizens", "/schedules", "/vaccinations", "/vaccines", "/batches", "/followups", "/contraindications", "/history", "/trace", "/change-password"]],
+    ["Nhân viên", "/staff", ["", "/citizens", "/vaccines", "/batches", "/schedules", "/vaccinations", "/contraindications", "/followups", "/history", "/trace", "/facilities", "/change-password"]],
+    ["Quản trị viên", "/admin", ["", "/users", "/citizens", "/schedules", "/vaccinations", "/vaccines", "/batches", "/followups", "/contraindications", "/history", "/trace", "/facilities", "/facility-workspace", "/change-password"]],
 ]) {
     test(`all ${role} pages render without uncaught browser errors`, async ({ page }) => {
         const errors = []; page.on("pageerror", error => errors.push(error.message));
@@ -161,10 +161,12 @@ test("a reserved final dose is selectable for its appointment, but not for an un
     await page.route("**/api/**", async route => {
         const pathname = new URL(route.request().url()).pathname;
         const data = {
-            "/api/schedules": [{ MaLichTiem:10,MaNguoiDan:1,MaVaccine:2,MaLoDuKien:3,MuiSo:1,HoTen:"Nguyễn Minh Anh",TenVaccine:"Engerix-B",TrangThai:"Đã xác nhận",NgayDuKien:new Date(Date.now()+86400000).toISOString() }],
+            "/api/facilities": [{MaCoSoTiem:1,TenCoSo:"Cơ sở demo",MaKhuVuc:1,TrangThai:1,TinhThanh:"Thành phố Hồ Chí Minh"}],
+            "/api/facilities/1/vaccines": [{MaVaccine:2,TenVaccine:"Engerix-B",TrangThai:1,VaccineHoatDong:1}],
+            "/api/schedules": [{ MaLichTiem:10,MaCoSoTiem:1,MaNguoiDan:1,MaVaccine:2,MaLoDuKien:3,MuiSo:1,HoTen:"Nguyễn Minh Anh",TenVaccine:"Engerix-B",TrangThai:"Đã xác nhận",NgayDuKien:new Date(Date.now()+86400000).toISOString() }],
             "/api/citizens": [{ MaNguoiDan:1,HoTen:"Nguyễn Minh Anh" }],
             "/api/vaccines": [{ MaVaccine:2,TenVaccine:"Engerix-B",TrangThai:1 }],
-            "/api/batches": [{ MaLo:3,MaVaccine:2,MaLoVaccine:"DEMO-LAST",SoLuongCon:1,SoLuongDatTruoc:1,TrangThai:"Đang sử dụng",HanSuDung:new Date().toISOString() }],
+            "/api/batches": [{ MaLo:3,MaCoSoTiem:1,MaVaccine:2,MaLoVaccine:"DEMO-LAST",SoLuongCon:1,SoLuongDatTruoc:1,TrangThai:"Đang sử dụng",HanSuDung:new Date(Date.now()+86400000).toISOString() }],
         }[pathname];
         if (data) return route.fulfill({ json: {success:true,data} });
         return route.fallback();
