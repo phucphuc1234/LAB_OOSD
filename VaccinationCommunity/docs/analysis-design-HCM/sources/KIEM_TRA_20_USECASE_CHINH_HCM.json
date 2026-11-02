@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "pages": 20,
+  "page_ids": [
+    "PR01",
+    "PR02",
+    "PR03",
+    "PR04",
+    "PR05",
+    "PR06",
+    "PR07",
+    "PR08",
+    "PR09",
+    "PR10",
+    "PR11",
+    "PR12",
+    "PR13",
+    "PR14",
+    "PR15",
+    "PR16",
+    "PR17",
+    "PR18",
+    "PR19",
+    "PR20"
+  ],
+  "source": "Phan_ra_usecase_HCM_day_du.xml (63 tabs)",
+  "excluded": "Index and PR21–PR62",
+  "removed_out_of_file_label_references": 19,
+  "structure": "All vertices, edges, actor generalizations and geometry retained from approved primary diagrams",
+  "ids_and_references": "all valid",
+  "application_modified": false,
+  "sha256": "61f98fad1558cae3773fc73ef2cb446ec6ce7f097a8906647106918e4b446e30"
+}

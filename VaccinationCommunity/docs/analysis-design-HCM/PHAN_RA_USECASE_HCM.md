@@ -1,5 +1,7 @@
 # Phân rã đầy đủ 20 use case chính — bản TP.HCM
 
+**[Bản chỉ gồm 20 sơ đồ chính PR01–PR20, mỗi sơ đồ một trang](xml/Phan_ra_20_usecase_chinh_HCM.xml)**. Bản này giữ nguyên nội dung phân rã cấp một và kế thừa tác nhân; đã bỏ các ký hiệu trỏ tới trang chi tiết không đi kèm.
+
 **[Tải một file XML chứa toàn bộ phân rã](xml/Phan_ra_usecase_HCM_day_du.xml)**
 
 File có **63 trang: một mục lục và 62 sơ đồ**. Trên draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML và chuyển tab phía dưới. Đây là file `mxfile` nhiều trang; cách mở trực tiếp sẽ giữ đủ các trang.

@@ -6,6 +6,8 @@
 
 **Bộ phân rã đầy đủ:** [một XML có 63 trang, gồm mục lục và 62 sơ đồ phân rã](xml/Phan_ra_usecase_HCM_day_du.xml). Xem [danh mục và hướng dẫn phân rã](PHAN_RA_USECASE_HCM.md).
 
+**Bản 20 sơ đồ chính:** [một XML chỉ có PR01–PR20, mỗi sơ đồ một trang](xml/Phan_ra_20_usecase_chinh_HCM.xml).
+
 Trong draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML, rồi chuyển trang bằng các tab ở dưới:
 
 1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Admin kế thừa Nhân viên, gồm cả đăng nhập/đăng xuất/đổi mật khẩu, để giảm các đường nối lặp. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.
