@@ -161,7 +161,7 @@
       },
       {
         "id": "facility-workspace",
-        "name": "Quản lý cơ sở phụ trách và vaccine tiếp nhận",
+        "name": "Quản lý vaccine tiếp nhận tại cơ sở",
         "usecases": [
           "UC32",
           "UC33"
@@ -312,22 +312,6 @@
         "y": 2190,
         "w": 400,
         "h": 102
-      },
-      {
-        "id": "dashboard",
-        "name": "Xem tổng quan theo vai trò",
-        "usecases": [
-          "UC24"
-        ],
-        "actors": [
-          "citizen",
-          "staff",
-          "admin"
-        ],
-        "x": 560,
-        "y": 2190,
-        "w": 420,
-        "h": 100
       }
     ],
     "associations": [
@@ -466,18 +450,6 @@
       {
         "actor": "admin",
         "goal": "network"
-      },
-      {
-        "actor": "citizen",
-        "goal": "dashboard"
-      },
-      {
-        "actor": "staff",
-        "goal": "dashboard"
-      },
-      {
-        "actor": "admin",
-        "goal": "dashboard"
       }
     ]
   },
@@ -582,6 +554,6 @@
     "Ba tác nhân: Người dân, Nhân viên y tế, Quản trị viên. Mỗi use case dùng chung chỉ vẽ một lần.",
     "Người dân bao gồm người chuẩn bị đăng ký. Đăng ký chỉ tạo Người dân; admin cấp quyền và phân công nhân viên.",
     "Nhân viên chỉ xử lý dữ liệu cơ sở được giao. Nhân viên được đọc danh mục vaccine; chỉ admin sửa danh mục dùng chung.",
-    "Tổng quát giữ 21 mục tiêu chính; các thao tác con được nhóm theo nghiệp vụ. API nhắc lịch UC28 chưa có nút web."
+    "Sơ đồ giữ 20 mục tiêu chính; các thao tác con được nhóm theo nghiệp vụ. API nhắc lịch UC28 chưa có nút web."
   ]
 }

@@ -1,12 +1,12 @@
 # Use case tổng quát và ERD — bản cuối TP.HCM
 
-Đối chiếu mã nguồn `21ac32f3239a1dabdc2e039209fda56a63def54a` của dự án VaccinationCommunity. Ngày xuất: 31/10/2026. Đây là sơ đồ cho bản đã có cơ sở tiêm, danh mục vaccine tại cơ sở và phân công nhiều cơ sở cho nhân viên; thay bản tổng quát/ERD trước khi có các chức năng này.
+Đối chiếu mã nguồn `21ac32f3239a1dabdc2e039209fda56a63def54a` của dự án VaccinationCommunity. Cập nhật: 02/11/2026. Đây là sơ đồ cho bản đã có cơ sở tiêm, danh mục vaccine tại cơ sở và phân công nhiều cơ sở cho nhân viên; thay bản tổng quát/ERD trước khi có các chức năng này.
 
 **[Tải một XML gồm hai trang](xml/Usecase_tong_quat_va_ERD_HCM.xml)**
 
 Trong draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML, rồi chuyển trang bằng các tab ở dưới:
 
-1. **Use case tổng quát:** 21 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên.
+1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.
 2. **ERD vật lý:** đủ 19 bảng, 159 cột và 34 khóa ngoại của database hiện tại.
 
 Nếu chỉ cần use case: [XML riêng một trang](xml/Usecase_tong_quat_HCM.xml). Nếu muốn dán mã vào **Extras → Edit Diagram**, dùng [bản mxGraphModel để dán](xml/Usecase_dan_Edit_Diagram.xml); không dán nguyên file mxfile nhiều trang vào ô này. [XML ERD riêng](xml/ERD_HCM.xml) cũng có thể mở trực tiếp.
@@ -14,7 +14,7 @@ Nếu chỉ cần use case: [XML riêng một trang](xml/Usecase_tong_quat_HCM.x
 ## Quy tắc đã giữ đúng theo code
 
 - Không có tác nhân Khách riêng. Người dân đại diện cả người chuẩn bị đăng ký tài khoản.
-- Đăng nhập, đăng xuất, đổi mật khẩu và tổng quan mỗi chức năng chỉ có một ellipse; cả ba vai trò nối vào cùng ellipse.
+- Đăng nhập, đăng xuất và đổi mật khẩu mỗi chức năng chỉ có một ellipse; cả ba vai trò nối vào cùng ellipse.
 - Đăng ký chỉ vẽ một lần và nối Người dân. API tự đăng ký luôn tạo vai trò Người dân; admin cấp quyền nhân viên và phân công cơ sở.
 - Nhân viên quản lý dữ liệu trong các cơ sở được giao. Danh mục vaccine dùng chung chỉ admin được thêm/sửa/ngừng; nhân viên quản lý vaccine tiếp nhận tại cơ sở.
 - Quản lý khu vực, cơ sở và phân công được nhóm thành một mục tiêu chính; không coi mọi thao tác thêm/sửa/khóa là một use case tổng quát riêng.
