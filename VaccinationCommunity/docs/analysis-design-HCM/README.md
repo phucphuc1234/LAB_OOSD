@@ -6,7 +6,7 @@
 
 Trong draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML, rồi chuyển trang bằng các tab ở dưới:
 
-1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.
+1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Admin kế thừa Nhân viên, gồm cả đăng nhập/đăng xuất/đổi mật khẩu, để giảm các đường nối lặp. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.
 2. **ERD vật lý:** đủ 19 bảng, 159 cột và 34 khóa ngoại của database hiện tại.
 
 Nếu chỉ cần use case: [XML riêng một trang](xml/Usecase_tong_quat_HCM.xml). Nếu muốn dán mã vào **Extras → Edit Diagram**, dùng [bản mxGraphModel để dán](xml/Usecase_dan_Edit_Diagram.xml); không dán nguyên file mxfile nhiều trang vào ô này. [XML ERD riêng](xml/ERD_HCM.xml) cũng có thể mở trực tiếp.
@@ -14,7 +14,8 @@ Nếu chỉ cần use case: [XML riêng một trang](xml/Usecase_tong_quat_HCM.x
 ## Quy tắc đã giữ đúng theo code
 
 - Không có tác nhân Khách riêng. Người dân đại diện cả người chuẩn bị đăng ký tài khoản.
-- Đăng nhập, đăng xuất và đổi mật khẩu mỗi chức năng chỉ có một ellipse; cả ba vai trò nối vào cùng ellipse.
+- Đăng nhập, đăng xuất và đổi mật khẩu mỗi chức năng chỉ có một ellipse. Người dân và Nhân viên nối trực tiếp; Admin có quyền tham gia thông qua kế thừa Nhân viên.
+- Quan hệ khái quát hóa đi từ **Quản trị viên → Nhân viên y tế**, nét liền và tam giác rỗng ở phía Nhân viên. Admin chỉ nối trực tiếp tới ba mục tiêu quản trị riêng; các nghiệp vụ chung được kế thừa. Tổng cộng có 23 đường tham gia trực tiếp và một đường kế thừa, giữ nguyên 34 quyền tham gia hiệu lực của bản trước.
 - Đăng ký chỉ vẽ một lần và nối Người dân. API tự đăng ký luôn tạo vai trò Người dân; admin cấp quyền nhân viên và phân công cơ sở.
 - Nhân viên quản lý dữ liệu trong các cơ sở được giao. Danh mục vaccine dùng chung chỉ admin được thêm/sửa/ngừng; nhân viên quản lý vaccine tiếp nhận tại cơ sở.
 - Quản lý khu vực, cơ sở và phân công được nhóm thành một mục tiêu chính; không coi mọi thao tác thêm/sửa/khóa là một use case tổng quát riêng.

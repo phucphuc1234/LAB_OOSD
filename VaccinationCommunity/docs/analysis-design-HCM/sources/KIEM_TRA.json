@@ -15,6 +15,16 @@
   "individual_models_equal_combined": true,
   "independent_schema_review": "19 tables / 159 columns / 34 FK compared to authored DDL and dynamic migration; no discrepancy",
   "application_modified": false,
-  "overview_actor_associations": 34,
-  "dashboard_excluded_from_main": true
+  "overview_actor_associations": 23,
+  "dashboard_excluded_from_main": true,
+  "overview_actor_generalizations": 1,
+  "effective_actor_associations": 34,
+  "actor_generalization_direction": "Quản trị viên → Nhân viên y tế",
+  "inherited_authentication": [
+    "Đăng nhập",
+    "Đăng xuất",
+    "Đổi mật khẩu"
+  ],
+  "generalization_marker": "Hollow triangle at parent Staff",
+  "inheritance_permission_closure": "Matches previous 34 actor/use-case permissions exactly"
 }

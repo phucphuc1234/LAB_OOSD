@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1960" pageHeight="2560" math="0" shadow="0">
+<mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2050" pageHeight="2560" math="0" shadow="0">
   <root>
     <mxCell id="0" />
     <mxCell id="1" parent="0" />
@@ -43,70 +43,70 @@
       <mxGeometry as="geometry" x="-7" y="999" width="200" height="58" />
     </mxCell>
     <mxCell id="staff" value="" vertex="1" parent="1" style="shape=rectangle;strokeColor=none;fillColor=none;opacity=0;">
-      <mxGeometry as="geometry" x="58" y="1740" width="70" height="105" />
+      <mxGeometry as="geometry" x="1780" y="1120" width="70" height="105" />
     </mxCell>
     <mxCell id="staff-head" value="" vertex="1" parent="1" style="shape=ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;">
-      <mxGeometry as="geometry" x="82" y="1740" width="24" height="24" />
+      <mxGeometry as="geometry" x="1804" y="1120" width="24" height="24" />
     </mxCell>
     <mxCell id="staff-body" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="94" y="1764" />
-        <mxPoint as="targetPoint" x="94" y="1805" />
+        <mxPoint as="sourcePoint" x="1816" y="1144" />
+        <mxPoint as="targetPoint" x="1816" y="1185" />
       </mxGeometry>
     </mxCell>
     <mxCell id="staff-arms" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="66" y="1783" />
-        <mxPoint as="targetPoint" x="122" y="1783" />
+        <mxPoint as="sourcePoint" x="1788" y="1163" />
+        <mxPoint as="targetPoint" x="1844" y="1163" />
       </mxGeometry>
     </mxCell>
     <mxCell id="staff-left" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="94" y="1805" />
-        <mxPoint as="targetPoint" x="66" y="1839" />
+        <mxPoint as="sourcePoint" x="1816" y="1185" />
+        <mxPoint as="targetPoint" x="1788" y="1219" />
       </mxGeometry>
     </mxCell>
     <mxCell id="staff-right" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="94" y="1805" />
-        <mxPoint as="targetPoint" x="122" y="1839" />
+        <mxPoint as="sourcePoint" x="1816" y="1185" />
+        <mxPoint as="targetPoint" x="1844" y="1219" />
       </mxGeometry>
     </mxCell>
     <mxCell id="staff-label" value="Nhân viên y tế" vertex="1" parent="1" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Arial;fontSize=17;fontStyle=1;align=center;verticalAlign=middle;">
-      <mxGeometry as="geometry" x="-7" y="1849" width="200" height="58" />
+      <mxGeometry as="geometry" x="1715" y="1229" width="200" height="58" />
     </mxCell>
     <mxCell id="admin" value="" vertex="1" parent="1" style="shape=rectangle;strokeColor=none;fillColor=none;opacity=0;">
-      <mxGeometry as="geometry" x="1780" y="1280" width="70" height="105" />
+      <mxGeometry as="geometry" x="1780" y="2050" width="70" height="105" />
     </mxCell>
     <mxCell id="admin-head" value="" vertex="1" parent="1" style="shape=ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.3;">
-      <mxGeometry as="geometry" x="1804" y="1280" width="24" height="24" />
+      <mxGeometry as="geometry" x="1804" y="2050" width="24" height="24" />
     </mxCell>
     <mxCell id="admin-body" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="1816" y="1304" />
-        <mxPoint as="targetPoint" x="1816" y="1345" />
+        <mxPoint as="sourcePoint" x="1816" y="2074" />
+        <mxPoint as="targetPoint" x="1816" y="2115" />
       </mxGeometry>
     </mxCell>
     <mxCell id="admin-arms" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="1788" y="1323" />
-        <mxPoint as="targetPoint" x="1844" y="1323" />
+        <mxPoint as="sourcePoint" x="1788" y="2093" />
+        <mxPoint as="targetPoint" x="1844" y="2093" />
       </mxGeometry>
     </mxCell>
     <mxCell id="admin-left" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="1816" y="1345" />
-        <mxPoint as="targetPoint" x="1788" y="1379" />
+        <mxPoint as="sourcePoint" x="1816" y="2115" />
+        <mxPoint as="targetPoint" x="1788" y="2149" />
       </mxGeometry>
     </mxCell>
     <mxCell id="admin-right" edge="1" parent="1" style="endArrow=none;startArrow=none;strokeColor=#000000;strokeWidth=1.3;">
       <mxGeometry as="geometry" relative="1">
-        <mxPoint as="sourcePoint" x="1816" y="1345" />
-        <mxPoint as="targetPoint" x="1844" y="1379" />
+        <mxPoint as="sourcePoint" x="1816" y="2115" />
+        <mxPoint as="targetPoint" x="1844" y="2149" />
       </mxGeometry>
     </mxCell>
     <mxCell id="admin-label" value="Quản trị viên" vertex="1" parent="1" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Arial;fontSize=17;fontStyle=1;align=center;verticalAlign=middle;">
-      <mxGeometry as="geometry" x="1715" y="1389" width="200" height="58" />
+      <mxGeometry as="geometry" x="1715" y="2159" width="200" height="58" />
     </mxCell>
     <mxCell id="login" value="Đăng nhập" vertex="1" parent="1" style="shape=ellipse;html=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.2;fontColor=#000000;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=8;">
       <mxGeometry as="geometry" x="810" y="160" width="360" height="94" />
@@ -176,18 +176,10 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="assoc-staff-login" edge="1" parent="1" source="staff" target="login" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
+    <mxCell id="assoc-staff-login" edge="1" parent="1" source="staff" target="login" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1">
         <Array as="points">
-          <mxPoint x="285" y="1787" />
-          <mxPoint x="285" y="207.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-login" edge="1" parent="1" source="admin" target="login" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="1620" y="1327" />
+          <mxPoint x="1620" y="1167" />
           <mxPoint x="1620" y="207.0" />
         </Array>
       </mxGeometry>
@@ -200,18 +192,10 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="assoc-staff-logout" edge="1" parent="1" source="staff" target="logout" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
+    <mxCell id="assoc-staff-logout" edge="1" parent="1" source="staff" target="logout" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1">
         <Array as="points">
-          <mxPoint x="285" y="1787" />
-          <mxPoint x="285" y="352.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-logout" edge="1" parent="1" source="admin" target="logout" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="1620" y="1327" />
+          <mxPoint x="1620" y="1167" />
           <mxPoint x="1620" y="352.0" />
         </Array>
       </mxGeometry>
@@ -224,18 +208,10 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="assoc-staff-password" edge="1" parent="1" source="staff" target="password" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
+    <mxCell id="assoc-staff-password" edge="1" parent="1" source="staff" target="password" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1">
         <Array as="points">
-          <mxPoint x="285" y="1787" />
-          <mxPoint x="285" y="497.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-password" edge="1" parent="1" source="admin" target="password" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="1620" y="1327" />
+          <mxPoint x="1620" y="1167" />
           <mxPoint x="1620" y="497.0" />
         </Array>
       </mxGeometry>
@@ -258,92 +234,28 @@
     <mxCell id="assoc-citizen-my-followups" edge="1" parent="1" source="citizen" target="my-followups" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-patients" edge="1" parent="1" source="staff" target="patients" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="748.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-patients" edge="1" parent="1" source="admin" target="patients" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-patients" edge="1" parent="1" source="staff" target="patients" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-facility-workspace" edge="1" parent="1" source="staff" target="facility-workspace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="893.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-facility-workspace" edge="1" parent="1" source="admin" target="facility-workspace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-facility-workspace" edge="1" parent="1" source="staff" target="facility-workspace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-stock" edge="1" parent="1" source="staff" target="stock" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1038.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-stock" edge="1" parent="1" source="admin" target="stock" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-stock" edge="1" parent="1" source="staff" target="stock" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-schedules" edge="1" parent="1" source="staff" target="schedules" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1183.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-schedules" edge="1" parent="1" source="admin" target="schedules" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-schedules" edge="1" parent="1" source="staff" target="schedules" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-doses" edge="1" parent="1" source="staff" target="doses" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1328.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-doses" edge="1" parent="1" source="admin" target="doses" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-doses" edge="1" parent="1" source="staff" target="doses" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-contra" edge="1" parent="1" source="staff" target="contra" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1473.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-contra" edge="1" parent="1" source="admin" target="contra" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-contra" edge="1" parent="1" source="staff" target="contra" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-trace" edge="1" parent="1" source="staff" target="trace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1618.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-trace" edge="1" parent="1" source="admin" target="trace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-trace" edge="1" parent="1" source="staff" target="trace" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="assoc-staff-review" edge="1" parent="1" source="staff" target="review" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=1;exitY=0.45;entryX=0;entryY=0.5;">
-      <mxGeometry as="geometry" relative="1">
-        <Array as="points">
-          <mxPoint x="955" y="1787" />
-          <mxPoint x="955" y="1763.0" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="assoc-admin-review" edge="1" parent="1" source="admin" target="review" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
+    <mxCell id="assoc-staff-review" edge="1" parent="1" source="staff" target="review" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
     <mxCell id="assoc-admin-catalog" edge="1" parent="1" source="admin" target="catalog" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
@@ -355,8 +267,16 @@
     <mxCell id="assoc-admin-network" edge="1" parent="1" source="admin" target="network" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=open;endFill=0;endSize=9;strokeColor=#000000;strokeWidth=1.05;exitX=0;exitY=0.45;entryX=1;entryY=0.5;">
       <mxGeometry as="geometry" relative="1" />
     </mxCell>
-    <mxCell id="uc-notes" value="Ba tác nhân: Người dân, Nhân viên y tế, Quản trị viên. Mỗi use case dùng chung chỉ vẽ một lần.&#10;Người dân bao gồm người chuẩn bị đăng ký. Đăng ký chỉ tạo Người dân; admin cấp quyền và phân công nhân viên.&#10;Nhân viên chỉ xử lý dữ liệu cơ sở được giao. Nhân viên được đọc danh mục vaccine; chỉ admin sửa danh mục dùng chung.&#10;Sơ đồ giữ 20 mục tiêu chính; các thao tác con được nhóm theo nghiệp vụ. API nhắc lịch UC28 chưa có nút web." vertex="1" parent="1" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=0;align=left;verticalAlign=middle;">
-      <mxGeometry as="geometry" x="230" y="2360" width="1450" height="140" />
+    <mxCell id="generalization-admin-staff" value="Kế thừa" edge="1" parent="1" source="admin" target="staff" style="edgeStyle=none;rounded=0;html=0;dashed=0;startArrow=none;endArrow=block;endFill=0;endSize=20;strokeColor=#000000;strokeWidth=1.4;exitX=1;exitY=0.45;entryX=1;entryY=0.45;fontFamily=Arial;fontSize=16;fontColor=#000000;labelBackgroundColor=#ffffff;align=center;verticalAlign=middle;">
+      <mxGeometry as="geometry" relative="1" x="0" y="-22">
+        <Array as="points">
+          <mxPoint x="1910" y="2097.25" />
+          <mxPoint x="1910" y="1167.25" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="uc-notes" value="Ba tác nhân: Người dân, Nhân viên y tế, Quản trị viên. Mỗi use case dùng chung chỉ vẽ một lần.&#10;Admin kế thừa Nhân viên y tế, gồm đăng nhập, đăng xuất, đổi mật khẩu và các nghiệp vụ chung; tam giác rỗng hướng về Nhân viên.&#10;Người dân bao gồm người chuẩn bị đăng ký. Đăng ký chỉ tạo Người dân; admin cấp quyền và phân công nhân viên.&#10;Nhân viên xử lý dữ liệu cơ sở được giao; Admin có phạm vi toàn hệ thống. Chỉ Admin sửa danh mục vaccine dùng chung.&#10;Sơ đồ giữ 20 mục tiêu chính; các thao tác con được nhóm theo nghiệp vụ. API nhắc lịch UC28 chưa có nút web." vertex="1" parent="1" style="shape=rectangle;html=0;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Arial;fontSize=16;fontStyle=0;align=left;verticalAlign=middle;">
+      <mxGeometry as="geometry" x="230" y="2360" width="1450" height="160" />
     </mxCell>
   </root>
 </mxGraphModel>
