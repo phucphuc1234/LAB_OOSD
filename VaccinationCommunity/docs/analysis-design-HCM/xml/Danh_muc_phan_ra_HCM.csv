@@ -1,0 +1,63 @@
+﻿Trang,Cấp,Use case chính,Mã UC,Tên sơ đồ
+PR01,primary,login,UC02,Đăng nhập
+PR02,primary,logout,UC03,Đăng xuất
+PR03,primary,password,UC04,Đổi mật khẩu
+PR04,primary,register,UC01,Đăng ký tài khoản Người dân
+PR05,primary,profile,UC05,Quản lý hồ sơ cá nhân
+PR06,primary,my-schedules,"UC06, UC07, UC08",Quản lý lịch tiêm cá nhân
+PR07,primary,my-history,"UC09, UC10",Tra cứu lịch sử tiêm và chống chỉ định
+PR08,primary,my-notices,UC11,Xem thông báo
+PR09,primary,my-followups,"UC12, UC13",Theo dõi sức khỏe sau tiêm
+PR10,primary,patients,UC14,Tra cứu hồ sơ người dân thuộc phạm vi
+PR11,primary,facility-workspace,"UC32, UC33",Quản lý vaccine tiếp nhận tại cơ sở
+PR12,primary,stock,UC16,Quản lý lô vaccine và tồn kho tại cơ sở
+PR13,primary,schedules,UC17,"Quản lý, điều phối lịch tiêm"
+PR14,primary,doses,UC18,Ghi nhận mũi tiêm
+PR15,primary,contra,UC19,Quản lý chống chỉ định
+PR16,primary,trace,"UC20, UC21",Tra cứu lịch sử và truy vết tiêm chủng
+PR17,primary,review,"UC22, UC23",Tiếp nhận và xử lý theo dõi sau tiêm
+PR18,primary,catalog,UC15,Quản lý danh mục vaccine dùng chung
+PR19,primary,accounts,"UC25, UC26, UC27",Quản lý tài khoản và phân quyền
+PR20,primary,network,"UC29, UC30, UC31","Quản lý khu vực, cơ sở và phân công nhân viên"
+PR21,detail,my-schedules,UC06,UC06 — Xem lịch tiêm cá nhân
+PR22,detail,my-schedules,UC07,UC07 — Đăng ký lịch tiêm cá nhân
+PR23,detail,my-schedules,UC08,UC08 — Hủy lịch tiêm cá nhân
+PR24,detail,my-history,UC09,UC09 — Xem lịch sử tiêm cá nhân
+PR25,detail,my-history,UC10,UC10 — Xem chống chỉ định cá nhân
+PR26,detail,my-followups,UC12,UC12 — Gửi cập nhật sức khỏe sau tiêm
+PR27,detail,my-followups,UC13,UC13 — Xem cập nhật và phản hồi sau tiêm của mình
+PR28,detail,facility-workspace,UC32,UC32 — Tra cứu cơ sở phụ trách và danh mục tiếp nhận
+PR29,detail,facility-workspace,UC33,UC33 — Bật hoặc ngừng tiếp nhận vaccine tại cơ sở
+PR30,detail,trace,UC20,UC20 — Tra cứu lịch sử tiêm của người dân trong phạm vi
+PR31,detail,trace,UC21,UC21 — Truy vết lô vaccine và mũi tiêm trong phạm vi
+PR32,detail,review,UC22,UC22 — Tra cứu hàng đợi theo dõi sau tiêm
+PR33,detail,review,UC23,UC23 — Tiếp nhận và xử lý theo dõi sau tiêm
+PR34,detail,accounts,UC25,UC25 — Tra cứu tài khoản hệ thống
+PR35,detail,accounts,UC26,UC26 — Phân quyền tài khoản
+PR36,detail,accounts,UC27,UC27 — Khóa và mở khóa tài khoản
+PR37,detail,network,UC29,UC29 — Quản lý khu vực phục vụ trong TP.HCM
+PR38,detail,network,UC30,UC30 — Quản lý cơ sở tiêm trong TP.HCM
+PR39,detail,network,UC31,UC31 — Phân công nhiều cơ sở cho nhân viên
+PR40,deep,login,UC02,UC02 — Xác thực và khởi tạo phiên
+PR41,deep,password,UC04,UC04 — Lưu mật khẩu mới và vô hiệu hóa phiên cũ
+PR42,deep,register,UC01,UC01 — Tạo tài khoản và hồ sơ liên kết
+PR43,deep,profile,UC05,UC05 — Cập nhật liên hệ và đồng bộ hồ sơ tài khoản
+PR44,deep,my-followups,UC12,UC12 — Kiểm tra phiếu cập nhật sau tiêm của chính người dân
+PR45,deep,my-followups,UC12,UC12 — Xác định ưu tiên tiếp nhận từ khai báo sau tiêm
+PR46,deep,facility-workspace,UC33,UC33 — Kiểm tra và lưu trạng thái vaccine tại cơ sở
+PR47,deep,stock,UC16,UC16 — Nhập lô mới tại cơ sở được giao
+PR48,deep,stock,UC16,UC16 — Sửa lô hoặc trạng thái mà không ghi đè tồn
+PR49,deep,schedules,UC17,UC17 — Tạo hoặc sửa lịch và giữ liều tại đúng cơ sở
+PR50,deep,schedules,UC17,"UC17 — Xác nhận, hủy hoặc ghi vắng lịch tiêm"
+PR51,deep,doses,UC18,UC18 — Tạo mũi mới và đồng bộ tồn kho
+PR52,deep,doses,UC18,UC18 — Nhận lại mũi đã ghi mà không trừ kho lại
+PR53,deep,contra,UC19,UC19 — Lưu chống chỉ định và bảo vệ phạm vi hồ sơ
+PR54,deep,trace,UC21,UC21 — Truy vết mã lô tới các mũi đã sử dụng
+PR55,deep,trace,UC21,UC21 — Truy ngược mã mũi tiêm về lô và cơ sở
+PR56,deep,review,UC22,UC22 — Tra cứu hàng đợi theo đúng phạm vi cơ sở
+PR57,deep,review,UC23,UC23 — Lưu xử lý phiếu và kiểm soát cập nhật đồng thời
+PR58,deep,review,UC23,"UC23 — Tiếp nhận, theo dõi tiếp, kết thúc và mở lại phiếu"
+PR59,deep,catalog,UC15,UC15 — Lưu thay đổi danh mục vaccine dùng chung
+PR60,deep,accounts,UC26,UC26 — Đổi vai trò và thu hồi phân công cơ sở
+PR61,deep,network,UC30,UC30 — Ngừng khu vực hoặc cơ sở có kiểm soát lịch
+PR62,deep,network,UC31,UC31 — Thay thế hoặc thu hồi phân công nguyên tử

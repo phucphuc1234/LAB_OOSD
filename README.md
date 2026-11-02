@@ -7,6 +7,7 @@ Source ứng dụng nằm trong **[VaccinationCommunity](VaccinationCommunity)**
 - [Hướng dẫn chạy và tài khoản demo](VaccinationCommunity/README.md)
 - [SQL Server: schema, SP, triggers, views và dữ liệu mẫu](VaccinationCommunity/database/VaccinationCommunity_Demo.sql)
 - [Tài liệu database](VaccinationCommunity/docs/database.md)
+- [Phân rã đầy đủ bản TP.HCM: một XML, 62 sơ đồ và mục lục](VaccinationCommunity/docs/analysis-design-HCM/PHAN_RA_USECASE_HCM.md)
 - [Use case tổng quát + ERD bản cuối TP.HCM: 3 tác nhân, 19 bảng](VaccinationCommunity/docs/analysis-design-HCM/README.md)
 - [Bộ XML phiên bản trước quản lý cơ sở: tổng quát 18 mục tiêu chính, 34 sơ đồ phân rã và các sơ đồ thiết kế](VaccinationCommunity/docs/analysis-design-mau/README.md)
 - [Tải ZIP bộ XML theo mẫu](VaccinationCommunity_XML_theo_mau.zip)

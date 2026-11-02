@@ -136,6 +136,8 @@ Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài
 
 ## Sơ đồ phân tích thiết kế theo mẫu
 
+**Phân rã đầy đủ bản mới:** [62 sơ đồ theo 20 use case chính, có mục lục và một file XML nhiều trang](docs/analysis-design-HCM/PHAN_RA_USECASE_HCM.md).
+
 **Bản mới cho quản lý cơ sở/phân công:** [Use case tổng quát và ERD TP.HCM](docs/analysis-design-HCM/README.md), ba tác nhân, 19 bảng và 34 khóa ngoại. Có một XML gồm hai trang để mở bằng draw.io.
 
 **Lưu ý:** bộ sơ đồ này mô tả phiên bản trước khi thêm quản lý cơ sở/phân công; cần cập nhật các luồng và ERD theo phiên bản mới trước khi đưa vào báo cáo.

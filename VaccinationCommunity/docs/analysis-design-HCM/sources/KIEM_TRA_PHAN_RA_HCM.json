@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "approved_overview_commit": "8bea38a63fecd22b4885a1c469e143735b39cd4c",
+  "xml_pages": 63,
+  "index_pages": 1,
+  "decomposition_diagrams": 62,
+  "primary_pages": 20,
+  "detail_pages": 19,
+  "deep_pages": 23,
+  "covered_canonical_usecases": 31,
+  "relationships": {
+    "include": 578,
+    "association": 67,
+    "actor_generalization": 32,
+    "extend": 78,
+    "generalization": 115
+  },
+  "actor_generalizations": 32,
+  "oval_count": 833,
+  "rendered_pages": 63,
+  "text_width_warnings": 0,
+  "ids_and_references": "all valid",
+  "relationship_directions": "all match include/extend/generalization semantics",
+  "source_review": "four domain audits plus independent full semantic audit; UC08 legacy release and UC19 fallback date refined",
+  "application_changes": false,
+  "sha256": "f2574acdaa81f51fd96dd143ada54a82e04f7f29da278c8efa18c5689713abdb"
+}
