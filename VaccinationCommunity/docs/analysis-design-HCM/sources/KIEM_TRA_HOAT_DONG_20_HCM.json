@@ -1,0 +1,201 @@
+{
+  "status": "passed",
+  "source_baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "pages": 20,
+  "two_swimlanes_per_page": true,
+  "primary_title_mapping": "AD01–AD20 = PR01–PR20",
+  "unique_ids_and_references": "valid",
+  "starts_and_finals": "one black start and one red-ring final per page",
+  "decisions": "guarded alternatives",
+  "reachability": "every node reachable from start and can reach final",
+  "alternative_merges": "explicit; no implicit synchronization before actions/decisions",
+  "routed_line_node_collisions": 0,
+  "unrelated_vertical_track_overlaps": 0,
+  "rendered_pages": 20,
+  "text_width_warnings": 0,
+  "application_modified": false,
+  "validation_scope": "Documentation structure, route geometry, mxGraph rendering, source review; application runtime tests not rerun.",
+  "sha256": "b2a430f11ebd8d65be7892860e9745ff64ac8e475521bc1a38a77fc4ce67de3d",
+  "details": [
+    {
+      "id": "AD01",
+      "primary": "PR01",
+      "nodes": 12,
+      "edges": 13,
+      "decisions": 2,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD02",
+      "primary": "PR02",
+      "nodes": 6,
+      "edges": 5,
+      "decisions": 0,
+      "explicit_merges": 0,
+      "rendered": true
+    },
+    {
+      "id": "AD03",
+      "primary": "PR03",
+      "nodes": 14,
+      "edges": 15,
+      "decisions": 2,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD04",
+      "primary": "PR04",
+      "nodes": 15,
+      "edges": 16,
+      "decisions": 2,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD05",
+      "primary": "PR05",
+      "nodes": 18,
+      "edges": 21,
+      "decisions": 4,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD06",
+      "primary": "PR06",
+      "nodes": 21,
+      "edges": 25,
+      "decisions": 4,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD07",
+      "primary": "PR07",
+      "nodes": 11,
+      "edges": 13,
+      "decisions": 2,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD08",
+      "primary": "PR08",
+      "nodes": 17,
+      "edges": 20,
+      "decisions": 4,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD09",
+      "primary": "PR09",
+      "nodes": 23,
+      "edges": 27,
+      "decisions": 4,
+      "explicit_merges": 3,
+      "rendered": true
+    },
+    {
+      "id": "AD10",
+      "primary": "PR10",
+      "nodes": 13,
+      "edges": 15,
+      "decisions": 3,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD11",
+      "primary": "PR11",
+      "nodes": 19,
+      "edges": 23,
+      "decisions": 4,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD12",
+      "primary": "PR12",
+      "nodes": 19,
+      "edges": 22,
+      "decisions": 3,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD13",
+      "primary": "PR13",
+      "nodes": 16,
+      "edges": 18,
+      "decisions": 2,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD14",
+      "primary": "PR14",
+      "nodes": 21,
+      "edges": 26,
+      "decisions": 4,
+      "explicit_merges": 3,
+      "rendered": true
+    },
+    {
+      "id": "AD15",
+      "primary": "PR15",
+      "nodes": 16,
+      "edges": 18,
+      "decisions": 3,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD16",
+      "primary": "PR16",
+      "nodes": 21,
+      "edges": 26,
+      "decisions": 4,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD17",
+      "primary": "PR17",
+      "nodes": 19,
+      "edges": 24,
+      "decisions": 4,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD18",
+      "primary": "PR18",
+      "nodes": 19,
+      "edges": 22,
+      "decisions": 3,
+      "explicit_merges": 2,
+      "rendered": true
+    },
+    {
+      "id": "AD19",
+      "primary": "PR19",
+      "nodes": 18,
+      "edges": 21,
+      "decisions": 3,
+      "explicit_merges": 1,
+      "rendered": true
+    },
+    {
+      "id": "AD20",
+      "primary": "PR20",
+      "nodes": 18,
+      "edges": 21,
+      "decisions": 4,
+      "explicit_merges": 2,
+      "rendered": true
+    }
+  ]
+}

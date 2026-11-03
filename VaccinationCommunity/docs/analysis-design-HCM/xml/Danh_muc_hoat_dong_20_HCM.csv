@@ -1,0 +1,21 @@
+﻿Trang,Use case tương ứng,Chức năng,Làn tác nhân
+AD01,PR01,Đăng nhập,NGƯỜI DÙNG (BA VAI TRÒ)
+AD02,PR02,Đăng xuất,NGƯỜI DÙNG (BA VAI TRÒ)
+AD03,PR03,Đổi mật khẩu,NGƯỜI DÙNG (BA VAI TRÒ)
+AD04,PR04,Đăng ký tài khoản Người dân,NGƯỜI DÂN
+AD05,PR05,Quản lý hồ sơ cá nhân,NGƯỜI DÂN
+AD06,PR06,Quản lý lịch tiêm cá nhân,NGƯỜI DÂN
+AD07,PR07,Tra cứu lịch sử tiêm và chống chỉ định,NGƯỜI DÂN
+AD08,PR08,Xem thông báo,NGƯỜI DÂN
+AD09,PR09,Theo dõi sức khỏe sau tiêm,NGƯỜI DÂN
+AD10,PR10,Tra cứu hồ sơ người dân thuộc phạm vi,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD11,PR11,Quản lý vaccine tiếp nhận tại cơ sở,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD12,PR12,Quản lý lô vaccine và tồn kho tại cơ sở,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD13,PR13,"Quản lý, điều phối lịch tiêm",NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD14,PR14,Ghi nhận mũi tiêm,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD15,PR15,Quản lý chống chỉ định,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD16,PR16,Tra cứu lịch sử và truy vết tiêm chủng,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD17,PR17,Tiếp nhận và xử lý theo dõi sau tiêm,NHÂN VIÊN Y TẾ / QUẢN TRỊ VIÊN
+AD18,PR18,Quản lý danh mục vaccine dùng chung,QUẢN TRỊ VIÊN
+AD19,PR19,Quản lý tài khoản và phân quyền,QUẢN TRỊ VIÊN
+AD20,PR20,"Quản lý khu vực, cơ sở và phân công nhân viên",QUẢN TRỊ VIÊN

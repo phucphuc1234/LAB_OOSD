@@ -1,0 +1,203 @@
+{
+  "status": "passed",
+  "source_baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "pages": 20,
+  "primary_activity_mapping": "SD01–SD20 = AD01–AD20 = PR01–PR20",
+  "participants": "Actor → actual UI Boundary → grouped actual backend Control → SQL Server",
+  "ids_and_references": "valid",
+  "message_order_and_labels": "sequential; XML matches manifest",
+  "calls_and_returns": "solid block-arrow calls; dashed open-arrow returns",
+  "conditional_fragments": "guarded alt/opt; optional writes not mandatory",
+  "local_logout": "A/B only; no backend/SQL message or activation",
+  "source_review": "roles, site scope, API routes, transactions, matched retry, pre-submit warnings, revision conflicts and postcommit reads reviewed independently",
+  "rendered_pages": 20,
+  "text_width_warnings": 0,
+  "messages": 471,
+  "alt": 52,
+  "opt": 23,
+  "application_modified": false,
+  "validation_scope": "Documentation XML, geometry, mxGraph rendering and source review; application runtime tests not rerun.",
+  "sha256": "be22cc909aea26ec8028c7a3de7e45d24a02ff74954e5710ff5e74344a4681f5",
+  "details": [
+    {
+      "id": "SD01",
+      "primary": "PR01",
+      "activity": "AD01",
+      "messages": 19,
+      "alt": 3,
+      "opt": 0,
+      "rendered": true
+    },
+    {
+      "id": "SD02",
+      "primary": "PR02",
+      "activity": "AD02",
+      "messages": 4,
+      "alt": 0,
+      "opt": 0,
+      "rendered": true
+    },
+    {
+      "id": "SD03",
+      "primary": "PR03",
+      "activity": "AD03",
+      "messages": 22,
+      "alt": 3,
+      "opt": 0,
+      "rendered": true
+    },
+    {
+      "id": "SD04",
+      "primary": "PR04",
+      "activity": "AD04",
+      "messages": 24,
+      "alt": 4,
+      "opt": 0,
+      "rendered": true
+    },
+    {
+      "id": "SD05",
+      "primary": "PR05",
+      "activity": "AD05",
+      "messages": 30,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD06",
+      "primary": "PR06",
+      "activity": "AD06",
+      "messages": 29,
+      "alt": 4,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD07",
+      "primary": "PR07",
+      "activity": "AD07",
+      "messages": 11,
+      "alt": 2,
+      "opt": 0,
+      "rendered": true
+    },
+    {
+      "id": "SD08",
+      "primary": "PR08",
+      "activity": "AD08",
+      "messages": 24,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD09",
+      "primary": "PR09",
+      "activity": "AD09",
+      "messages": 30,
+      "alt": 2,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD10",
+      "primary": "PR10",
+      "activity": "AD10",
+      "messages": 17,
+      "alt": 1,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD11",
+      "primary": "PR11",
+      "activity": "AD11",
+      "messages": 27,
+      "alt": 2,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD12",
+      "primary": "PR12",
+      "activity": "AD12",
+      "messages": 20,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD13",
+      "primary": "PR13",
+      "activity": "AD13",
+      "messages": 20,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD14",
+      "primary": "PR14",
+      "activity": "AD14",
+      "messages": 32,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD15",
+      "primary": "PR15",
+      "activity": "AD15",
+      "messages": 19,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD16",
+      "primary": "PR16",
+      "activity": "AD16",
+      "messages": 28,
+      "alt": 4,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD17",
+      "primary": "PR17",
+      "activity": "AD17",
+      "messages": 35,
+      "alt": 2,
+      "opt": 3,
+      "rendered": true
+    },
+    {
+      "id": "SD18",
+      "primary": "PR18",
+      "activity": "AD18",
+      "messages": 20,
+      "alt": 3,
+      "opt": 1,
+      "rendered": true
+    },
+    {
+      "id": "SD19",
+      "primary": "PR19",
+      "activity": "AD19",
+      "messages": 34,
+      "alt": 2,
+      "opt": 2,
+      "rendered": true
+    },
+    {
+      "id": "SD20",
+      "primary": "PR20",
+      "activity": "AD20",
+      "messages": 26,
+      "alt": 2,
+      "opt": 1,
+      "rendered": true
+    }
+  ]
+}

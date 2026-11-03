@@ -8,6 +8,10 @@
 
 **Bản 20 sơ đồ chính:** [một XML chỉ có PR01–PR20, mỗi sơ đồ một trang](xml/Phan_ra_20_usecase_chinh_HCM.xml).
 
+**Sơ đồ hoạt động:** [một XML gồm 20 trang AD01–AD20, khớp PR01–PR20](xml/Hoat_dong_20_usecase_chinh_HCM.xml). Xem [danh mục và hướng dẫn mở](HOAT_DONG_20_USECASE_HCM.md).
+
+**Sơ đồ tuần tự:** [một XML gồm 20 trang SD01–SD20, khớp AD01–AD20 và PR01–PR20](xml/Tuan_tu_20_usecase_chinh_HCM.xml). Bố cục Tác nhân → Giao diện → Xử lý → SQL Server theo mẫu; xem [danh mục, ký hiệu và phạm vi đối chiếu](TUAN_TU_20_USECASE_HCM.md).
+
 Trong draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML, rồi chuyển trang bằng các tab ở dưới:
 
 1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Admin kế thừa Nhân viên, gồm cả đăng nhập/đăng xuất/đổi mật khẩu, để giảm các đường nối lặp. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.

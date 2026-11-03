@@ -1,0 +1,21 @@
+﻿Trang,Phân rã tương ứng,Hoạt động tương ứng,Chức năng
+SD01,PR01,AD01,Đăng nhập
+SD02,PR02,AD02,Đăng xuất
+SD03,PR03,AD03,Đổi mật khẩu
+SD04,PR04,AD04,Đăng ký tài khoản Người dân
+SD05,PR05,AD05,Quản lý hồ sơ cá nhân
+SD06,PR06,AD06,Quản lý lịch tiêm cá nhân
+SD07,PR07,AD07,Tra cứu lịch sử tiêm và chống chỉ định
+SD08,PR08,AD08,Xem thông báo
+SD09,PR09,AD09,Theo dõi sức khỏe sau tiêm
+SD10,PR10,AD10,Tra cứu hồ sơ người dân thuộc phạm vi
+SD11,PR11,AD11,Quản lý vaccine tiếp nhận tại cơ sở
+SD12,PR12,AD12,Quản lý lô vaccine và tồn kho tại cơ sở
+SD13,PR13,AD13,"Quản lý, điều phối lịch tiêm"
+SD14,PR14,AD14,Ghi nhận mũi tiêm
+SD15,PR15,AD15,Quản lý chống chỉ định
+SD16,PR16,AD16,Tra cứu lịch sử và truy vết tiêm chủng
+SD17,PR17,AD17,Tiếp nhận và xử lý theo dõi sau tiêm
+SD18,PR18,AD18,Quản lý danh mục vaccine dùng chung
+SD19,PR19,AD19,Quản lý tài khoản và phân quyền
+SD20,PR20,AD20,"Quản lý khu vực, cơ sở và phân công nhân viên"

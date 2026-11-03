@@ -136,6 +136,8 @@ Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài
 
 ## Sơ đồ phân tích thiết kế theo mẫu
 
+**Hai bộ 20 sơ đồ chính bản TP.HCM:** [hoạt động AD01–AD20](docs/analysis-design-HCM/HOAT_DONG_20_USECASE_HCM.md) và [tuần tự SD01–SD20](docs/analysis-design-HCM/TUAN_TU_20_USECASE_HCM.md). Mỗi bộ là một XML có 20 trang, tương ứng cùng thứ tự PR01–PR20.
+
 **Phân rã đầy đủ bản mới:** [62 sơ đồ theo 20 use case chính, có mục lục và một file XML nhiều trang](docs/analysis-design-HCM/PHAN_RA_USECASE_HCM.md).
 
 **Bản mới cho quản lý cơ sở/phân công:** [Use case tổng quát và ERD TP.HCM](docs/analysis-design-HCM/README.md), ba tác nhân, 19 bảng và 34 khóa ngoại. Có một XML gồm hai trang để mở bằng draw.io.
