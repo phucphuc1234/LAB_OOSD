@@ -1258,5 +1258,29 @@
     "png": "previews/06-Tuan-tu-20-HCM/20-SD20.png",
     "svg": "svg/06-Tuan-tu-20-HCM/20-SD20.svg",
     "warnings": []
+  },
+  {
+    "file": "04-So-do-lop-HCM.drawio",
+    "group": "04-So-do-lop-HCM",
+    "id": "CL01",
+    "name": "CL01 — SƠ ĐỒ LỚP MIỀN DỮ LIỆU — BẢN TP.HCM",
+    "index": 1,
+    "width": 5511,
+    "height": 3994,
+    "png": "previews/04-So-do-lop-HCM/01-CL01.png",
+    "svg": "svg/04-So-do-lop-HCM/01-CL01.svg",
+    "warnings": []
+  },
+  {
+    "file": "04-So-do-lop-HCM.drawio",
+    "group": "04-So-do-lop-HCM",
+    "id": "CL02",
+    "name": "CL02 — MODULE XỬ LÝ VÀ CÁC HÀM EXPORT THỰC TẾ",
+    "index": 2,
+    "width": 1651,
+    "height": 4562,
+    "png": "previews/04-So-do-lop-HCM/02-CL02.png",
+    "svg": "svg/04-So-do-lop-HCM/02-CL02.svg",
+    "warnings": []
   }
 ]

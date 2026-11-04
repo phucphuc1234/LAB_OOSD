@@ -136,6 +136,8 @@ Nếu kết nối lỗi, kiểm tra SQL Server đang chạy, TCP/IP/cổng, tài
 
 ## Sơ đồ phân tích thiết kế theo mẫu
 
+**Sơ đồ lớp bản TP.HCM:** [một XML gồm lớp dữ liệu với quan hệ/bội số và các module xử lý thực tế](docs/analysis-design-HCM/SO_DO_LOP_HCM.md).
+
 **Hai bộ 20 sơ đồ chính bản TP.HCM:** [hoạt động AD01–AD20](docs/analysis-design-HCM/HOAT_DONG_20_USECASE_HCM.md) và [tuần tự SD01–SD20](docs/analysis-design-HCM/TUAN_TU_20_USECASE_HCM.md). Mỗi bộ là một XML có 20 trang, tương ứng cùng thứ tự PR01–PR20.
 
 **Phân rã đầy đủ bản mới:** [62 sơ đồ theo 20 use case chính, có mục lục và một file XML nhiều trang](docs/analysis-design-HCM/PHAN_RA_USECASE_HCM.md).

@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "source_baseline": "21ac32f3239a1dabdc2e039209fda56a63def54a",
+  "tabs": [
+    "CL01",
+    "CL02"
+  ],
+  "domain_classes": 19,
+  "business_audit_classes": 18,
+  "technical_classes": 1,
+  "attributes": 159,
+  "associations": 34,
+  "endpoint_multiplicity_labels": 68,
+  "association_role_labels": 34,
+  "optional_one_to_one_pairs": 2,
+  "composite_identity_classes": 3,
+  "uml_inheritance_or_composition_invented": false,
+  "actual_modules": 26,
+  "actual_exported_operations": 145,
+  "actual_exported_constants": 5,
+  "service_repository_dependencies": 18,
+  "dependency_multiplicities": false,
+  "label_class_collisions": 0,
+  "label_label_collisions": 0,
+  "footer_class_collisions": 0,
+  "multiplicity_endpoint_placement": "Every label is closer to its own endpoint class than the opposite class",
+  "xml_ids_and_references": "valid",
+  "rendered_tabs": 2,
+  "text_width_warnings": 0,
+  "application_modified": false,
+  "validation_scope": "Source/SQL review, record and module inventory, XML structure, endpoint labels, geometry and mxGraph rendering. Application runtime tests not rerun.",
+  "sha256": "ac764c18357bc060d059660a8f731fa2263564316a5c73b6834774709209d601"
+}

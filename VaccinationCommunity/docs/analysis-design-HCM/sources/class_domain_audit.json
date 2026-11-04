@@ -1,0 +1,4459 @@
+{
+  "project": "Cổng theo dõi tiêm chủng cộng đồng — phiên bản quản lý cơ sở TP.HCM",
+  "audited_on": "2026-11-04",
+  "source_logic_commit": "b8efda935ea1c2a7cf73e3e428851e6e87baa895",
+  "working_head": "75ab5f3813b84366e3e65f1719b7dc5f0d2ec2f9",
+  "counts": {
+    "record_classes": 19,
+    "business_or_audit_classes": 18,
+    "technical_record_classes": 1,
+    "attributes": 159,
+    "associations": 34,
+    "association_entity_classes": 3
+  },
+  "classes": [
+    {
+      "class_name": "PhienBanLuocDo",
+      "table": "SCHEMAVERSION",
+      "vietnamese": "Phiên bản lược đồ (kỹ thuật)",
+      "stereotype": "technical record",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "VersionNo",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "VersionNo int NOT NULL CONSTRAINT PK_SCHEMAVERSION PRIMARY KEY",
+          "evidence": "database/01-schema.sql:24",
+          "added_by_migration": false
+        },
+        {
+          "name": "AppliedAt",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "AppliedAt datetime2(0) NOT NULL CONSTRAINT DF_SCHEMA_Applied DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:25",
+          "added_by_migration": false
+        },
+        {
+          "name": "Description",
+          "sql_type": "nvarchar(255)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "Description nvarchar(255) NOT NULL",
+          "evidence": "database/01-schema.sql:26",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "VersionNo"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:23",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "VaiTro",
+      "table": "VAITRO",
+      "vietnamese": "Vai trò",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaVaiTro",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaiTro int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VAITRO PRIMARY KEY",
+          "evidence": "database/01-schema.sql:30",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenVaiTro",
+          "sql_type": "nvarchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_VAITRO_Ten",
+              "columns": [
+                "TenVaiTro"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 31,
+                "symbol": "VAITRO"
+              },
+              "evidence": "database/01-schema.sql:31"
+            }
+          ],
+          "definition": "TenVaiTro nvarchar(50) NOT NULL CONSTRAINT UQ_VAITRO_Ten UNIQUE",
+          "evidence": "database/01-schema.sql:31",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_VAITRO_TrangThai DEFAULT 1",
+          "evidence": "database/01-schema.sql:32",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaVaiTro"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_VAITRO_Ten",
+          "columns": [
+            "TenVaiTro"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 31,
+            "symbol": "VAITRO"
+          },
+          "evidence": "database/01-schema.sql:31"
+        }
+      ],
+      "evidence": "database/01-schema.sql:29",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "TaiKhoan",
+      "table": "TAIKHOAN",
+      "vietnamese": "Tài khoản",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaTaiKhoan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTaiKhoan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_TAIKHOAN PRIMARY KEY",
+          "evidence": "database/01-schema.sql:36",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenDangNhap",
+          "sql_type": "varchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_TAIKHOAN_Ten",
+              "columns": [
+                "TenDangNhap"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 37,
+                "symbol": "TAIKHOAN"
+              },
+              "evidence": "database/01-schema.sql:37"
+            }
+          ],
+          "definition": "TenDangNhap varchar(100) NOT NULL CONSTRAINT UQ_TAIKHOAN_Ten UNIQUE",
+          "evidence": "database/01-schema.sql:37",
+          "added_by_migration": false
+        },
+        {
+          "name": "MatKhau",
+          "sql_type": "varchar(255)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MatKhau varchar(255) NOT NULL",
+          "evidence": "database/01-schema.sql:38",
+          "added_by_migration": false
+        },
+        {
+          "name": "Email",
+          "sql_type": "varchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_TAIKHOAN_Email",
+              "columns": [
+                "Email"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 39,
+                "symbol": "TAIKHOAN"
+              },
+              "evidence": "database/01-schema.sql:39"
+            }
+          ],
+          "definition": "Email varchar(150) NOT NULL CONSTRAINT UQ_TAIKHOAN_Email UNIQUE",
+          "evidence": "database/01-schema.sql:39",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoDienThoai",
+          "sql_type": "varchar(20)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoDienThoai varchar(20) NULL",
+          "evidence": "database/01-schema.sql:40",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaVaiTro",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_TAIKHOAN_VAITRO",
+              "target_class": "VaiTro",
+              "target_attribute": "MaVaiTro",
+              "target_table": "VAITRO",
+              "evidence": "database/01-schema.sql:41"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaiTro int NOT NULL CONSTRAINT FK_TAIKHOAN_VAITRO REFERENCES dbo.VAITRO(MaVaiTro)",
+          "evidence": "database/01-schema.sql:41",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_TAIKHOAN_TrangThai DEFAULT 1",
+          "evidence": "database/01-schema.sql:42",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_TAIKHOAN_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:43",
+          "added_by_migration": false
+        },
+        {
+          "name": "LanDangNhapCuoi",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "LanDangNhapCuoi datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:44",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaTaiKhoan"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_TAIKHOAN_Ten",
+          "columns": [
+            "TenDangNhap"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 37,
+            "symbol": "TAIKHOAN"
+          },
+          "evidence": "database/01-schema.sql:37"
+        },
+        {
+          "name": "UQ_TAIKHOAN_Email",
+          "columns": [
+            "Email"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 39,
+            "symbol": "TAIKHOAN"
+          },
+          "evidence": "database/01-schema.sql:39"
+        }
+      ],
+      "evidence": "database/01-schema.sql:35",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "NguoiDan",
+      "table": "NGUOIDAN",
+      "vietnamese": "Người dân",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiDan int IDENTITY(1,1) NOT NULL CONSTRAINT PK_NGUOIDAN PRIMARY KEY",
+          "evidence": "database/01-schema.sql:48",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaTaiKhoan",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_NGUOIDAN_TAIKHOAN",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:49"
+            }
+          ],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UX_NGUOIDAN_TaiKhoan",
+              "columns": [
+                "MaTaiKhoan"
+              ],
+              "filter": "MaTaiKhoan IS NOT NULL",
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 219,
+                "symbol": "UX_NGUOIDAN_TaiKhoan"
+              },
+              "evidence": "database/01-schema.sql:219"
+            }
+          ],
+          "definition": "MaTaiKhoan int NULL CONSTRAINT FK_NGUOIDAN_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:49",
+          "added_by_migration": false
+        },
+        {
+          "name": "HoTen",
+          "sql_type": "nvarchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HoTen nvarchar(150) NOT NULL",
+          "evidence": "database/01-schema.sql:50",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgaySinh",
+          "sql_type": "date",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgaySinh date NULL",
+          "evidence": "database/01-schema.sql:51",
+          "added_by_migration": false
+        },
+        {
+          "name": "GioiTinh",
+          "sql_type": "nvarchar(20)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GioiTinh nvarchar(20) NULL CONSTRAINT CK_NGUOIDAN_GioiTinh CHECK (GioiTinh IN (N'Nam',N'Nữ',N'Khác'))",
+          "evidence": "database/01-schema.sql:52",
+          "added_by_migration": false
+        },
+        {
+          "name": "CCCD",
+          "sql_type": "varchar(20)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UX_NGUOIDAN_CCCD",
+              "columns": [
+                "CCCD"
+              ],
+              "filter": "CCCD IS NOT NULL",
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 221,
+                "symbol": "UX_NGUOIDAN_CCCD"
+              },
+              "evidence": "database/01-schema.sql:221"
+            }
+          ],
+          "definition": "CCCD varchar(20) NULL",
+          "evidence": "database/01-schema.sql:53",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoBHYT",
+          "sql_type": "varchar(30)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoBHYT varchar(30) NULL",
+          "evidence": "database/01-schema.sql:54",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoDienThoai",
+          "sql_type": "varchar(20)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoDienThoai varchar(20) NULL",
+          "evidence": "database/01-schema.sql:55",
+          "added_by_migration": false
+        },
+        {
+          "name": "Email",
+          "sql_type": "varchar(150)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UX_NGUOIDAN_Email",
+              "columns": [
+                "Email"
+              ],
+              "filter": "Email IS NOT NULL",
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 223,
+                "symbol": "UX_NGUOIDAN_Email"
+              },
+              "evidence": "database/01-schema.sql:223"
+            }
+          ],
+          "definition": "Email varchar(150) NULL",
+          "evidence": "database/01-schema.sql:56",
+          "added_by_migration": false
+        },
+        {
+          "name": "DiaChi",
+          "sql_type": "nvarchar(255)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DiaChi nvarchar(255) NULL",
+          "evidence": "database/01-schema.sql:57",
+          "added_by_migration": false
+        },
+        {
+          "name": "PhuongXa",
+          "sql_type": "nvarchar(100)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "PhuongXa nvarchar(100) NULL",
+          "evidence": "database/01-schema.sql:58",
+          "added_by_migration": false
+        },
+        {
+          "name": "QuanHuyen",
+          "sql_type": "nvarchar(100)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "QuanHuyen nvarchar(100) NULL",
+          "evidence": "database/01-schema.sql:59",
+          "added_by_migration": false
+        },
+        {
+          "name": "TinhThanh",
+          "sql_type": "nvarchar(100)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TinhThanh nvarchar(100) NULL",
+          "evidence": "database/01-schema.sql:60",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:61",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayCapNhat",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_NGUOIDAN_NgayCapNhat DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:62",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_NGUOIDAN_TrangThai DEFAULT 1",
+          "evidence": "database/01-schema.sql:63",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaNguoiDan"
+      ],
+      "unique_keys": [
+        {
+          "name": "UX_NGUOIDAN_TaiKhoan",
+          "columns": [
+            "MaTaiKhoan"
+          ],
+          "filter": "MaTaiKhoan IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 219,
+            "symbol": "UX_NGUOIDAN_TaiKhoan"
+          },
+          "evidence": "database/01-schema.sql:219"
+        },
+        {
+          "name": "UX_NGUOIDAN_CCCD",
+          "columns": [
+            "CCCD"
+          ],
+          "filter": "CCCD IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 221,
+            "symbol": "UX_NGUOIDAN_CCCD"
+          },
+          "evidence": "database/01-schema.sql:221"
+        },
+        {
+          "name": "UX_NGUOIDAN_Email",
+          "columns": [
+            "Email"
+          ],
+          "filter": "Email IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 223,
+            "symbol": "UX_NGUOIDAN_Email"
+          },
+          "evidence": "database/01-schema.sql:223"
+        }
+      ],
+      "evidence": "database/01-schema.sql:47",
+      "checks": [
+        {
+          "name": "CK_NGUOIDAN_GioiTinh",
+          "sql": "CHECK (GioiTinh IN (N'Nam',N'Nữ',N'Khác'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 52,
+            "symbol": "NGUOIDAN"
+          },
+          "evidence": "database/01-schema.sql:52",
+          "column": "GioiTinh"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "UX_NGUOIDAN_TaiKhoan",
+          "columns": [
+            "MaTaiKhoan"
+          ],
+          "key_definition": "MaTaiKhoan",
+          "unique": true,
+          "include": [],
+          "filter": "MaTaiKhoan IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 219,
+            "symbol": "UX_NGUOIDAN_TaiKhoan"
+          },
+          "evidence": "database/01-schema.sql:219"
+        },
+        {
+          "name": "UX_NGUOIDAN_CCCD",
+          "columns": [
+            "CCCD"
+          ],
+          "key_definition": "CCCD",
+          "unique": true,
+          "include": [],
+          "filter": "CCCD IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 221,
+            "symbol": "UX_NGUOIDAN_CCCD"
+          },
+          "evidence": "database/01-schema.sql:221"
+        },
+        {
+          "name": "UX_NGUOIDAN_Email",
+          "columns": [
+            "Email"
+          ],
+          "key_definition": "Email",
+          "unique": true,
+          "include": [],
+          "filter": "Email IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 223,
+            "symbol": "UX_NGUOIDAN_Email"
+          },
+          "evidence": "database/01-schema.sql:223"
+        }
+      ]
+    },
+    {
+      "class_name": "Vaccine",
+      "table": "VACCINE",
+      "vietnamese": "Vaccine",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaVaccine",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaccine int IDENTITY(1,1) NOT NULL CONSTRAINT PK_VACCINE PRIMARY KEY",
+          "evidence": "database/01-schema.sql:67",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenVaccine",
+          "sql_type": "nvarchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_VACCINE_Ten",
+              "columns": [
+                "TenVaccine"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 68,
+                "symbol": "VACCINE"
+              },
+              "evidence": "database/01-schema.sql:68"
+            }
+          ],
+          "definition": "TenVaccine nvarchar(150) NOT NULL CONSTRAINT UQ_VACCINE_Ten UNIQUE",
+          "evidence": "database/01-schema.sql:68",
+          "added_by_migration": false
+        },
+        {
+          "name": "LoaiVaccine",
+          "sql_type": "nvarchar(100)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "LoaiVaccine nvarchar(100) NULL",
+          "evidence": "database/01-schema.sql:69",
+          "added_by_migration": false
+        },
+        {
+          "name": "NhaSanXuat",
+          "sql_type": "nvarchar(150)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NhaSanXuat nvarchar(150) NULL",
+          "evidence": "database/01-schema.sql:70",
+          "added_by_migration": false
+        },
+        {
+          "name": "MoTa",
+          "sql_type": "nvarchar(2000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MoTa nvarchar(2000) NULL",
+          "evidence": "database/01-schema.sql:71",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoMuiKhuyenNghi",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoMuiKhuyenNghi int NOT NULL CONSTRAINT DF_VACCINE_SoMui DEFAULT 1 CONSTRAINT CK_VACCINE_SoMui CHECK (SoMuiKhuyenNghi BETWEEN 1 AND 20)",
+          "evidence": "database/01-schema.sql:72",
+          "added_by_migration": false
+        },
+        {
+          "name": "KhoangCachMui",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "KhoangCachMui int NOT NULL CONSTRAINT DF_VACCINE_KhoangCach DEFAULT 0 CONSTRAINT CK_VACCINE_KhoangCach CHECK (KhoangCachMui BETWEEN 0 AND 3650)",
+          "evidence": "database/01-schema.sql:73",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_VACCINE_TrangThai DEFAULT 1",
+          "evidence": "database/01-schema.sql:74",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_VACCINE_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:75",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaVaccine"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_VACCINE_Ten",
+          "columns": [
+            "TenVaccine"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 68,
+            "symbol": "VACCINE"
+          },
+          "evidence": "database/01-schema.sql:68"
+        }
+      ],
+      "evidence": "database/01-schema.sql:66",
+      "checks": [
+        {
+          "name": "CK_VACCINE_SoMui",
+          "sql": "CHECK (SoMuiKhuyenNghi BETWEEN 1 AND 20)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 72,
+            "symbol": "VACCINE"
+          },
+          "evidence": "database/01-schema.sql:72",
+          "column": "SoMuiKhuyenNghi"
+        },
+        {
+          "name": "CK_VACCINE_KhoangCach",
+          "sql": "CHECK (KhoangCachMui BETWEEN 0 AND 3650)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 73,
+            "symbol": "VACCINE"
+          },
+          "evidence": "database/01-schema.sql:73",
+          "column": "KhoangCachMui"
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "class_name": "LoVaccine",
+      "table": "LOVACCINE",
+      "vietnamese": "Lô vaccine theo cơ sở",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaLo",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLo int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LOVACCINE PRIMARY KEY",
+          "evidence": "database/01-schema.sql:79",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaLoVaccine",
+          "sql_type": "varchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_LOVACCINE_MaLo",
+              "columns": [
+                "MaLoVaccine"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 80,
+                "symbol": "LOVACCINE"
+              },
+              "evidence": "database/01-schema.sql:80"
+            }
+          ],
+          "definition": "MaLoVaccine varchar(50) NOT NULL CONSTRAINT UQ_LOVACCINE_MaLo UNIQUE",
+          "evidence": "database/01-schema.sql:80",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaVaccine",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LOVACCINE_VACCINE",
+              "target_class": "Vaccine",
+              "target_attribute": "MaVaccine",
+              "target_table": "VACCINE",
+              "evidence": "database/01-schema.sql:81"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaccine int NOT NULL CONSTRAINT FK_LOVACCINE_VACCINE REFERENCES dbo.VACCINE(MaVaccine)",
+          "evidence": "database/01-schema.sql:81",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgaySanXuat",
+          "sql_type": "date",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgaySanXuat date NULL",
+          "evidence": "database/01-schema.sql:82",
+          "added_by_migration": false
+        },
+        {
+          "name": "HanSuDung",
+          "sql_type": "date",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HanSuDung date NOT NULL",
+          "evidence": "database/01-schema.sql:83",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoLuongNhap",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoLuongNhap int NOT NULL",
+          "evidence": "database/01-schema.sql:84",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoLuongCon",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoLuongCon int NOT NULL",
+          "evidence": "database/01-schema.sql:85",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoLuongDatTruoc",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoLuongDatTruoc int NOT NULL CONSTRAINT DF_LOVACCINE_DatTruoc DEFAULT 0",
+          "evidence": "database/01-schema.sql:86",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayNhap",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayNhap datetime2(0) NOT NULL CONSTRAINT DF_LOVACCINE_NgayNhap DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:87",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "nvarchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LOVACCINE_TrangThai DEFAULT N'Đang sử dụng'",
+          "evidence": "database/01-schema.sql:88",
+          "added_by_migration": false
+        },
+        {
+          "name": "GhiChu",
+          "sql_type": "nvarchar(1000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GhiChu nvarchar(1000) NULL",
+          "evidence": "database/01-schema.sql:89",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LOVACCINE_CoSoTiem",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:80"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ALTER TABLE dbo.LOVACCINE ADD MaCoSoTiem int NOT NULL; temporary backfill default removed immediately",
+          "evidence": "database/06-facilities.sql:75",
+          "added_by_migration": true
+        }
+      ],
+      "primary_key": [
+        "MaLo"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_LOVACCINE_MaLo",
+          "columns": [
+            "MaLoVaccine"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 80,
+            "symbol": "LOVACCINE"
+          },
+          "evidence": "database/01-schema.sql:80"
+        }
+      ],
+      "evidence": "database/01-schema.sql:78",
+      "checks": [
+        {
+          "name": "CK_LOVACCINE_SoLuong",
+          "sql": "CONSTRAINT CK_LOVACCINE_SoLuong CHECK (SoLuongNhap>0 AND SoLuongCon BETWEEN 0 AND SoLuongNhap AND SoLuongDatTruoc BETWEEN 0 AND SoLuongCon)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 90,
+            "symbol": "LOVACCINE"
+          },
+          "evidence": "database/01-schema.sql:90",
+          "column": null
+        },
+        {
+          "name": "CK_LOVACCINE_Ngay",
+          "sql": "CONSTRAINT CK_LOVACCINE_Ngay CHECK (NgaySanXuat IS NULL OR HanSuDung>NgaySanXuat)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 91,
+            "symbol": "LOVACCINE"
+          },
+          "evidence": "database/01-schema.sql:91",
+          "column": null
+        },
+        {
+          "name": "CK_LOVACCINE_TrangThai",
+          "sql": "CONSTRAINT CK_LOVACCINE_TrangThai CHECK (TrangThai IN (N'Đang sử dụng',N'Tạm ngừng',N'Hết hàng',N'Hết hạn'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 92,
+            "symbol": "LOVACCINE"
+          },
+          "evidence": "database/01-schema.sql:92",
+          "column": null
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_LOVACCINE_FEFO",
+          "columns": [
+            "MaVaccine",
+            "TrangThai",
+            "HanSuDung",
+            "MaLo"
+          ],
+          "key_definition": "MaVaccine,TrangThai,HanSuDung,MaLo",
+          "unique": false,
+          "include": [
+            "SoLuongCon",
+            "SoLuongDatTruoc"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 231,
+            "symbol": "IX_LOVACCINE_FEFO"
+          },
+          "evidence": "database/01-schema.sql:231"
+        },
+        {
+          "name": "IX_LOVACCINE_CoSo_FEFO",
+          "columns": [
+            "MaCoSoTiem",
+            "MaVaccine",
+            "TrangThai",
+            "HanSuDung",
+            "MaLo"
+          ],
+          "key_definition": "MaCoSoTiem,MaVaccine,TrangThai,HanSuDung,MaLo",
+          "unique": false,
+          "include": [
+            "SoLuongCon",
+            "SoLuongDatTruoc"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 96,
+            "symbol": "IX_LOVACCINE_CoSo_FEFO"
+          },
+          "evidence": "database/06-facilities.sql:96"
+        }
+      ]
+    },
+    {
+      "class_name": "LichTiem",
+      "table": "LICHTIEM",
+      "vietnamese": "Lịch tiêm tại cơ sở",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaLichTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLichTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHTIEM PRIMARY KEY",
+          "evidence": "database/01-schema.sql:96",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHTIEM_NGUOIDAN",
+              "target_class": "NguoiDan",
+              "target_attribute": "MaNguoiDan",
+              "target_table": "NGUOIDAN",
+              "evidence": "database/01-schema.sql:97"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiDan int NOT NULL CONSTRAINT FK_LICHTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan)",
+          "evidence": "database/01-schema.sql:97",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaVaccine",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHTIEM_VACCINE",
+              "target_class": "Vaccine",
+              "target_attribute": "MaVaccine",
+              "target_table": "VACCINE",
+              "evidence": "database/01-schema.sql:98"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaccine int NOT NULL CONSTRAINT FK_LICHTIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine)",
+          "evidence": "database/01-schema.sql:98",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaLoDuKien",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHTIEM_LOVACCINE",
+              "target_class": "LoVaccine",
+              "target_attribute": "MaLo",
+              "target_table": "LOVACCINE",
+              "evidence": "database/01-schema.sql:99"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLoDuKien int NULL CONSTRAINT FK_LICHTIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo)",
+          "evidence": "database/01-schema.sql:99",
+          "added_by_migration": false
+        },
+        {
+          "name": "MuiSo",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MuiSo int NOT NULL CONSTRAINT CK_LICHTIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20)",
+          "evidence": "database/01-schema.sql:100",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayDuKien",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayDuKien datetime2(0) NOT NULL",
+          "evidence": "database/01-schema.sql:101",
+          "added_by_migration": false
+        },
+        {
+          "name": "CoSoTiem",
+          "sql_type": "nvarchar(255)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "CoSoTiem nvarchar(255) NULL",
+          "evidence": "database/01-schema.sql:102",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "nvarchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_LICHTIEM_TrangThai DEFAULT N'Đã lên lịch'",
+          "evidence": "database/01-schema.sql:103",
+          "added_by_migration": false
+        },
+        {
+          "name": "GhiChu",
+          "sql_type": "nvarchar(1000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GhiChu nvarchar(1000) NULL",
+          "evidence": "database/01-schema.sql:104",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNhanVienTao",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHTIEM_NhanVien",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:105"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNhanVienTao int NULL CONSTRAINT FK_LICHTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:105",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:106",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayCapNhat",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_LICHTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:107",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHTIEM_CoSoTiem",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:80"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ALTER TABLE dbo.LICHTIEM ADD MaCoSoTiem int NOT NULL; temporary backfill default removed immediately",
+          "evidence": "database/06-facilities.sql:75",
+          "added_by_migration": true
+        }
+      ],
+      "primary_key": [
+        "MaLichTiem"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:95",
+      "checks": [
+        {
+          "name": "CK_LICHTIEM_MuiSo",
+          "sql": "CHECK (MuiSo BETWEEN 1 AND 20)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 100,
+            "symbol": "LICHTIEM"
+          },
+          "evidence": "database/01-schema.sql:100",
+          "column": "MuiSo"
+        },
+        {
+          "name": "CK_LICHTIEM_TrangThai",
+          "sql": "CONSTRAINT CK_LICHTIEM_TrangThai CHECK (TrangThai IN (N'Đã lên lịch',N'Đã xác nhận',N'Đã tiêm',N'Hoàn thành',N'Đã hủy',N'Vắng mặt'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 108,
+            "symbol": "LICHTIEM"
+          },
+          "evidence": "database/01-schema.sql:108",
+          "column": null
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_LICHTIEM_CitizenStatus",
+          "columns": [
+            "MaNguoiDan",
+            "MaVaccine",
+            "TrangThai"
+          ],
+          "key_definition": "MaNguoiDan,MaVaccine,TrangThai",
+          "unique": false,
+          "include": [
+            "MaLoDuKien",
+            "MuiSo",
+            "NgayDuKien"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 227,
+            "symbol": "IX_LICHTIEM_CitizenStatus"
+          },
+          "evidence": "database/01-schema.sql:227"
+        },
+        {
+          "name": "IX_LICHTIEM_NgayStatus",
+          "columns": [
+            "TrangThai",
+            "NgayDuKien"
+          ],
+          "key_definition": "TrangThai,NgayDuKien",
+          "unique": false,
+          "include": [
+            "MaNguoiDan",
+            "MaVaccine",
+            "MaLoDuKien"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 229,
+            "symbol": "IX_LICHTIEM_NgayStatus"
+          },
+          "evidence": "database/01-schema.sql:229"
+        },
+        {
+          "name": "IX_LICHTIEM_CoSo_NguoiDan",
+          "columns": [
+            "MaCoSoTiem",
+            "MaNguoiDan"
+          ],
+          "key_definition": "MaCoSoTiem,MaNguoiDan",
+          "unique": false,
+          "include": [
+            "TrangThai",
+            "MaLoDuKien",
+            "NgayDuKien"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 98,
+            "symbol": "IX_LICHTIEM_CoSo_NguoiDan"
+          },
+          "evidence": "database/06-facilities.sql:98"
+        }
+      ]
+    },
+    {
+      "class_name": "MuiTiem",
+      "table": "MUITIEM",
+      "vietnamese": "Mũi tiêm thực tế",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaMuiTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaMuiTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_MUITIEM PRIMARY KEY",
+          "evidence": "database/01-schema.sql:112",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_NGUOIDAN",
+              "target_class": "NguoiDan",
+              "target_attribute": "MaNguoiDan",
+              "target_table": "NGUOIDAN",
+              "evidence": "database/01-schema.sql:113"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [
+            {
+              "name": "UQ_MUITIEM_Dose",
+              "columns": [
+                "MaNguoiDan",
+                "MaVaccine",
+                "MuiSo"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 125,
+                "symbol": "MUITIEM"
+              },
+              "evidence": "database/01-schema.sql:125"
+            }
+          ],
+          "definition": "MaNguoiDan int NOT NULL CONSTRAINT FK_MUITIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan)",
+          "evidence": "database/01-schema.sql:113",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaVaccine",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_VACCINE",
+              "target_class": "Vaccine",
+              "target_attribute": "MaVaccine",
+              "target_table": "VACCINE",
+              "evidence": "database/01-schema.sql:114"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [
+            {
+              "name": "UQ_MUITIEM_Dose",
+              "columns": [
+                "MaNguoiDan",
+                "MaVaccine",
+                "MuiSo"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 125,
+                "symbol": "MUITIEM"
+              },
+              "evidence": "database/01-schema.sql:125"
+            }
+          ],
+          "definition": "MaVaccine int NOT NULL CONSTRAINT FK_MUITIEM_VACCINE REFERENCES dbo.VACCINE(MaVaccine)",
+          "evidence": "database/01-schema.sql:114",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaLo",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_LOVACCINE",
+              "target_class": "LoVaccine",
+              "target_attribute": "MaLo",
+              "target_table": "LOVACCINE",
+              "evidence": "database/01-schema.sql:115"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLo int NOT NULL CONSTRAINT FK_MUITIEM_LOVACCINE REFERENCES dbo.LOVACCINE(MaLo)",
+          "evidence": "database/01-schema.sql:115",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaLichTiem",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_LICHTIEM",
+              "target_class": "LichTiem",
+              "target_attribute": "MaLichTiem",
+              "target_table": "LICHTIEM",
+              "evidence": "database/01-schema.sql:116"
+            }
+          ],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UX_MUITIEM_Lich",
+              "columns": [
+                "MaLichTiem"
+              ],
+              "filter": "MaLichTiem IS NOT NULL",
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 225,
+                "symbol": "UX_MUITIEM_Lich"
+              },
+              "evidence": "database/01-schema.sql:225"
+            }
+          ],
+          "definition": "MaLichTiem int NULL CONSTRAINT FK_MUITIEM_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem)",
+          "evidence": "database/01-schema.sql:116",
+          "added_by_migration": false
+        },
+        {
+          "name": "MuiSo",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [
+            {
+              "name": "UQ_MUITIEM_Dose",
+              "columns": [
+                "MaNguoiDan",
+                "MaVaccine",
+                "MuiSo"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 125,
+                "symbol": "MUITIEM"
+              },
+              "evidence": "database/01-schema.sql:125"
+            }
+          ],
+          "definition": "MuiSo int NOT NULL CONSTRAINT CK_MUITIEM_MuiSo CHECK (MuiSo BETWEEN 1 AND 20)",
+          "evidence": "database/01-schema.sql:117",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTiem",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTiem datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTiem DEFAULT (CONVERT(datetime2(0),CONVERT(varchar(19),SYSUTCDATETIME(),126)))",
+          "evidence": "database/01-schema.sql:118",
+          "added_by_migration": false
+        },
+        {
+          "name": "CoSoTiem",
+          "sql_type": "nvarchar(255)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "CoSoTiem nvarchar(255) NULL",
+          "evidence": "database/01-schema.sql:119",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNhanVien",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_NhanVien",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:120"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNhanVien int NOT NULL CONSTRAINT FK_MUITIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:120",
+          "added_by_migration": false
+        },
+        {
+          "name": "KetQua",
+          "sql_type": "nvarchar(255)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "KetQua nvarchar(255) NOT NULL CONSTRAINT DF_MUITIEM_KetQua DEFAULT N'Đã tiêm'",
+          "evidence": "database/01-schema.sql:121",
+          "added_by_migration": false
+        },
+        {
+          "name": "PhanUngSauTiem",
+          "sql_type": "nvarchar(2000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "PhanUngSauTiem nvarchar(2000) NULL",
+          "evidence": "database/01-schema.sql:122",
+          "added_by_migration": false
+        },
+        {
+          "name": "GhiChu",
+          "sql_type": "nvarchar(1000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GhiChu nvarchar(1000) NULL",
+          "evidence": "database/01-schema.sql:123",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_MUITIEM_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:124",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_MUITIEM_CoSoTiem",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:80"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ALTER TABLE dbo.MUITIEM ADD MaCoSoTiem int NOT NULL; temporary backfill default removed immediately",
+          "evidence": "database/06-facilities.sql:75",
+          "added_by_migration": true
+        }
+      ],
+      "primary_key": [
+        "MaMuiTiem"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_MUITIEM_Dose",
+          "columns": [
+            "MaNguoiDan",
+            "MaVaccine",
+            "MuiSo"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 125,
+            "symbol": "MUITIEM"
+          },
+          "evidence": "database/01-schema.sql:125"
+        },
+        {
+          "name": "UX_MUITIEM_Lich",
+          "columns": [
+            "MaLichTiem"
+          ],
+          "filter": "MaLichTiem IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 225,
+            "symbol": "UX_MUITIEM_Lich"
+          },
+          "evidence": "database/01-schema.sql:225"
+        }
+      ],
+      "evidence": "database/01-schema.sql:111",
+      "checks": [
+        {
+          "name": "CK_MUITIEM_MuiSo",
+          "sql": "CHECK (MuiSo BETWEEN 1 AND 20)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 117,
+            "symbol": "MUITIEM"
+          },
+          "evidence": "database/01-schema.sql:117",
+          "column": "MuiSo"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "UX_MUITIEM_Lich",
+          "columns": [
+            "MaLichTiem"
+          ],
+          "key_definition": "MaLichTiem",
+          "unique": true,
+          "include": [],
+          "filter": "MaLichTiem IS NOT NULL",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 225,
+            "symbol": "UX_MUITIEM_Lich"
+          },
+          "evidence": "database/01-schema.sql:225"
+        },
+        {
+          "name": "IX_MUITIEM_Ngay",
+          "columns": [
+            "NgayTiem"
+          ],
+          "key_definition": "NgayTiem DESC",
+          "unique": false,
+          "include": [
+            "MaNguoiDan",
+            "MaVaccine",
+            "MaLo"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 233,
+            "symbol": "IX_MUITIEM_Ngay"
+          },
+          "evidence": "database/01-schema.sql:233"
+        },
+        {
+          "name": "IX_MUITIEM_Lo",
+          "columns": [
+            "MaLo",
+            "NgayTiem"
+          ],
+          "key_definition": "MaLo,NgayTiem",
+          "unique": false,
+          "include": [
+            "MaNguoiDan",
+            "MaVaccine"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 235,
+            "symbol": "IX_MUITIEM_Lo"
+          },
+          "evidence": "database/01-schema.sql:235"
+        },
+        {
+          "name": "IX_MUITIEM_CoSo_NguoiDan",
+          "columns": [
+            "MaCoSoTiem",
+            "MaNguoiDan"
+          ],
+          "key_definition": "MaCoSoTiem,MaNguoiDan",
+          "unique": false,
+          "include": [
+            "MaVaccine",
+            "NgayTiem"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 100,
+            "symbol": "IX_MUITIEM_CoSo_NguoiDan"
+          },
+          "evidence": "database/06-facilities.sql:100"
+        }
+      ]
+    },
+    {
+      "class_name": "ChongChiDinh",
+      "table": "CHONGCHIDINH",
+      "vietnamese": "Chống chỉ định tại cơ sở",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaChongChiDinh",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaChongChiDinh int IDENTITY(1,1) NOT NULL CONSTRAINT PK_CHONGCHIDINH PRIMARY KEY",
+          "evidence": "database/01-schema.sql:129",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_CHONGCHIDINH_NGUOIDAN",
+              "target_class": "NguoiDan",
+              "target_attribute": "MaNguoiDan",
+              "target_table": "NGUOIDAN",
+              "evidence": "database/01-schema.sql:130"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiDan int NOT NULL CONSTRAINT FK_CHONGCHIDINH_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan)",
+          "evidence": "database/01-schema.sql:130",
+          "added_by_migration": false
+        },
+        {
+          "name": "NoiDung",
+          "sql_type": "nvarchar(2000)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NoiDung nvarchar(2000) NOT NULL",
+          "evidence": "database/01-schema.sql:131",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayXacNhan",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayXacNhan datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:132",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiXacNhan",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_CHONGCHIDINH_TAIKHOAN",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:133"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiXacNhan int NULL CONSTRAINT FK_CHONGCHIDINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:133",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "nvarchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_CHONGCHIDINH_TrangThai DEFAULT N'Đã xác nhận'",
+          "evidence": "database/01-schema.sql:134",
+          "added_by_migration": false
+        },
+        {
+          "name": "GhiChu",
+          "sql_type": "nvarchar(1000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GhiChu nvarchar(1000) NULL",
+          "evidence": "database/01-schema.sql:135",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_CHONGCHIDINH_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:136",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_CHONGCHIDINH_CoSoTiem",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:80"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ALTER TABLE dbo.CHONGCHIDINH ADD MaCoSoTiem int NOT NULL; temporary backfill default removed immediately",
+          "evidence": "database/06-facilities.sql:75",
+          "added_by_migration": true
+        }
+      ],
+      "primary_key": [
+        "MaChongChiDinh"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:128",
+      "checks": [
+        {
+          "name": "CK_CHONGCHIDINH_TrangThai",
+          "sql": "CONSTRAINT CK_CHONGCHIDINH_TrangThai CHECK (TrangThai IN (N'Đã xác nhận',N'Đã hủy'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 137,
+            "symbol": "CHONGCHIDINH"
+          },
+          "evidence": "database/01-schema.sql:137",
+          "column": null
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_CHONGCHIDINH_Citizen",
+          "columns": [
+            "MaNguoiDan",
+            "TrangThai"
+          ],
+          "key_definition": "MaNguoiDan,TrangThai",
+          "unique": false,
+          "include": [],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 237,
+            "symbol": "IX_CHONGCHIDINH_Citizen"
+          },
+          "evidence": "database/01-schema.sql:237"
+        },
+        {
+          "name": "IX_CHONGCHIDINH_CoSo",
+          "columns": [
+            "MaCoSoTiem",
+            "MaNguoiDan"
+          ],
+          "key_definition": "MaCoSoTiem,MaNguoiDan",
+          "unique": false,
+          "include": [
+            "TrangThai"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 102,
+            "symbol": "IX_CHONGCHIDINH_CoSo"
+          },
+          "evidence": "database/06-facilities.sql:102"
+        }
+      ]
+    },
+    {
+      "class_name": "ThongBao",
+      "table": "THONGBAO",
+      "vietnamese": "Thông báo Website",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaThongBao",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaThongBao int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THONGBAO PRIMARY KEY",
+          "evidence": "database/01-schema.sql:141",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THONGBAO_NGUOIDAN",
+              "target_class": "NguoiDan",
+              "target_attribute": "MaNguoiDan",
+              "target_table": "NGUOIDAN",
+              "evidence": "database/01-schema.sql:142"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiDan int NOT NULL CONSTRAINT FK_THONGBAO_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan)",
+          "evidence": "database/01-schema.sql:142",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaLichTiem",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THONGBAO_LICHTIEM",
+              "target_class": "LichTiem",
+              "target_attribute": "MaLichTiem",
+              "target_table": "LICHTIEM",
+              "evidence": "database/01-schema.sql:143"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [
+            {
+              "name": "UX_THONGBAO_Reminder",
+              "columns": [
+                "MaLichTiem"
+              ],
+              "filter": "MaLichTiem IS NOT NULL AND TieuDe=N'Nhắc lịch tiêm'",
+              "source": {
+                "path": "database/01-schema.sql",
+                "line": 241,
+                "symbol": "UX_THONGBAO_Reminder"
+              },
+              "evidence": "database/01-schema.sql:241"
+            }
+          ],
+          "definition": "MaLichTiem int NULL CONSTRAINT FK_THONGBAO_LICHTIEM REFERENCES dbo.LICHTIEM(MaLichTiem)",
+          "evidence": "database/01-schema.sql:143",
+          "added_by_migration": false
+        },
+        {
+          "name": "TieuDe",
+          "sql_type": "nvarchar(200)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TieuDe nvarchar(200) NOT NULL",
+          "evidence": "database/01-schema.sql:144",
+          "added_by_migration": false
+        },
+        {
+          "name": "NoiDung",
+          "sql_type": "nvarchar(2000)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NoiDung nvarchar(2000) NOT NULL",
+          "evidence": "database/01-schema.sql:145",
+          "added_by_migration": false
+        },
+        {
+          "name": "ThoiGianGui",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ThoiGianGui datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:146",
+          "added_by_migration": false
+        },
+        {
+          "name": "KenhGui",
+          "sql_type": "nvarchar(30)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "KenhGui nvarchar(30) NOT NULL CONSTRAINT DF_THONGBAO_Kenh DEFAULT N'Website'",
+          "evidence": "database/01-schema.sql:147",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "nvarchar(50)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai nvarchar(50) NOT NULL CONSTRAINT DF_THONGBAO_TrangThai DEFAULT N'Đã gửi'",
+          "evidence": "database/01-schema.sql:148",
+          "added_by_migration": false
+        },
+        {
+          "name": "DaDoc",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DaDoc bit NOT NULL CONSTRAINT DF_THONGBAO_DaDoc DEFAULT 0",
+          "evidence": "database/01-schema.sql:149",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THONGBAO_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:150",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaThongBao"
+      ],
+      "unique_keys": [
+        {
+          "name": "UX_THONGBAO_Reminder",
+          "columns": [
+            "MaLichTiem"
+          ],
+          "filter": "MaLichTiem IS NOT NULL AND TieuDe=N'Nhắc lịch tiêm'",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 241,
+            "symbol": "UX_THONGBAO_Reminder"
+          },
+          "evidence": "database/01-schema.sql:241"
+        }
+      ],
+      "evidence": "database/01-schema.sql:140",
+      "checks": [],
+      "indexes": [
+        {
+          "name": "IX_THONGBAO_Citizen",
+          "columns": [
+            "MaNguoiDan",
+            "DaDoc",
+            "NgayTao"
+          ],
+          "key_definition": "MaNguoiDan,DaDoc,NgayTao DESC",
+          "unique": false,
+          "include": [],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 239,
+            "symbol": "IX_THONGBAO_Citizen"
+          },
+          "evidence": "database/01-schema.sql:239"
+        },
+        {
+          "name": "UX_THONGBAO_Reminder",
+          "columns": [
+            "MaLichTiem"
+          ],
+          "key_definition": "MaLichTiem",
+          "unique": true,
+          "include": [],
+          "filter": "MaLichTiem IS NOT NULL AND TieuDe=N'Nhắc lịch tiêm'",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 241,
+            "symbol": "UX_THONGBAO_Reminder"
+          },
+          "evidence": "database/01-schema.sql:241"
+        }
+      ]
+    },
+    {
+      "class_name": "LichSuHieuChinh",
+      "table": "LICHSUHIEUCHINH",
+      "vietnamese": "Nhật ký hiệu chỉnh",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaLichSu",
+          "sql_type": "bigint",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_LICHSUHIEUCHINH PRIMARY KEY",
+          "evidence": "database/01-schema.sql:154",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenBang",
+          "sql_type": "varchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TenBang varchar(100) NOT NULL",
+          "evidence": "database/01-schema.sql:155",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaBanGhi",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaBanGhi int NOT NULL",
+          "evidence": "database/01-schema.sql:156",
+          "added_by_migration": false
+        },
+        {
+          "name": "HanhDong",
+          "sql_type": "nvarchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HanhDong nvarchar(100) NOT NULL",
+          "evidence": "database/01-schema.sql:157",
+          "added_by_migration": false
+        },
+        {
+          "name": "DuLieuCu",
+          "sql_type": "nvarchar(max)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DuLieuCu nvarchar(max) NULL",
+          "evidence": "database/01-schema.sql:158",
+          "added_by_migration": false
+        },
+        {
+          "name": "DuLieuMoi",
+          "sql_type": "nvarchar(max)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DuLieuMoi nvarchar(max) NULL",
+          "evidence": "database/01-schema.sql:159",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaTaiKhoan",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_LICHSUHIEUCHINH_TAIKHOAN",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:160"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTaiKhoan int NULL CONSTRAINT FK_LICHSUHIEUCHINH_TAIKHOAN REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:160",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayThucHien",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayThucHien datetime2(0) NOT NULL CONSTRAINT DF_LICHSUHIEUCHINH_Ngay DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:161",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaLichSu"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:153",
+      "checks": [],
+      "indexes": [
+        {
+          "name": "IX_LICHSU_Record",
+          "columns": [
+            "TenBang",
+            "MaBanGhi",
+            "NgayThucHien"
+          ],
+          "key_definition": "TenBang,MaBanGhi,NgayThucHien DESC",
+          "unique": false,
+          "include": [],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 249,
+            "symbol": "IX_LICHSU_Record"
+          },
+          "evidence": "database/01-schema.sql:249"
+        }
+      ]
+    },
+    {
+      "class_name": "TrieuChung",
+      "table": "DANHMUCTRIEUCHUNG",
+      "vietnamese": "Danh mục triệu chứng",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaTrieuChung",
+          "sql_type": "varchar(40)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTrieuChung varchar(40) NOT NULL CONSTRAINT PK_DANHMUCTRIEUCHUNG PRIMARY KEY",
+          "evidence": "database/01-schema.sql:165",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenTrieuChung",
+          "sql_type": "nvarchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TenTrieuChung nvarchar(150) NOT NULL",
+          "evidence": "database/01-schema.sql:166",
+          "added_by_migration": false
+        },
+        {
+          "name": "LaDauHieuCanhBao",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "LaDauHieuCanhBao bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_CanhBao DEFAULT 0",
+          "evidence": "database/01-schema.sql:167",
+          "added_by_migration": false
+        },
+        {
+          "name": "DangHoatDong",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DangHoatDong bit NOT NULL CONSTRAINT DF_TRIEUCHUNG_HoatDong DEFAULT 1",
+          "evidence": "database/01-schema.sql:168",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaTrieuChung"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:164",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "TheoDoiSauTiem",
+      "table": "THEODOISAUTIEM",
+      "vietnamese": "Phiếu theo dõi sau tiêm",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaTheoDoi",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTheoDoi int IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOISAUTIEM PRIMARY KEY",
+          "evidence": "database/01-schema.sql:172",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaMuiTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOISAUTIEM_MUITIEM",
+              "target_class": "MuiTiem",
+              "target_attribute": "MaMuiTiem",
+              "target_table": "MUITIEM",
+              "evidence": "database/01-schema.sql:173"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaMuiTiem int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_MUITIEM REFERENCES dbo.MUITIEM(MaMuiTiem)",
+          "evidence": "database/01-schema.sql:173",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiDan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOISAUTIEM_NGUOIDAN",
+              "target_class": "NguoiDan",
+              "target_attribute": "MaNguoiDan",
+              "target_table": "NGUOIDAN",
+              "evidence": "database/01-schema.sql:174"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiDan int NOT NULL CONSTRAINT FK_THEODOISAUTIEM_NGUOIDAN REFERENCES dbo.NGUOIDAN(MaNguoiDan)",
+          "evidence": "database/01-schema.sql:174",
+          "added_by_migration": false
+        },
+        {
+          "name": "ThoiDiemBaoCao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ThoiDiemBaoCao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_BaoCao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:175",
+          "added_by_migration": false
+        },
+        {
+          "name": "KhoiPhatLuc",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "KhoiPhatLuc datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:176",
+          "added_by_migration": false
+        },
+        {
+          "name": "ThoiLuongGio",
+          "sql_type": "decimal(6,2)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ThoiLuongGio decimal(6,2) NULL CONSTRAINT CK_THEODOISAUTIEM_ThoiLuong CHECK (ThoiLuongGio BETWEEN 0 AND 8760)",
+          "evidence": "database/01-schema.sql:177",
+          "added_by_migration": false
+        },
+        {
+          "name": "NhietDo",
+          "sql_type": "decimal(4,1)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NhietDo decimal(4,1) NULL CONSTRAINT CK_THEODOISAUTIEM_NhietDo CHECK (NhietDo BETWEEN 30 AND 45)",
+          "evidence": "database/01-schema.sql:178",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrieuChung",
+          "sql_type": "nvarchar(2000)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrieuChung nvarchar(2000) NOT NULL",
+          "evidence": "database/01-schema.sql:179",
+          "added_by_migration": false
+        },
+        {
+          "name": "MucDo",
+          "sql_type": "varchar(16)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MucDo varchar(16) NOT NULL CONSTRAINT CK_THEODOISAUTIEM_MucDo CHECK (MucDo IN ('none','mild','moderate','severe','emergency'))",
+          "evidence": "database/01-schema.sql:180",
+          "added_by_migration": false
+        },
+        {
+          "name": "CoDauHieuCanhBao",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "CoDauHieuCanhBao bit NOT NULL CONSTRAINT DF_THEODOISAUTIEM_CanhBao DEFAULT 0",
+          "evidence": "database/01-schema.sql:181",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "varchar(16)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai varchar(16) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_TrangThai DEFAULT 'new' CONSTRAINT CK_THEODOISAUTIEM_TrangThai CHECK (TrangThai IN ('new','reviewing','monitoring','escalated','resolved'))",
+          "evidence": "database/01-schema.sql:182",
+          "added_by_migration": false
+        },
+        {
+          "name": "HuongXuLy",
+          "sql_type": "nvarchar(2000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HuongXuLy nvarchar(2000) NULL",
+          "evidence": "database/01-schema.sql:183",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNhanVienXuLy",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOISAUTIEM_NhanVien",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:184"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNhanVienXuLy int NULL CONSTRAINT FK_THEODOISAUTIEM_NhanVien REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:184",
+          "added_by_migration": false
+        },
+        {
+          "name": "ThoiDiemXuLy",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "ThoiDiemXuLy datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:185",
+          "added_by_migration": false
+        },
+        {
+          "name": "HenTheoDoiLuc",
+          "sql_type": "datetime2(0)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HenTheoDoiLuc datetime2(0) NULL",
+          "evidence": "database/01-schema.sql:186",
+          "added_by_migration": false
+        },
+        {
+          "name": "LanCapNhat",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "LanCapNhat int NOT NULL CONSTRAINT DF_THEODOISAUTIEM_Lan DEFAULT 1 CONSTRAINT CK_THEODOISAUTIEM_Lan CHECK (LanCapNhat>0)",
+          "evidence": "database/01-schema.sql:187",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayTao DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:188",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayCapNhat",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayCapNhat datetime2(0) NOT NULL CONSTRAINT DF_THEODOISAUTIEM_NgayCapNhat DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:189",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaTheoDoi"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:171",
+      "checks": [
+        {
+          "name": "CK_THEODOISAUTIEM_ThoiLuong",
+          "sql": "CHECK (ThoiLuongGio BETWEEN 0 AND 8760)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 177,
+            "symbol": "THEODOISAUTIEM"
+          },
+          "evidence": "database/01-schema.sql:177",
+          "column": "ThoiLuongGio"
+        },
+        {
+          "name": "CK_THEODOISAUTIEM_NhietDo",
+          "sql": "CHECK (NhietDo BETWEEN 30 AND 45)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 178,
+            "symbol": "THEODOISAUTIEM"
+          },
+          "evidence": "database/01-schema.sql:178",
+          "column": "NhietDo"
+        },
+        {
+          "name": "CK_THEODOISAUTIEM_MucDo",
+          "sql": "CHECK (MucDo IN ('none','mild','moderate','severe','emergency'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 180,
+            "symbol": "THEODOISAUTIEM"
+          },
+          "evidence": "database/01-schema.sql:180",
+          "column": "MucDo"
+        },
+        {
+          "name": "CK_THEODOISAUTIEM_TrangThai",
+          "sql": "CHECK (TrangThai IN ('new','reviewing','monitoring','escalated','resolved'))",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 182,
+            "symbol": "THEODOISAUTIEM"
+          },
+          "evidence": "database/01-schema.sql:182",
+          "column": "TrangThai"
+        },
+        {
+          "name": "CK_THEODOISAUTIEM_Lan",
+          "sql": "CHECK (LanCapNhat>0)",
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 187,
+            "symbol": "THEODOISAUTIEM"
+          },
+          "evidence": "database/01-schema.sql:187",
+          "column": "LanCapNhat"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "IX_THEODOISAUTIEM_Queue",
+          "columns": [
+            "TrangThai",
+            "CoDauHieuCanhBao",
+            "NgayTao"
+          ],
+          "key_definition": "TrangThai,CoDauHieuCanhBao,NgayTao DESC",
+          "unique": false,
+          "include": [
+            "MaMuiTiem",
+            "MaNguoiDan",
+            "MucDo",
+            "HenTheoDoiLuc"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 243,
+            "symbol": "IX_THEODOISAUTIEM_Queue"
+          },
+          "evidence": "database/01-schema.sql:243"
+        },
+        {
+          "name": "IX_THEODOISAUTIEM_Citizen",
+          "columns": [
+            "MaNguoiDan",
+            "MaMuiTiem",
+            "NgayTao"
+          ],
+          "key_definition": "MaNguoiDan,MaMuiTiem,NgayTao DESC",
+          "unique": false,
+          "include": [],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 245,
+            "symbol": "IX_THEODOISAUTIEM_Citizen"
+          },
+          "evidence": "database/01-schema.sql:245"
+        }
+      ]
+    },
+    {
+      "class_name": "TheoDoiTrieuChung",
+      "table": "THEODOI_TRIEUCHUNG",
+      "vietnamese": "Triệu chứng của phiếu",
+      "stereotype": "association entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaTheoDoi",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOI_TRIEUCHUNG_TheoDoi",
+              "target_class": "TheoDoiSauTiem",
+              "target_attribute": "MaTheoDoi",
+              "target_table": "THEODOISAUTIEM",
+              "evidence": "database/01-schema.sql:193"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi)",
+          "evidence": "database/01-schema.sql:193",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaTrieuChung",
+          "sql_type": "varchar(40)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOI_TRIEUCHUNG_Catalog",
+              "target_class": "TrieuChung",
+              "target_attribute": "MaTrieuChung",
+              "target_table": "DANHMUCTRIEUCHUNG",
+              "evidence": "database/01-schema.sql:194"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTrieuChung varchar(40) NOT NULL CONSTRAINT FK_THEODOI_TRIEUCHUNG_Catalog REFERENCES dbo.DANHMUCTRIEUCHUNG(MaTrieuChung)",
+          "evidence": "database/01-schema.sql:194",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaTheoDoi",
+        "MaTrieuChung"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:192",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "LichSuTheoDoi",
+      "table": "THEODOI_LICHSU",
+      "vietnamese": "Lịch sử xử lý phiếu",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaLichSu",
+          "sql_type": "bigint",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaLichSu bigint IDENTITY(1,1) NOT NULL CONSTRAINT PK_THEODOI_LICHSU PRIMARY KEY",
+          "evidence": "database/01-schema.sql:199",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaTheoDoi",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOI_LICHSU_TheoDoi",
+              "target_class": "TheoDoiSauTiem",
+              "target_attribute": "MaTheoDoi",
+              "target_table": "THEODOISAUTIEM",
+              "evidence": "database/01-schema.sql:200"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTheoDoi int NOT NULL CONSTRAINT FK_THEODOI_LICHSU_TheoDoi REFERENCES dbo.THEODOISAUTIEM(MaTheoDoi)",
+          "evidence": "database/01-schema.sql:200",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaTaiKhoan",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_THEODOI_LICHSU_TaiKhoan",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/01-schema.sql:201"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTaiKhoan int NULL CONSTRAINT FK_THEODOI_LICHSU_TaiKhoan REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/01-schema.sql:201",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThaiCu",
+          "sql_type": "varchar(16)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThaiCu varchar(16) NULL",
+          "evidence": "database/01-schema.sql:202",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThaiMoi",
+          "sql_type": "varchar(16)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThaiMoi varchar(16) NOT NULL",
+          "evidence": "database/01-schema.sql:203",
+          "added_by_migration": false
+        },
+        {
+          "name": "LanCapNhat",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "LanCapNhat int NOT NULL",
+          "evidence": "database/01-schema.sql:204",
+          "added_by_migration": false
+        },
+        {
+          "name": "HanhDong",
+          "sql_type": "nvarchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "HanhDong nvarchar(100) NOT NULL",
+          "evidence": "database/01-schema.sql:205",
+          "added_by_migration": false
+        },
+        {
+          "name": "NoiDung",
+          "sql_type": "nvarchar(2000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NoiDung nvarchar(2000) NULL",
+          "evidence": "database/01-schema.sql:206",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayTao",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayTao datetime2(0) NOT NULL CONSTRAINT DF_THEODOI_LICHSU_Ngay DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/01-schema.sql:207",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaLichSu"
+      ],
+      "unique_keys": [],
+      "evidence": "database/01-schema.sql:198",
+      "checks": [],
+      "indexes": [
+        {
+          "name": "IX_THEODOI_LICHSU_Case",
+          "columns": [
+            "MaTheoDoi",
+            "NgayTao",
+            "MaLichSu"
+          ],
+          "key_definition": "MaTheoDoi,NgayTao,MaLichSu",
+          "unique": false,
+          "include": [],
+          "filter": null,
+          "source": {
+            "path": "database/01-schema.sql",
+            "line": 247,
+            "symbol": "IX_THEODOI_LICHSU_Case"
+          },
+          "evidence": "database/01-schema.sql:247"
+        }
+      ]
+    },
+    {
+      "class_name": "KhuVucTiem",
+      "table": "KHUVUCTIEM",
+      "vietnamese": "Khu phục vụ nội bộ TP.HCM",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaKhuVuc",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaKhuVuc int IDENTITY(1,1) NOT NULL CONSTRAINT PK_KHUVUCTIEM PRIMARY KEY",
+          "evidence": "database/06-facilities.sql:21",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenKhuVuc",
+          "sql_type": "nvarchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_KHUVUCTIEM_Ten",
+              "columns": [
+                "TenKhuVuc"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/06-facilities.sql",
+                "line": 22,
+                "symbol": "KHUVUCTIEM"
+              },
+              "evidence": "database/06-facilities.sql:22"
+            }
+          ],
+          "definition": "TenKhuVuc nvarchar(150) NOT NULL CONSTRAINT UQ_KHUVUCTIEM_Ten UNIQUE",
+          "evidence": "database/06-facilities.sql:22",
+          "added_by_migration": false
+        },
+        {
+          "name": "TinhThanh",
+          "sql_type": "nvarchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TinhThanh nvarchar(100) NOT NULL CONSTRAINT DF_KHUVUCTIEM_Tinh DEFAULT N'Thành phố Hồ Chí Minh'",
+          "evidence": "database/06-facilities.sql:23",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_KHUVUCTIEM_TrangThai DEFAULT 1",
+          "evidence": "database/06-facilities.sql:24",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaKhuVuc"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_KHUVUCTIEM_Ten",
+          "columns": [
+            "TenKhuVuc"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 22,
+            "symbol": "KHUVUCTIEM"
+          },
+          "evidence": "database/06-facilities.sql:22"
+        }
+      ],
+      "evidence": "database/06-facilities.sql:20",
+      "checks": [
+        {
+          "name": "CK_KHUVUCTIEM_HCM",
+          "sql": "CONSTRAINT CK_KHUVUCTIEM_HCM CHECK(TinhThanh=N'Thành phố Hồ Chí Minh')",
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 25,
+            "symbol": "KHUVUCTIEM"
+          },
+          "evidence": "database/06-facilities.sql:25",
+          "column": null
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "class_name": "CoSoTiem",
+      "table": "COSOTIEM",
+      "vietnamese": "Cơ sở tiêm TP.HCM",
+      "stereotype": "domain entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": true,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaCoSoTiem int IDENTITY(1,1) NOT NULL CONSTRAINT PK_COSOTIEM PRIMARY KEY",
+          "evidence": "database/06-facilities.sql:29",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaKhuVuc",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_COSOTIEM_KhuVuc",
+              "target_class": "KhuVucTiem",
+              "target_attribute": "MaKhuVuc",
+              "target_table": "KHUVUCTIEM",
+              "evidence": "database/06-facilities.sql:30"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaKhuVuc int NOT NULL CONSTRAINT FK_COSOTIEM_KhuVuc REFERENCES dbo.KHUVUCTIEM(MaKhuVuc)",
+          "evidence": "database/06-facilities.sql:30",
+          "added_by_migration": false
+        },
+        {
+          "name": "TenCoSo",
+          "sql_type": "nvarchar(150)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": true,
+          "unique_groups": [
+            {
+              "name": "UQ_COSOTIEM_Ten",
+              "columns": [
+                "TenCoSo"
+              ],
+              "filter": null,
+              "source": {
+                "path": "database/06-facilities.sql",
+                "line": 31,
+                "symbol": "COSOTIEM"
+              },
+              "evidence": "database/06-facilities.sql:31"
+            }
+          ],
+          "definition": "TenCoSo nvarchar(150) NOT NULL CONSTRAINT UQ_COSOTIEM_Ten UNIQUE",
+          "evidence": "database/06-facilities.sql:31",
+          "added_by_migration": false
+        },
+        {
+          "name": "DiaChi",
+          "sql_type": "nvarchar(255)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "DiaChi nvarchar(255) NOT NULL",
+          "evidence": "database/06-facilities.sql:32",
+          "added_by_migration": false
+        },
+        {
+          "name": "PhuongXa",
+          "sql_type": "nvarchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "PhuongXa nvarchar(100) NOT NULL",
+          "evidence": "database/06-facilities.sql:33",
+          "added_by_migration": false
+        },
+        {
+          "name": "TinhThanh",
+          "sql_type": "nvarchar(100)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TinhThanh nvarchar(100) NOT NULL CONSTRAINT DF_COSOTIEM_Tinh DEFAULT N'Thành phố Hồ Chí Minh'",
+          "evidence": "database/06-facilities.sql:34",
+          "added_by_migration": false
+        },
+        {
+          "name": "SoDienThoai",
+          "sql_type": "varchar(20)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "SoDienThoai varchar(20) NULL",
+          "evidence": "database/06-facilities.sql:35",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_COSOTIEM_TrangThai DEFAULT 1",
+          "evidence": "database/06-facilities.sql:36",
+          "added_by_migration": false
+        },
+        {
+          "name": "GhiChu",
+          "sql_type": "nvarchar(1000)",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "GhiChu nvarchar(1000) NULL",
+          "evidence": "database/06-facilities.sql:37",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaCoSoTiem"
+      ],
+      "unique_keys": [
+        {
+          "name": "UQ_COSOTIEM_Ten",
+          "columns": [
+            "TenCoSo"
+          ],
+          "filter": null,
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 31,
+            "symbol": "COSOTIEM"
+          },
+          "evidence": "database/06-facilities.sql:31"
+        }
+      ],
+      "evidence": "database/06-facilities.sql:28",
+      "checks": [
+        {
+          "name": "CK_COSOTIEM_HCM",
+          "sql": "CONSTRAINT CK_COSOTIEM_HCM CHECK(TinhThanh=N'Thành phố Hồ Chí Minh')",
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 38,
+            "symbol": "COSOTIEM"
+          },
+          "evidence": "database/06-facilities.sql:38",
+          "column": null
+        },
+        {
+          "name": "CK_COSOTIEM_DiaChi",
+          "sql": "CONSTRAINT CK_COSOTIEM_DiaChi CHECK(LEN(LTRIM(RTRIM(DiaChi)))>0 AND LEN(LTRIM(RTRIM(PhuongXa)))>0)",
+          "source": {
+            "path": "database/06-facilities.sql",
+            "line": 39,
+            "symbol": "COSOTIEM"
+          },
+          "evidence": "database/06-facilities.sql:39",
+          "column": null
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "class_name": "PhanCongCoSoTiem",
+      "table": "PHANCONG_COSOTIEM",
+      "vietnamese": "Phân công nhân viên–cơ sở",
+      "stereotype": "association entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaTaiKhoan",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_PHANCONG_TaiKhoan",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/06-facilities.sql:43"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaTaiKhoan int NOT NULL CONSTRAINT FK_PHANCONG_TaiKhoan REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/06-facilities.sql:43",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_PHANCONG_CoSo",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:44"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaCoSoTiem int NOT NULL CONSTRAINT FK_PHANCONG_CoSo REFERENCES dbo.COSOTIEM(MaCoSoTiem)",
+          "evidence": "database/06-facilities.sql:44",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaNguoiPhanCong",
+          "sql_type": "int",
+          "nullable": true,
+          "attribute_multiplicity": "0..1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_PHANCONG_NguoiPhanCong",
+              "target_class": "TaiKhoan",
+              "target_attribute": "MaTaiKhoan",
+              "target_table": "TAIKHOAN",
+              "evidence": "database/06-facilities.sql:45"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaNguoiPhanCong int NULL CONSTRAINT FK_PHANCONG_NguoiPhanCong REFERENCES dbo.TAIKHOAN(MaTaiKhoan)",
+          "evidence": "database/06-facilities.sql:45",
+          "added_by_migration": false
+        },
+        {
+          "name": "NgayPhanCong",
+          "sql_type": "datetime2(0)",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "NgayPhanCong datetime2(0) NOT NULL CONSTRAINT DF_PHANCONG_Ngay DEFAULT SYSUTCDATETIME()",
+          "evidence": "database/06-facilities.sql:46",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaTaiKhoan",
+        "MaCoSoTiem"
+      ],
+      "unique_keys": [],
+      "evidence": "database/06-facilities.sql:42",
+      "checks": [],
+      "indexes": []
+    },
+    {
+      "class_name": "CoSoTiemVaccine",
+      "table": "COSOTIEM_VACCINE",
+      "vietnamese": "Vaccine triển khai tại cơ sở",
+      "stereotype": "association entity",
+      "is_actual_javascript_class": false,
+      "attributes": [
+        {
+          "name": "MaCoSoTiem",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_COSOTIEM_VACCINE_CoSo",
+              "target_class": "CoSoTiem",
+              "target_attribute": "MaCoSoTiem",
+              "target_table": "COSOTIEM",
+              "evidence": "database/06-facilities.sql:51"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaCoSoTiem int NOT NULL CONSTRAINT FK_COSOTIEM_VACCINE_CoSo REFERENCES dbo.COSOTIEM(MaCoSoTiem)",
+          "evidence": "database/06-facilities.sql:51",
+          "added_by_migration": false
+        },
+        {
+          "name": "MaVaccine",
+          "sql_type": "int",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": true,
+          "identity": false,
+          "foreign_keys": [
+            {
+              "constraint": "FK_COSOTIEM_VACCINE_Vaccine",
+              "target_class": "Vaccine",
+              "target_attribute": "MaVaccine",
+              "target_table": "VACCINE",
+              "evidence": "database/06-facilities.sql:52"
+            }
+          ],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "MaVaccine int NOT NULL CONSTRAINT FK_COSOTIEM_VACCINE_Vaccine REFERENCES dbo.VACCINE(MaVaccine)",
+          "evidence": "database/06-facilities.sql:52",
+          "added_by_migration": false
+        },
+        {
+          "name": "TrangThai",
+          "sql_type": "bit",
+          "nullable": false,
+          "attribute_multiplicity": "1",
+          "primary_key": false,
+          "identity": false,
+          "foreign_keys": [],
+          "unique": false,
+          "unique_groups": [],
+          "definition": "TrangThai bit NOT NULL CONSTRAINT DF_COSOTIEM_VACCINE_TrangThai DEFAULT 1",
+          "evidence": "database/06-facilities.sql:53",
+          "added_by_migration": false
+        }
+      ],
+      "primary_key": [
+        "MaCoSoTiem",
+        "MaVaccine"
+      ],
+      "unique_keys": [],
+      "evidence": "database/06-facilities.sql:50",
+      "checks": [],
+      "indexes": []
+    }
+  ],
+  "relationships": [
+    {
+      "constraint": "FK_TAIKHOAN_VAITRO",
+      "source_class": "VaiTro",
+      "target_class": "TaiKhoan",
+      "source_table": "VAITRO",
+      "target_table": "TAIKHOAN",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaVaiTro",
+      "target_attribute": "MaVaiTro",
+      "role_name": "MaVaiTro",
+      "meaning": "Một TaiKhoan tham chiếu 1 VaiTro qua MaVaiTro; một VaiTro có 0..* TaiKhoan trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:41",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_NGUOIDAN_TAIKHOAN",
+      "source_class": "TaiKhoan",
+      "target_class": "NguoiDan",
+      "source_table": "TAIKHOAN",
+      "target_table": "NGUOIDAN",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..1",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaTaiKhoan",
+      "role_name": "MaTaiKhoan",
+      "meaning": "Một NguoiDan tham chiếu 0..1 TaiKhoan qua MaTaiKhoan; một TaiKhoan có 0..1 NguoiDan trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:49",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LOVACCINE_VACCINE",
+      "source_class": "Vaccine",
+      "target_class": "LoVaccine",
+      "source_table": "VACCINE",
+      "target_table": "LOVACCINE",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaVaccine",
+      "target_attribute": "MaVaccine",
+      "role_name": "MaVaccine",
+      "meaning": "Một LoVaccine tham chiếu 1 Vaccine qua MaVaccine; một Vaccine có 0..* LoVaccine trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:81",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHTIEM_NGUOIDAN",
+      "source_class": "NguoiDan",
+      "target_class": "LichTiem",
+      "source_table": "NGUOIDAN",
+      "target_table": "LICHTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaNguoiDan",
+      "target_attribute": "MaNguoiDan",
+      "role_name": "MaNguoiDan",
+      "meaning": "Một LichTiem tham chiếu 1 NguoiDan qua MaNguoiDan; một NguoiDan có 0..* LichTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:97",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHTIEM_VACCINE",
+      "source_class": "Vaccine",
+      "target_class": "LichTiem",
+      "source_table": "VACCINE",
+      "target_table": "LICHTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaVaccine",
+      "target_attribute": "MaVaccine",
+      "role_name": "MaVaccine",
+      "meaning": "Một LichTiem tham chiếu 1 Vaccine qua MaVaccine; một Vaccine có 0..* LichTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:98",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHTIEM_LOVACCINE",
+      "source_class": "LoVaccine",
+      "target_class": "LichTiem",
+      "source_table": "LOVACCINE",
+      "target_table": "LICHTIEM",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaLo",
+      "target_attribute": "MaLoDuKien",
+      "role_name": "MaLoDuKien",
+      "meaning": "Một LichTiem tham chiếu 0..1 LoVaccine qua MaLoDuKien; một LoVaccine có 0..* LichTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:99",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHTIEM_NhanVien",
+      "source_class": "TaiKhoan",
+      "target_class": "LichTiem",
+      "source_table": "TAIKHOAN",
+      "target_table": "LICHTIEM",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaNhanVienTao",
+      "role_name": "MaNhanVienTao",
+      "meaning": "Một LichTiem tham chiếu 0..1 TaiKhoan qua MaNhanVienTao; một TaiKhoan có 0..* LichTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:105",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_NGUOIDAN",
+      "source_class": "NguoiDan",
+      "target_class": "MuiTiem",
+      "source_table": "NGUOIDAN",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaNguoiDan",
+      "target_attribute": "MaNguoiDan",
+      "role_name": "MaNguoiDan",
+      "meaning": "Một MuiTiem tham chiếu 1 NguoiDan qua MaNguoiDan; một NguoiDan có 0..* MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:113",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_VACCINE",
+      "source_class": "Vaccine",
+      "target_class": "MuiTiem",
+      "source_table": "VACCINE",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaVaccine",
+      "target_attribute": "MaVaccine",
+      "role_name": "MaVaccine",
+      "meaning": "Một MuiTiem tham chiếu 1 Vaccine qua MaVaccine; một Vaccine có 0..* MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:114",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_LOVACCINE",
+      "source_class": "LoVaccine",
+      "target_class": "MuiTiem",
+      "source_table": "LOVACCINE",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaLo",
+      "target_attribute": "MaLo",
+      "role_name": "MaLo",
+      "meaning": "Một MuiTiem tham chiếu 1 LoVaccine qua MaLo; một LoVaccine có 0..* MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:115",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_LICHTIEM",
+      "source_class": "LichTiem",
+      "target_class": "MuiTiem",
+      "source_table": "LICHTIEM",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..1",
+      "association_type": "plain association",
+      "source_attribute": "MaLichTiem",
+      "target_attribute": "MaLichTiem",
+      "role_name": "MaLichTiem",
+      "meaning": "Một MuiTiem tham chiếu 0..1 LichTiem qua MaLichTiem; một LichTiem có 0..1 MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:116",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_NhanVien",
+      "source_class": "TaiKhoan",
+      "target_class": "MuiTiem",
+      "source_table": "TAIKHOAN",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaNhanVien",
+      "role_name": "MaNhanVien",
+      "meaning": "Một MuiTiem tham chiếu 1 TaiKhoan qua MaNhanVien; một TaiKhoan có 0..* MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:120",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_CHONGCHIDINH_NGUOIDAN",
+      "source_class": "NguoiDan",
+      "target_class": "ChongChiDinh",
+      "source_table": "NGUOIDAN",
+      "target_table": "CHONGCHIDINH",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaNguoiDan",
+      "target_attribute": "MaNguoiDan",
+      "role_name": "MaNguoiDan",
+      "meaning": "Một ChongChiDinh tham chiếu 1 NguoiDan qua MaNguoiDan; một NguoiDan có 0..* ChongChiDinh trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:130",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_CHONGCHIDINH_TAIKHOAN",
+      "source_class": "TaiKhoan",
+      "target_class": "ChongChiDinh",
+      "source_table": "TAIKHOAN",
+      "target_table": "CHONGCHIDINH",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaNguoiXacNhan",
+      "role_name": "MaNguoiXacNhan",
+      "meaning": "Một ChongChiDinh tham chiếu 0..1 TaiKhoan qua MaNguoiXacNhan; một TaiKhoan có 0..* ChongChiDinh trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:133",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THONGBAO_NGUOIDAN",
+      "source_class": "NguoiDan",
+      "target_class": "ThongBao",
+      "source_table": "NGUOIDAN",
+      "target_table": "THONGBAO",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaNguoiDan",
+      "target_attribute": "MaNguoiDan",
+      "role_name": "MaNguoiDan",
+      "meaning": "Một ThongBao tham chiếu 1 NguoiDan qua MaNguoiDan; một NguoiDan có 0..* ThongBao trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:142",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THONGBAO_LICHTIEM",
+      "source_class": "LichTiem",
+      "target_class": "ThongBao",
+      "source_table": "LICHTIEM",
+      "target_table": "THONGBAO",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaLichTiem",
+      "target_attribute": "MaLichTiem",
+      "role_name": "MaLichTiem",
+      "meaning": "Một ThongBao tham chiếu 0..1 LichTiem qua MaLichTiem; một LichTiem có 0..* ThongBao trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:143",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHSUHIEUCHINH_TAIKHOAN",
+      "source_class": "TaiKhoan",
+      "target_class": "LichSuHieuChinh",
+      "source_table": "TAIKHOAN",
+      "target_table": "LICHSUHIEUCHINH",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaTaiKhoan",
+      "role_name": "MaTaiKhoan",
+      "meaning": "Một LichSuHieuChinh tham chiếu 0..1 TaiKhoan qua MaTaiKhoan; một TaiKhoan có 0..* LichSuHieuChinh trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:160",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOISAUTIEM_MUITIEM",
+      "source_class": "MuiTiem",
+      "target_class": "TheoDoiSauTiem",
+      "source_table": "MUITIEM",
+      "target_table": "THEODOISAUTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaMuiTiem",
+      "target_attribute": "MaMuiTiem",
+      "role_name": "MaMuiTiem",
+      "meaning": "Một TheoDoiSauTiem tham chiếu 1 MuiTiem qua MaMuiTiem; một MuiTiem có 0..* TheoDoiSauTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:173",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOISAUTIEM_NGUOIDAN",
+      "source_class": "NguoiDan",
+      "target_class": "TheoDoiSauTiem",
+      "source_table": "NGUOIDAN",
+      "target_table": "THEODOISAUTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaNguoiDan",
+      "target_attribute": "MaNguoiDan",
+      "role_name": "MaNguoiDan",
+      "meaning": "Một TheoDoiSauTiem tham chiếu 1 NguoiDan qua MaNguoiDan; một NguoiDan có 0..* TheoDoiSauTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:174",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOISAUTIEM_NhanVien",
+      "source_class": "TaiKhoan",
+      "target_class": "TheoDoiSauTiem",
+      "source_table": "TAIKHOAN",
+      "target_table": "THEODOISAUTIEM",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaNhanVienXuLy",
+      "role_name": "MaNhanVienXuLy",
+      "meaning": "Một TheoDoiSauTiem tham chiếu 0..1 TaiKhoan qua MaNhanVienXuLy; một TaiKhoan có 0..* TheoDoiSauTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:184",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOI_TRIEUCHUNG_TheoDoi",
+      "source_class": "TheoDoiSauTiem",
+      "target_class": "TheoDoiTrieuChung",
+      "source_table": "THEODOISAUTIEM",
+      "target_table": "THEODOI_TRIEUCHUNG",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTheoDoi",
+      "target_attribute": "MaTheoDoi",
+      "role_name": "MaTheoDoi",
+      "meaning": "Một TheoDoiTrieuChung tham chiếu 1 TheoDoiSauTiem qua MaTheoDoi; một TheoDoiSauTiem có 0..* TheoDoiTrieuChung trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:193",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOI_TRIEUCHUNG_Catalog",
+      "source_class": "TrieuChung",
+      "target_class": "TheoDoiTrieuChung",
+      "source_table": "DANHMUCTRIEUCHUNG",
+      "target_table": "THEODOI_TRIEUCHUNG",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTrieuChung",
+      "target_attribute": "MaTrieuChung",
+      "role_name": "MaTrieuChung",
+      "meaning": "Một TheoDoiTrieuChung tham chiếu 1 TrieuChung qua MaTrieuChung; một TrieuChung có 0..* TheoDoiTrieuChung trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:194",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOI_LICHSU_TheoDoi",
+      "source_class": "TheoDoiSauTiem",
+      "target_class": "LichSuTheoDoi",
+      "source_table": "THEODOISAUTIEM",
+      "target_table": "THEODOI_LICHSU",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTheoDoi",
+      "target_attribute": "MaTheoDoi",
+      "role_name": "MaTheoDoi",
+      "meaning": "Một LichSuTheoDoi tham chiếu 1 TheoDoiSauTiem qua MaTheoDoi; một TheoDoiSauTiem có 0..* LichSuTheoDoi trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:200",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_THEODOI_LICHSU_TaiKhoan",
+      "source_class": "TaiKhoan",
+      "target_class": "LichSuTheoDoi",
+      "source_table": "TAIKHOAN",
+      "target_table": "THEODOI_LICHSU",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaTaiKhoan",
+      "role_name": "MaTaiKhoan",
+      "meaning": "Một LichSuTheoDoi tham chiếu 0..1 TaiKhoan qua MaTaiKhoan; một TaiKhoan có 0..* LichSuTheoDoi trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/01-schema.sql:201",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_COSOTIEM_KhuVuc",
+      "source_class": "KhuVucTiem",
+      "target_class": "CoSoTiem",
+      "source_table": "KHUVUCTIEM",
+      "target_table": "COSOTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaKhuVuc",
+      "target_attribute": "MaKhuVuc",
+      "role_name": "MaKhuVuc",
+      "meaning": "Một CoSoTiem tham chiếu 1 KhuVucTiem qua MaKhuVuc; một KhuVucTiem có 0..* CoSoTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:30",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_PHANCONG_TaiKhoan",
+      "source_class": "TaiKhoan",
+      "target_class": "PhanCongCoSoTiem",
+      "source_table": "TAIKHOAN",
+      "target_table": "PHANCONG_COSOTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaTaiKhoan",
+      "role_name": "MaTaiKhoan",
+      "meaning": "Một PhanCongCoSoTiem tham chiếu 1 TaiKhoan qua MaTaiKhoan; một TaiKhoan có 0..* PhanCongCoSoTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:43",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_PHANCONG_CoSo",
+      "source_class": "CoSoTiem",
+      "target_class": "PhanCongCoSoTiem",
+      "source_table": "COSOTIEM",
+      "target_table": "PHANCONG_COSOTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một PhanCongCoSoTiem tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* PhanCongCoSoTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:44",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_PHANCONG_NguoiPhanCong",
+      "source_class": "TaiKhoan",
+      "target_class": "PhanCongCoSoTiem",
+      "source_table": "TAIKHOAN",
+      "target_table": "PHANCONG_COSOTIEM",
+      "source_end_multiplicity": "0..1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaTaiKhoan",
+      "target_attribute": "MaNguoiPhanCong",
+      "role_name": "MaNguoiPhanCong",
+      "meaning": "Một PhanCongCoSoTiem tham chiếu 0..1 TaiKhoan qua MaNguoiPhanCong; một TaiKhoan có 0..* PhanCongCoSoTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:45",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_COSOTIEM_VACCINE_CoSo",
+      "source_class": "CoSoTiem",
+      "target_class": "CoSoTiemVaccine",
+      "source_table": "COSOTIEM",
+      "target_table": "COSOTIEM_VACCINE",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một CoSoTiemVaccine tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* CoSoTiemVaccine trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:51",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_COSOTIEM_VACCINE_Vaccine",
+      "source_class": "Vaccine",
+      "target_class": "CoSoTiemVaccine",
+      "source_table": "VACCINE",
+      "target_table": "COSOTIEM_VACCINE",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaVaccine",
+      "target_attribute": "MaVaccine",
+      "role_name": "MaVaccine",
+      "meaning": "Một CoSoTiemVaccine tham chiếu 1 Vaccine qua MaVaccine; một Vaccine có 0..* CoSoTiemVaccine trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:52",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LOVACCINE_CoSoTiem",
+      "source_class": "CoSoTiem",
+      "target_class": "LoVaccine",
+      "source_table": "COSOTIEM",
+      "target_table": "LOVACCINE",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một LoVaccine tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* LoVaccine trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:80",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_LICHTIEM_CoSoTiem",
+      "source_class": "CoSoTiem",
+      "target_class": "LichTiem",
+      "source_table": "COSOTIEM",
+      "target_table": "LICHTIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một LichTiem tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* LichTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:80",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_MUITIEM_CoSoTiem",
+      "source_class": "CoSoTiem",
+      "target_class": "MuiTiem",
+      "source_table": "COSOTIEM",
+      "target_table": "MUITIEM",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một MuiTiem tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* MuiTiem trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:80",
+      "unique_evidence": null
+    },
+    {
+      "constraint": "FK_CHONGCHIDINH_CoSoTiem",
+      "source_class": "CoSoTiem",
+      "target_class": "ChongChiDinh",
+      "source_table": "COSOTIEM",
+      "target_table": "CHONGCHIDINH",
+      "source_end_multiplicity": "1",
+      "target_end_multiplicity": "0..*",
+      "association_type": "plain association",
+      "source_attribute": "MaCoSoTiem",
+      "target_attribute": "MaCoSoTiem",
+      "role_name": "MaCoSoTiem",
+      "meaning": "Một ChongChiDinh tham chiếu 1 CoSoTiem qua MaCoSoTiem; một CoSoTiem có 0..* ChongChiDinh trong vai trò này.",
+      "on_delete": "NO ACTION",
+      "on_update": "NO ACTION",
+      "evidence": "database/06-facilities.sql:80",
+      "unique_evidence": null
+    }
+  ],
+  "verified_files": [
+    {
+      "path": "database/01-schema.sql",
+      "sha256": "5df8b5a336eb78e92ce5fe4a9a81178afb648c5104e1ef1ccf20cf0b42295f89"
+    },
+    {
+      "path": "database/06-facilities.sql",
+      "sha256": "449b4ab7e595af077e033d9d4c1cad0ee8061318ed5d5a425768ca1435c441e9"
+    }
+  ],
+  "verification": {
+    "independent_create_table_count": 19,
+    "metadata_attribute_types_nullability_pk_match": true,
+    "metadata_foreign_keys_multiplicities_match": true,
+    "errors": []
+  },
+  "modeling_recommendations": [
+    "Đây là sơ đồ lớp miền/record suy ra từ mô hình lưu trữ đang triển khai; mã Node dùng module CommonJS và hàm, không có19class ORM thật.",
+    "Nếu vẽ19class cần ghi rõ PhienBanLuocDo là technical record; miền nghiệp vụ/nhật ký có18entity.",
+    "Giữ nguyên tên thuộc tính và kiểu SQL theo nguồn; không thêm phương thức CRUD giả vào các entity. Nếu cần phương thức triển khai, đặt ở sơ đồ riêng của module service/repository với tên export thật.",
+    "Dùng liên kết liền không mũi tên; đặt source_end_multiplicity sát source_class và target_end_multiplicity sát target_class theo bản ghi quan hệ. Không đọc ngược lực lượng.",
+    "Không vẽ NhanVien/Admin là lớp con của TaiKhoan; đây là vai trò trong VaiTro. Không vẽ composition/aggregation vì FK dùng NO ACTION, không có xóa lan truyền.",
+    "Ba lớp kết hợp có PK ghép: TheoDoiTrieuChung(MaTheoDoi,MaTrieuChung); PhanCongCoSoTiem(MaTaiKhoan,MaCoSoTiem); CoSoTiemVaccine(MaCoSoTiem,MaVaccine).",
+    "PhanCongCoSoTiem có HAI liên kết riêng tới TaiKhoan: người được phân công MaTaiKhoan bắt buộc và người phân công MaNguoiPhanCong tùy chọn; không gộp.",
+    "TaiKhoan↔NguoiDan và LichTiem↔MuiTiem đều0..1↔0..1, do FK nullable cộng unique index lọc IS NOT NULL.",
+    "THONGBAO.MaLichTiem không tạo1:1 toàn cục: unique index chỉ áp dụng tiêu đề Nhắc lịch tiêm. Nhiều loại thông báo khác có thể cùng lịch.",
+    "Không thêm FK giả ThongBao→TheoDoiSauTiem/MuiTiem; không nối đa hình LichSuHieuChinh.TenBang/MaBanGhi thành FK.",
+    "Bốn MaCoSoTiem bổ sung cho LoVaccine,LichTiem,MuiTiem,ChongChiDinh là NOT NULL, không optional; migration dùng default tạm rồi xóa default.",
+    "Không vẽ thẳng NguoiDan→CoSoTiem như association lưu trữ: quyền đọc được suy ra qua lịch/mũi/phân công và hàm SQL.",
+    "CoSoTiem (chuỗi) trong LichTiem/MuiTiem vẫn là thuộc tính nullable lịch sử bên cạnh MaCoSoTiem bắt buộc; không coi chuỗi đó là FK."
+  ],
+  "unqualified_unique_note": "attributes.unique chỉ true khi duy nhất toàn bộ giá trị khôngNULL; các UNIQUE có điều kiện/phối hợp nằm ở unique_groups/unique_keys để tránh biếnMaLichTiem thông báo thành1:1."
+}

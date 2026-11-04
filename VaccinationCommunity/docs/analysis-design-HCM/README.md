@@ -12,6 +12,8 @@
 
 **Sơ đồ tuần tự:** [một XML gồm 20 trang SD01–SD20, khớp AD01–AD20 và PR01–PR20](xml/Tuan_tu_20_usecase_chinh_HCM.xml). Bố cục Tác nhân → Giao diện → Xử lý → SQL Server theo mẫu; xem [danh mục, ký hiệu và phạm vi đối chiếu](TUAN_TU_20_USECASE_HCM.md).
 
+**Sơ đồ lớp:** [một XML gồm hai trang CL01–CL02](xml/So_do_lop_HCM.xml): mô hình lớp logic dữ liệu với 19 lớp, 159 thuộc tính, 34 association có bội số; và góc nhìn 26 module service/repository thực tế với 18 dependency nét đứt. Xem [hướng dẫn đọc, mở và nguồn đối chiếu](SO_DO_LOP_HCM.md).
+
 Trong draw.io/diagrams.net, chọn **File → Open From → Device**, mở file XML, rồi chuyển trang bằng các tab ở dưới:
 
 1. **Use case tổng quát:** 20 mục tiêu chính; ba tác nhân Người dân, Nhân viên y tế, Quản trị viên. Admin kế thừa Nhân viên, gồm cả đăng nhập/đăng xuất/đổi mật khẩu, để giảm các đường nối lặp. Đã bỏ mục tiêu hỗ trợ “Xem tổng quan theo vai trò”.
